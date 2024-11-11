@@ -8,11 +8,13 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 
 public class ProcessArrayBot {
-    static final String [] GREATING_LIST = {"hi", "hello", "你好"};
+    static final List<String> GREETING_LIST = Arrays.asList("hello", "hi", "hey", "你好");
 
     public static void main(String[] args) {
 
@@ -33,17 +35,11 @@ public class ProcessArrayBot {
                 Message message = event.getMessage();
                 Optional<Member> member = event.getMember();
 
-                String memberName = member.get().getUsername();
+                String memberName = member.map(Member::getUsername).orElse("Guest");
                 String content = message.getContent();
-                Boolean isGreating = false;
-                for (String msg: GREATING_LIST){
-                    if (content.equalsIgnoreCase(msg)) {
-                        isGreating = true;
-                        break;
-                    }
-                }
+                boolean isGreeting = GREETING_LIST.stream().anyMatch(msg -> content.equalsIgnoreCase(msg));
 
-                if (isGreating) {
+                if (isGreeting) {
                     return message.getChannel()
                             .flatMap(channel -> channel.createMessage(content + " " + memberName));
                 }
