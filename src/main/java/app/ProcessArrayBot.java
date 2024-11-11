@@ -37,7 +37,7 @@ public class ProcessArrayBot {
 
                 String memberName = member.map(Member::getUsername).orElse("Guest");
                 String content = message.getContent();
-                boolean isGreeting = GREETING_LIST.stream().anyMatch(msg -> content.equalsIgnoreCase(msg));
+                boolean isGreeting = GREETING_LIST.stream().anyMatch(content::equalsIgnoreCase);
 
                 if (isGreeting) {
                     return message.getChannel()
@@ -47,8 +47,24 @@ public class ProcessArrayBot {
                 return Mono.empty();
             }).then();
 
+            // MessageCreateEvent example
+            Mono<Void> handleTestingCommand = gateway.on(MessageCreateEvent.class, event -> {
+                Message message = event.getMessage();
+                Optional<Member> member = event.getMember();
+
+                String memberName = member.map(Member::getUsername).orElse("Guest");
+                String content = message.getContent();
+
+                if (content.equalsIgnoreCase("report status")) {
+                    return message.getChannel()
+                            .flatMap(channel -> channel.createMessage("Dear " + memberName + " , everything is fine"));
+                }
+
+                return Mono.empty();
+            }).then();
+
             // combine them!
-            return printOnLogin.and(handleGreetingCommand);
+            return printOnLogin.and(handleGreetingCommand).and(handleTestingCommand);
         });
 
         login.block();
