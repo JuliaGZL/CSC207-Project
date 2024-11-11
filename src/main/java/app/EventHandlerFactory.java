@@ -11,4 +11,8 @@ public class EventHandlerFactory {
         this.client = client;
         this.event = event;
     }
+
+    public void run(){
+        this.event.block();
+    }
 }
