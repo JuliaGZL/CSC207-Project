@@ -11,10 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class GeetingEventCreator extends SubEventCreator<MessageCreateEvent> {
+public class GreetingEventCreator extends SubEventCreator<MessageCreateEvent> {
     static final List<String> GREETING_LIST = Arrays.asList("hello", "hi", "hey", "你好");
 
-    public GeetingEventCreator(DiscordClient client, GatewayDiscordClient gateway) {
+    public GreetingEventCreator(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
             Message message = event.getMessage();
             Optional<Member> member = event.getMember();

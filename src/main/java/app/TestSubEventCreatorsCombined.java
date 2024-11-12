@@ -18,7 +18,7 @@ public class TestSubEventCreatorsCombined {
             Mono<Void> printOnLogin = loginEvent.getEvent();
 
             // MessageCreateEvent example
-            GeetingEventCreator greetingEvent = new GeetingEventCreator(client, gateway);
+            GreetingEventCreator greetingEvent = new GreetingEventCreator(client, gateway);
             Mono<Void> handleGreetingCommand = greetingEvent.getEvent();
 
             // MessageCreateEvent example
