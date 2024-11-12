@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class ProcessArrayBot {
+public class TestAPIMultipleResponse {
     static final List<String> GREETING_LIST = Arrays.asList("hello", "hi", "hey", "你好");
 
     public static void main(String[] args) {

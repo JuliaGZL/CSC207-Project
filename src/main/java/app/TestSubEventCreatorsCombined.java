@@ -2,16 +2,9 @@ package app;
 
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
-import discord4j.core.event.domain.lifecycle.ReadyEvent;
-import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Member;
-import discord4j.core.object.entity.Message;
-import discord4j.core.object.entity.User;
 import reactor.core.publisher.Mono;
 
-import java.util.Optional;
-
-public class TestLoginEventCreator {
+public class TestSubEventCreatorsCombined {
 
     public static void main(String[] args) {
 
