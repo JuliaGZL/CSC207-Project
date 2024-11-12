@@ -12,6 +12,11 @@ public class EventHandlerFactory {
         this.event = event;
     }
 
+    public EventHandlerFactory(String token, Mono<Void> event) {
+        this.client = DiscordClient.create(token);
+        this.event = event;
+    }
+
     public void run(){
         this.event.block();
     }

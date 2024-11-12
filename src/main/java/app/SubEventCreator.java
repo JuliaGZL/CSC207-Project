@@ -32,4 +32,7 @@ public class SubEventCreator<E extends discord4j.core.event.domain.Event> {
         return gateway.on(eventClass, eventMapper).then();
     }
 
+    public Mono<Void> getEvent() {
+        return event;
+    }
 }
