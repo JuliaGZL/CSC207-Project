@@ -12,30 +12,10 @@ Tianchu Li (li-tianchu)
 
 ## Use cases
 
-1. Ichihime wants to play a round of Japanese mahjong. She runs the
-Japanese mahjong program where the program automatically shuffles tiles and
-distributes an initial hand of 13/14 tiles to players. Since Ichihime is the dealer,
-she gets 14 tiles and begins the first. When she is playing, the program shows
-scores on how well she has been performing. After multiple turns where
-Ichihime and other players perform drawing, discarding, Chii, Pon, and Kan,
-another player wins by Ron as Ichihime discards a card the player wants. The
-program displays how many scores the player has won, the list of combinations
-(yaku) that contribute to the player’s scores, and how many Ichihime has to pay
-to that player.
-2. Julia wants to play a round of Japanese mahjong. She runs the Japanese
-mahjong program where the program automatically shuffles tiles and distributes
-an initial hand of 13/14 tiles to players. Julia is not the dealer, so she gets 13 tiles
-and begins after the dealer. She draws a card, and she is very lucky that she
-directly wins! The program displays the scores Julia has won with the special
-combination. (Julia’s Story)
-3.Bill likes to teach others how to play games in general. However, his friend
-sometimes argues that his teaching is not correct. He needs a simulation tool
-with feedback to prove to his friend that his strategies are correct. (Bill’s Story)
-4.Enming wants to test his new neural network framework on reinforcement
-learning which he just published on NeurIPS. Thus, he needs an interface to test
-his AI bot. The interface needs to accurately record the result of a play in
-formatted json file, and ideally can also provide some feedback on bot’s
-performance. (Yizhou’s Story)
-5.Yi wishes to learn Japanese Mahjong. By using our project to play multiple
-rounds and receiving feedback from the AI, he quickly grasped the basic rules and
-strategies of the game. (Tianchu’s Story)
+1. `ChangePlayer`: Amy has finished a round of Japanese Mahjong and wants to calculate the score of her Hand as she won. She inputs a user name and information about the Hand, when the program stores the hand and her user name. Later, she wants to view this Hand and calculate the score again after inputting her user name.
+2. `AddCard`: Bob has won a round of Japanese Mahjong and wants to add cards to the Hand so that he can calculate the scores for the Hand.
+3. `RemoveCard`: Charlie has won a round of Japanese Mahjong and is adding cards to the Hand. However, he has mistakenly added a wrong tile, so he removes this tile.
+4. `EditStatus`: David has taken several special moves in this round of Japanese Mahjong, such as _Chii_ and _Pon_, and suspects that the _Dora indicators_ correspond to some of the tiles in his Hand. He inputs these special statuses for the program to calculate an accurate result.
+5. `ClearCards`: Emily has finished a new round of Japanese Mahjong after calculating the score of her Hand. She wants to clear the Hand so that she can calculate her Hand for this round.
+6. `CalculateScore`: Frank has finished a round of Japanese Mahjong and wants to calculate the score of his Hand. After inputting the user name and information about his Hand and the statuses, the program calculates the score for him.
+7. `DiscordAgent`: George is playing Japanese Mahjong with his friends on Discord. He wants to use a Discord bot to calculate the score of his Hand and show it to his friends.
