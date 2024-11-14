@@ -3,7 +3,6 @@ package mahjong;
 import java.util.List;
 
 public class Rule {
-  
 
   public static boolean canAgari(List<Yaku> yakus) {
     for (Yaku yaku : yakus) {
@@ -17,5 +16,7 @@ public class Rule {
     }
     return false;
   }
+
+  
 
 }
