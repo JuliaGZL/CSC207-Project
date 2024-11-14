@@ -3,32 +3,31 @@ package app;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import discord4j.core.object.entity.Member;
-import discord4j.core.object.entity.Message;
-import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
-public class GreetingEventCreator extends SubEventCreator<MessageCreateEvent> {
+public class GreetingEvent extends MessageInteractor {
     static final List<String> GREETING_LIST = Arrays.asList("hello", "hi", "hey", "你好");
 
-    public GreetingEventCreator(DiscordClient client, GatewayDiscordClient gateway) {
+    public GreetingEvent(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
-            Message message = event.getMessage();
-            Optional<Member> member = event.getMember();
+            String memberName = getMemberName(event);
+            String content = getContent(event);
 
-            String memberName = member.map(Member::getUsername).orElse("Guest");
-            String content = message.getContent();
-            boolean isGreeting = GREETING_LIST.stream().anyMatch(content::equalsIgnoreCase);
-
-            if (isGreeting) {
-                return message.getChannel()
-                        .flatMap(channel -> channel.createMessage(content + " " + memberName).then());
+            if (invokeMessage(content)) {
+                return sendMessage(event, newMessage(content, memberName));
             }
 
-            return Mono.empty();
+            return SubEventCreator.defaultReturn();
         });
+    }
+
+    public static String newMessage(String content, String memberName) {
+        return content + " " + memberName;
+    }
+
+    public static boolean invokeMessage(String message) {
+        return GREETING_LIST.stream().anyMatch(message::equalsIgnoreCase);
     }
 }

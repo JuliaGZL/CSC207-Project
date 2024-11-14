@@ -20,4 +20,16 @@ public class EventHandlerFactory {
     public void run(){
         this.event.block();
     }
+
+    public EventHandlerFactory union(EventHandlerFactory other) {
+        return new EventHandlerFactory(client, this.event.and(other.event));
+    }
+
+    public EventHandlerFactory union(SubEventCreator other) {
+        return new EventHandlerFactory(client, this.event.and(other.getExecutableEvent()));
+    }
+
+    public Mono<Void> getEvent() {
+        return event;
+    }
 }

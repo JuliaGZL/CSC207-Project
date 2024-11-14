@@ -4,11 +4,11 @@ import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
 import discord4j.core.object.entity.User;
-import org.reactivestreams.Publisher;
 import reactor.core.publisher.Mono;
 
-public class LoginEventCreator extends SubEventCreator<ReadyEvent> {
-    public LoginEventCreator(DiscordClient client, GatewayDiscordClient gateway) {
+public class LoginEvent extends SubEventCreator<ReadyEvent> {
+
+    public LoginEvent(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, ReadyEvent.class, event ->
                 Mono.fromRunnable(() -> {
                     final User self = event.getSelf();

@@ -31,7 +31,7 @@ public class MessageInteractor extends SubEventCreator<MessageCreateEvent> {
                 .flatMap(channel -> channel.createMessage(text).then());
     }
 
-    public static String newMessage(String memberName) {
+    public static String newMessage(String input) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

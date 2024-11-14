@@ -40,4 +40,8 @@ public class SubEventCreator<E extends Event> {
     public static Mono<Void> defaultReturn() {
         return Mono.empty();
     }
+
+    public EventHandlerFactory union(SubEventCreator<? extends Event> other) {
+        return new EventHandlerFactory(this.client, this.getExecutableEvent().and(other.getExecutableEvent()));
+    }
 }
