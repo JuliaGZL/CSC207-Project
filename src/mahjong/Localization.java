@@ -1,92 +1,81 @@
 package mahjong;
 
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * Handles the localization of Yaku enum values to their corresponding string representations. It
+ * reads from a localization file to map each Yaku to its localized name.
+ */
 public class Localization {
-    
-    public static String yakuToString(Yaku yaku) {
-        switch (yaku) {
-            case None: return "None";
-            case Riichi: return "Riichi";
-            case Tanyao: return "Tanyao";
-            case Menzentsumo: return "Menzenchin tsumohou";
-            case Jikaze_Ton: return "Self-wind: East";
-            case Jikaze_Nan: return "Self-wind: South";
-            case Jikaze_Sha: return "Self-wind: West";
-            case Jikaze_Pei: return "Self-wind: North";
-            case Bakaze_Ton: return "Prevailing wind: East";
-            case Bakaze_Nan: return "Prevailing wind: South";
-            case Bakaze_Sha: return "Prevailing wind: West";
-            case Bakaze_Pei: return "Prevailing wind: North";
-            case Yakuhai_Haku: return "Yakuhai: White Dragon";
-            case Yakuhai_Hatsu: return "Yakuhai: Green Dragon";
-            case Yakuhai_Chu: return "Yakuhai: Red Dragon";
-            case Pinfu: return "Pinfu";
-            case Ippeikou: return "Iipeikou";
-            case Chankan: return "Chankan";
-            case Rinshankaihou: return "Rinshankaihou";
-            case Haiteiraoyue: return "Haiteiraoyue";
-            case Houteiraoyu: return "Hetairaoyu";
-            case Ippatsu: return "Ippatsu";
-            case Dora: return "Dora";
-            case Uradora: return "Ura Dora";
-            case Akadora: return "Aka Dora";
-            case Peidora: return "Pei Dora";
-            case Honchantaiyaochu_Naki: return "Honchantaiyaochu (Naki)";
-            case Ikkitsuukan_Naki: return "Ittsu: 1-9 (Naki)";
-            case Sanshokudoujun_Naki: return "Sanshoku doujun (Naki)";
-            case Yaku_1_han: return "1 Han";
-            case Dabururiichi: return "Double Riichi";
-            case Sanshokudoukou: return "Sanshoku doukou";
-            case Sankantsu: return "Sankantsu";
-            case Toitoiho: return "Toitoi";
-            case Sanankou: return "Sanankou";
-            case Shousangen: return "Shousangen";
-            case Honroutou: return "Honroutou";
-            case Chiitoitsu: return "Chiitoitsu";
-            case Honchantaiyaochu: return "Honchantaiyaochu";
-            case Ikkitsuukan: return "Ittsu: 1-9";
-            case Sanshokudoujun: return "Sanshoku doujun";
-            case Junchantaiyaochu_Naki: return "Junchant";
-            case Honitsu_Naki: return "Honitsu (Naki)";
-            case Yaku_2_han: return "2 Han";
-            case Rianpeikou: return "Ryanpeikou";
-            case Junchantaiyaochu: return "Junchant";
-            case Honitsu: return "Honitsu";
-            case Yaku_3_han: return "3 Han";
-            case Chinitsu_Naki: return "Chinitsu (Naki)";
-            case Yaku_5_han: return "5 Han";
-            case Chinitsu: return "Chinitsu";
-            case Yaku_6_han: return "6 Han";
-            case Nagashimangan: return "Nagashi Mangan";
-            case Yaku_mangan: return "Mangan";
-            case Tenhou: return "Tenhou";
-            case Chiihou: return "Chiihou";
-            case Daisangen: return "Daisangen";
-            case Suuankou: return "Suuankou";
-            case Tsuuiisou: return "Tsuuiisou";
-            case Ryuiisou: return "Ryuiisou";
-            case Chinroutou: return "Chinroutou";
-            case Kokushimusou: return "Kokushi Musou";
-            case Shousuushii: return "Shousuushii";
-            case Suukantsu: return "Suukantsu";
-            case Chuurenpoutou: return "Chuuren Poutou";
-            case Yakuman: return "Yakuman";
-            case Suuankou_1: return "Suuankou Tanki";
-            case Koukushimusou_13: return "Kokushi Musou 13men machi";
-            case Chuurenpoutou_9: return "Chuuren Poutou 9men machi";
-            case Daisuushii: return "Daisuushii";
-            case Yakuman_Double: return "Double Yakuman";
-            default: return yaku.name();
-        }
-    }
 
-    public static String yakusToString(List<Yaku> yakus) {
-        StringBuilder sb = new StringBuilder("|");
-        for (Yaku yaku : yakus) {
-            sb.append(yakuToString(yaku)).append("|");
+  private Map<Yaku, String> yakusLocalization = new HashMap<Yaku, String>();
+
+  /**
+   * Initializes the Yaku translator by reading the localization file.
+   *
+   * @param pathToDir the path to the directory containing the localization file
+   */
+  public void initializeYakuTranslator(String pathToDir) {
+    try (BufferedReader br = new BufferedReader(new FileReader(pathToDir))) {
+      String line;
+      while ((line = br.readLine()) != null) {
+
+        line = line.trim();
+
+
+        if (line.isEmpty() || line.startsWith("#")) {
+          continue;
         }
-        return sb.toString();
+
+        if (line.contains(":")) {
+          int index = line.indexOf(":");
+          String key = line.substring(0, index).trim();
+          String value = line.substring(index + 1).trim();
+
+          if ((value.startsWith("\"") && value.endsWith("\""))
+              || (value.startsWith("'") && value.endsWith("'"))) {
+            value = value.substring(1, value.length() - 1);
+          }
+
+          yakusLocalization.put(Yaku.valueOf(key), value);
+        }
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-    
+  }
+
+  /**
+   * Returns the localized string representation of the given Yaku.
+   *
+   * @param yaku the Yaku to be localized
+   * @return the localized string of the Yaku
+   * @throws RuntimeException if the Yaku is not found in the localization map
+   */
+  public String toString(Yaku yaku) {
+    if (!this.yakusLocalization.containsKey(yaku)) {
+      throw new RuntimeException("Invalid Yaku:");
+    }
+    return this.yakusLocalization.get(yaku);
+  }
+
+  /**
+   * Converts a list of Yakus to their localized string representations.
+   *
+   * @param yakus the list of Yakus to be localized
+   * @return a concatenated string of localized Yakus
+   */
+  public String yakusToString(ArrayList<Yaku> yakus) {
+    StringBuilder sb = new StringBuilder("|");
+    for (Yaku yaku : yakus) {
+      sb.append(toString(yaku)).append("|");
+    }
+    return sb.toString();
+  }
+
 }
