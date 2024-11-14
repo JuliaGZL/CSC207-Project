@@ -40,17 +40,9 @@ public class SubEventCreator<E extends Event> {
         return event;
     }
 
-    public static String getContent(MessageCreateEvent fromEvent) {
-        return fromEvent.getMessage().getContent();
-    }
 
-    public static String getMemberName(MessageCreateEvent fromEvent) {
-        return fromEvent.getMember().map(Member::getUsername).orElse("Guest");
-    }
 
-    public static Mono<Void> sendMessage(MessageCreateEvent fromEvent, String text) {
-        Message message = fromEvent.getMessage();
-        return message.getChannel()
-                .flatMap(channel -> channel.createMessage(text).then());
+    public static Mono<Void> defaultReturn() {
+        return Mono.empty();
     }
 }

@@ -3,21 +3,20 @@ package app;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
-import reactor.core.publisher.Mono;
 
 
-public class StatusEventCreator extends SubEventCreator<MessageCreateEvent> {
+public class StatusEventCreator extends MessageInteractor {
 
     public StatusEventCreator(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
-            String memberName = SubEventCreator.getMemberName(event);
-            String content = SubEventCreator.getContent(event);
+            String memberName = getMemberName(event);
+            String content = getContent(event);
 
             if (invokeMessage(content)) {
                 return sendMessage(event, newMessage(memberName));
             }
 
-            return Mono.empty();
+            return SubEventCreator.defaultReturn();
         });
     }
 
@@ -28,6 +27,4 @@ public class StatusEventCreator extends SubEventCreator<MessageCreateEvent> {
     public static boolean invokeMessage(String message) {
         return message.equalsIgnoreCase("report status");
     }
-
-
 }
