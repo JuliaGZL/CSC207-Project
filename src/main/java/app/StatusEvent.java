@@ -5,9 +5,9 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
 
-public class StatusEventCreator extends MessageInteractor {
+public class StatusEvent extends MessageInteractor {
 
-    public StatusEventCreator(DiscordClient client, GatewayDiscordClient gateway) {
+    public StatusEvent(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
             String memberName = getMemberName(event);
             String content = getContent(event);
