@@ -74,6 +74,17 @@ public enum BaseTile {
   /** The 7th honor tile (red dragon). */
   _7z;
 
+  
+  private static final BaseTile[] vals = values();
+
+  public BaseTile getNext() {
+    return vals[(this.ordinal() + 1) % vals.length];
+  }
+
+  public BaseTile getPrev() {
+    return vals[(this.ordinal() + 1) % vals.length];
+  }
+
   /** Localization object for translating tile identifiers to localized strings. */
   private static Localization<BaseTile> localization = new Localization<>(BaseTile::valueOf);
 

@@ -5,6 +5,15 @@ import java.util.List;
 
 public class Rule {
 
+  private static final BaseTile[] shuntsuBadHead = { 
+    BaseTile._8m, BaseTile._9m, 
+    BaseTile._8p, BaseTile._9p,
+    BaseTile._8s, BaseTile._9s, 
+    BaseTile._1z, BaseTile._2z, 
+    BaseTile._3z, BaseTile._4z,
+    BaseTile._5z, BaseTile._6z,
+    BaseTile._7z };
+
   public static boolean canAgari(List<Yaku> yakus) {
     for (Yaku yaku : yakus) {
       if (yaku != Yaku.None &&
@@ -74,6 +83,15 @@ public class Rule {
       cases++;
     }
     return cases;
+  }
+
+  public static boolean isShuntsuBadHead(BaseTile tile) {
+    for (BaseTile t : shuntsuBadHead) {
+      if (t == tile) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }

@@ -290,7 +290,7 @@ public class TileGroup implements Comparable<TileGroup> {
    * @return a list of possible tile group strings
    */
   public ArrayList<ArrayList<String>> generateTileGroupStrings(
-    CompletedTiles ct, List<CallGroup> callgroups,
+      CompletedTiles ct, List<CallGroup> callgroups,
       boolean tsumo, BaseTile lastTile) {
     ArrayList<String> rawTileGroupString = new ArrayList<>();
 
