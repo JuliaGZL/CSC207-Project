@@ -5,13 +5,15 @@ import java.util.Map;
 
 import entity.Player;
 import use_case.add_tile.AddTileDataAccessInterface;
+import use_case.clear_tiles.ClearTilesDataAccessInterface;
 import use_case.remove_tile.RemoveTileDataAccessInterface;
 
 /**
  * Universal player data storage object for our project.
  */
 public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInterface,
-        RemoveTileDataAccessInterface {
+        RemoveTileDataAccessInterface,
+        ClearTilesDataAccessInterface {
     private final Map<String, Player> players = new HashMap<String, Player>();
 
     public InMemoryUniversalDataAccessObject() {
