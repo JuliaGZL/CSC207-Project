@@ -170,7 +170,7 @@ public class ScoreCounter {
     }
     return scores;
   }
-
+  
   private boolean isOya;
   private boolean isTsumo;
 

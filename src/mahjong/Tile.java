@@ -4,7 +4,7 @@ package mahjong;
  * Represents a tile in Mahjong.
  */
 public class Tile {
-  private BaseTiles tile;
+  private BaseTile tile;
   private boolean isRedDora;
   private boolean isUraDora;
   private boolean isDora;
@@ -14,7 +14,7 @@ public class Tile {
    *
    * @param tile The base tile to set.
    */
-  public void setTile(BaseTiles tile) {
+  public void setTile(BaseTile tile) {
     this.tile = tile;
   }
 
@@ -53,7 +53,7 @@ public class Tile {
    * @param isUraDora True if the tile is an ura dora.
    * @param isDora  True if the tile is a dora.
    */
-  public void initialize(BaseTiles tile, boolean isRedDora, boolean isUraDora, boolean isDora) {
+  public void initialize(BaseTile tile, boolean isRedDora, boolean isUraDora, boolean isDora) {
     this.setTile(tile);
     this.setRedDora(isRedDora);
     this.setUraDora(isUraDora);
