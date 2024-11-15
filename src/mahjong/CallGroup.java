@@ -12,7 +12,7 @@ public class CallGroup {
    * Types of call groups in Mahjong.
    */
   public enum Type {
-    CHI, PON, DAI_MIN_KAN, KA_KAN, AN_KAN
+    CHI, PON, DAIMINKAN, KAKAN, ANKAN;
   }
 
   /**
@@ -118,7 +118,7 @@ public class CallGroup {
     switch (type) {
       case CHI:
       case PON:
-      case DAI_MIN_KAN:
+      case DAIMINKAN:
         for (int i = 0; i < 3; i++) {
           if (i == take) {
             ret.append("(").append(tiles.get(i).toString()).append(")");
@@ -128,7 +128,7 @@ public class CallGroup {
         }
         break;
 
-      case KA_KAN:
+      case KAKAN:
         for (int i = 0; i < 4; i++) {
           if (i == take && i == 4) {
             ret.append("(").append(tiles.get(i).toString()).append(")");
@@ -138,7 +138,7 @@ public class CallGroup {
         }
         break;
 
-      case AN_KAN:
+      case ANKAN:
         for (int i = 0; i < 4; i++) {
           if (i == 0 || i == 3) {
             ret.append(tiles.get(i).toString());

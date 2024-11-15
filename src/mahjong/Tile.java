@@ -58,7 +58,6 @@ public class Tile {
     this.setRedDora(isRedDora);
     this.setUraDora(isUraDora);
     this.setDora(isDora);
-
   }
 
   /**
@@ -73,6 +72,22 @@ public class Tile {
         + ", isUraDora=" + isUraDora + ", isDora="
         + isDora
         + "]";
+  }
+
+  public BaseTile getTile() {
+    return tile;
+  }
+
+  public boolean isRedDora() {
+    return isRedDora;
+  }
+
+  public boolean isUraDora() {
+    return isUraDora;
+  }
+
+  public boolean isDora() {
+    return isDora;
   }
 
 }

@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Represents a group of tiles in Mahjong, which can be of type TOITSU, SHUNTSU,
- * or KOUTSU.
+ * Represents a group of tiles in Mahjong, which can be of type TOITSU (pair),
+ * SHUNTSU (sequence), or KOUTSU (triplet).
  */
 public class TileGroup implements Comparable<TileGroup> {
   /**
@@ -55,97 +55,99 @@ public class TileGroup implements Comparable<TileGroup> {
   static final char markRon3rd = '^';
 
   /**
-   * Creates a tile group representation with the given tile string and mark.
+   * Creates a tile group representation with the given tile and mark.
    *
-   * @param t    the tile string
+   * @param t    the tile
    * @param mark the mark character
-   * @return a character array representing the tile group
+   * @return a string representing the tile group
    */
-  public static char[] makeTileGroup(String t, char mark) {
-    char[] ret = new char[] { t.charAt(0), t.charAt(1), mark };
+  public static String makeTileGroup(BaseTile t, char mark) {
+    String ret = new String(new char[] { t.toString().charAt(0), t.toString().charAt(1), mark });
     return ret;
   }
 
   /**
-   * Creates a tile group representation with the given tile string and two marks.
+   * Creates a tile group representation with the given tile and two marks.
    *
-   * @param t     the tile string
+   * @param t     the tile
    * @param mark1 the first mark character
    * @param mark2 the second mark character
-   * @return a character array representing the tile group
+   * @return a string representing the tile group
    */
-  public static char[] makeTileGroup(String t, char mark1, char mark2) {
-    char[] ret = new char[] { t.charAt(0), t.charAt(1), mark1, mark2 };
+  public static String makeTileGroup(BaseTile t, char mark1, char mark2) {
+    String ret = new String(
+        new char[] { t.toString().charAt(0), t.toString().charAt(1), mark1, mark2 }
+    );
     return ret;
   }
 
   /**
    * Creates a Toitsu (pair) tile group.
    *
-   * @param t the tile string
-   * @return a character array representing the Toitsu tile group
+   * @param t the tile
+   * @return a string representing the Toitsu tile group
    */
-  public static char[] makeToitsu(String t) {
+  public static String makeToitsu(BaseTile t) {
     return makeTileGroup(t, markToitsu);
   }
 
   /**
    * Creates a Shuntsu (sequence) tile group.
    *
-   * @param t the tile string
-   * @return a character array representing the Shuntsu tile group
+   * @param t the tile
+   * @return a string representing the Shuntsu tile group
    */
-  public static char[] makeShuntsu(String t) {
+  public static String makeShuntsu(BaseTile t) {
     return makeTileGroup(t, markShuntsu);
   }
 
   /**
    * Creates a Shuntsu Fuuro (open sequence) tile group.
    *
-   * @param t the tile string
-   * @return a character array representing the Shuntsu Fuuro tile group
+   * @param t the tile
+   * @return a string representing the Shuntsu Fuuro tile group
    */
-  public static char[] makeShuntsufuuro(String t) {
+  public static String makeShuntsuFuuro(BaseTile t) {
     return makeTileGroup(t, markShuntsu, markFuuro);
   }
 
   /**
    * Creates a Koutsu (triplet) tile group.
    *
-   * @param t the tile string
-   * @return a character array representing the Koutsu tile group
+   * @param t the tile
+   * @return a string representing the Koutsu tile group
    */
-  public static char[] makeKoutsu(String t) {
+  public static String makeKoutsu(BaseTile t) {
     return makeTileGroup(t, markKoutsu);
   }
 
   /**
    * Creates a Koutsu Fuuro (open triplet) tile group.
    *
-   * @param t the tile string
-   * @return a character array representing the Koutsu Fuuro tile group
+   * @param t the tile
+   * @return a string representing the Koutsu Fuuro tile group
    */
-  public static char[] makeKoutsuFuuro(String t) {
+  public static String makeKoutsuFuuro(BaseTile t) {
     return makeTileGroup(t, markKoutsu, markFuuro);
   }
 
   /**
    * Creates an Ankan (concealed quad) tile group.
    *
-   * @param t the tile string
-   * @return a character array representing the Ankan tile group
+   * @param t the tile
+   * @return a string representing the Ankan tile group
    */
-  public static char[] makeAnkan(String t) {
+  public static String makeAnkan(BaseTile t) {
     return makeTileGroup(t, markKantsu, markAnkan);
   }
 
   /**
    * Creates a Minkan (open quad) tile group.
    *
-   * @param t the tile string
-   * @return a character array representing the Minkan tile group
+   * @param t the tile
+   * @return a string representing the Minkan tile group
    */
-  public static char[] makeMinkan(String t) {
+  public static String makeMinkan(BaseTile t) {
     return makeTileGroup(t, markKantsu, markMinkan);
   }
 
@@ -276,5 +278,142 @@ public class TileGroup implements Comparable<TileGroup> {
       }
       return g1.tiles.get(0).compareTo(g2.tiles.get(0));
     };
+  }
+
+  /**
+   * Generates possible tile group strings for given completed tiles.
+   *
+   * @param ct          the completed tiles
+   * @param callgroups  the list of call groups
+   * @param tsumo       whether the winning tile was self-drawn
+   * @param lastTile    the last tile
+   * @return a list of possible tile group strings
+   */
+  public ArrayList<ArrayList<String>> generateTileGroupStrings(
+    CompletedTiles ct, List<CallGroup> callgroups,
+      boolean tsumo, BaseTile lastTile) {
+    ArrayList<String> rawTileGroupString = new ArrayList<>();
+
+    if (!ct.getHead().getTiles().isEmpty()) {
+      rawTileGroupString.add(makeToitsu(ct.getHead().getTiles().get(0)));
+    } else if (ct.getBody().size() != 7) {
+      throw new RuntimeException("Unknown CompletedTiles object. No Head and not 7-toitsu");
+    } else {
+      for (int i = 0; i < 7; i++) {
+        rawTileGroupString.add(makeToitsu(ct.getBody().get(i).getTiles().get(0)));
+      }
+    }
+
+    for (CallGroup callgroup : callgroups) {
+      switch (callgroup.getType()) {
+        case CHI:
+          rawTileGroupString.add(makeShuntsuFuuro(callgroup.getTiles().get(0).getTile()));
+          break;
+        case PON:
+          rawTileGroupString.add(makeKoutsuFuuro(callgroup.getTiles().get(0).getTile()));
+          break;
+        case DAIMINKAN:
+        case KAKAN:
+          rawTileGroupString.add(makeMinkan(callgroup.getTiles().get(0).getTile()));
+          break;
+        case ANKAN:
+          rawTileGroupString.add(makeAnkan(callgroup.getTiles().get(0).getTile()));
+          break;
+        default:
+          break; // should not reach here
+      }
+    }
+
+    for (TileGroup tilegroup : ct.getBody()) {
+      switch (tilegroup.getType()) {
+        case SHUNTSU:
+          rawTileGroupString.add(makeShuntsu(tilegroup.getTiles().get(0)));
+          break;
+        case KOUTSU:
+          rawTileGroupString.add(makeKoutsu(tilegroup.getTiles().get(0)));
+          break;
+        default:
+          break;
+      }
+    }
+    
+    ArrayList<ArrayList<String>> tileGroupStrings = new ArrayList<>();
+    String lastTileString = lastTile.toString();
+    for (String tileGroup : rawTileGroupString) {
+      char attr = tileGroup.charAt(tileGroup.length() - 1);
+
+      if (attr == markKoutsu || attr == markToitsu) {
+        if (tileGroup.substring(0, 2).equals(lastTileString.substring(0, 2))) {
+          if (tsumo) {
+            tileGroup += markTsumo1st;
+          } else {
+            tileGroup += markRon1st;
+          }
+          tileGroupStrings.add(new ArrayList<>(rawTileGroupString));
+          tileGroup = tileGroup.substring(0, tileGroup.length() - 2);
+        }
+      } else if (attr == markShuntsu) {
+        if (tileGroup.substring(0, 2).equals(lastTileString.substring(0, 2))) {
+          if (tsumo) {
+            tileGroup += markTsumo1st;
+          } else {
+            tileGroup += markRon1st;
+          }
+          tileGroupStrings.add(new ArrayList<>(rawTileGroupString));
+          tileGroup = tileGroup.substring(0, tileGroup.length() - 2);
+        } else if (tileGroup.charAt(0) + 1 == lastTileString.charAt(0)
+            && tileGroup.charAt(1) == lastTileString.charAt(1)) {
+          if (tsumo) {
+            tileGroup += markTsumo2nd;
+          } else {
+            tileGroup += markRon2nd;
+          }
+          tileGroupStrings.add(new ArrayList<>(rawTileGroupString));
+          tileGroup = tileGroup.substring(0, tileGroup.length() - 2);
+        } else if (tileGroup.charAt(0) + 2 == lastTileString.charAt(0)
+            && tileGroup.charAt(1) == lastTileString.charAt(1)) {
+          if (tsumo) {
+            tileGroup += markTsumo3rd;
+          } else {
+            tileGroup += markRon3rd;
+          }
+          tileGroupStrings.add(new ArrayList<>(rawTileGroupString));
+          tileGroup = tileGroup.substring(0, tileGroup.length() - 2);
+        }
+      }
+    }
+
+    Collections.sort(tileGroupStrings, (a, b) -> a.toString().compareTo(b.toString()));
+    ArrayList<ArrayList<String>> uniqueTileGroupStrings = new ArrayList<>();
+    for (ArrayList<String> group : tileGroupStrings) {
+      if (!uniqueTileGroupStrings.contains(group)) {
+        uniqueTileGroupStrings.add(group);
+      }
+    }
+
+    return uniqueTileGroupStrings;
+  }
+
+  
+  /**
+   * Removes Fuuro (open melds) and winning tile information, and creates a copy.
+   *
+   * @param strs the list of tile group strings
+   * @return a new list with the specified information removed
+   */
+  public static ArrayList<String> remove4(ArrayList<String> strs) {
+    ArrayList<String> retstr = new ArrayList<>(strs);
+
+    for (int i = 0; i < retstr.size(); i++) {
+      String ret = retstr.get(i);
+      if (ret.length() == 4) {
+        ret = ret.substring(0, 3);
+      }
+      if (ret.charAt(2) == '|') {
+        ret = ret.substring(0, 2) + markKoutsu + ret.substring(3);
+      }
+      retstr.set(i, ret);
+    }
+    return retstr;
   }
 }

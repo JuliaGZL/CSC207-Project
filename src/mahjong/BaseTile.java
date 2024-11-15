@@ -78,7 +78,7 @@ public enum BaseTile {
   private static Localization<BaseTile> localization = new Localization<>(BaseTile::valueOf);
 
   static {
-    localization.initializeTranslator("..\\localization\\yakus_l_english.yaml");
+    localization.initializeTranslator("..\\localization\\tiles_l_english.yaml");
   }
 
   /**
@@ -86,8 +86,17 @@ public enum BaseTile {
    *
    * @return the localized name of the tile
    */
+  public String toLocalizedString() {
+    return localization.toString(this);
+  }
+
+  /**
+   * Returns the basic string representation of this base tile.
+   *
+   * @return the basic name of the tile
+   */
   @Override
   public String toString() {
-    return localization.toString(this);
+    return this.name().substring(1);
   }
 }
