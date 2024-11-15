@@ -4,13 +4,11 @@ import data_access.InMemoryUniversalDataAccessObject;
 import entity.Player;
 import entity.Tile;
 import mahjong.BaseTiles;
-import org.junit.jupiter.api.BeforeEach;
 import use_case.add_tile.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,7 +23,7 @@ public class AddTileInteractorTest {
         List<Tile> hand = new ArrayList<Tile>();
         DAO.savePlayer(new Player(name, 0, hand));
         interactor.execute(new AddTileInputData(tileId, name));
-        assertTrue(DAO.getPlayer(name).getHand().contains(tileId));
+        assertEquals(tileId, DAO.getPlayer(name).getHand().get(0).getTile());
     }
 
     @Test
