@@ -1,21 +1,43 @@
 package mahjong;
 
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
+/**
+ * A singleton class responsible for splitting tiles into completed sets in Mahjong.
+ */
 public class TileSplitter {
 
+  /**
+   * The singleton instance of {@code TileSplitter}.
+   */
   private static TileSplitter instance = null;
 
+  /**
+   * Stores the current combination of completed tiles.
+   */
   private CompletedTiles completedTiles;
+
+  /**
+   * Indicates whether a head (pair) has been found.
+   */
   private boolean hasHead;
 
   // Singleton pattern
+
+  /**
+   * Private constructor to enforce the singleton pattern.
+   */
   private TileSplitter() {
     reset();
   }
 
+  /**
+   * Returns the singleton instance of {@code TileSplitter}.
+   *
+   * @return the singleton instance.
+   */
   public static TileSplitter getInstance() {
     if (instance == null) {
       instance = new TileSplitter();
@@ -23,107 +45,20 @@ public class TileSplitter {
     return instance;
   }
 
+  /**
+   * Resets the state of the {@code TileSplitter}.
+   */
   public void reset() {
     completedTiles = new CompletedTiles();
     hasHead = false;
   }
-  
-vector<CompletedTiles> TileSplitter::get_all_completed_tiles(const vector<BaseTile> &tiles)
-	{
-		if (tiles.size() == 0)
-		{
-			return {completed_tiles};
-		}
-		vector<CompletedTiles> ret, all_completed_tiles;
-		vector<BaseTile> tmp_tiles;
-		int index = 0;
-		bool flag = false; // 只有能成牌的才是true
-		// 对、刻、顺都不能成，提前进入死路，flag=false，直接return {}
 
-		for (int index = 0; index < tiles.size(); ++index)
-		{
-			if (index > 0 && tiles[index] == tiles[index - 1])
-			{ // Skip same tiles
-				index++;
-				continue;
-			}
-
-			BaseTile this_tile = tiles[index];
-			// 1. Find Toitsu (Head)
-			if (!has_head)
-			{
-				if (count(tiles.begin(), tiles.end(), this_tile) >= 2)
-				{
-					flag = true;
-					tmp_tiles = tiles; // 复制一份当前手牌
-					TileGroup tmp_group;
-
-					// 设置全局状态的head已经并移除对子
-					tmp_group.type = TileGroup::Type::Toitsu;
-					tmp_group.set_tiles({this_tile, this_tile});
-					erase_n(tmp_tiles, this_tile, 2);
-					has_head = true;
-					completed_tiles.head = tmp_group;
-
-					// 根据当前状态递归
-					all_completed_tiles = get_all_completed_tiles(tmp_tiles);
-					ret.insert(ret.end(), all_completed_tiles.begin(), all_completed_tiles.end());
-
-					// 恢复系统状态
-					has_head = false;
-				}
-			}
-
-			// 2. Find Koutsu
-			if (count(tiles.begin(), tiles.end(), this_tile) >= 3)
-			{
-				flag = true;
-				tmp_tiles = tiles; // 复制一份当前手牌
-				TileGroup tmp_group;
-
-				// 设置全局状态的head已经并移除刻子
-				tmp_group.type = TileGroup::Type::Koutsu;
-				tmp_group.set_tiles({this_tile, this_tile, this_tile});
-				erase_n(tmp_tiles, this_tile, 3);
-				// 设置临时状态
-				completed_tiles.body.push_back(tmp_group);
-				// 根据当前状态递归
-				all_completed_tiles = get_all_completed_tiles(tmp_tiles);
-				ret.insert(ret.end(), all_completed_tiles.begin(), all_completed_tiles.end());
-				// 恢复状态
-				completed_tiles.body.pop_back();
-			}
-
-			// 3. Find Shuntsu
-			if (!is_in(shuntsu_bad_head, this_tile) && is_in(tiles, BaseTile(tiles[index] + 1)) && is_in(tiles, BaseTile(tiles[index] + 2)))
-			{
-				flag = true;
-				tmp_tiles = tiles; // 复制一份当前手牌
-				TileGroup tmp_group;
-				tmp_group.type = TileGroup::Type::Shuntsu;
-				tmp_group.set_tiles({tiles[index], BaseTile(tiles[index] + 1), BaseTile(tiles[index] + 2)});
-				erase_n(tmp_tiles, tiles[index], 1);
-				erase_n(tmp_tiles, BaseTile(tiles[index] + 1), 1);
-				erase_n(tmp_tiles, BaseTile(tiles[index] + 2), 1);
-
-				// 设置临时状态
-				completed_tiles.body.push_back(tmp_group);
-				// 根据当前状态递归
-				all_completed_tiles = get_all_completed_tiles(tmp_tiles);
-				ret.insert(ret.end(), all_completed_tiles.begin(), all_completed_tiles.end());
-				// 恢复状态
-				completed_tiles.body.pop_back();
-			}
-
-			if (!flag)
-			{
-				return {};
-			}
-		}
-
-		return ret;
-	}
-
+  /**
+   * Recursively finds all possible combinations of completed tiles from the given list.
+   *
+   * @param tiles the list of tiles to process
+   * @return a list of all possible {@code CompletedTiles} combinations
+   */
   public List<CompletedTiles> getAllCompletedTiles(List<BaseTile> tiles) {
     if (tiles.size() == 0) {
       return Collections.singletonList(completedTiles);
@@ -181,14 +116,16 @@ vector<CompletedTiles> TileSplitter::get_all_completed_tiles(const vector<BaseTi
       }
 
       // 3. Find Shuntsu
-      if (!Rule.isShuntsuBadHead(thisTile) && tiles.contains(new BaseTile(thisTile.ordinal() + 1)) && tiles.contains(new BaseTile(thisTile.getValue() + 2))) {
+      if (!Rule.isShuntsuBadHead(thisTile)
+          && tiles.contains(thisTile.getNext())
+          && tiles.contains(thisTile.getNext().getNext())) {
         flag = true;
         tmpTiles = new ArrayList<>(tiles);
         TileGroup tmpGroup = new TileGroup(TileGroup.Type.SHUNTSU);
-        tmpGroup.setTiles(List.of(thisTile, new BaseTile(thisTile.getValue() + 1), new BaseTile(thisTile.getValue() + 2)));
+        tmpGroup.setTiles(List.of(thisTile, thisTile.getNext(), thisTile.getNext().getNext()));
         eraseN(tmpTiles, thisTile, 1);
-        eraseN(tmpTiles, new BaseTile(thisTile.getValue() + 1), 1);
-        eraseN(tmpTiles, new BaseTile(thisTile.getValue() + 2), 1);
+        eraseN(tmpTiles, thisTile.getNext(), 1);
+        eraseN(tmpTiles, thisTile.getNext().getNext(), 1);
         completedTiles.getBody().add(tmpGroup);
 
         // Recursively find all completed tiles
@@ -207,11 +144,17 @@ vector<CompletedTiles> TileSplitter::get_all_completed_tiles(const vector<BaseTi
     return ret;
   }
 
+  /**
+   * Removes a specified number of occurrences of a tile from the list.
+   *
+   * @param tiles the list of tiles
+   * @param tile the tile to remove
+   * @param n the number of times to remove the tile
+   */
   private void eraseN(List<BaseTile> tiles, BaseTile tile, int n) {
     for (int i = 0; i < n; i++) {
       tiles.remove(tile);
     }
   }
-
 
 }
