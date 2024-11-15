@@ -1,45 +1,78 @@
-
 package mahjong;
 
+/**
+ * Represents a tile in Mahjong.
+ */
 public class Tile {
-    public BaseTile tile;
-    public boolean redDora;
-    public int id;
+  private BaseTiles tile;
+  private boolean isRedDora;
+  private boolean isUraDora;
+  private boolean isDora;
 
-    public String toString() {
-        int number = tile.ordinal() % 9 + 1;
-        if (redDora) {
-            number = 0;
-        }
-        switch (tile.ordinal() / 9) {
-            case 0:
-                return number + "m";
-            case 1:
-                return number + "p";
-            case 2:
-                return number + "s";
-            case 3:
-                return number + "z";
-            default:
-                throw new RuntimeException("Error Tile object.");
-        }
-    }
+  /**
+   * Sets the base tile.
+   *
+   * @param tile The base tile to set.
+   */
+  public void setTile(BaseTiles tile) {
+    this.tile = tile;
+  }
 
-    // ...existing code...
+  /**
+   * Sets whether the tile is a red dora.
+   *
+   * @param isRedDora True if the tile is a red dora; false otherwise.
+   */
+  public void setRedDora(boolean isRedDora) {
+    this.isRedDora = isRedDora;
+  }
+
+  /**
+   * Sets whether the tile is an ura dora.
+   *
+   * @param isUraDora True if the tile is an ura dora; false otherwise.
+   */
+  public void setUraDora(boolean isUraDora) {
+    this.isUraDora = isUraDora;
+  }
+
+  /**
+   * Sets whether the tile is a dora.
+   *
+   * @param isDora True if the tile is a dora; false otherwise.
+   */
+  public void setDora(boolean isDora) {
+    this.isDora = isDora;
+  }
+
+  /**
+   * Initializes the tile with the specified attributes.
+   *
+   * @param tile    The base tile to set.
+   * @param isRedDora True if the tile is a red dora.
+   * @param isUraDora True if the tile is an ura dora.
+   * @param isDora  True if the tile is a dora.
+   */
+  public void initialize(BaseTiles tile, boolean isRedDora, boolean isUraDora, boolean isDora) {
+    this.setTile(tile);
+    this.setRedDora(isRedDora);
+    this.setUraDora(isUraDora);
+    this.setDora(isDora);
+
+  }
+
+  /**
+   * Returns a string representation of the tile.
+   *
+   * @return A string representing the tile.
+   */
+  @Override
+  public String toString() {
+    return "Tile [tile=" + tile.toString() 
+        + ", isRedDora=" + isRedDora 
+        + ", isUraDora=" + isUraDora + ", isDora="
+        + isDora
+        + "]";
+  }
+
 }
-
-enum BaseTile {
-    _1m, _2m, _3m, _4m, _5m, _6m, _7m, _8m, _9m,
-    _1p, _2p, _3p, _4p, _5p, _6p, _7p, _8p, _9p,
-    _1s, _2s, _3s, _4s, _5s, _6s, _7s, _8s, _9s,
-    _1z, _2z, _3z, _4z, _5z, _6z, _7z
-}
-
-enum Wind {
-    East,
-    South,
-    West,
-    North
-}
-
-// ...existing code...
