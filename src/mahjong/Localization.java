@@ -6,27 +6,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
- * Handles the localization of Yaku enum values to their corresponding string representations. It
- * reads from a localization file to map each Yaku to its localized name.
+ * Handles the localization of given enum values to their corresponding string representations. It
+ * reads from a localization file to map each element to its localized name.
  */
-public class Localization {
+public class Localization<T> {
 
-  private Map<Yaku, String> yakusLocalization = new HashMap<Yaku, String>();
+  private Map<T, String> localization = new HashMap<>();
+
+  private Function<String, T> keyConverter;
+
+  public Localization(Function<String, T> keyConverter) {
+    this.keyConverter = keyConverter;
+  }
 
   /**
-   * Initializes the Yaku translator by reading the localization file.
+   * Initializes the translator by reading the localization file.
    *
    * @param pathToDir the path to the directory containing the localization file
    */
-  public void initializeYakuTranslator(String pathToDir) {
+  public void initializeTranslator(String pathToDir) {
     try (BufferedReader br = new BufferedReader(new FileReader(pathToDir))) {
       String line;
       while ((line = br.readLine()) != null) {
 
         line = line.trim();
-
 
         if (line.isEmpty() || line.startsWith("#")) {
           continue;
@@ -42,7 +48,8 @@ public class Localization {
             value = value.substring(1, value.length() - 1);
           }
 
-          yakusLocalization.put(Yaku.valueOf(key), value);
+          T convertedKey = keyConverter.apply(key);
+          localization.put(convertedKey, value);
         }
       }
     } catch (IOException e) {
@@ -51,29 +58,29 @@ public class Localization {
   }
 
   /**
-   * Returns the localized string representation of the given Yaku.
+   * Returns the localized string representation of the given key.
    *
-   * @param yaku the Yaku to be localized
-   * @return the localized string of the Yaku
-   * @throws RuntimeException if the Yaku is not found in the localization map
+   * @param key the key to be localized
+   * @return the localized string of the key
+   * @throws RuntimeException if the key is not found in the localization map
    */
-  public String toString(Yaku yaku) {
-    if (!this.yakusLocalization.containsKey(yaku)) {
-      throw new RuntimeException("Invalid Yaku:");
+  public String toString(T key) {
+    if (!this.localization.containsKey(key)) {
+      throw new RuntimeException("Invalid key: " + key);
     }
-    return this.yakusLocalization.get(yaku);
+    return this.localization.get(key);
   }
 
   /**
-   * Converts a list of Yakus to their localized string representations.
+   * Converts a list of keys to their localized string representations.
    *
-   * @param yakus the list of Yakus to be localized
-   * @return a concatenated string of localized Yakus
+   * @param keys the list of keys to be localized
+   * @return a concatenated string of localized keys
    */
-  public String yakusToString(ArrayList<Yaku> yakus) {
+  public String keysToString(ArrayList<T> keys) {
     StringBuilder sb = new StringBuilder("|");
-    for (Yaku yaku : yakus) {
-      sb.append(toString(yaku)).append("|");
+    for (T key : keys) {
+      sb.append(toString(key)).append("|");
     }
     return sb.toString();
   }
