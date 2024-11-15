@@ -4,21 +4,18 @@ import java.util.List;
 
 /**
  * Class that represents a player.
- *  - id: ID of the player.
+ *  - name: Name of the player, must be unique.
  *  - score: Score obtained by the player.
- *  - name: Display name of the player.
- *  - hand: List of Cards that the player is holding.
+ *  - hand: List of tiles that the player is holding.
  */
 public class Player {
-    private int id;
+    private final String name;
     private int score;
-    private String name;
-    private List<Card> hand;
+    private List<Tile> hand;
 
-    public Player(int id, int score, String name, List<Card> hand) {
-        this.id = id;
-        this.score = score;
+    public Player(String name, int score, List<Tile> hand) {
         this.name = name;
+        this.score = score;
         this.hand = hand;
     }
 
@@ -26,15 +23,11 @@ public class Player {
         return name;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public int getScore() {
         return score;
     }
 
-    public List<Card> getHand() {
+    public List<Tile> getHand() {
         return hand;
     }
 
@@ -42,7 +35,7 @@ public class Player {
         this.score = score;
     }
 
-    public void setHand(List<Card> hand) {
+    public void setHand(List<Tile> hand) {
         this.hand = hand;
     }
 }
