@@ -1,4 +1,4 @@
-package app;
+package usecase.api_usecase;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;

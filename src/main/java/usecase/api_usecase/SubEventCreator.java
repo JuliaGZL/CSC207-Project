@@ -1,4 +1,4 @@
-package app;
+package usecase.api_usecase;
 
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
@@ -41,7 +41,7 @@ public class SubEventCreator<E extends Event> {
         return Mono.empty();
     }
 
-    public EventHandlerFactory union(SubEventCreator<? extends Event> other) {
-        return new EventHandlerFactory(this.client, this.getExecutableEvent().and(other.getExecutableEvent()));
+    public ParallelEvent union(SubEventCreator<? extends Event> other) {
+        return new ParallelEvent(this.client, this.getExecutableEvent().and(other.getExecutableEvent()));
     }
 }

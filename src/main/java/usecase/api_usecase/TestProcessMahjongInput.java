@@ -1,4 +1,4 @@
-package app;
+package usecase.api_usecase;
 
 public class TestProcessMahjongInput {
     public static void main(String[] args) {
