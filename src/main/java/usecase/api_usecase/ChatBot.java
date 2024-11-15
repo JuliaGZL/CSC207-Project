@@ -21,13 +21,26 @@ public class ChatBot {
     }
 
     public void addEvent(Class<? extends SubEventCreator> eventType) {
-        subEvents.add(eventType);
+        subEventsClasses.add(eventType);
     }
 
     public void setMainService(){
         this.onConnect = client.withGateway((GatewayDiscordClient gateway) -> {
             // Collect all events as Mono<Void> and combine them
+            Class<? extends SubEventCreator> subEventType1 = subEventsClasses.remove(0);
+            SubEventCreator subEvent1 = subEventFactory.createSubEvent(subEventType1, client, gateway);
+            if (subEventsClasses.size() == 0){
+                return subEvent1.getExecutableEvent();
+            }
+            ParallelEvent parellel;
 
+            SubEventCreator subEvent2 = subEventFactory.createSubEvent(subEventsClasses.remove(0), client, gateway);
+            parellel = subEvent1.union(subEvent2);
+
+            for (int i = 0; i < subEventsClasses.size(); i++){
+                parellel = parellel.union(subEventFactory.createSubEvent(subEventsClasses.get(0), client, gateway));
+            }
+            return parellel.getEvent();
         });
     }
 

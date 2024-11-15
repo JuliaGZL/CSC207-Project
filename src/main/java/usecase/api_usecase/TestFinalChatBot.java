@@ -5,6 +5,8 @@ public class TestFinalChatBot {
         String token = "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto";
 
         ChatBot bot = new ChatBot(token);
-        // LoginEvent loginReport = new LoginEvent(client, gateway);
+        bot.addEvent(LoginEvent.class);
+        bot.addEvent(GreetingEvent.class);
+        bot.run();
     }
 }
