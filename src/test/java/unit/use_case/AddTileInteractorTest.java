@@ -1,4 +1,60 @@
 package unit.use_case;
 
+import data_access.InMemoryUniversalDataAccessObject;
+import entity.Player;
+import entity.Tile;
+import mahjong.BaseTiles;
+import org.junit.jupiter.api.BeforeEach;
+import use_case.add_tile.*;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class AddTileInteractorTest {
+    final String name = "player1";
+    final BaseTiles tileId = BaseTiles._1m;
+    private final AddTileDataAccessInterface DAO = new InMemoryUniversalDataAccessObject();
+    private final AddTileInputBoundary interactor = new AddTileInteractor(DAO, new dummyOTB(name));
+
+    @Test
+    void SuccessTest() {
+        List<Tile> hand = new ArrayList<Tile>();
+        DAO.savePlayer(new Player(name, 0, hand));
+        interactor.execute(new AddTileInputData(tileId, name));
+        assertTrue(DAO.getPlayer(name).getHand().contains(tileId));
+    }
+
+    @Test
+    void FailTest() {
+        List<Tile> hand = new ArrayList<Tile>();
+        for (int i = 0; i < 14; i++) {
+            hand.add(new Tile(tileId, false, false, false));
+        }
+        DAO.savePlayer(new Player(name, 0, hand));
+        assertThrows(ExpectedFail.class, () -> {interactor.execute(new AddTileInputData(tileId, name));});
+    }
 }
+
+class dummyOTB implements AddTileOutputBoundary {
+    private final String expected;
+
+    dummyOTB(String expected) {
+        this.expected = expected;
+    }
+
+    @Override
+    public void prepareSuccessView(AddTileOutputData outputData) {
+        assertEquals(expected, outputData.getPlayerName());
+    }
+
+    @Override
+    public void prepareFailView(String errorMessage) {
+        throw new ExpectedFail();
+    }
+}
+
+class ExpectedFail extends RuntimeException {}
