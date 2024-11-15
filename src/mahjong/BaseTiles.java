@@ -67,11 +67,11 @@ public enum BaseTiles {
   _3z,
   /** The 4th honor tile (north wind). */
   _4z,
-  /** The 5th honor tile (green dragon). */
+  /** The 5th honor tile (white dragon). */
   _5z,
-  /** The 6th honor tile (red dragon). */
+  /** The 6th honor tile (green dragon). */
   _6z,
-  /** The 7th honor tile (white dragon). */
+  /** The 7th honor tile (red dragon). */
   _7z;
 
   /** Localization object for translating tile identifiers to localized strings. */
