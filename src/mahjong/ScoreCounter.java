@@ -15,7 +15,7 @@ public class ScoreCounter {
    * @param isOya   true if the player is the dealer (oya), false otherwise
    * @param isTsumo true if the win was by tsumo, false if by ron
    */
-  public void initialize(int fan, int fu, boolean isOya, boolean isTsumo) {
+  public ScoreCounter(int fan, int fu, boolean isOya, boolean isTsumo) {
     this.fan = fan;
     this.fu = fu;
     this.isOya = isOya;

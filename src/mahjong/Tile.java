@@ -53,7 +53,7 @@ public class Tile {
    * @param isUraDora True if the tile is an ura dora.
    * @param isDora  True if the tile is a dora.
    */
-  public void initialize(BaseTile tile, boolean isRedDora, boolean isUraDora, boolean isDora) {
+  public Tile(BaseTile tile, boolean isRedDora, boolean isUraDora, boolean isDora) {
     this.setTile(tile);
     this.setRedDora(isRedDora);
     this.setUraDora(isUraDora);
