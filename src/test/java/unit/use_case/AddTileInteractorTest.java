@@ -16,7 +16,7 @@ public class AddTileInteractorTest {
     final String name = "player1";
     final BaseTiles tileId = BaseTiles._1m;
     private final AddTileDataAccessInterface DAO = new InMemoryUniversalDataAccessObject();
-    private final AddTileInputBoundary interactor = new AddTileInteractor(DAO, new dummyOTB(name));
+    private final AddTileInputBoundary interactor = new AddTileInteractor(DAO, new dummyAddTileOTB(name));
 
     @Test
     void SuccessTest() {
@@ -37,10 +37,10 @@ public class AddTileInteractorTest {
     }
 }
 
-class dummyOTB implements AddTileOutputBoundary {
+class dummyAddTileOTB implements AddTileOutputBoundary {
     private final String expected;
 
-    dummyOTB(String expected) {
+    dummyAddTileOTB(String expected) {
         this.expected = expected;
     }
 
