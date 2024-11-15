@@ -27,6 +27,128 @@ public class TileGroup implements Comparable<TileGroup> {
    */
   private List<BaseTile> tiles;
 
+  /** Mark for Toitsu (pair) tile group. */
+  static final char markToitsu = ':';
+  /** Mark for Shuntsu (sequence) tile group. */
+  static final char markShuntsu = 'S';
+  /** Mark for Koutsu (triplet) tile group. */
+  static final char markKoutsu = 'K';
+  /** Mark for Kantsu (quad) tile group. */
+  static final char markKantsu = '|';
+  /** Mark for Ankan (concealed quad). */
+  static final char markAnkan = '+';
+  /** Mark for Minkan (open quad). */
+  static final char markMinkan = '-';
+  /** Mark for Fuuro (open meld). */
+  static final char markFuuro = '-';
+  /** Mark for first Tsumo (self-draw). */
+  static final char markTsumo1st = '!';
+  /** Mark for second Tsumo (self-draw). */
+  static final char markTsumo2nd = '@';
+  /** Mark for third Tsumo (self-draw). */
+  static final char markTsumo3rd = '#';
+  /** Mark for first Ron (discard win). */
+  static final char markRon1st = '$';
+  /** Mark for second Ron (discard win). */
+  static final char markRon2nd = '%';
+  /** Mark for third Ron (discard win). */
+  static final char markRon3rd = '^';
+
+  /**
+   * Creates a tile group representation with the given tile string and mark.
+   *
+   * @param t    the tile string
+   * @param mark the mark character
+   * @return a character array representing the tile group
+   */
+  public static char[] makeTileGroup(String t, char mark) {
+    char[] ret = new char[] { t.charAt(0), t.charAt(1), mark };
+    return ret;
+  }
+
+  /**
+   * Creates a tile group representation with the given tile string and two marks.
+   *
+   * @param t     the tile string
+   * @param mark1 the first mark character
+   * @param mark2 the second mark character
+   * @return a character array representing the tile group
+   */
+  public static char[] makeTileGroup(String t, char mark1, char mark2) {
+    char[] ret = new char[] { t.charAt(0), t.charAt(1), mark1, mark2 };
+    return ret;
+  }
+
+  /**
+   * Creates a Toitsu (pair) tile group.
+   *
+   * @param t the tile string
+   * @return a character array representing the Toitsu tile group
+   */
+  public static char[] makeToitsu(String t) {
+    return makeTileGroup(t, markToitsu);
+  }
+
+  /**
+   * Creates a Shuntsu (sequence) tile group.
+   *
+   * @param t the tile string
+   * @return a character array representing the Shuntsu tile group
+   */
+  public static char[] makeShuntsu(String t) {
+    return makeTileGroup(t, markShuntsu);
+  }
+
+  /**
+   * Creates a Shuntsu Fuuro (open sequence) tile group.
+   *
+   * @param t the tile string
+   * @return a character array representing the Shuntsu Fuuro tile group
+   */
+  public static char[] makeShuntsufuuro(String t) {
+    return makeTileGroup(t, markShuntsu, markFuuro);
+  }
+
+  /**
+   * Creates a Koutsu (triplet) tile group.
+   *
+   * @param t the tile string
+   * @return a character array representing the Koutsu tile group
+   */
+  public static char[] makeKoutsu(String t) {
+    return makeTileGroup(t, markKoutsu);
+  }
+
+  /**
+   * Creates a Koutsu Fuuro (open triplet) tile group.
+   *
+   * @param t the tile string
+   * @return a character array representing the Koutsu Fuuro tile group
+   */
+  public static char[] makeKoutsuFuuro(String t) {
+    return makeTileGroup(t, markKoutsu, markFuuro);
+  }
+
+  /**
+   * Creates an Ankan (concealed quad) tile group.
+   *
+   * @param t the tile string
+   * @return a character array representing the Ankan tile group
+   */
+  public static char[] makeAnkan(String t) {
+    return makeTileGroup(t, markKantsu, markAnkan);
+  }
+
+  /**
+   * Creates a Minkan (open quad) tile group.
+   *
+   * @param t the tile string
+   * @return a character array representing the Minkan tile group
+   */
+  public static char[] makeMinkan(String t) {
+    return makeTileGroup(t, markKantsu, markMinkan);
+  }
+
   /**
    * Constructs a TileGroup with the specified type.
    *
