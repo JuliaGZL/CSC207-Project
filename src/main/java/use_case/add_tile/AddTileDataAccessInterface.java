@@ -17,12 +17,12 @@ public interface AddTileDataAccessInterface {
      * Saves the player.
      * @param player the player to save
      */
-    void save(Player player);
+    void savePlayer(Player player);
 
     /**
      * Returns the player with the given name.
      * @param playerName the username to look up
      * @return the user with the given username
      */
-    Player get(String playerName);
+    Player getPlayer(String playerName);
 }

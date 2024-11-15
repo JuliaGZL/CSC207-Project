@@ -34,7 +34,7 @@ public class AddTileInteractor implements AddTileInputBoundary {
             throw new RuntimeException("Player name not found!");
         }
         else {
-            final Player player = dataAccessObj.get(name);
+            final Player player = dataAccessObj.getPlayer(name);
             final List<Tile> hand = player.getHand();
             final int fullNum = 14;
             if (hand.size() == fullNum) {
@@ -51,7 +51,7 @@ public class AddTileInteractor implements AddTileInputBoundary {
         hand.add(newTile);
         // TODO: sort hand!
         player.setHand(hand);
-        dataAccessObj.save(player);
+        dataAccessObj.savePlayer(player);
 
         final List<BaseTiles> idList = new ArrayList<BaseTiles>();
         final List<String> nameList = new ArrayList<String>();
