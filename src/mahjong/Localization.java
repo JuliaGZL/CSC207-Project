@@ -11,6 +11,8 @@ import java.util.function.Function;
 /**
  * Handles the localization of given enum values to their corresponding string representations. It
  * reads from a localization file to map each element to its localized name.
+ *
+ * @param <T> the type of keys used for localization
  */
 public class Localization<T> {
 
@@ -18,6 +20,11 @@ public class Localization<T> {
 
   private Function<String, T> keyConverter;
 
+  /**
+   * Constructs a Localization instance with a key converter function.
+   *
+   * @param keyConverter a function to convert strings to keys of type T
+   */
   public Localization(Function<String, T> keyConverter) {
     this.keyConverter = keyConverter;
   }
