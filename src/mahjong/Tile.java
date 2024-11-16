@@ -74,7 +74,7 @@ public class Tile {
         + "]";
   }
 
-  public BaseTile getTile() {
+  public BaseTile getBaseTile() {
     return tile;
   }
 
