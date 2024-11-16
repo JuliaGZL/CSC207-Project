@@ -39,7 +39,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         List<JPanel> checkboxPanels = new ArrayList<>();
 
         // Add all status checkboxes to the panel
-        for (String status : EditStatusViewModel.STATUSES) {
+        for (String status : EditStatusViewModel.ATTRIBUTES) {
             JPanel statusPanel = new JPanel();
             statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.Y_AXIS));
             JCheckBox statusCheckBox = new JCheckBox();

@@ -7,14 +7,14 @@ import mahjong.BaseTiles;
  */
 public class EditStatusState {
 
-    private Boolean[] editStatus = new Boolean[5];
+    private Boolean[] attributes = new Boolean[5];
     private Boolean[] redDoraStatus = new Boolean[3];
     private BaseTiles[] doraIndicators = new BaseTiles[5];
     private String selectIndicatorError;
 
     // Setters and getters
-    public Boolean[] getEditStatus() {
-        return editStatus;
+    public Boolean[] getAttributes() {
+        return attributes;
     }
 
     public Boolean[] getRedDoraStatus() {
@@ -29,8 +29,8 @@ public class EditStatusState {
         return selectIndicatorError;
     }
 
-    public void setEditStatus(Boolean[] editStatus) {
-        this.editStatus = editStatus;
+    public void setAttributes(Boolean[] attributes) {
+        this.attributes = attributes;
     }
 
     public void setRedDoraStatus(Boolean[] redDoraStatus) {
@@ -48,7 +48,7 @@ public class EditStatusState {
     @Override
     public String toString() {
         return "EditStatusState{" +
-                "editStatus=" + editStatus +
+                "editStatus=" + attributes +
                 ", redDoraStatus=" + redDoraStatus +
                 ", doraIndicators=" + doraIndicators +
                 '}';

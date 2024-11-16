@@ -2,11 +2,9 @@ package interface_adapter.edit_status;
 
 import interface_adapter.ViewModel;
 
-import java.util.List;
-
 public class EditStatusViewModel extends ViewModel<EditStatusState> {
 
-    public static final String[] STATUSES = {"Chii", "Pon", "Kan", "Riichi", "Tsumo"};
+    public static final String[] ATTRIBUTES = {"Chii", "Pon", "Kan", "Riichi", "Tsumo"};
     public static final String BLANK_MAHJONG_PATH = "/mahjong-tiles/Front.png";
 
     public static final String MAN_LABEL = "Man";
