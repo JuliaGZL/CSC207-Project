@@ -226,16 +226,16 @@ public class PlayerStats {
    * 
    * @return an array of Tile representing the player's hand.
    */
-  public Tile[] getHand() {
+  public List<Tile> getHand() {
     return hand;
   }
 
   /**
-   * Sets the hand of the player.
+   * Sets the hand of the player in Tile.
    * 
    * @param hand an array of Tile to set as the player's hand.
    */
-  public void setHand(Tile[] hand) {
+  public void setHand(List<Tile> hand) {
     this.hand = hand;
   }
 
@@ -257,6 +257,12 @@ public class PlayerStats {
     this.isOya = isOya;
   }
 
+  
+  /**
+   * Gets the hand of the player in BaseTile.
+   * 
+   * @return an array of BaseTile representing the player's hand.
+   */
   public List<BaseTile> getBaseHands() {
     return baseHand;
   }
