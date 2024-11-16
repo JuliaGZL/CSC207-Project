@@ -307,17 +307,17 @@ public class TileGroup implements Comparable<TileGroup> {
     for (CallGroup callgroup : callgroups) {
       switch (callgroup.getType()) {
         case CHI:
-          rawTileGroupString.add(makeShuntsuFuuro(callgroup.getTiles().get(0).getTile()));
+          rawTileGroupString.add(makeShuntsuFuuro(callgroup.getTiles().get(0).getBaseTile()));
           break;
         case PON:
-          rawTileGroupString.add(makeKoutsuFuuro(callgroup.getTiles().get(0).getTile()));
+          rawTileGroupString.add(makeKoutsuFuuro(callgroup.getTiles().get(0).getBaseTile()));
           break;
         case DAIMINKAN:
         case KAKAN:
-          rawTileGroupString.add(makeMinkan(callgroup.getTiles().get(0).getTile()));
+          rawTileGroupString.add(makeMinkan(callgroup.getTiles().get(0).getBaseTile()));
           break;
         case ANKAN:
-          rawTileGroupString.add(makeAnkan(callgroup.getTiles().get(0).getTile()));
+          rawTileGroupString.add(makeAnkan(callgroup.getTiles().get(0).getBaseTile()));
           break;
         default:
           break; // should not reach here

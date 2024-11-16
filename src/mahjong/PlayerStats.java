@@ -1,10 +1,14 @@
 package mahjong;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents the state of a player in a Mahjong game.
  */
-public class PlayerState {
+public class PlayerStats {
   private boolean isRiichi;
+  private boolean isDoubleRiichi;
   private boolean isIppatsu;
   private boolean isMenzenchin;
   private boolean isTsumo;
@@ -15,24 +19,43 @@ public class PlayerState {
   private boolean isTenhou;
   private boolean isChiihou;
   private boolean isOya;
-  private Tile[] hand;
+  private List<Tile> hand;
+  private List<BaseTile> baseHand;
 
   /**
-   * Checks if the player is in Richi state.
+   * Checks if the player is in Riichi state.
    * 
-   * @return true if the player is in Richi state, false otherwise.
+   * @return true if the player is in Riichi state, false otherwise.
    */
   public boolean isRiichi() {
     return isRiichi;
   }
 
   /**
-   * Sets the Richi state of the player.
+   * Sets the Riichi state of the player.
    * 
-   * @param isRiichi true to set the player in Richi state, false otherwise.
+   * @param isRiichi true to set the player in Riichi state, false otherwise.
    */
-  public void setRichi(boolean isRiichi) {
+  public void setRiichi(boolean isRiichi) {
     this.isRiichi = isRiichi;
+  }
+
+  /**
+   * Checks if the player is in Double Riichi state.
+   * 
+   * @return true if the player is in Double Riichi state, false otherwise.
+   */
+  public boolean isDoubleRiichi() {
+    return isDoubleRiichi;
+  }
+
+  /**
+   * Sets the Double Richi state of the player.
+   * 
+   * @param isDoubleRiichi true to set the player in Riichi state, false otherwise.
+   */
+  public void setDoubleRiichi(boolean isDoubleRiichi) {
+    this.isDoubleRiichi = isDoubleRiichi;
   }
 
   /**
@@ -234,6 +257,10 @@ public class PlayerState {
     this.isOya = isOya;
   }
 
+  public List<BaseTile> getBaseHands() {
+    return baseHand;
+  }
+
   /**
    * Constructs a PlayerState with the specified states and hand.
    * 
@@ -250,11 +277,11 @@ public class PlayerState {
    * @param isOya        whether the player is in Oya state.
    * @param hand         the hand of the player.
    */
-  public PlayerState(
+  public PlayerStats(
       boolean isRiichi, boolean isIppatsu, boolean isMenzenchin,
       boolean isTsumo, boolean isRinshan, boolean isHaitei,
       boolean isHoutei, boolean isChankan, boolean isTenhou,
-      boolean isChiihou, boolean isOya, Tile[] hand) {
+      boolean isChiihou, boolean isOya, List<Tile> hand) {
     this.isRiichi = isRiichi;
     this.isIppatsu = isIppatsu;
     this.isMenzenchin = isMenzenchin;
@@ -267,6 +294,9 @@ public class PlayerState {
     this.isChiihou = isChiihou;
     this.isOya = isOya;
     this.hand = hand;
+    this.baseHand = new ArrayList<>();
+    for (Tile tile : hand) {
+      baseHand.add(tile.getBaseTile());
+    }
   }
-
 }
