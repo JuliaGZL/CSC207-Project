@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.SelectDoraController;
+import interface_adapter.edit_status.SelectDoraState;
 import interface_adapter.edit_status.SelectDoraViewModel;
 
 import javax.swing.*;
@@ -17,11 +18,11 @@ public class SelectDoraView extends JPanel implements ActionListener, PropertyCh
     private final String viewName = "select dora indicators";
     private final SelectDoraViewModel selectDoraViewModel;
 
-    private JLabel titleLabel = new JLabel("Select Dora Indicators");
+    private JLabel titleLabel = new JLabel(SelectDoraViewModel.TITLE_LABEL);
 
     private JPanel doraIndicatorPanel;
     private JButton[] tileButtons = new JButton[34];
-    private JButton confirmButton = new JButton("Confirm");
+    private JButton confirmButton = new JButton(SelectDoraViewModel.CONFIRM_BUTTON_LABEL);
 
     private SelectDoraController selectDoraController;
 
@@ -41,21 +42,21 @@ public class SelectDoraView extends JPanel implements ActionListener, PropertyCh
 
         // Create the buttons for the dora indicators
         for (int i = 1; i < 10; i++) {
-            tileButtons[i - 1] = createImageButton("/mahjong-tiles/Man" + i + ".png");
+            tileButtons[i - 1] = createImageButton(SelectDoraViewModel.MAN_PATH + i + ".png");
         }
         for (int i = 1; i < 10; i++) {
-            tileButtons[i + 8] = createImageButton("/mahjong-tiles/Pin" + i + ".png");
+            tileButtons[i + 8] = createImageButton(SelectDoraViewModel.PIN_PATH + i + ".png");
         }
         for (int i = 1; i < 10; i++) {
-            tileButtons[i + 17] = createImageButton("/mahjong-tiles/Sou" + i + ".png");
+            tileButtons[i + 17] = createImageButton(SelectDoraViewModel.SOU_PATH + i + ".png");
         }
-        tileButtons[27] = createImageButton("/mahjong-tiles/Ton.png");
-        tileButtons[28] = createImageButton("/mahjong-tiles/Nan.png");
-        tileButtons[29] = createImageButton("/mahjong-tiles/Shaa.png");
-        tileButtons[30] = createImageButton("/mahjong-tiles/Pei.png");
-        tileButtons[31] = createImageButton("/mahjong-tiles/Haku.png");
-        tileButtons[32] = createImageButton("/mahjong-tiles/Hatsu.png");
-        tileButtons[33] = createImageButton("/mahjong-tiles/Chun.png");
+        tileButtons[27] = createImageButton(SelectDoraViewModel.TON_PATH);
+        tileButtons[28] = createImageButton(SelectDoraViewModel.NAN_PATH);
+        tileButtons[29] = createImageButton(SelectDoraViewModel.SHAA_PATH);
+        tileButtons[30] = createImageButton(SelectDoraViewModel.PEI_PATH);
+        tileButtons[31] = createImageButton(SelectDoraViewModel.HAKU_PATH);
+        tileButtons[32] = createImageButton(SelectDoraViewModel.HATSU_PATH);
+        tileButtons[33] = createImageButton(SelectDoraViewModel.CHUN_PATH);
 
         // Add the buttons to the panel
         for (JButton button : tileButtons) {
@@ -92,12 +93,13 @@ public class SelectDoraView extends JPanel implements ActionListener, PropertyCh
 
         // Dimension of original image is 300 x 400
         // Resize the image to 60 x 80
-        Image image = (new ImageIcon(imageURL)).getImage().getScaledInstance(60, 80, Image.SCALE_SMOOTH);
+        Image image = (new ImageIcon(imageURL)).getImage().getScaledInstance(SelectDoraViewModel.TILE_WIDTH,
+                SelectDoraViewModel.TILE_HEIGHT, Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(image);
 
         // Create the button with the icon and size
         JButton button = new JButton(icon);
-        button.setPreferredSize(new Dimension(60, 80));
+        button.setPreferredSize(new Dimension(SelectDoraViewModel.TILE_WIDTH, SelectDoraViewModel.TILE_HEIGHT));
 
         // Remove button's default look
         button.setBorderPainted(true); // Remove border

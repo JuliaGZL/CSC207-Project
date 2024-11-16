@@ -1,10 +1,9 @@
 package view;
 
-import interface_adapter.table_center.EditStatusController;
-import interface_adapter.table_center.EditStatusViewModel;
+import interface_adapter.edit_status.EditStatusController;
+import interface_adapter.edit_status.EditStatusViewModel;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,19 +16,19 @@ import java.util.List;
  * The panel for editing user gameplay status.
  * Handles selecting/unselecting gameplay statuses as well as selecting Dora indicators.
  */
-public class EditStatusPanel extends JPanel implements ActionListener, PropertyChangeListener {
+public class EditStatusView extends JPanel implements ActionListener, PropertyChangeListener {
 
-
+    private String viewName = "edit status";
     private Boolean[] statuses;
     private final EditStatusViewModel editStatusViewModel;
     private final EditStatusController editStatusController;
 
     /**
-     * Constructs a EditStatusPanel object with the specified view model and controller.
+     * Constructs a EditStatusView object with the specified view model and controller.
      * @param editStatusViewModel the view model for editing gameplay statuses.
      * @param editStatusController the controller for editing gameplay statuses.
      */
-    public EditStatusPanel(EditStatusViewModel editStatusViewModel, EditStatusController editStatusController) {
+    public EditStatusView(EditStatusViewModel editStatusViewModel, EditStatusController editStatusController) {
         this.editStatusViewModel = editStatusViewModel;
         this.editStatusController = editStatusController;
 
@@ -40,8 +39,7 @@ public class EditStatusPanel extends JPanel implements ActionListener, PropertyC
         List<JPanel> checkboxPanels = new ArrayList<>();
 
         // Add all status checkboxes to the panel
-        String[] statuses = {"Chii", "Pon", "Kan", "Riichi", "Tsumo"};
-        for (String status : statuses) {
+        for (String status : EditStatusViewModel.STATUSES) {
             JPanel statusPanel = new JPanel();
             statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.Y_AXIS));
             JCheckBox statusCheckBox = new JCheckBox();
@@ -66,7 +64,7 @@ public class EditStatusPanel extends JPanel implements ActionListener, PropertyC
         JCheckBox redDoraManCheckBox = new JCheckBox();
         redDoraManCheckBox.setSelected(false);
         redDoraManCheckBox.addActionListener(this);
-        JLabel redDoraManLabel = new JLabel("Man");
+        JLabel redDoraManLabel = new JLabel(EditStatusViewModel.MAN_LABEL);
         redDoraManPanel.add(redDoraManCheckBox);
         redDoraManPanel.add(redDoraManLabel);
 
@@ -74,7 +72,7 @@ public class EditStatusPanel extends JPanel implements ActionListener, PropertyC
         JCheckBox redDoraPinCheckBox = new JCheckBox();
         redDoraPinCheckBox.setSelected(false);
         redDoraPinCheckBox.addActionListener(this);
-        JLabel redDoraPinLabel = new JLabel("Pin");
+        JLabel redDoraPinLabel = new JLabel(EditStatusViewModel.PIN_LABEL);
         redDoraPinPanel.add(redDoraPinCheckBox);
         redDoraPinPanel.add(redDoraPinLabel);
 
@@ -82,11 +80,11 @@ public class EditStatusPanel extends JPanel implements ActionListener, PropertyC
         JCheckBox redDoraSouCheckBox = new JCheckBox();
         redDoraSouCheckBox.setSelected(false);
         redDoraSouCheckBox.addActionListener(this);
-        JLabel redDoraSouLabel = new JLabel("Sou");
+        JLabel redDoraSouLabel = new JLabel(EditStatusViewModel.SOU_LABEL);
         redDoraSouPanel.add(redDoraSouCheckBox);
         redDoraSouPanel.add(redDoraSouLabel);
 
-        JLabel redDoraLabel = new JLabel("Red Dora");
+        JLabel redDoraLabel = new JLabel(EditStatusViewModel.RED_DORA_LABEL);
         JPanel redDoraCheckBoxPanel = new JPanel(new FlowLayout());
 
         redDoraCheckBoxPanel.add(redDoraManPanel);
@@ -102,16 +100,17 @@ public class EditStatusPanel extends JPanel implements ActionListener, PropertyC
         JPanel doraIndicatorPanel = new JPanel();
         doraIndicatorPanel.setLayout(new FlowLayout());
 
-        // Initialize blank dora indicator labels. TODO: Add actual dora indicator images according to db
+        // Initialize blank dora indicator labels.
+        // TODO: Add actual dora indicator images according to db
         for (int i = 0; i < 5; i++) {
-            ImageIcon doraIndicatorIcon = loadImageIcon("/mahjong-tiles/Front.png");
+            ImageIcon doraIndicatorIcon = loadImageIcon(EditStatusViewModel.BLANK_MAHJONG_PATH);
             JLabel doraIndicatorLabel = new JLabel(doraIndicatorIcon);
             doraIndicatorLabel.setPreferredSize(new Dimension(60, 80));
             doraIndicatorPanel.add(doraIndicatorLabel);
         }
 
         // Button for opening dora indicator selector
-        JButton indicatorSelectButton = new JButton("Select Dora Indicators");
+        JButton indicatorSelectButton = new JButton(EditStatusViewModel.SELECT_INDICATOR_LABEL);
         indicatorSelectButton.addActionListener(this);
 
         // Add all components to this panel
