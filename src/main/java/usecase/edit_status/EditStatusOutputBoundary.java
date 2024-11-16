@@ -18,6 +18,7 @@ public interface EditStatusOutputBoundary {
 
     /**
      * Switches to the Select Dora View.
+     * @param outputData the output data
      */
-    void switchToSelectDoraView();
+    void switchToSelectDoraView(EditStatusOutputData outputData);
 }
