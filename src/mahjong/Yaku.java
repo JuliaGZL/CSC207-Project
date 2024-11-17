@@ -139,8 +139,8 @@ public enum Yaku {
   Ryuiisou,
   /** Chinroutou (清老頭): All terminals. */
   Chinroutou,
-  /** Kokushimusou (国士無双): Thirteen orphans. */
-  Kokushimusou,
+  /** Koukushimusou (国士無双): Thirteen orphans. */
+  Koukushimusou,
   /** Shousuushii (小四喜): Little four winds. */
   Shousuushii,
   /** Suukantsu (四槓子): Four kans. */
