@@ -44,4 +44,8 @@ public class MahjongUtils {
     }
     return false;
   }
+
+  public static <T> void mergeInto(List<T> to, List<? extends T> from) {
+    to.addAll(from);
+  }
 }
