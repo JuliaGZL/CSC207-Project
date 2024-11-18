@@ -424,4 +424,13 @@ public class TileGroup implements Comparable<TileGroup> {
     }
     return retstr;
   }
+
+  /**
+   * Sets the type of this tile group.
+   *
+   * @param type the type to set
+   */
+  public void setType(Type type) {
+    this.type = type;
+  }
 }

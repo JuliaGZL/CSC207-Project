@@ -211,7 +211,6 @@ public enum Yaku {
   /**
    * Returns the numerical fan (han) value of the specified Yaku.
    *
-   * @param yaku the Yaku for which to get the fan value.
    * @return the numerical fan (han) value of the specified Yaku.
    */
   public int getFanValue() {
