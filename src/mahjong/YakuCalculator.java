@@ -1094,10 +1094,10 @@ public class YakuCalculator {
         new ArrayList<>(), new Pair<>(0, 0));
     getSepcialYakuman(maxYakuList);
     if (!hasSpecialYaku) {
-      // 对牌进行拆解 （已经unique）
+      // Decompose the tiles (already unique)
       List<CompletedTiles> completeTilesList = CompletedTiles.getCompletedTiles(originalHand);
 
-      /* 统计七对子 */
+      /* Count Seven Pairs */
       if (!hasYakuman && Rule.is7ToitsuShape(originalHand)) {
         CompletedTiles ct = new CompletedTiles();
         for (int i = 0; i < 14; i += 2) {
@@ -1107,7 +1107,7 @@ public class YakuCalculator {
         }
         completeTilesList.add(ct);
       }
-      // 接下来
+      // Next
 
       for (CompletedTiles cts : completeTilesList) {
         Pair<List<Yaku>, Pair<Integer, Integer>> yakuFanFus = getMaxYakuAndFanFu(cts,
