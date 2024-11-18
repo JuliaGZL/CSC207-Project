@@ -23,6 +23,7 @@ public class PlayerStats {
   private BaseTile prevalentWind; 
   private List<Tile> hand;
   private List<BaseTile> baseHand;
+  private List<CallGroup> callGroups;
 
   /**
    * Checks if the player is in Riichi state.
@@ -360,5 +361,23 @@ public class PlayerStats {
    */
   public void setBaseHand(List<BaseTile> baseHand) {
     this.baseHand = baseHand;
+  }
+
+  /**
+   * Retrieves the base hand of the player.
+   *
+   * @return a list of CallGroup objects representing the player's Fuuros.
+   */
+  public List<CallGroup> getCallGroups() {
+    return callGroups;
+  }
+
+  /**
+   * Sets the call groups for the player.
+   *
+   * @param callGroups the list of CallGroup objects representing the player's Fuuros.
+   */
+  public void setCallGroups(List<CallGroup> callGroups) {
+    this.callGroups = callGroups;
   }
 }
