@@ -33,7 +33,7 @@ public class YakuCalculator {
     this.isMenzenchin = playerStats.isMenzenchin();
     this.selfWind = playerStats.getSelfWind();
     this.prevalentWind = playerStats.getPrevalentWind();
-    this.originalHand = playerStats.getBaseHands();
+    this.originalHand = playerStats.getBaseHand();
     this.chinitsuColor = Rule.getChinitsuColor(originalHand);
     this.winningTile = originalHand.get(originalHand.size() - 1);
     this.copyHand = new ArrayList<>(originalHand);
