@@ -1,6 +1,7 @@
 package mahjong;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The ScoreCounter class calculates and registers the score in a Mahjong game
@@ -152,8 +153,8 @@ public class ScoreCounter {
    *
    * @return an ArrayList of Integer containing the relevant scores
    */
-  public ArrayList<Integer> getScores() {
-    ArrayList<Integer> scores = new ArrayList<Integer>();
+  public List<Integer> getScores() {
+    List<Integer> scores = new ArrayList<Integer>();
     if (isOya) {
       if (isTsumo) {
         scores.add(this.scoreParentTsumoAll);
