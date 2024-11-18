@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * The YakuCalculator class is responsible for calculating the Yaku (winning hand patterns) in a Mahjong game.
+ * The YakuCalculator class is responsible for calculating the Yaku (winning
+ * hand patterns) in a Mahjong game.
  */
 public class YakuCalculator {
 
@@ -221,7 +222,7 @@ public class YakuCalculator {
   /**
    * Adds Daisangen Yaku to the given list if applicable.
    *
-   * @param yakuList the list of Yaku to add to
+   * @param yakuList    the list of Yaku to add to
    * @param jihaiKoutsu the array indicating which jihai Koutsu are present
    */
   private void getDaisangenYaku(List<Yaku> yakuList, boolean[] jihaiKoutsu) {
@@ -234,7 +235,7 @@ public class YakuCalculator {
   /**
    * Adds Suushii Yaku to the given list if applicable.
    *
-   * @param yakuList the list of Yaku to add to
+   * @param yakuList    the list of Yaku to add to
    * @param jihaiKoutsu the array indicating which jihai Koutsu are present
    * @param jihaiToitsu the array indicating which jihai Toitsu are present
    */
@@ -267,7 +268,7 @@ public class YakuCalculator {
    *
    * @param yakuList the list of Yaku to add to
    * @param numAnkou the number of Ankou
-   * @param tanki whether the hand is a single wait
+   * @param tanki    whether the hand is a single wait
    */
   private void getSuuankouYaku(List<Yaku> yakuList, long numAnkou, boolean tanki) {
     if (numAnkou == 4) {
@@ -284,7 +285,7 @@ public class YakuCalculator {
   /**
    * Adds Suukantsu Yaku to the given list if applicable.
    *
-   * @param yakuList the list of Yaku to add to
+   * @param yakuList  the list of Yaku to add to
    * @param numKantsu the number of Kantsu
    */
   private void getSuukantsuYaku(List<Yaku> yakuList, long numKantsu) {
@@ -297,7 +298,7 @@ public class YakuCalculator {
   /**
    * Adds Chinroutou Yaku to the given list if applicable.
    *
-   * @param yakuList the list of Yaku to add to
+   * @param yakuList     the list of Yaku to add to
    * @param isChinroutou whether the hand is Chinroutou
    */
   private void getChinroutouYaku(List<Yaku> yakuList, boolean isChinroutou) {
@@ -310,7 +311,7 @@ public class YakuCalculator {
   /**
    * Adds Ryuiisou Yaku to the given list if applicable.
    *
-   * @param yakuList the list of Yaku to add to
+   * @param yakuList   the list of Yaku to add to
    * @param isRyuiisou whether the hand is Ryuiisou
    */
   private void getRyuiisouYaku(List<Yaku> yakuList, boolean isRyuiisou) {
@@ -344,31 +345,34 @@ public class YakuCalculator {
     });
 
     // 判断单骑
-    boolean tanki = tileGroupString.stream().anyMatch(s -> s.charAt(2) == TileGroup.markToitsu && s.length() == 4);
+    final boolean tanki = tileGroupString.stream().anyMatch(
+        s -> s.charAt(2) == TileGroup.markToitsu && s.length() == 4);
 
     // 统计暗刻数
-    long numAnkou = tileGroupString.stream().filter(s -> (s.length() == 3 && s.charAt(2) == TileGroup.markKoutsu) ||
-        (s.length() == 4 && s.charAt(2) == TileGroup.markKoutsu
-            && (s.charAt(3) == TileGroup.markTsumo1st || s.charAt(3) == TileGroup.markTsumo2nd
-                || s.charAt(3) == TileGroup.markTsumo3rd))
-        ||
-        (s.charAt(2) == TileGroup.markKantsu && s.charAt(3) == TileGroup.markAnkan)).count();
+    final long numAnkou = tileGroupString.stream().filter(
+        s -> (s.length() == 3 && s.charAt(2) == TileGroup.markKoutsu)
+            || (s.length() == 4 && s.charAt(2) == TileGroup.markKoutsu
+                && (s.charAt(3) == TileGroup.markTsumo1st || s.charAt(3) == TileGroup.markTsumo2nd
+                    || s.charAt(3) == TileGroup.markTsumo3rd))
+            ||
+            (s.charAt(2) == TileGroup.markKantsu && s.charAt(3) == TileGroup.markAnkan))
+        .count();
 
     // 统计杠子数
-    long numKantsu = tileGroupString.stream().filter(s -> s.charAt(2) == TileGroup.markKantsu).count();
+    long numKantsu = tileGroupString.stream().filter(
+        s -> s.charAt(2) == TileGroup.markKantsu).count();
+    getSuukantsuYaku(yakus, numKantsu);
 
     // 判断清老头
     boolean isChinroutou = tileGroupString.stream().allMatch(Rule::isRoutouhai);
-
+    getChinroutouYaku(yakus, isChinroutou);
     // 判断绿一色
     boolean isRyuiisou = tileGroupString.stream().allMatch(Rule::isGreenpai);
+    getRyuiisouYaku(yakus, isRyuiisou);
 
     getDaisangenYaku(yakus, jihaiKoutsu);
     getSuushiiYaku(yakus, jihaiKoutsu, jihaiToitsu);
     getSuuankouYaku(yakus, numAnkou, tanki);
-    getSuukantsuYaku(yakus, numKantsu);
-    getChinroutouYaku(yakus, isChinroutou);
-    getRyuiisouYaku(yakus, isRyuiisou);
 
     return yakus;
   }
@@ -384,7 +388,7 @@ public class YakuCalculator {
     int fu = 20;
 
     // Check for tanki (single wait)
-    boolean tanki = isTanki(tileGroupString);
+    final boolean tanki = isTanki(tileGroupString);
 
     // Check for Chiitoitsu (Seven pairs)
     if (isChiitoitsu(tileGroupString)) {
@@ -424,12 +428,8 @@ public class YakuCalculator {
 
     // Get jihai Koutsu and Toitsu
     Pair<boolean[], boolean[]> jihaiCounts = getJihaiKoutsuToitsu(tileGroupString);
-    boolean[] jihaiKoutsu = jihaiCounts.getFst();
-    boolean[] jihaiToitsu = jihaiCounts.getSnd();
-
-    // Count Ankou and Kantsu
-    long numAnkou = countAnkou(tileGroupString);
-    long numKantsu = countKantsu(tileGroupString);
+    final boolean[] jihaiKoutsu = jihaiCounts.getFst();
+    final boolean[] jihaiToitsu = jihaiCounts.getSnd();
 
     // Check for Honroutou (All terminals and honors)
     boolean isHonroutou = isHonroutou(tileGroupString);
@@ -489,11 +489,15 @@ public class YakuCalculator {
       }
     }
 
+    // Count Ankou and Kantsu
+    long numAnkou = countAnkou(tileGroupString);
+    long numKantsu = countKantsu(tileGroupString);
+
     // Check for Iipeikou and Ryanpeikou
-    int nBeikou = countBeikou(tileGroupStringNo4);
-    if (nBeikou >= 2) {
+    int peikou = countBeikou(tileGroupStringNo4);
+    if (peikou >= 2) {
       yakus.add(Yaku.Rianpeikou);
-    } else if (nBeikou == 1) {
+    } else if (peikou == 1) {
       yakus.add(Yaku.Ippeikou);
     }
 
@@ -554,7 +558,7 @@ public class YakuCalculator {
    * Checks if the hand is Toitoiho (All triplets).
    *
    * @param tileGroupString the list of tile group strings
-   * @param hasShunzi whether the hand contains any Shunzi
+   * @param hasShunzi       whether the hand contains any Shunzi
    * @return true if the hand is Toitoiho, false otherwise
    */
   private boolean isToitoiho(List<String> tileGroupString, boolean hasShunzi) {
@@ -576,10 +580,11 @@ public class YakuCalculator {
    * Gets the Chinitsu and Honitsu status of the hand.
    *
    * @param tileGroupString the list of tile group strings
-   * @param chinitsuColor the color for Chinitsu
+   * @param chinitsuColor   the color for Chinitsu
    * @return a pair containing the Chinitsu and Honitsu status
    */
-  private Pair<Boolean, Boolean> getChinitsuHonitsu(List<String> tileGroupString, int chinitsuColor) {
+  private Pair<Boolean, Boolean> getChinitsuHonitsu(
+      List<String> tileGroupString, int chinitsuColor) {
     boolean isChinitsu = false;
     boolean isHonitsu = false;
     if (chinitsuColor == 0) {
@@ -632,9 +637,9 @@ public class YakuCalculator {
    */
   private long countAnkou(List<String> tileGroupString) {
     return tileGroupString.stream()
-        .filter(s -> (s.length() == 3 && s.charAt(2) == TileGroup.markKoutsu) ||
-            (s.length() == 4 && s.charAt(2) == TileGroup.markKoutsu &&
-                (s.charAt(3) == TileGroup.markTsumo1st || s.charAt(3) == TileGroup.markTsumo2nd
+        .filter(s -> (s.length() == 3 && s.charAt(2) == TileGroup.markKoutsu)
+            || (s.length() == 4 && s.charAt(2) == TileGroup.markKoutsu
+                && (s.charAt(3) == TileGroup.markTsumo1st || s.charAt(3) == TileGroup.markTsumo2nd
                     || s.charAt(3) == TileGroup.markTsumo3rd))
             ||
             (s.charAt(2) == TileGroup.markKantsu && s.charAt(3) == TileGroup.markAnkan))
@@ -679,39 +684,43 @@ public class YakuCalculator {
    * Checks if the hand is Chantaiyao (Mixed outside hand).
    *
    * @param tileGroupString the list of tile group strings
-   * @param isHonroutou whether the hand is Honroutou
+   * @param isHonroutou     whether the hand is Honroutou
    * @param isJunchantaiyao whether the hand is Junchantaiyao
    * @return true if the hand is Chantaiyao, false otherwise
    */
-  private boolean isChantaiyao(List<String> tileGroupString, boolean isHonroutou, boolean isJunchantaiyao) {
-    return !isHonroutou && !isJunchantaiyao &&
-        tileGroupString.stream().allMatch(Rule::isTaiYaochuuhaiOrJihai);
+  private boolean isChantaiyao(
+      List<String> tileGroupString, boolean isHonroutou, boolean isJunchantaiyao) {
+    return !isHonroutou && !isJunchantaiyao
+        && tileGroupString.stream().allMatch(Rule::isTaiYaochuuhaiOrJihai);
   }
 
   /**
    * Checks if the hand is Pinfu (All sequences, no points).
    *
    * @param tileGroupString the list of tile group strings
-   * @param tanki whether the hand is a single wait
+   * @param tanki           whether the hand is a single wait
    * @return true if the hand is Pinfu, false otherwise
    */
   private boolean isPinfu(List<String> tileGroupString, boolean tanki) {
     if (!isMenzenchin || tanki) {
       return false;
     }
-    if (tileGroupString.stream()
-        .anyMatch(s -> Rule.isYakuhaiToitsu(s, selfWind.toString(), prevalentWind.toString()) > 0)) {
+    if (tileGroupString.stream().anyMatch(
+        s -> Rule.isYakuhaiToitsu(s, selfWind.toString(), prevalentWind.toString()) > 0)) {
       return false;
     }
     if (!tileGroupString.stream()
-        .allMatch(s -> s.charAt(2) == TileGroup.markToitsu || s.charAt(2) == TileGroup.markShuntsu)) {
+        .allMatch(s -> s.charAt(2) == TileGroup.markToitsu
+            || s.charAt(2) == TileGroup.markShuntsu)) {
       return false;
     }
-    if (!tileGroupString.stream().allMatch(s -> s.length() == 3 ||
-        (s.charAt(3) != TileGroup.markTsumo2nd && s.charAt(3) != TileGroup.markRon2nd &&
-            (s.charAt(2) != TileGroup.markToitsu || s.charAt(3) != TileGroup.markRon1st) &&
-            ((s.charAt(3) != TileGroup.markTsumo3rd && s.charAt(3) != TileGroup.markRon3rd) || s.charAt(0) != '1') &&
-            ((s.charAt(3) != TileGroup.markTsumo1st && s.charAt(3) != TileGroup.markRon1st) || s.charAt(0) != '7')))) {
+    if (!tileGroupString.stream().allMatch(s -> s.length() == 3
+        || (s.charAt(3) != TileGroup.markTsumo2nd && s.charAt(3) != TileGroup.markRon2nd
+            && (s.charAt(2) != TileGroup.markToitsu || s.charAt(3) != TileGroup.markRon1st)
+            && ((s.charAt(3) != TileGroup.markTsumo3rd && s.charAt(3) != TileGroup.markRon3rd)
+                || s.charAt(0) != '1')
+            && ((s.charAt(3) != TileGroup.markTsumo1st && s.charAt(3) != TileGroup.markRon1st)
+                || s.charAt(0) != '7')))) {
       return false;
     }
     return tileGroupString.size() == 5;
@@ -720,7 +729,8 @@ public class YakuCalculator {
   /**
    * Checks if the hand contains Sanshoku Doujun (Three color straight).
    *
-   * @param tileGroupStringNo4 the list of tile group strings without the 4th character
+   * @param tileGroupStringNo4 the list of tile group strings without the 4th
+   *                           character
    * @return true if the hand contains Sanshoku Doujun, false otherwise
    */
   private boolean isSanshokuDoujun(List<String> tileGroupStringNo4) {
@@ -730,9 +740,9 @@ public class YakuCalculator {
         "1sS", "2sS", "3sS", "4sS", "5sS", "6sS", "7sS"
     };
     for (int i = 0; i < 7; ++i) {
-      if (tileGroupStringNo4.contains(sanSeTongShunTiles[i]) &&
-          tileGroupStringNo4.contains(sanSeTongShunTiles[i + 7]) &&
-          tileGroupStringNo4.contains(sanSeTongShunTiles[i + 14])) {
+      if (tileGroupStringNo4.contains(sanSeTongShunTiles[i])
+          && tileGroupStringNo4.contains(sanSeTongShunTiles[i + 7])
+          && tileGroupStringNo4.contains(sanSeTongShunTiles[i + 14])) {
         return true;
       }
     }
@@ -742,7 +752,8 @@ public class YakuCalculator {
   /**
    * Checks if the hand contains Sanshoku Doukou (Three color triplets).
    *
-   * @param tileGroupStringNo4 the list of tile group strings without the 4th character
+   * @param tileGroupStringNo4 the list of tile group strings without the 4th
+   *                           character
    * @return true if the hand contains Sanshoku Doukou, false otherwise
    */
   private boolean isSanshokuDoukou(List<String> tileGroupStringNo4) {
@@ -752,9 +763,9 @@ public class YakuCalculator {
         "1sK", "2sK", "3sK", "4sK", "5sK", "6sK", "7sK", "8sK", "9sK"
     };
     for (int i = 0; i < 9; ++i) {
-      if (tileGroupStringNo4.contains(sanSeTongKeTiles[i]) &&
-          tileGroupStringNo4.contains(sanSeTongKeTiles[i + 9]) &&
-          tileGroupStringNo4.contains(sanSeTongKeTiles[i + 18])) {
+      if (tileGroupStringNo4.contains(sanSeTongKeTiles[i])
+          && tileGroupStringNo4.contains(sanSeTongKeTiles[i + 9])
+          && tileGroupStringNo4.contains(sanSeTongKeTiles[i + 18])) {
         return true;
       }
     }
@@ -764,7 +775,8 @@ public class YakuCalculator {
   /**
    * Checks if the hand contains Ittsu (Straight).
    *
-   * @param tileGroupStringNo4 the list of tile group strings without the 4th character
+   * @param tileGroupStringNo4 the list of tile group strings without the 4th
+   *                           character
    * @return true if the hand contains Ittsu, false otherwise
    */
   private boolean isIttsu(List<String> tileGroupStringNo4) {
@@ -772,51 +784,53 @@ public class YakuCalculator {
     String[] ittsuP = { "1pS", "4pS", "7pS" };
     String[] ittsuS = { "1sS", "4sS", "7sS" };
 
-    return Arrays.stream(ittsuM).allMatch(tileGroupStringNo4::contains) ||
-        Arrays.stream(ittsuP).allMatch(tileGroupStringNo4::contains) ||
-        Arrays.stream(ittsuS).allMatch(tileGroupStringNo4::contains);
+    return Arrays.stream(ittsuM).allMatch(tileGroupStringNo4::contains)
+        || Arrays.stream(ittsuP).allMatch(tileGroupStringNo4::contains)
+        || Arrays.stream(ittsuS).allMatch(tileGroupStringNo4::contains);
   }
 
   /**
    * Counts the number of Beikou (double sequences) in the hand.
    *
-   * @param tileGroupStringNo4 the list of tile group strings without the 4th character
+   * @param tileGroupStringNo4 the list of tile group strings without the 4th
+   *                           character
    * @return the number of Beikou
    */
   private int countBeikou(List<String> tileGroupStringNo4) {
-    if (!isMenzenchin)
+    if (!isMenzenchin) {
       return 0;
-    String[] shunziPaixing = {
+    }
+    String[] shuntsuPattern = {
         "1sS", "2sS", "3sS", "4sS", "5sS", "6sS", "7sS",
         "1pS", "2pS", "3pS", "4pS", "5pS", "6pS", "7pS",
         "1mS", "2mS", "3mS", "4mS", "5mS", "6mS", "7mS"
     };
-    int nBeikou = 0;
-    for (String tiles : shunziPaixing) {
+    int peikou = 0;
+    for (String tiles : shuntsuPattern) {
       long count = tileGroupStringNo4.stream()
           .filter(s -> s.equals(tiles))
           .count();
       if (count >= 2) {
-        nBeikou++;
+        peikou++;
       }
     }
-    return nBeikou;
+    return peikou;
   }
 
   /**
    * Adds Yakuhai Yaku to the given list if applicable.
    *
    * @param tileGroupString the list of tile group strings
-   * @param yakus the list of Yaku to add to
-   * @param jihaiKoutsu the array indicating which jihai Koutsu are present
-   * @param jihaiToitsu the array indicating which jihai Toitsu are present
+   * @param yakus           the list of Yaku to add to
+   * @param jihaiKoutsu     the array indicating which jihai Koutsu are present
+   * @param jihaiToitsu     the array indicating which jihai Toitsu are present
    */
   private void getYakuhaiYaku(List<String> tileGroupString, List<Yaku> yakus, boolean[] jihaiKoutsu,
       boolean[] jihaiToitsu) {
     // 小三元
-    if ((jihaiKoutsu[4] && jihaiKoutsu[5] && jihaiToitsu[6]) ||
-        (jihaiKoutsu[4] && jihaiToitsu[5] && jihaiKoutsu[6]) ||
-        (jihaiToitsu[4] && jihaiKoutsu[5] && jihaiKoutsu[6])) {
+    if ((jihaiKoutsu[4] && jihaiKoutsu[5] && jihaiToitsu[6])
+        || (jihaiKoutsu[4] && jihaiToitsu[5] && jihaiKoutsu[6])
+        || (jihaiToitsu[4] && jihaiKoutsu[5] && jihaiKoutsu[6])) {
       yakus.add(Yaku.Shousangen);
     }
 
@@ -862,8 +876,8 @@ public class YakuCalculator {
    * Computes the Fu (points) for the hand.
    *
    * @param tileGroupString the list of tile group strings
-   * @param isPinfu whether the hand is Pinfu
-   * @param tanki whether the hand is a single wait
+   * @param isPinfu         whether the hand is Pinfu
+   * @param tanki           whether the hand is a single wait
    * @return the computed Fu
    */
   private int computeFu(List<String> tileGroupString, boolean isPinfu, boolean tanki) {
@@ -873,27 +887,40 @@ public class YakuCalculator {
     if (tanki) {
       fu += 2;
     }
-    if (tileGroupString.stream().anyMatch(s -> s.length() == 4 && s.charAt(2) == TileGroup.markShuntsu
-        && (s.charAt(3) == TileGroup.markTsumo2nd || s.charAt(3) == TileGroup.markRon2nd))) {
+    if (tileGroupString.stream().anyMatch(
+        s -> s.length() == 4
+            && s.charAt(2) == TileGroup.markShuntsu
+            && (s.charAt(3) == TileGroup.markTsumo2nd
+                || s.charAt(3) == TileGroup.markRon2nd))) {
       fu += 2;
     }
 
     if (tileGroupString.stream()
         .anyMatch(s -> s.length() == 4 && s.charAt(2) == TileGroup.markShuntsu
-            && ((s.charAt(0) == '1' && (s.charAt(3) == TileGroup.markTsumo3rd || s.charAt(3) == TileGroup.markRon3rd))
+            && ((s.charAt(0) == '1'
+                && (s.charAt(3) == TileGroup.markTsumo3rd
+                    || s.charAt(3) == TileGroup.markRon3rd))
                 || (s.charAt(0) == '7'
-                    && (s.charAt(3) == TileGroup.markTsumo1st || s.charAt(3) == TileGroup.markRon1st))))) {
+                    && (s.charAt(3) == TileGroup.markTsumo1st
+                        || s.charAt(3) == TileGroup.markRon1st))))) {
       fu += 2;
     }
 
     // Winning method
-    if (tileGroupString.stream().anyMatch(s -> s.length() == 4 && (s.charAt(3) == TileGroup.markTsumo1st
-        || s.charAt(3) == TileGroup.markTsumo2nd || s.charAt(3) == TileGroup.markTsumo3rd)) && !isPinfu) {
+    if (tileGroupString.stream().anyMatch(
+        s -> s.length() == 4
+            && (s.charAt(3) == TileGroup.markTsumo1st
+                || s.charAt(3) == TileGroup.markTsumo2nd
+                || s.charAt(3) == TileGroup.markTsumo3rd))
+        && !isPinfu) {
       fu += 2;
     }
 
-    if (tileGroupString.stream().anyMatch(s -> s.length() == 4 && (s.charAt(3) == TileGroup.markRon1st
-        || s.charAt(3) == TileGroup.markRon2nd || s.charAt(3) == TileGroup.markRon3rd)) && isMenzenchin) {
+    if (tileGroupString.stream().anyMatch(s -> s.length() == 4
+        && (s.charAt(3) == TileGroup.markRon1st
+            || s.charAt(3) == TileGroup.markRon2nd
+            || s.charAt(3) == TileGroup.markRon3rd))
+        && isMenzenchin) {
       fu += 10;
     }
 
@@ -924,6 +951,8 @@ public class YakuCalculator {
               case TileGroup.markFuuro:
                 fu += Rule.isTaiYaochuuhai(s) ? 4 : 2;
                 break;
+              default:
+                break;
             }
             break;
           case TileGroup.markKantsu:
@@ -933,13 +962,18 @@ public class YakuCalculator {
               fu += Rule.isTaiYaochuuhai(s) ? 32 : 16;
             }
             break;
+          default:
+            break;
         }
       }
     }
 
     // Adjust Fu
-    if (tileGroupString.stream().anyMatch(s -> s.length() == 4 && (s.charAt(3) == TileGroup.markRon1st
-        || s.charAt(3) == TileGroup.markRon2nd || s.charAt(3) == TileGroup.markRon3rd))
+    if (tileGroupString.stream().anyMatch(
+        s -> s.length() == 4
+            && (s.charAt(3) == TileGroup.markRon1st
+                || s.charAt(3) == TileGroup.markRon2nd
+                || s.charAt(3) == TileGroup.markRon3rd))
         && !isMenzenchin) {
       if (fu == 20) {
         fu = 30;
@@ -947,8 +981,10 @@ public class YakuCalculator {
     }
 
     // Pinfu Tsumo is 20 Fu
-    if (tileGroupString.stream().anyMatch(s -> s.length() == 4 && (s.charAt(3) == TileGroup.markTsumo1st
-        || s.charAt(3) == TileGroup.markTsumo2nd || s.charAt(3) == TileGroup.markTsumo3rd)) && isPinfu) {
+    if (tileGroupString.stream().anyMatch(
+        s -> s.length() == 4 && (s.charAt(3) == TileGroup.markTsumo1st
+            || s.charAt(3) == TileGroup.markTsumo2nd || s.charAt(3) == TileGroup.markTsumo3rd))
+        && isPinfu) {
       fu = 20;
     }
 
@@ -978,7 +1014,8 @@ public class YakuCalculator {
    *
    * @param fanFu1 the first pair of Fan and Fu
    * @param fanFu2 the second pair of Fan and Fu
-   * @return a negative integer, zero, or a positive integer as the first pair is less than, equal to, or greater than the second
+   * @return a negative integer, zero, or a positive integer as the first pair is
+   *         less than, equal to, or greater than the second
    */
   private int compareFanFu(Pair<Integer, Integer> fanFu1, Pair<Integer, Integer> fanFu2) {
     int fan1 = fanFu1.getFst();
@@ -990,18 +1027,22 @@ public class YakuCalculator {
   }
 
   /**
-   * Gets the maximum Yaku and Fan/Fu for the given completed tiles and call groups.
+   * Gets the maximum Yaku and Fan/Fu for the given completed tiles and call
+   * groups.
    *
-   * @param ct the completed tiles
+   * @param ct         the completed tiles
    * @param callGroups the list of call groups
    * @return a pair containing the list of Yaku and a pair of Fan and Fu
    */
-  private Pair<List<Yaku>, Pair<Integer, Integer>> getMaxYakuAndFanFu(CompletedTiles ct, List<CallGroup> callGroups) {
+  private Pair<List<Yaku>, Pair<Integer, Integer>> getMaxYakuAndFanFu(
+      CompletedTiles ct, List<CallGroup> callGroups) {
     boolean isTsumo = playerStats.isTsumo();
-    Pair<List<Yaku>, Pair<Integer, Integer>> maxYakuFanFu = new Pair<>(new ArrayList<>(), new Pair<>(0, 0));
+    Pair<List<Yaku>, Pair<Integer, Integer>> maxYakuFanFu = new Pair<>(
+        new ArrayList<>(), new Pair<>(0, 0));
     int maxFan = 0;
 
-    List<List<String>> tileGroupStrings = TileGroup.generateTileGroupStrings(ct, callGroups, isTsumo, winningTile);
+    List<List<String>> tileGroupStrings = TileGroup.generateTileGroupStrings(
+        ct, callGroups, isTsumo, winningTile);
 
     for (List<String> tileGroup : tileGroupStrings) {
       List<Yaku> yakus = getYakuman(tileGroup);
@@ -1047,7 +1088,8 @@ public class YakuCalculator {
    */
   public Pair<List<Yaku>, Pair<Integer, Integer>> yakuCounter() {
     List<Yaku> maxYakuList = new ArrayList<>();
-    Pair<List<Yaku>, Pair<Integer, Integer>> maxYakuFanFu = new Pair<>(maxYakuList, new Pair<>(0, 0));
+    Pair<List<Yaku>, Pair<Integer, Integer>> maxYakuFanFu = new Pair<>(
+        maxYakuList, new Pair<>(0, 0));
     getSepcialYakuman(maxYakuList);
     if (!hasSpecialYaku) {
       // 对牌进行拆解 （已经unique）
@@ -1068,10 +1110,11 @@ public class YakuCalculator {
       }
       // 接下来
 
-      for (CompletedTiles complete_tiles : completeTilesList) {
-        Pair<List<Yaku>, Pair<Integer, Integer>> YakuFanFus = getMaxYakuAndFanFu(complete_tiles,
+      for (CompletedTiles cts : completeTilesList) {
+        Pair<List<Yaku>, Pair<Integer, Integer>> yakuFanFus = getMaxYakuAndFanFu(cts,
             playerStats.getCallGroups());
-        maxYakuFanFu = compareFanFu(maxYakuFanFu.getSnd(), YakuFanFus.getSnd()) > 0 ? maxYakuFanFu : YakuFanFus;
+        maxYakuFanFu = compareFanFu(
+            maxYakuFanFu.getSnd(), yakuFanFus.getSnd()) > 0 ? maxYakuFanFu : yakuFanFus;
       }
     }
 
