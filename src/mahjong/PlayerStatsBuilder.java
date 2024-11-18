@@ -20,7 +20,6 @@ public class PlayerStatsBuilder {
   private boolean isOya = false;
   private BaseTile selfWind = BaseTile.windTon;
   private BaseTile prevalentWind = BaseTile.windTon;
-  private List<Tile> hand;
   private List<CallGroup> callGroups = new ArrayList<>();
 
   /**
@@ -167,17 +166,6 @@ public class PlayerStatsBuilder {
   }
 
   /**
-   * Sets the player's hand.
-   * 
-   * @param hand the list of tiles in the player's hand.
-   * @return the current instance of PlayerStatsBuilder.
-   */
-  public PlayerStatsBuilder setHand(List<Tile> hand) {
-    this.hand = hand;
-    return this;
-  }
-
-  /**
    * Sets the player's call groups.
    * 
    * @param callGroups the list of call groups.
@@ -195,7 +183,11 @@ public class PlayerStatsBuilder {
    * @return a new PlayerStats object.
    */
   public PlayerStats build(List<Tile> hand) {
-    return new PlayerStats(isRiichi, isIppatsu, isMenzenchin, isTsumo, isRinshan, isHaitei, isHoutei, isChankan,
-        isTenhou, isChiihou, isOya, hand, callGroups);
+    return new PlayerStats(
+        isRiichi, isIppatsu, isMenzenchin,
+        isTsumo, isRinshan, isHaitei,
+        isHoutei, isChankan, isTenhou,
+        isChiihou, isOya, selfWind,
+        prevalentWind, hand, callGroups);
   }
 }
