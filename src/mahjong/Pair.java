@@ -38,7 +38,7 @@ public class Pair<K, V> {
    *
    * @return the first element
    */
-  public K getFirstElement() {
+  public K getFst() {
     return element0;
   }
 
@@ -47,7 +47,7 @@ public class Pair<K, V> {
    *
    * @return the second element
    */
-  public V getSecondElement() {
+  public V getSnd() {
     return element1;
   }
 
