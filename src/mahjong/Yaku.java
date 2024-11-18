@@ -26,7 +26,7 @@ public enum Yaku {
   /** Bakaze Nan (場風 南): Round wind South. */
   BakazeNan,
   /** Bakaze Sha (場風 西): Round wind West. */
-  BakazeSha,
+  BakazeShaa,
   /** Bakaze Pei (場風 北): Round wind North. */
   BakazePei,
   /** Yakuhai Haku (役牌 白): White Dragon honor tile. */

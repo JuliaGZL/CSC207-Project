@@ -64,7 +64,7 @@ public class Rule {
     return isJihai(s) || isTaiYaochuuhai(s);
   }
 
-  public static int isYakuhaiPair(String s, String selfWind, String prevalentWind) {
+  public static int isYakuhaiToitsu(String s, String selfWind, String prevalentWind) {
     if (s.charAt(2) != TileGroup.markToitsu) {
       return 0;
     }
