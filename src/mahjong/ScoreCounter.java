@@ -173,6 +173,11 @@ public class ScoreCounter {
     }
     return scores;
   }
+
+  public String toFormattedScores() {
+    // TODO: Implement this method
+    return "";
+  }
   
   private boolean isOya;
   private boolean isTsumo;
