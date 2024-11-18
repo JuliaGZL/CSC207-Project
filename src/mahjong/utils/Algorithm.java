@@ -2,6 +2,8 @@ package mahjong.utils;
 
 import java.util.List;
 
+import mahjong.BaseTile;
+
 /**
  * Utility class for Mahjong-related operations.
  */
@@ -54,5 +56,19 @@ public class Algorithm {
    */
   public static <T> void mergeInto(List<T> to, List<? extends T> from) {
     to.addAll(from);
+  }
+
+  /**
+   * Removes a specified number of occurrences of a element from the list.
+   *
+   * @param <T> the type of elements in the lists
+   * @param elementList the list of elements
+   * @param element the element to remove
+   * @param n the number of times to remove the tile
+   */
+  public static <T> void eraseN(List<T> elementList, T element, int n) {
+    for (int i = 0; i < n; i++) {
+      elementList.remove(element);
+    }
   }
 }
