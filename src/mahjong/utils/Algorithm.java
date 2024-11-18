@@ -1,11 +1,11 @@
-package mahjong;
+package mahjong.utils;
 
 import java.util.List;
 
 /**
  * Utility class for Mahjong-related operations.
  */
-public class MahjongUtils {
+public class Algorithm {
   /**
    * Determines if two lists contain the same elements in the same order.
    *

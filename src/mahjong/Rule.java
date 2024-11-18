@@ -2,6 +2,7 @@ package mahjong;
 
 import java.util.Arrays;
 import java.util.List;
+import mahjong.utils.Algorithm;
 
 /**
  * This class contains various rules and utility methods for Mahjong.
@@ -168,7 +169,7 @@ public class Rule {
         return false;
       }
     }
-    return MahjongUtils.arrayContains(raw, tiles.get(13));
+    return Algorithm.arrayContains(raw, tiles.get(13));
   }
 
   /**
@@ -225,7 +226,7 @@ public class Rule {
     }
     // 通过所有判断
     int t = tiles.get(13).ordinal() + 1 - 9 * chinitsuColor;
-    return MahjongUtils.arrayContains(pureChuren, t);
+    return Algorithm.arrayContains(pureChuren, t);
   }
 
   /**
