@@ -214,8 +214,8 @@ public enum Yaku {
    * @param yaku the Yaku for which to get the fan value.
    * @return the numerical fan (han) value of the specified Yaku.
    */
-  public int getFanValue(Yaku yaku) {
-    switch (yaku) {
+  public int getFanValue() {
+    switch (this) {
       case None:
         return 0;
       case Yaku1han:
