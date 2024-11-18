@@ -1,5 +1,7 @@
 package mahjong;
 
+import mahjong.utils.Localization;
+
 /**
  * An enumeration of base tiles used in Mahjong, including numbered tiles for the Man (m),
  * Pin (p), Sou (s) suits, and honor tiles (z).
@@ -107,7 +109,7 @@ public enum BaseTile {
   private static Localization<BaseTile> localization = new Localization<>(BaseTile::valueOf);
 
   static {
-    localization.initializeTranslator("..\\localization\\tiles_l_english.yaml");
+    localization.initializeTranslator("localization\\tiles_l_english.yaml");
   }
 
   /**

@@ -1,5 +1,7 @@
 package mahjong;
 
+import mahjong.utils.Localization;
+
 /**
  * An enumeration of Yaku (役), which are the scoring elements in Mahjong.
  */
@@ -64,7 +66,7 @@ public enum Yaku {
   /** Sanshokudoujun Naki (三色同順 鳴き): Three color straight with open melds. */
   SanshokudoujunNaki,
 
-  /** Yaku 1 han (役 1 翻): One han yaku. */
+  /** Yaku 1 fan (役 1 翻): One fan yaku. */
   Yaku1han,
 
   /** Dabururiichi (ダブル立直): Double riichi. */
@@ -94,7 +96,6 @@ public enum Yaku {
   /** Honitsu Naki (混一色 鳴き): Half flush with open melds. */
   HonitsuNaki,
 
-  /** Yaku 2 han (役 2 翻): Two han yaku. */
   Yaku2han,
 
   /** Rianpeikou (二盃口): Two sets of identical sequences. */
@@ -104,19 +105,19 @@ public enum Yaku {
   /** Honitsu (混一色): Half flush. */
   Honitsu,
 
-  /** Yaku 3 han (役 3 翻): Three han yaku. */
+  /** Yaku 3 fan (役 3 翻): Three fan yaku. */
   Yaku3han,
 
   /** Chinitsu Naki (清一色 鳴き): Full flush with open melds. */
   ChinitsuNaki,
 
-  /** Yaku 5 han (役 5 翻): Five han yaku. */
+  /** Yaku 5 fan (役 5 翻): Five fan yaku. */
   Yaku5han,
 
   /** Chinitsu (清一色): Full flush. */
   Chinitsu,
 
-  /** Yaku 6 han (役 6 翻): Six han yaku. */
+  /** Yaku 6 fan (役 6 翻): Six fan yaku. */
   Yaku6han,
 
   /** Nagashimangan (流し満貫): Mangan at draw. */
@@ -178,13 +179,13 @@ public enum Yaku {
   private static Localization<Yaku> localization = new Localization<>(Yaku::valueOf);
 
   static {
-    localization.initializeTranslator("..\\localization\\yakuslenglish.yaml");
+    localization.initializeTranslator("localization\\yakus_l_english.yaml");
   }
 
   /**
-   * Returns the corresponding fan (han) value of the given Yaku.
+   * Returns the corresponding fan (fan) value of the given Yaku.
    *
-   * @return the corresponding fan (han) value of the given Yaku.
+   * @return the corresponding fan (fan) value of the given Yaku.
    */
   public Yaku getFan() {
     if (this == None) {
@@ -209,9 +210,9 @@ public enum Yaku {
   }
 
   /**
-   * Returns the numerical fan (han) value of the specified Yaku.
+   * Returns the numerical fan (fan) value of the specified Yaku.
    *
-   * @return the numerical fan (han) value of the specified Yaku.
+   * @return the numerical fan (fan) value of the specified Yaku.
    */
   public int getFanValue() {
     switch (this) {

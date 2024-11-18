@@ -3,6 +3,7 @@ package mahjong;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import mahjong.utils.Algorithm;
 
 /**
  * A singleton class responsible for splitting tiles into completed sets in Mahjong.
@@ -60,8 +61,14 @@ public class TileSplitter {
    * @return a list of all possible {@code CompletedTiles} combinations
    */
   public List<CompletedTiles> getAllCompletedTiles(List<BaseTile> tiles) {
-    if (tiles.size() == 0) {
-      return Collections.singletonList(completedTiles);
+    if (tiles.isEmpty()) {
+      // i hate pointer semantics...
+      CompletedTiles ct = new CompletedTiles();
+      TileGroup headGroup = new TileGroup(completedTiles.getHead().getType());
+      headGroup.setTiles(new ArrayList<>(completedTiles.getHead().getTiles()));
+      ct.setHead(headGroup);
+      ct.getBody().addAll(completedTiles.getBody());
+      return Collections.singletonList(ct);
     }
     List<CompletedTiles> ret = new ArrayList<>();
     List<CompletedTiles> allCompletedTiles;
@@ -83,7 +90,7 @@ public class TileSplitter {
 
           // Set global state head and remove pair
           tmpGroup.setTiles(List.of(thisTile, thisTile));
-          eraseN(tmpTiles, thisTile, 2);
+          Algorithm.eraseN(tmpTiles, thisTile, 2);
           hasHead = true;
           completedTiles.setHead(tmpGroup);
 
@@ -104,7 +111,7 @@ public class TileSplitter {
 
         // Set global state and remove triplet
         tmpGroup.setTiles(List.of(thisTile, thisTile, thisTile));
-        eraseN(tmpTiles, thisTile, 3);
+        Algorithm.eraseN(tmpTiles, thisTile, 3);
         completedTiles.getBody().add(tmpGroup);
 
         // Recursively find all completed tiles
@@ -123,9 +130,9 @@ public class TileSplitter {
         tmpTiles = new ArrayList<>(tiles);
         TileGroup tmpGroup = new TileGroup(TileGroup.Type.SHUNTSU);
         tmpGroup.setTiles(List.of(thisTile, thisTile.getNext(), thisTile.getNext().getNext()));
-        eraseN(tmpTiles, thisTile, 1);
-        eraseN(tmpTiles, thisTile.getNext(), 1);
-        eraseN(tmpTiles, thisTile.getNext().getNext(), 1);
+        Algorithm.eraseN(tmpTiles, thisTile, 1);
+        Algorithm.eraseN(tmpTiles, thisTile.getNext(), 1);
+        Algorithm.eraseN(tmpTiles, thisTile.getNext().getNext(), 1);
         completedTiles.getBody().add(tmpGroup);
 
         // Recursively find all completed tiles
@@ -144,17 +151,6 @@ public class TileSplitter {
     return ret;
   }
 
-  /**
-   * Removes a specified number of occurrences of a tile from the list.
-   *
-   * @param tiles the list of tiles
-   * @param tile the tile to remove
-   * @param n the number of times to remove the tile
-   */
-  private void eraseN(List<BaseTile> tiles, BaseTile tile, int n) {
-    for (int i = 0; i < n; i++) {
-      tiles.remove(tile);
-    }
-  }
+
 
 }

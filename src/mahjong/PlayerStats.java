@@ -260,10 +260,9 @@ public class PlayerStats {
     this.isOya = isOya;
   }
 
-  
   /**
    * Gets the hand of the player in BaseTile.
-   * 
+   *
    * @return an array of BaseTile representing the player's hand.
    */
   public List<BaseTile> getBaseHands() {
@@ -272,7 +271,7 @@ public class PlayerStats {
 
   /**
    * Constructs a PlayerState with the specified states and hand.
-   * 
+   *
    * @param isRiichi     whether the player is in Riichi state.
    * @param isIppatsu    whether the player is in Ippatsu state.
    * @param isMenzenchin whether the player is in Menzenchin state.
@@ -284,13 +283,17 @@ public class PlayerStats {
    * @param isTenhou     whether the player is in Tenhou state.
    * @param isChiihou    whether the player is in Chiihou state.
    * @param isOya        whether the player is in Oya state.
+   * @param selfWind     the self wind tile of the player.
+   * @param prevalentWind the prevalent wind tile of the player.
    * @param hand         the hand of the player.
+   * @param callGroups   the call groups (Fuuros) of the player.
    */
   public PlayerStats(
       boolean isRiichi, boolean isIppatsu, boolean isMenzenchin,
       boolean isTsumo, boolean isRinshan, boolean isHaitei,
       boolean isHoutei, boolean isChankan, boolean isTenhou,
-      boolean isChiihou, boolean isOya, List<Tile> hand) {
+      boolean isChiihou, boolean isOya, BaseTile selfWind,
+      BaseTile prevalentWind, List<Tile> hand, List<CallGroup> callGroups) {
     this.isRiichi = isRiichi;
     this.isIppatsu = isIppatsu;
     this.isMenzenchin = isMenzenchin;
@@ -302,7 +305,10 @@ public class PlayerStats {
     this.isTenhou = isTenhou;
     this.isChiihou = isChiihou;
     this.isOya = isOya;
+    this.selfWind = selfWind;
+    this.prevalentWind = prevalentWind;
     this.hand = hand;
+    this.callGroups = callGroups;
     this.baseHand = new ArrayList<>();
     for (Tile tile : hand) {
       baseHand.add(tile.getBaseTile());

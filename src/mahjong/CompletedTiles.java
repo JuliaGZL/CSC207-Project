@@ -142,4 +142,16 @@ class CompletedTiles implements Comparable<CompletedTiles> {
     }
     return 0;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == this) {
+      return true;
+    }
+    if (!(obj instanceof CompletedTiles)) {
+      return false;
+    }
+    CompletedTiles other = (CompletedTiles) obj;
+    return this.head.equals(other.head) && this.body.equals(other.body);
+  }
 }

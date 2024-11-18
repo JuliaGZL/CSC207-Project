@@ -1,0 +1,7 @@
+﻿# English Localizations for display strings
+displayScoresOyaTsumo: "%,d Points All"
+displayScoresChildTsumo: "%,d Parent Points pays, %,d Points Children pay"
+displayScoresOyaRon: "%,d Points"
+displayScoresChildRon: "%,d Points"
+displayFan: "Fan: %,d"
+displayFu: "Fu: %,d"

@@ -1,6 +1,7 @@
 package mahjong;
 
-import java.util.ArrayList;
+import mahjong.utils.DisplayFormatter;
+import mahjong.utils.Pair;
 
 /**
  * The ScoreCounter class calculates and registers the score in a Mahjong game
@@ -20,6 +21,7 @@ public class ScoreCounter {
     this.fu = fu;
     this.isOya = isOya;
     this.isTsumo = isTsumo;
+    fanfuToScore();
   }
 
   /**
@@ -27,7 +29,7 @@ public class ScoreCounter {
    * to Japanese Mahjong rules.
    * Throws a RuntimeException if the combination of fan and fu is not supported.
    */
-  public void fanfuToScore() {
+  private void fanfuToScore() {
     if (fan > 13) {
       // if we have achieved a Yakuman
       registerScore(48000 * (fan / 13), 16000 * (fan / 13), 32000 * (fan / 13), 16000 * (fan / 13),
@@ -118,8 +120,9 @@ public class ScoreCounter {
       } else if (fu == 20) {
         registerScore(1000, -1, -1, -1, -1);
       }
+    } else {
+      throw new RuntimeException("Invalid combination of fan and fu");
     }
-    throw new RuntimeException("Exception message");
   }
 
   /**
@@ -152,25 +155,31 @@ public class ScoreCounter {
    *
    * @return an ArrayList of Integer containing the relevant scores
    */
-  public ArrayList<Integer> getScores() {
-    ArrayList<Integer> scores = new ArrayList<Integer>();
+  public Pair<Integer, Integer> getScores() {
     if (isOya) {
       if (isTsumo) {
-        scores.add(this.scoreParentTsumoAll);
+        return new Pair<>(this.scoreParentTsumoAll, 0);
       } else {
-        scores.add(this.scoreParentRon);
+        return new Pair<>(this.scoreParentRon, 0);
       }
     } else {
       if (isTsumo) {
-        scores.add(this.scoreChildTsumoParent);
-        scores.add(this.scoreChildTsumoChild);
+        return new Pair<>(this.scoreChildTsumoParent, this.scoreChildTsumoChild);
       } else {
-        scores.add(this.scoreChildRon);
+        return new Pair<>(this.scoreChildRon, 0);
       }
     }
-    return scores;
   }
-  
+
+  /**
+   * Converts the current score information into a formatted string.
+   *
+   * @return A formatted string representing the scores, formatted using the DisplayFormatter.
+   */
+  public String toFormattedScores() {
+    return DisplayFormatter.formatScore(isOya, isTsumo, getScores());
+  }
+
   private boolean isOya;
   private boolean isTsumo;
 
