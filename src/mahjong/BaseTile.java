@@ -1,5 +1,7 @@
 package mahjong;
 
+import mahjong.utils.Localization;
+
 /**
  * An enumeration of base tiles used in Mahjong, including numbered tiles for the Man (m),
  * Pin (p), Sou (s) suits, and honor tiles (z).

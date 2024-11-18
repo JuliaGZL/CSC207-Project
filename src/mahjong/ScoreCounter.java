@@ -1,7 +1,7 @@
 package mahjong;
 
-import java.util.ArrayList;
-import java.util.List;
+import mahjong.utils.DisplayFormatter;
+import mahjong.utils.Pair;
 
 /**
  * The ScoreCounter class calculates and registers the score in a Mahjong game
@@ -155,28 +155,29 @@ public class ScoreCounter {
    *
    * @return an ArrayList of Integer containing the relevant scores
    */
-  public List<Integer> getScores() {
-    List<Integer> scores = new ArrayList<>();
+  public Pair<Integer, Integer> getScores() {
     if (isOya) {
       if (isTsumo) {
-        scores.add(this.scoreParentTsumoAll);
+        return new Pair<>(this.scoreParentTsumoAll, 0);
       } else {
-        scores.add(this.scoreParentRon);
+        return new Pair<>(this.scoreParentRon, 0);
       }
     } else {
       if (isTsumo) {
-        scores.add(this.scoreChildTsumoParent);
-        scores.add(this.scoreChildTsumoChild);
+        return new Pair<>(this.scoreChildTsumoParent, this.scoreChildTsumoChild);
       } else {
-        scores.add(this.scoreChildRon);
+        return new Pair<>(this.scoreChildRon, 0);
       }
     }
-    return scores;
   }
 
+  /**
+   * Converts the current score information into a formatted string.
+   *
+   * @return A formatted string representing the scores, formatted using the DisplayFormatter.
+   */
   public String toFormattedScores() {
-    // TODO: Implement this method
-    return "";
+    return DisplayFormatter.formatScore(isOya, isTsumo, getScores());
   }
   
   private boolean isOya;
