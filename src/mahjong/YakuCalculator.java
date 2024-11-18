@@ -3,6 +3,8 @@ package mahjong;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import mahjong.utils.Algorithm;
+import mahjong.utils.Pair;
 
 /**
  * The YakuCalculator class is responsible for calculating the Yaku (winning
@@ -214,6 +216,7 @@ public class YakuCalculator {
       getTsuuiisouYaku(yakuList);
       if (!getChurenPoutouYaku(yakuList)) {
         hasSpecialYaku = false;
+        return;
       }
     }
     hasSpecialYaku = true;
@@ -354,8 +357,7 @@ public class YakuCalculator {
             || (s.length() == 4 && s.charAt(2) == TileGroup.markKoutsu
                 && (s.charAt(3) == TileGroup.markTsumo1st || s.charAt(3) == TileGroup.markTsumo2nd
                     || s.charAt(3) == TileGroup.markTsumo3rd))
-            ||
-            (s.charAt(2) == TileGroup.markKantsu && s.charAt(3) == TileGroup.markAnkan))
+            || (s.charAt(2) == TileGroup.markKantsu && s.charAt(3) == TileGroup.markAnkan))
         .count();
 
     // 统计杠子数
@@ -1049,7 +1051,7 @@ public class YakuCalculator {
       if (hasYakuman) {
         int fan = calculateFan(yakus);
         if (fan > maxFan) {
-          maxYakuFanFu = new Pair<>(yakus, new Pair<>(fan, 20));
+          maxYakuFanFu = new Pair<>(new ArrayList<>(yakus), new Pair<>(fan, 20));
         }
       } else {
         Pair<List<Yaku>, Pair<Integer, Integer>> yakuFanFu = getYakuAndFanFu(tileGroup);
@@ -1089,7 +1091,7 @@ public class YakuCalculator {
   public Pair<List<Yaku>, Pair<Integer, Integer>> yakuCounter() {
     List<Yaku> maxYakuList = new ArrayList<>();
     Pair<List<Yaku>, Pair<Integer, Integer>> maxYakuFanFu = new Pair<>(
-        maxYakuList, new Pair<>(0, 0));
+        new ArrayList<>(), new Pair<>(0, 0));
     getSepcialYakuman(maxYakuList);
     if (!hasSpecialYaku) {
       // 对牌进行拆解 （已经unique）
@@ -1100,10 +1102,7 @@ public class YakuCalculator {
         CompletedTiles ct = new CompletedTiles();
         for (int i = 0; i < 14; i += 2) {
           TileGroup tg = new TileGroup(TileGroup.Type.TOITSU);
-          List<BaseTile> t = new ArrayList<>();
-          t.add(originalHand.get(i));
-          t.add(originalHand.get(i));
-          tg.setTiles(t);
+          tg.setTiles(List.of(originalHand.get(i), originalHand.get(i)));
           ct.getBody().add(tg);
         }
         completeTilesList.add(ct);
@@ -1122,10 +1121,11 @@ public class YakuCalculator {
       getKouiYaku(maxYakuList);
       getGuuzenYaku(maxYakuList);
       getDoraYaku(maxYakuList);
-      MahjongUtils.mergeInto(maxYakuList, maxYakuFanFu.getFst());
     }
 
-    if (!Rule.canAgari(maxYakuList)) {
+    Algorithm.mergeInto(maxYakuFanFu.getFst(), maxYakuList);
+
+    if (!Rule.canAgari(maxYakuFanFu.getFst())) {
       // 说明无役
       maxYakuFanFu = new Pair<>(new ArrayList<>(), new Pair<>(0, 0));
       maxYakuFanFu.getFst().add(Yaku.None);
