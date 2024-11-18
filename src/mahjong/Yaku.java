@@ -163,6 +163,15 @@ public enum Yaku {
   /** Yakuman Double (倍役満): Double limit hand. */
   YakumanDouble;
 
+  private static final int valYaku1han      = 1;
+  private static final int valYaku2han      = 2;
+  private static final int valYaku3han      = 3;
+  private static final int valYaku5han      = 5;
+  private static final int valYaku6han      = 6;
+  private static final int valYakumangan    = 5;
+  private static final int valYakuman       = 13;
+  private static final int valYakumanDouble = 26;
+
   /**
    * Localization object for translating tile identifiers to localized strings.
    */
@@ -173,9 +182,9 @@ public enum Yaku {
   }
 
   /**
-   * Returns the corresponding fans of given Yaku.
+   * Returns the corresponding fan (han) value of the given Yaku.
    *
-   * @return the corresponding fans of given Yaku.
+   * @return the corresponding fan (han) value of the given Yaku.
    */
   public Yaku getFan() {
     if (this == None) {
@@ -200,9 +209,40 @@ public enum Yaku {
   }
 
   /**
-   * Returns the localized string representation of this base tile.
+   * Returns the numerical fan (han) value of the specified Yaku.
    *
-   * @return the localized name of the tile
+   * @param yaku the Yaku for which to get the fan value.
+   * @return the numerical fan (han) value of the specified Yaku.
+   */
+  public int getFanValue(Yaku yaku) {
+    switch (yaku) {
+      case None:
+        return 0;
+      case Yaku1han:
+        return valYaku1han;
+      case Yaku2han:
+        return valYaku2han;
+      case Yaku3han:
+        return valYaku3han;
+      case Yaku5han:
+        return valYaku5han;
+      case Yaku6han:
+        return valYaku6han;
+      case Yakumangan:
+        return valYakumangan;
+      case Yakuman:
+        return valYakuman;
+      case YakumanDouble:
+        return valYakumanDouble;
+      default:
+        return 0;
+    }
+  }
+
+  /**
+   * Returns the localized string representation of this Yaku.
+   *
+   * @return the localized name of the Yaku.
    */
   @Override
   public String toString() {
