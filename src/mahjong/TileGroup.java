@@ -53,6 +53,14 @@ public class TileGroup implements Comparable<TileGroup> {
   static final char markRon2nd = '%';
   /** Mark for third Ron (discard win). */
   static final char markRon3rd = '^';
+  /** Mark for Manzu. */
+  static final char markManzu = 'm';
+  /** Mark for Pinzu. */
+  static final char markPinzu = 'p';
+  /** Mark for Souzu. */
+  static final char markSouzu = 's';
+  /** Mark for Jihai(honor tile). */
+  static final char markJihai = 'z';
 
   /**
    * Creates a tile group representation with the given tile and mark.

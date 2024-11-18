@@ -270,7 +270,7 @@ public class PlayerStats {
   /**
    * Constructs a PlayerState with the specified states and hand.
    * 
-   * @param isRiichi      whether the player is in Riichi state.
+   * @param isRiichi     whether the player is in Riichi state.
    * @param isIppatsu    whether the player is in Ippatsu state.
    * @param isMenzenchin whether the player is in Menzenchin state.
    * @param isTsumo      whether the player is in Tsumo state.
