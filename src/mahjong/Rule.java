@@ -56,7 +56,8 @@ public class Rule {
     if (isJihai(s)) {
       return false;
     }
-    if (s.charAt(2) == TileGroup.markKoutsu || s.charAt(2) == TileGroup.markToitsu || s.charAt(2) == TileGroup.markKantsu) {
+    if (s.charAt(2) == TileGroup.markKoutsu || s.charAt(2) == TileGroup.markToitsu
+        || s.charAt(2) == TileGroup.markKantsu) {
       return s.charAt(0) == '1' || s.charAt(0) == '9';
     }
     if (s.charAt(2) == TileGroup.markShuntsu) {
@@ -75,7 +76,8 @@ public class Rule {
     if (isJihai(s)) {
       return false;
     }
-    if (s.charAt(2) == TileGroup.markKoutsu || s.charAt(2) == TileGroup.markToitsu || s.charAt(2) == TileGroup.markKantsu) {
+    if (s.charAt(2) == TileGroup.markKoutsu || s.charAt(2) == TileGroup.markToitsu
+        || s.charAt(2) == TileGroup.markKantsu) {
       return s.charAt(0) == '1' || s.charAt(0) == '9';
     }
     return false;
@@ -97,7 +99,8 @@ public class Rule {
    * Checks if the given string represents a Tai Yaochuuhai or Jihai tile.
    *
    * @param s the string to check
-   * @return true if the string represents a Tai Yaochuuhai or Jihai tile, false otherwise
+   * @return true if the string represents a Tai Yaochuuhai or Jihai tile, false
+   *         otherwise
    */
   public static boolean isTaiYaochuuhaiOrJihai(String s) {
     return isJihai(s) || isTaiYaochuuhai(s);
@@ -106,8 +109,8 @@ public class Rule {
   /**
    * Checks if the given string represents a Yakuhai Toitsu tile.
    *
-   * @param s the string to check
-   * @param selfWind the player's wind
+   * @param s             the string to check
+   * @param selfWind      the player's wind
    * @param prevalentWind the prevalent wind
    * @return the number of Yakuhai Toitsu cases
    */
@@ -201,27 +204,27 @@ public class Rule {
   /**
    * Checks if the given list of tiles forms a Churen shape.
    *
-   * @param tiles the list of tiles to check
-   * @param ChinitsuColor the color of the tiles
+   * @param tiles         the list of tiles to check
+   * @param chinitsuColor the color of the tiles
    * @return true if the tiles form a Churen shape, false otherwise
    */
-  public static boolean isChurenShape(List<BaseTile> tiles, int ChinitsuColor) {
+  public static boolean isChurenShape(List<BaseTile> tiles, int chinitsuColor) {
     if (tiles.size() != 14) {
       return false;
     }
-    if (ChinitsuColor == -1 || ChinitsuColor == 3) {
+    if (chinitsuColor == -1 || chinitsuColor == 3) {
       return false;
     }
     Integer[] pureChuren = { 1, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9 };
 
     for (int i = 0; i < 13; ++i) {
-      if (tiles.get(i).ordinal() != (pureChuren[i] + 9 * ChinitsuColor - 1)) {
+      if (tiles.get(i).ordinal() != (pureChuren[i] + 9 * chinitsuColor - 1)) {
         // 确定有序的前提下，逐张对比
         return false;
       }
     }
     // 通过所有判断
-    int t = tiles.get(13).ordinal() + 1 - 9 * ChinitsuColor;
+    int t = tiles.get(13).ordinal() + 1 - 9 * chinitsuColor;
     return MahjongUtils.arrayContains(pureChuren, t);
   }
 
@@ -229,7 +232,8 @@ public class Rule {
    * Gets the color of the Chinitsu tiles.
    *
    * @param tiles the list of tiles to check
-   * @return the color of the Chinitsu tiles, or -1 if the tiles are not of the same color
+   * @return the color of the Chinitsu tiles, or -1 if the tiles are not of the
+   *         same color
    */
   public static int getChinitsuColor(List<BaseTile> tiles) {
     int color = tiles.get(0).ordinal() / 9;
