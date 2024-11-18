@@ -61,8 +61,14 @@ public class TileSplitter {
    * @return a list of all possible {@code CompletedTiles} combinations
    */
   public List<CompletedTiles> getAllCompletedTiles(List<BaseTile> tiles) {
-    if (tiles.size() == 0) {
-      return Collections.singletonList(completedTiles);
+    if (tiles.isEmpty()) {
+      // i hate pointer semantics...
+      CompletedTiles ct = new CompletedTiles();
+      TileGroup headGroup = new TileGroup(completedTiles.getHead().getType());
+      headGroup.setTiles(new ArrayList<>(completedTiles.getHead().getTiles()));
+      ct.setHead(headGroup);
+      ct.getBody().addAll(completedTiles.getBody());
+      return Collections.singletonList(ct);
     }
     List<CompletedTiles> ret = new ArrayList<>();
     List<CompletedTiles> allCompletedTiles;
