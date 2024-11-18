@@ -21,6 +21,7 @@ public class ScoreCounter {
     this.fu = fu;
     this.isOya = isOya;
     this.isTsumo = isTsumo;
+    fanfuToScore();
   }
 
   /**
@@ -28,7 +29,7 @@ public class ScoreCounter {
    * to Japanese Mahjong rules.
    * Throws a RuntimeException if the combination of fan and fu is not supported.
    */
-  public void fanfuToScore() {
+  private void fanfuToScore() {
     if (fan > 13) {
       // if we have achieved a Yakuman
       registerScore(48000 * (fan / 13), 16000 * (fan / 13), 32000 * (fan / 13), 16000 * (fan / 13),
@@ -119,8 +120,9 @@ public class ScoreCounter {
       } else if (fu == 20) {
         registerScore(1000, -1, -1, -1, -1);
       }
+    } else {
+      throw new RuntimeException("Invalid combination of fan and fu");
     }
-    throw new RuntimeException("Exception message");
   }
 
   /**
@@ -154,7 +156,7 @@ public class ScoreCounter {
    * @return an ArrayList of Integer containing the relevant scores
    */
   public List<Integer> getScores() {
-    List<Integer> scores = new ArrayList<Integer>();
+    List<Integer> scores = new ArrayList<>();
     if (isOya) {
       if (isTsumo) {
         scores.add(this.scoreParentTsumoAll);
