@@ -178,7 +178,7 @@ public enum Yaku {
   private static Localization<Yaku> localization = new Localization<>(Yaku::valueOf);
 
   static {
-    localization.initializeTranslator("..\\localization\\yakuslenglish.yaml");
+    localization.initializeTranslator("localization\\yakus_l_english.yaml");
   }
 
   /**
