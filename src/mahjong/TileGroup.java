@@ -297,10 +297,10 @@ public class TileGroup implements Comparable<TileGroup> {
    * @param lastTile    the last tile
    * @return a list of possible tile group strings
    */
-  public ArrayList<ArrayList<String>> generateTileGroupStrings(
+  public static List<List<String>> generateTileGroupStrings(
       CompletedTiles ct, List<CallGroup> callgroups,
       boolean tsumo, BaseTile lastTile) {
-    ArrayList<String> rawTileGroupString = new ArrayList<>();
+    List<String> rawTileGroupString = new ArrayList<>();
 
     if (!ct.getHead().getTiles().isEmpty()) {
       rawTileGroupString.add(makeToitsu(ct.getHead().getTiles().get(0)));
@@ -392,7 +392,7 @@ public class TileGroup implements Comparable<TileGroup> {
     }
 
     Collections.sort(tileGroupStrings, (a, b) -> a.toString().compareTo(b.toString()));
-    ArrayList<ArrayList<String>> uniqueTileGroupStrings = new ArrayList<>();
+    List<List<String>> uniqueTileGroupStrings = new ArrayList<>();
     for (ArrayList<String> group : tileGroupStrings) {
       if (!uniqueTileGroupStrings.contains(group)) {
         uniqueTileGroupStrings.add(group);
