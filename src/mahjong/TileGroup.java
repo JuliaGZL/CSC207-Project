@@ -409,8 +409,8 @@ public class TileGroup implements Comparable<TileGroup> {
    * @param strs the list of tile group strings
    * @return a new list with the specified information removed
    */
-  public static ArrayList<String> remove4(ArrayList<String> strs) {
-    ArrayList<String> retstr = new ArrayList<>(strs);
+  public static List<String> remove4(List<String> strs) {
+    List<String> retstr = new ArrayList<>(strs);
 
     for (int i = 0; i < retstr.size(); i++) {
       String ret = retstr.get(i);

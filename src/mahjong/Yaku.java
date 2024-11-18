@@ -18,7 +18,7 @@ public enum Yaku {
   /** Jikaze Nan (自風 南): Seat wind South. */
   JikazeNan,
   /** Jikaze Sha (自風 西): Seat wind West. */
-  JikazeSha,
+  JikazeShaa,
   /** Jikaze Pei (自風 北): Seat wind North. */
   JikazePei,
   /** Bakaze Ton (場風 東): Round wind East. */
