@@ -19,6 +19,8 @@ public class PlayerStats {
   private boolean isTenhou;
   private boolean isChiihou;
   private boolean isOya;
+  private BaseTile selfWind;
+  private BaseTile prevalentWind; 
   private List<Tile> hand;
   private List<BaseTile> baseHand;
 
@@ -304,5 +306,59 @@ public class PlayerStats {
     for (Tile tile : hand) {
       baseHand.add(tile.getBaseTile());
     }
+  }
+
+  /**
+   * Retrieves the self wind tile of the player.
+   *
+   * @return the self wind tile of the player.
+   */
+  public BaseTile getSelfWind() {
+    return selfWind;
+  }
+
+  /**
+   * Set the self wind tile of the player.
+   *
+   * @param selfWind the self wind tile of the player.
+   */
+  public void setSelfWind(BaseTile selfWind) {
+    this.selfWind = selfWind;
+  }
+
+  /**
+   * Retrieves the prevalent wind tile of the player.
+   *
+   * @return the prevalent wind tile of the player.
+   */
+  public BaseTile getPrevalentWind() {
+    return prevalentWind;
+  }
+
+  /**
+   * Set the prevalent wind tile of the player.
+   *
+   * @param prevalentWind the prevalent wind tile of the player.
+   */
+  public void setPrevalentWind(BaseTile prevalentWind) {
+    this.prevalentWind = prevalentWind;
+  }
+
+  /**
+   * Retrieves the base hand of the player.
+   *
+   * @return a list of BaseTile objects representing the player's base hand.
+   */
+  public List<BaseTile> getBaseHand() {
+    return baseHand;
+  }
+
+  /**
+   * Sets the base hand for the player.
+   *
+   * @param baseHand the list of BaseTile objects representing the player's base hand
+   */
+  public void setBaseHand(List<BaseTile> baseHand) {
+    this.baseHand = baseHand;
   }
 }
