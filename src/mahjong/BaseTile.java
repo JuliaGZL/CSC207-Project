@@ -74,13 +74,31 @@ public enum BaseTile {
   /** The 7th honor tile (red dragon). */
   _7z;
 
-  
   private static final BaseTile[] vals = values();
 
+  /** The east wind tile. */
+  public static final BaseTile windTon  = _1z;
+  /** The south wind tile. */
+  public static final BaseTile windNan  = _2z;
+  /** The west wind tile. */
+  public static final BaseTile windShaa = _3z;
+  /** The north wind tile. */
+  public static final BaseTile windPei  = _4z;
+
+  /**
+   * Returns the next tile in the enumeration.
+   *
+   * @return the next base tile
+   */
   public BaseTile getNext() {
     return vals[(this.ordinal() + 1) % vals.length];
   }
 
+  /**
+   * Returns the previous tile in the enumeration.
+   *
+   * @return the previous base tile
+   */
   public BaseTile getPrev() {
     return vals[(this.ordinal() + 1) % vals.length];
   }
