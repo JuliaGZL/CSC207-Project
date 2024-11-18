@@ -45,6 +45,13 @@ public class MahjongUtils {
     return false;
   }
 
+  /**
+   * Merges all elements from the source list into the destination list.
+   *
+   * @param <T> the type of elements in the lists
+   * @param to the destination list where elements will be added
+   * @param from the source list from which elements will be taken
+   */
   public static <T> void mergeInto(List<T> to, List<? extends T> from) {
     to.addAll(from);
   }
