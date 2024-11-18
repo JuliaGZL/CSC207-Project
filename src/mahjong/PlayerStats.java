@@ -260,16 +260,6 @@ public class PlayerStats {
     this.isOya = isOya;
   }
 
-  
-  /**
-   * Gets the hand of the player in BaseTile.
-   * 
-   * @return an array of BaseTile representing the player's hand.
-   */
-  public List<BaseTile> getBaseHands() {
-    return baseHand;
-  }
-
   /**
    * Constructs a PlayerStats with the specified states and hand.
    * 
