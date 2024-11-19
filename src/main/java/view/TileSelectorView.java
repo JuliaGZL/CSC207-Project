@@ -21,7 +21,7 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
     private final String viewName = "select hand tiles or dora indicators";
     private final TileSelectorViewModel tileSelectorViewModel;
 
-    private JLabel titleLabel = new JLabel(TileSelectorViewModel.TITLE_LABEL);
+    private JLabel titleLabel = new JLabel("Select hand");
 
     private JPanel doraIndicatorPanel;
     // private JButton confirmButton = new JButton(SelectDoraViewModel.CONFIRM_BUTTON_LABEL);
@@ -100,6 +100,8 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
         if (evt.getPropertyName().equals("target")) {
             TileSelectorState state = (TileSelectorState) evt.getNewValue();
             setTileAddTarget(state.getTarget());
+            // update title label
+            this.titleLabel.setText("Select " + state.getTarget());
         }
     }
 

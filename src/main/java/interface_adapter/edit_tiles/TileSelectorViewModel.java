@@ -36,8 +36,9 @@ public class TileSelectorViewModel extends ViewModel<TileSelectorState> {
     public static final int TILE_WIDTH = 60;
     public static final int TILE_HEIGHT = 80;
 
-    public static final String TITLE_LABEL = "Select Dora Indicators";
-    public static final String CONFIRM_BUTTON_LABEL = "Confirm";
+    // NOTE: these are no longer needed.
+    // public static final String TITLE_LABEL = "Select Dora Indicators";
+    // public static final String CONFIRM_BUTTON_LABEL = "Confirm";
 
     public TileSelectorViewModel() {
         super("tile selector");
