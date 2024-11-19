@@ -8,8 +8,7 @@ import javax.swing.*;
 public class EditStatusPanelTest {
     public static void main(String[] args) {
         EditStatusViewModel editStatusViewModel = new EditStatusViewModel();
-        EditStatusController editStatusController = new EditStatusController();
-        EditStatusView editStatusView = new EditStatusView(editStatusViewModel, editStatusController);
+        EditStatusView editStatusView = new EditStatusView(editStatusViewModel);
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

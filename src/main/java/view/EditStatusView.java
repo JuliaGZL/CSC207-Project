@@ -21,16 +21,14 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
     private String viewName = "edit status";
     private Boolean[] statuses;
     private final EditStatusViewModel editStatusViewModel;
-    private final EditStatusController editStatusController;
+    private EditStatusController editStatusController;
 
     /**
      * Constructs a EditStatusView object with the specified view model and controller.
      * @param editStatusViewModel the view model for editing gameplay statuses.
-     * @param editStatusController the controller for editing gameplay statuses.
      */
-    public EditStatusView(EditStatusViewModel editStatusViewModel, EditStatusController editStatusController) {
+    public EditStatusView(EditStatusViewModel editStatusViewModel) {
         this.editStatusViewModel = editStatusViewModel;
-        this.editStatusController = editStatusController;
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -132,5 +130,9 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
             System.err.println("Couldn't find file: " + path);
             return null;
         }
+    }
+
+    public void setEditStatusController(EditStatusController editStatusController) {
+        this.editStatusController = editStatusController;
     }
 }
