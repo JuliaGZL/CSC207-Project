@@ -1,5 +1,8 @@
 package mahjong;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Enum for all possible base tiles.
  */
@@ -37,5 +40,5 @@ public enum BaseTiles {
     _4z,
     _5z,
     _6z,
-    _7z
+    _7z;
 }

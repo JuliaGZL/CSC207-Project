@@ -4,8 +4,11 @@ import interface_adapter.ViewModel;
 
 public class EditStatusViewModel extends ViewModel<EditStatusState> {
 
-    public static final String[] ATTRIBUTES = {"Chii", "Pon", "Kan", "Riichi", "Tsumo"};
-    public static final String BLANK_MAHJONG_PATH = "/mahjong-tiles/Front.png";
+    public static final String[] TILE_TYPES = {"Hand", "Chii", "Pon", "Kan", "Ankan", "Dora", "Uradora", "Akadora"};
+    public static final String[] WIN_TYPES = {"Tsumo", "Ron"};
+    public static final String[] WINDS = {"Ton", "Nan", "Shaa", "Pei"};
+    public static final String[] ATTRIBUTES = {"Riichi", "Double Riichi", "One-shot", "Under the Sea",
+            "Under the River", "After a Kan", "Robbing a Kan", "Tenhou", "Chiihou"};
 
     public static final String MAN_LABEL = "Man";
     public static final String PIN_LABEL = "Pin";
