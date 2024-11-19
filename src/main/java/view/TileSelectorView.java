@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.edit_tiles.AddTileController;
 import interface_adapter.edit_tiles.SelectDoraController;
+import interface_adapter.edit_tiles.TileSelectorState;
 import interface_adapter.edit_tiles.TileSelectorViewModel;
 import mahjong.BaseTile;
 import mahjong.BaseTileToPathMapping;
@@ -95,7 +96,11 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        // update tile insertion destination as needed
+        if (evt.getPropertyName().equals("target")) {
+            TileSelectorState state = (TileSelectorState) evt.getNewValue();
+            setTileAddTarget(state.getTarget());
+        }
     }
 
     /**

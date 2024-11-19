@@ -40,7 +40,7 @@ public class TileSelectorViewModel extends ViewModel<TileSelectorState> {
     public static final String CONFIRM_BUTTON_LABEL = "Confirm";
 
     public TileSelectorViewModel() {
-        super("select tile");
+        super("tile selector");
         setState(new TileSelectorState("hand"));
     }
 }
