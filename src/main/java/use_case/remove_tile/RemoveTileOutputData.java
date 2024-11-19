@@ -1,6 +1,6 @@
 package use_case.remove_tile;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 
 import java.util.List;
 
@@ -10,12 +10,12 @@ import java.util.List;
 public class RemoveTileOutputData {
     private final boolean failed;
     private final String playerName;
-    private final List<BaseTiles> idList;
+    private final List<BaseTile> idList;
     private final List<String> nameList;
     private final List<String> iconList;
 
     public RemoveTileOutputData(
-            boolean failed, String playerName, List<BaseTiles> idList, List<String> nameList, List<String> iconList) {
+            boolean failed, String playerName, List<BaseTile> idList, List<String> nameList, List<String> iconList) {
         this.failed = failed;
         this.playerName = playerName;
         this.idList = idList;
@@ -31,7 +31,7 @@ public class RemoveTileOutputData {
         return playerName;
     }
 
-    public List<BaseTiles> getIdList() {
+    public List<BaseTile> getIdList() {
         return idList;
     }
 

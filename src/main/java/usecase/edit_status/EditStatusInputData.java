@@ -1,6 +1,6 @@
 package usecase.edit_status;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 
 /**
  * The input data for the Edit Status Use Case.
@@ -8,9 +8,9 @@ import mahjong.BaseTiles;
 public class EditStatusInputData {
     private final Boolean[] attributes; // Attributes of the hand in this round
     private final Boolean[] redDora; // Represents whether there is Man/Pin/Sou red dora
-    private final BaseTiles doraIndicators; // The dora indicators (0-5 indicators)
+    private final BaseTile doraIndicators; // The dora indicators (0-5 indicators)
 
-    public EditStatusInputData(Boolean[] attributes, Boolean[] redDora, BaseTiles doraIndicators) {
+    public EditStatusInputData(Boolean[] attributes, Boolean[] redDora, BaseTile doraIndicators) {
         this.attributes = attributes;
         this.redDora = redDora;
         this.doraIndicators = doraIndicators;
@@ -25,7 +25,7 @@ public class EditStatusInputData {
         return redDora;
     }
 
-    public BaseTiles getDoraIndicators() {
+    public BaseTile getDoraIndicators() {
         return doraIndicators;
     }
 }

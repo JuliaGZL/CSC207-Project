@@ -10,15 +10,15 @@ import usecase.edit_status.SelectDoraOutputData;
  * The Presenter for the Select Dora Use Case.
  */
 public class SelectDoraPresenter implements SelectDoraOutputBoundary {
-    private final SelectDoraViewModel selectDoraViewModel;
+    private final TileSelectorViewModel tileSelectorViewModel;
     private final EditStatusViewModel editStatusViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public SelectDoraPresenter(ViewManagerModel viewManagerModel,
-                               SelectDoraViewModel selectDoraViewModel,
+                               TileSelectorViewModel tileSelectorViewModel,
                                EditStatusViewModel editStatusViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.selectDoraViewModel = selectDoraViewModel;
+        this.tileSelectorViewModel = tileSelectorViewModel;
         this.editStatusViewModel = editStatusViewModel;
     }
 
@@ -35,8 +35,8 @@ public class SelectDoraPresenter implements SelectDoraOutputBoundary {
     @Override
     public void prepareFailView(String errorMessage) {
         // On failure, show the error message.
-        final SelectDoraState selectDoraState = selectDoraViewModel.getState();
+        final SelectDoraState selectDoraState = tileSelectorViewModel.getState();
         selectDoraState.setSelectIndicatorError(errorMessage);
-        selectDoraViewModel.firePropertyChanged();
+        tileSelectorViewModel.firePropertyChanged();
     }
 }

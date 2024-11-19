@@ -1,6 +1,6 @@
 package interface_adapter.edit_tiles;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 import use_case.add_tile.AddTileInputBoundary;
 import use_case.add_tile.AddTileInputData;
 
@@ -14,7 +14,7 @@ public class AddTileController {
         this.addTileInteractor = addTileInteractor;
     }
 
-    public void execute(BaseTiles tileId, String playerName) {
+    public void execute(BaseTile tileId, String playerName) {
         final AddTileInputData inputData = new AddTileInputData(tileId, playerName);
         addTileInteractor.execute(inputData);
     }

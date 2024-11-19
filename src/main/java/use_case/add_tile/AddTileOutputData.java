@@ -2,7 +2,7 @@ package use_case.add_tile;
 
 import java.util.List;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 
 /**
  * Output data format for the add_tile use case.
@@ -10,12 +10,12 @@ import mahjong.BaseTiles;
 public class AddTileOutputData {
     private final boolean failed;
     private final String playerName;
-    private final List<BaseTiles> idList;
+    private final List<BaseTile> idList;
     private final List<String> nameList;
     private final List<String> iconList;
 
     public AddTileOutputData(
-            boolean failed, String playerName, List<BaseTiles> idList, List<String> nameList, List<String> iconList) {
+            boolean failed, String playerName, List<BaseTile> idList, List<String> nameList, List<String> iconList) {
         this.failed = failed;
         this.playerName = playerName;
         this.idList = idList;
@@ -31,7 +31,7 @@ public class AddTileOutputData {
         return playerName;
     }
 
-    public List<BaseTiles> getIdList() {
+    public List<BaseTile> getIdList() {
         return idList;
     }
 

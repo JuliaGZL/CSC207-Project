@@ -2,7 +2,7 @@ package interface_adapter.edit_status;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.edit_tiles.SelectDoraState;
-import interface_adapter.edit_tiles.SelectDoraViewModel;
+import interface_adapter.edit_tiles.TileSelectorViewModel;
 import usecase.edit_status.EditStatusOutputBoundary;
 import usecase.edit_status.EditStatusOutputData;
 
@@ -12,12 +12,12 @@ import usecase.edit_status.EditStatusOutputData;
 public class EditStatusPresenter implements EditStatusOutputBoundary  {
 
     private final EditStatusViewModel editStatusViewModel;
-    private final SelectDoraViewModel selectDoraViewModel;
+    private final TileSelectorViewModel tileSelectorViewModel;
     private final ViewManagerModel  viewManagerModel;
 
-    public EditStatusPresenter(EditStatusViewModel editStatusViewModel, SelectDoraViewModel selectDoraViewModel, ViewManagerModel viewManagerModel) {
+    public EditStatusPresenter(EditStatusViewModel editStatusViewModel, TileSelectorViewModel tileSelectorViewModel, ViewManagerModel viewManagerModel) {
         this.editStatusViewModel = editStatusViewModel;
-        this.selectDoraViewModel = selectDoraViewModel;
+        this.tileSelectorViewModel = tileSelectorViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
@@ -36,12 +36,12 @@ public class EditStatusPresenter implements EditStatusOutputBoundary  {
     public void switchToSelectDoraView(EditStatusOutputData outputData) {
         // Switch to the select dora view if intended.
 
-        final SelectDoraState selectDoraState = selectDoraViewModel.getState();
+        final SelectDoraState selectDoraState = tileSelectorViewModel.getState();
         selectDoraState.setIndicatorSelections(outputData.getDoraCounts());
-        selectDoraViewModel.setState(selectDoraState);
-        selectDoraViewModel.firePropertyChanged();
+        tileSelectorViewModel.setState(selectDoraState);
+        tileSelectorViewModel.firePropertyChanged();
 
-        viewManagerModel.setState(selectDoraViewModel.getViewName());
+        viewManagerModel.setState(tileSelectorViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }

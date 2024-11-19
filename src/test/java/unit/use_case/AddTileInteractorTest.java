@@ -3,7 +3,7 @@ package unit.use_case;
 import data_access.InMemoryUniversalDataAccessObject;
 import entity.Player;
 import entity.Tile;
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 import use_case.add_tile.*;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class AddTileInteractorTest {
     final String name = "player1";
-    final BaseTiles tileId = BaseTiles._1m;
+    final BaseTile tileId = BaseTile._1m;
     private final AddTileDataAccessInterface DAO = new InMemoryUniversalDataAccessObject();
     private final AddTileInputBoundary interactor = new AddTileInteractor(DAO, new dummyAddTileOTB(name));
 

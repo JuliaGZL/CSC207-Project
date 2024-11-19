@@ -1,6 +1,6 @@
 package interface_adapter.edit_tiles;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +27,12 @@ public class SelectDoraState {
         this.indicatorSelections = indicatorSelections;
     }
 
-    public void setIndicatorSelections(Map<BaseTiles, Integer> doraCounts) {
+    public void setIndicatorSelections(Map<BaseTile, Integer> doraCounts) {
         // Initialize all selections to false
         indicatorSelections = new Boolean[4][9];
 
         // Set the selections to true for the dora indicators
-        for (BaseTiles tile : doraCounts.keySet()) {
+        for (BaseTile tile : doraCounts.keySet()) {
             int index = tile.ordinal();
             int row = index / 9;
             int col = index % 9;
@@ -46,12 +46,12 @@ public class SelectDoraState {
 
     @Override
     public String toString() {
-        List<BaseTiles> selectedTiles = new ArrayList<>();
+        List<BaseTile> selectedTiles = new ArrayList<>();
 
         for (int i = 0; i < indicatorSelections.length; i++) {
             for (int j = 0; j < indicatorSelections[i].length; j++) {
                 if (indicatorSelections[i][j]) {
-                    selectedTiles.add(BaseTiles.values()[i * 9 + j]);
+                    selectedTiles.add(BaseTile.values()[i * 9 + j]);
                 }
             }
         }
