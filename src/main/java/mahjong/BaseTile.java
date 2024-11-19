@@ -103,22 +103,6 @@ public enum BaseTile {
         return vals[(this.ordinal() + 1) % vals.length];
     }
 
-    /** Localization object for translating tile identifiers to localized strings. */
-    private static Localization<BaseTile> localization = new Localization<>(BaseTile::valueOf);
-
-    static {
-        localization.initializeTranslator("localization\\tiles_l_english.yaml");
-    }
-
-    /**
-     * Returns the localized string representation of this base tile.
-     *
-     * @return the localized name of the tile
-     */
-    public String toLocalizedString() {
-        return localization.toString(this);
-    }
-
     /**
      * Returns the basic string representation of this base tile.
      *
