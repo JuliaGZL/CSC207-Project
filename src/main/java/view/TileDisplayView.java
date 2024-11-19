@@ -24,6 +24,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
 
     private JLabel titleLabel;
     private JPanel tileListPanel;
+    private JPanel leftPanel;
     JButton clearButton;
 
     private RemoveTileController removeTileController;
@@ -33,7 +34,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
         this.viewModel = viewModel;
         this.viewModel.addPropertyChangeListener(this);
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         // Configure tileListPanel
         tileListPanel = new JPanel();
@@ -54,8 +55,11 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
         });
 
         // Add all components to the panel
-        this.add(titleLabel);
-        this.add(tileListPanel);
+        this.leftPanel = new JPanel();
+        this.leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.add(titleLabel);
+        leftPanel.add(tileListPanel);
+        this.add(leftPanel);
         this.add(clearButton);
     }
 
@@ -76,6 +80,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
                     removeTileController.execute(tileId, playerName);
                 }
             });
+            tileListPanel.add(button);
         }
     }
 

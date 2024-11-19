@@ -4,17 +4,12 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        // set UI appearance
+        // set GUI appearance
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (UnsupportedLookAndFeelException e) {
-            throw new RuntimeException(e);
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
         }
 
         // build the app
