@@ -1,6 +1,8 @@
 package interface_adapter.edit_status;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.edit_tiles.SelectDoraState;
+import interface_adapter.edit_tiles.SelectDoraViewModel;
 import usecase.edit_status.EditStatusOutputBoundary;
 import usecase.edit_status.EditStatusOutputData;
 

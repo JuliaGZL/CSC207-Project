@@ -1,4 +1,4 @@
-package interface_adapter.edit_status;
+package interface_adapter.edit_tiles;
 
 import mahjong.BaseTiles;
 
