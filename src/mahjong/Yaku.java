@@ -96,7 +96,6 @@ public enum Yaku {
   /** Honitsu Naki (混一色 鳴き): Half flush with open melds. */
   HonitsuNaki,
 
-  /** Yaku 2 fan (役 2 翻): Two fan yaku. */
   Yaku2han,
 
   /** Rianpeikou (二盃口): Two sets of identical sequences. */

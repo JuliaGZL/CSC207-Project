@@ -179,7 +179,7 @@ public class ScoreCounter {
   public String toFormattedScores() {
     return DisplayFormatter.formatScore(isOya, isTsumo, getScores());
   }
-  
+
   private boolean isOya;
   private boolean isTsumo;
 

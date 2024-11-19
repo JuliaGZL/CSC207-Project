@@ -261,8 +261,17 @@ public class PlayerStats {
   }
 
   /**
-   * Constructs a PlayerStats with the specified states and hand.
-   * 
+   * Gets the hand of the player in BaseTile.
+   *
+   * @return an array of BaseTile representing the player's hand.
+   */
+  public List<BaseTile> getBaseHands() {
+    return baseHand;
+  }
+
+  /**
+   * Constructs a PlayerState with the specified states and hand.
+   *
    * @param isRiichi     whether the player is in Riichi state.
    * @param isIppatsu    whether the player is in Ippatsu state.
    * @param isMenzenchin whether the player is in Menzenchin state.
