@@ -35,12 +35,8 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
     private SelectDoraController selectDoraController;
     private AddTileController addTileController;
 
-    public TileSelectorView(TileSelectorViewModel tileSelectorViewModel,
-                            SelectDoraController selectDoraController,
-                            AddTileController addTileController) {
+    public TileSelectorView(TileSelectorViewModel tileSelectorViewModel) {
         this.tileSelectorViewModel = tileSelectorViewModel;
-        this.selectDoraController = selectDoraController;
-        this.addTileController = addTileController;
 
         this.tileSelectorViewModel.addPropertyChangeListener(this);
 

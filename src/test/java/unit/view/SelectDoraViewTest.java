@@ -13,14 +13,8 @@ import javax.swing.*;
 public class SelectDoraViewTest {
     public static void main(String[] args) {
         TileSelectorViewModel tileSelectorViewModel = new TileSelectorViewModel();
-        SelectDoraController selectDoraController = new SelectDoraController();
 
-        AddTileInteractor interactor = new AddTileInteractor(
-                new InMemoryUniversalDataAccessObject(), new AddRemoveTilePresenter()
-        );
-        AddTileController addTileController = new AddTileController(interactor);
-
-        TileSelectorView tileSelectorView = new TileSelectorView(tileSelectorViewModel, selectDoraController, addTileController);
+        TileSelectorView tileSelectorView = new TileSelectorView(tileSelectorViewModel);
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
