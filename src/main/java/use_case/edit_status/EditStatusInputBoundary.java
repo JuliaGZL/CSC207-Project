@@ -1,4 +1,4 @@
-package usecase.edit_status;
+package use_case.edit_status;
 
 /**
  * The Edit Status Use Case.
@@ -13,6 +13,7 @@ public interface EditStatusInputBoundary {
 
     /**
      * Executes the switch to select dora use case.
+     * @param inputData the input data for this use case
      */
-    void switchToSelectDoraView();
+    void switchToSelectDoraView(EditStatusInputData inputData);
 }

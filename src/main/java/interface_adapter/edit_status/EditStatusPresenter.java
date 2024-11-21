@@ -1,8 +1,8 @@
 package interface_adapter.edit_status;
 
 import interface_adapter.ViewManagerModel;
-import usecase.edit_status.EditStatusOutputBoundary;
-import usecase.edit_status.EditStatusOutputData;
+import use_case.edit_status.EditStatusOutputBoundary;
+import use_case.edit_status.EditStatusOutputData;
 
 /**
  * The Presenter for the Edit Status Use Case.

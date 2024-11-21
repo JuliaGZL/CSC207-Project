@@ -1,4 +1,4 @@
-package usecase.edit_status;
+package use_case.edit_status;
 
 /**
  * The output boundary for the Edit Status Use Case.
@@ -21,4 +21,10 @@ public interface EditStatusOutputBoundary {
      * @param outputData the output data
      */
     void switchToSelectDoraView(EditStatusOutputData outputData);
+
+//    /**
+//     * Switches to the Select Dora View.
+//     * @param inputData the input data
+//     */
+//    void switchToSelectDoraView(EditStatusInputData inputData);
 }

@@ -1,11 +1,12 @@
-package view;
+package unit.view;
 
 import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.EditStatusViewModel;
+import view.EditStatusView;
 
 import javax.swing.*;
 
-public class EditStatusPanelTest {
+public class EditStatusViewTest {
     public static void main(String[] args) {
         EditStatusViewModel editStatusViewModel = new EditStatusViewModel();
         EditStatusController editStatusController = new EditStatusController();

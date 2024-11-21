@@ -1,4 +1,4 @@
-package usecase.edit_status;
+package use_case.edit_status;
 
 import mahjong.BaseTiles;
 
