@@ -10,12 +10,10 @@ import use_case.edit_status.EditStatusOutputData;
 public class EditStatusPresenter implements EditStatusOutputBoundary  {
 
     private final EditStatusViewModel editStatusViewModel;
-    private final SelectDoraViewModel selectDoraViewModel;
     private final ViewManagerModel  viewManagerModel;
 
-    public EditStatusPresenter(EditStatusViewModel editStatusViewModel, SelectDoraViewModel selectDoraViewModel, ViewManagerModel viewManagerModel) {
+    public EditStatusPresenter(EditStatusViewModel editStatusViewModel, ViewManagerModel viewManagerModel) {
         this.editStatusViewModel = editStatusViewModel;
-        this.selectDoraViewModel = selectDoraViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
@@ -28,18 +26,5 @@ public class EditStatusPresenter implements EditStatusOutputBoundary  {
     @Override
     public void prepareFailView(String errorMessage) {
         // This use case currently cannot fail.
-    }
-
-    @Override
-    public void switchToSelectDoraView(EditStatusOutputData outputData) {
-        // Switch to the select dora view if intended.
-
-        final SelectDoraState selectDoraState = selectDoraViewModel.getState();
-        selectDoraState.setIndicatorSelections(outputData.getDoraCounts());
-        selectDoraViewModel.setState(selectDoraState);
-        selectDoraViewModel.firePropertyChanged();
-
-        viewManagerModel.setState(selectDoraViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
     }
 }

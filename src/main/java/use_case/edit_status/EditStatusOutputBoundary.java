@@ -15,16 +15,4 @@ public interface EditStatusOutputBoundary {
      * @param errorMessage the explanation of the failure
      */
     void prepareFailView(String errorMessage);
-
-    /**
-     * Switches to the Select Dora View.
-     * @param outputData the output data
-     */
-    void switchToSelectDoraView(EditStatusOutputData outputData);
-
-//    /**
-//     * Switches to the Select Dora View.
-//     * @param inputData the input data
-//     */
-//    void switchToSelectDoraView(EditStatusInputData inputData);
 }
