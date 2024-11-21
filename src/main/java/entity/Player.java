@@ -12,6 +12,7 @@ public class Player {
     private final String name;
     private int score;
     private List<Tile> hand;
+    private Boolean[] attributes = new Boolean[9];
 
     public Player(String name, int score, List<Tile> hand) {
         this.name = name;
@@ -31,11 +32,19 @@ public class Player {
         return hand;
     }
 
+    public Boolean[] getAttributes() {
+        return attributes;
+    }
+
     public void setScore(int score) {
         this.score = score;
     }
 
     public void setHand(List<Tile> hand) {
         this.hand = hand;
+    }
+
+    public void setAttributes(Boolean[] attributes) {
+        this.attributes = attributes;
     }
 }

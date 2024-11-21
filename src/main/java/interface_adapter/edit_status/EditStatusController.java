@@ -1,7 +1,11 @@
 package interface_adapter.edit_status;
 
-public class EditStatusController {
+import use_case.edit_status.EditStatusInputBoundary;
 
-    public EditStatusController() {
+public class EditStatusController {
+    private EditStatusInputBoundary editStatusUseCaseInteractor;
+
+    public EditStatusController(EditStatusInputBoundary editStatusUseCaseInteractor) {
+        this.editStatusUseCaseInteractor = editStatusUseCaseInteractor;
     }
 }

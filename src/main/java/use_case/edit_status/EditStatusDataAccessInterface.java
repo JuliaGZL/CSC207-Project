@@ -1,5 +1,6 @@
 package use_case.edit_status;
 
+import entity.AddTileManager;
 import entity.Player;
 
 /**
@@ -8,20 +9,28 @@ import entity.Player;
 public interface EditStatusDataAccessInterface {
 
     /**
+     * Changes the type of tile to be added to the hand.
+     * @param addTileManager the AddTileManager object that manages the adding of tiles
+     * @param addTileType the new type of tile to be added
+     */
+    void changeAddTileType(AddTileManager addTileManager, String addTileType);
+
+    /**
      * Updates the system to record this player's gameplay attributes.
      * @param player the player whose gameplay attributes are to be updated
+     * @param attributes the new attributes of the player
      */
-    void editStatus(Player player);
-
-    /**
-     * Updates the system to record this user's red dora states.
-     * @param player the player whose red dora states are to be updated
-     */
-    void editRedDora(Player player);
-
-    /**
-     * Updates the system to record this user's dora tiles.
-     * @param player the player whose dora tiles are to be updated
-     */
-    void editDora(Player player);
+    void changeAttributes(Player player, Boolean[] attributes);
+//
+//    /**
+//     * Updates the system to record this user's red dora states.
+//     * @param player the player whose red dora states are to be updated
+//     */
+//    void editRedDora(Player player);
+//
+//    /**
+//     * Updates the system to record this user's dora tiles.
+//     * @param player the player whose dora tiles are to be updated
+//     */
+//    void editDora(Player player);
 }
