@@ -1,20 +1,24 @@
 package unit.view;
 
-import interface_adapter.edit_status.SelectDoraController;
-import interface_adapter.edit_status.SelectDoraViewModel;
-import view.SelectDoraView;
+import data_access.InMemoryUniversalDataAccessObject;
+import interface_adapter.edit_tiles.AddRemoveTilePresenter;
+import interface_adapter.edit_tiles.AddTileController;
+import interface_adapter.edit_tiles.SelectDoraController;
+import interface_adapter.edit_tiles.TileSelectorViewModel;
+import use_case.add_tile.AddTileInteractor;
+import view.TileSelectorView;
 
 import javax.swing.*;
 
 public class SelectDoraViewTest {
     public static void main(String[] args) {
-        SelectDoraViewModel selectDoraViewModel = new SelectDoraViewModel();
-        SelectDoraController selectDoraController = new SelectDoraController();
-        SelectDoraView selectDoraView = new SelectDoraView(selectDoraViewModel, selectDoraController);
+        TileSelectorViewModel tileSelectorViewModel = new TileSelectorViewModel();
+
+        TileSelectorView tileSelectorView = new TileSelectorView(tileSelectorViewModel);
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(selectDoraView);
+        frame.add(tileSelectorView);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

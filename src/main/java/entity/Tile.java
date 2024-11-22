@@ -1,17 +1,17 @@
 package entity;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 
 /**
  * Represents a tile in Mahjong.
  */
 public class Tile {
-    private BaseTiles tile;
+    private BaseTile tile;
     private boolean isRedDora;
     private boolean isUraDora;
     private boolean isDora;
 
-    public Tile(BaseTiles tile, boolean isRedDora, boolean isUraDora, boolean isDora) {
+    public Tile(BaseTile tile, boolean isRedDora, boolean isUraDora, boolean isDora) {
         this.setTile(tile);
         this.setRedDora(isRedDora);
         this.setUraDora(isUraDora);
@@ -24,7 +24,7 @@ public class Tile {
      *
      * @param tile The base tile to set.
      */
-    public void setTile(BaseTiles tile) {
+    public void setTile(BaseTile tile) {
         this.tile = tile;
     }
 
@@ -55,7 +55,7 @@ public class Tile {
         this.isDora = isDora;
     }
 
-    public BaseTiles getTile() {
+    public BaseTile getTile() {
         return tile;
     }
 

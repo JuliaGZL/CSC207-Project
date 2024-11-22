@@ -21,4 +21,9 @@ public interface EditStatusOutputBoundary {
      * @param outputData the output data
      */
     void switchToSelectDoraView(EditStatusOutputData outputData);
+
+    /**
+     * Switches to add tiles to hand.
+     */
+    void switchToSelectForHand();
 }

@@ -1,15 +1,15 @@
 package use_case.add_tile;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 
 /**
  * Input data format for the add_tile use case.
  */
 public class AddTileInputData {
-    private final BaseTiles tileId;
+    private final BaseTile tileId;
     private final String playerName;
 
-    public AddTileInputData(BaseTiles tileId, String playerName) {
+    public AddTileInputData(BaseTile tileId, String playerName) {
         this.tileId = tileId;
         this.playerName = playerName;
     }
@@ -18,7 +18,7 @@ public class AddTileInputData {
         return playerName;
     }
 
-    public BaseTiles getTileId() {
+    public BaseTile getTileId() {
         return tileId;
     }
 }

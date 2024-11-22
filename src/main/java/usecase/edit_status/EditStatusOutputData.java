@@ -1,6 +1,6 @@
 package usecase.edit_status;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 
 import java.util.Map;
 
@@ -11,11 +11,11 @@ public class EditStatusOutputData {
 
     private final Boolean[] attributes;
     private final Boolean[] redDora;
-    private Map<BaseTiles, Integer> doraCounts;
+    private Map<BaseTile, Integer> doraCounts;
 
     private final boolean useCaseFailed;
 
-    public EditStatusOutputData(Boolean[] attributes, Boolean[] redDora, Map<BaseTiles, Integer> doraCounts, boolean useCaseFailed) {
+    public EditStatusOutputData(Boolean[] attributes, Boolean[] redDora, Map<BaseTile, Integer> doraCounts, boolean useCaseFailed) {
         this.attributes = attributes;
         this.redDora = redDora;
         this.doraCounts = doraCounts;
@@ -31,7 +31,7 @@ public class EditStatusOutputData {
         return redDora;
     }
 
-    public Map<BaseTiles, Integer> getDoraCounts() {
+    public Map<BaseTile, Integer> getDoraCounts() {
         return doraCounts;
     }
 
