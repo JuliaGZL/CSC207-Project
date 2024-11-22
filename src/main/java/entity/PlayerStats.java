@@ -1,7 +1,9 @@
-package mahjong;
+package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import mahjong.BaseTile;
 
 /**
  * Represents the state of a player in a Mahjong game.

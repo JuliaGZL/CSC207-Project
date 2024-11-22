@@ -1,7 +1,9 @@
-package mahjong;
+package entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import mahjong.BaseTile;
 
 /**
  * Builder class for constructing PlayerStats objects.
