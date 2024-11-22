@@ -114,6 +114,8 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
             playerName = state.getPlayerName();
         } else if (Objects.equals(evt.getPropertyName(), "tiles")) {
             setTiles(state.getIdList(), state.getNameList(), state.getIconList());
+        } else if (Objects.equals(evt.getPropertyName(), "failed")) {
+            JOptionPane.showMessageDialog(null, state.getErrorMsg());
         }
     }
 

@@ -12,6 +12,7 @@ public class TilesDisplayState {
     private List<String> nameList;
     private List<String> iconList;
     private String playerName;
+    private String errorMsg;
 
     public TilesDisplayState() {
 
@@ -53,5 +54,13 @@ public class TilesDisplayState {
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }

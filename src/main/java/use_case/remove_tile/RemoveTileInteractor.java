@@ -48,7 +48,6 @@ public class RemoveTileInteractor implements RemoveTileInputBoundary {
                 break;
             }
         }
-        // TODO: sort hand!
         player.setHand(hand);
         dataAccessObj.savePlayer(player);
 

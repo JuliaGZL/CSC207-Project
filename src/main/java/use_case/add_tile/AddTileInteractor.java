@@ -50,7 +50,6 @@ public class AddTileInteractor implements AddTileInputBoundary {
     private void addTile(BaseTile id, List<Tile> hand, Player player, String name) {
         final Tile newTile = new Tile(id, false, false, false);
         hand.add(newTile);
-        // TODO: sort hand!
         player.setHand(hand);
         dataAccessObj.savePlayer(player);
 

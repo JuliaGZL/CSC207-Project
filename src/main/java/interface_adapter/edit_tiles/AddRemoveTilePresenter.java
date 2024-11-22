@@ -49,6 +49,8 @@ public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTile
      */
     @Override
     public void prepareFailView(String errorMessage) {
-        // TODO: handle fail message
+        TilesDisplayState state = viewModel.getState();
+        state.setErrorMsg(errorMessage);
+        viewModel.firePropertyChanged("failed");
     }
 }
