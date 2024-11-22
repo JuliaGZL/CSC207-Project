@@ -10,7 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Display a list of tiles, either hand or dora.
@@ -61,6 +63,9 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
         leftPanel.add(tileListPanel);
         this.add(leftPanel);
         this.add(clearButton);
+
+        // add dummy buttons
+        this.setTiles(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
     private void setTiles(List<BaseTile> idList,
@@ -69,18 +74,30 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
         // clear all current components
         this.tileListPanel.removeAll();
         // rebuild the list
-        for (int i = 0; i < idList.size(); i++) {
-            final BaseTile tileId = idList.get(i);
-            final String iconPath = iconList.get(i);
-            TileButton button = TileButtonFactory.createImageButton(iconPath, tileId);
-            // add button action listener (for removing tile on click)
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent actionEvent) {
-                    removeTileController.execute(tileId, playerName);
-                }
-            });
-            tileListPanel.add(button);
+        for (int i = 0; i < 14; i++) {
+            if(i < idList.size()) {
+                final BaseTile tileId = idList.get(i);
+                final String iconPath = iconList.get(i);
+                TileButton button = TileButtonFactory.createImageButton(iconPath, tileId);
+                // add button action listener (for removing tile on click)
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        removeTileController.execute(tileId, playerName);
+                    }
+                });
+                tileListPanel.add(button);
+            } else {
+                // fill in the blank with dummy buttons
+                final TileButton button = TileButtonFactory.createImageButton(
+                        BaseTileToPathMapping.getTilePath(BaseTile._5z),
+                        null
+                );
+                tileListPanel.add(button);
+            }
+            // refresh display
+            this.revalidate();
+            this.repaint();
         }
     }
 
@@ -93,9 +110,9 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
     public void propertyChange(PropertyChangeEvent evt) {
         // update tile list
         TilesDisplayState state = (TilesDisplayState) evt.getNewValue();
-        if(evt.getPropertyName() == "player") {
+        if(Objects.equals(evt.getPropertyName(), "player")) {
             playerName = state.getPlayerName();
-        } else if (evt.getPropertyName() == "tiles") {
+        } else if (Objects.equals(evt.getPropertyName(), "tiles")) {
             setTiles(state.getIdList(), state.getNameList(), state.getIconList());
         }
     }

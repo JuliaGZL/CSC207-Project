@@ -16,9 +16,9 @@ public class Main {
         AppBuilder appBuilder = new AppBuilder();
         final JFrame app = appBuilder
                                     .addEditStatusView()
-                                    .addTileSelectorView()
                                     .addHandDisplayView()
                                     .addDoraDisplayView()
+                                    .addTileSelectorView()
                                     .build();
         app.pack();
         app.setVisible(true);

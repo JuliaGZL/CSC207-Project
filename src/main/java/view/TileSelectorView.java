@@ -77,7 +77,7 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
                         if (tileAddTarget.equals("dora")) {
                             // TODO: selectDoraController.execute(...)
                         } else if (tileAddTarget.equals("hand")) {
-                            // TODO: addTileController.execute(...)
+                            addTileController.execute(button.getTileId(), playerName);
                         }
                     }
                 });

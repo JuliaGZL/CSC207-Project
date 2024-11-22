@@ -7,6 +7,13 @@ import use_case.remove_tile.RemoveTileOutputBoundary;
 import use_case.remove_tile.RemoveTileOutputData;
 
 public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTileOutputBoundary {
+
+    private final TilesDisplayViewModel viewModel;
+
+    public AddRemoveTilePresenter(TilesDisplayViewModel viewModel) {
+        this.viewModel = viewModel;
+    }
+
     /**
      * Prepares the success view for the use case.
      *
@@ -14,7 +21,11 @@ public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTile
      */
     @Override
     public void prepareSuccessView(AddTileOutputData outputData) {
-
+        TilesDisplayState state = viewModel.getState();
+        state.setNameList(outputData.getNameList());
+        state.setIdList(outputData.getIdList());
+        state.setIconList(outputData.getIconList());
+        viewModel.firePropertyChanged("tiles");
     }
 
     /**
@@ -24,7 +35,11 @@ public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTile
      */
     @Override
     public void prepareSuccessView(RemoveTileOutputData outputData) {
-
+        TilesDisplayState state = viewModel.getState();
+        state.setNameList(outputData.getNameList());
+        state.setIdList(outputData.getIdList());
+        state.setIconList(outputData.getIconList());
+        viewModel.firePropertyChanged("tiles");
     }
 
     /**
@@ -34,6 +49,6 @@ public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTile
      */
     @Override
     public void prepareFailView(String errorMessage) {
-
+        // TODO: handle fail message
     }
 }

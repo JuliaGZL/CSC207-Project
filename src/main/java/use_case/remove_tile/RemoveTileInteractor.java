@@ -3,6 +3,7 @@ package use_case.remove_tile;
 import entity.Player;
 import entity.Tile;
 import mahjong.BaseTile;
+import mahjong.BaseTileToPathMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +58,7 @@ public class RemoveTileInteractor implements RemoveTileInputBoundary {
         for (Tile tile : hand) {
             idList.add(tile.getTile());
             nameList.add(tile.toString());
-            // TODO: add icon!
-            iconList.add(null);
+            iconList.add(BaseTileToPathMapping.getTilePath(tile.getTile()));
         }
         final RemoveTileOutputData output = new RemoveTileOutputData(false, name, idList, nameList, iconList);
 

@@ -6,6 +6,7 @@ import java.util.List;
 import entity.Player;
 import entity.Tile;
 import mahjong.BaseTile;
+import mahjong.BaseTileToPathMapping;
 
 /**
  * Interactor for the add_tile use case.
@@ -59,8 +60,7 @@ public class AddTileInteractor implements AddTileInputBoundary {
         for (Tile tile : hand) {
             idList.add(tile.getTile());
             nameList.add(tile.toString());
-            // TODO: add icon!
-            iconList.add(null);
+            iconList.add(BaseTileToPathMapping.getTilePath(tile.getTile()));
         }
         final AddTileOutputData output = new AddTileOutputData(false, name, idList, nameList, iconList);
 
