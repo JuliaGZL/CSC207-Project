@@ -3,8 +3,8 @@ package mahjong;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import utils.ScoreDisplayFormatter;
 import utils.Pair;
+import utils.ScoreDisplayFormatter;
 
 /**
  * This class provides a method to compute the result of a Mahjong hand.

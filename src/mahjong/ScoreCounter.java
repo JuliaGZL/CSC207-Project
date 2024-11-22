@@ -1,7 +1,7 @@
 package mahjong;
 
-import utils.ScoreDisplayFormatter;
 import utils.Pair;
+import utils.ScoreDisplayFormatter;
 
 /**
  * The ScoreCounter class calculates and registers the score in a Mahjong game

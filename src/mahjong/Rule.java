@@ -2,7 +2,6 @@ package mahjong;
 
 import java.util.Arrays;
 import java.util.List;
-
 import utils.Algorithm;
 
 /**
