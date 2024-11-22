@@ -5,8 +5,8 @@ import entity.PlayerFactory;
 import entity.Tile;
 import interface_adapter.edit_status.EditStatusViewModel;
 import interface_adapter.edit_tiles.*;
-
-import mahjong.BaseTileToPathMapping;
+import mahjong.mahjong.BaseTile;
+import mahjong.mahjong.BaseTileToPathMapping;
 import use_case.add_tile.AddTileInputBoundary;
 import use_case.add_tile.AddTileInteractor;
 import use_case.clear_tiles.ClearTilesInputBoundary;
@@ -20,8 +20,6 @@ import view.TileSelectorView;
 
 import javax.swing.*;
 
-// TODO: TEMPORARY
-import mahjong.BaseTile;
 import java.util.ArrayList;
 import java.util.List;
 

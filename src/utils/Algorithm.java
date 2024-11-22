@@ -1,7 +1,8 @@
 package utils;
 
 import java.util.List;
-import mahjong.BaseTile;
+
+import mahjong.mahjong.BaseTile;
 
 /**
  * Utility class for Mahjong-related operations.

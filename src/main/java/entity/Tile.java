@@ -1,6 +1,6 @@
 package entity;
 
-import mahjong.BaseTile;
+import mahjong.mahjong.BaseTile;
 
 /**
  * Represents a tile in Mahjong.

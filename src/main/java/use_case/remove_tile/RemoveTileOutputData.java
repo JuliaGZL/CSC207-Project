@@ -1,8 +1,8 @@
 package use_case.remove_tile;
 
-import mahjong.BaseTile;
-
 import java.util.List;
+
+import mahjong.mahjong.BaseTile;
 
 /**
  * Output data format for the remove_tile use case.

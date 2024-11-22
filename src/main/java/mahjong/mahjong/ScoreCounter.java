@@ -1,4 +1,4 @@
-package mahjong;
+package mahjong.mahjong;
 
 import utils.Pair;
 import utils.ScoreDisplayFormatter;

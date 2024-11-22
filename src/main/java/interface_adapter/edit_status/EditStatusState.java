@@ -1,6 +1,6 @@
 package interface_adapter.edit_status;
 
-import mahjong.BaseTile;
+import mahjong.mahjong.BaseTile;
 
 /**
  * The state information representing the statuses being edited.

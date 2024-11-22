@@ -1,6 +1,6 @@
 package usecase.edit_status;
 
-import mahjong.BaseTile;
+import mahjong.mahjong.BaseTile;
 
 /**
  * Output Data for the Select Dora Use Case.

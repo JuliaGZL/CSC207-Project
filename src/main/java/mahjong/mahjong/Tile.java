@@ -1,4 +1,4 @@
-package mahjong;
+package mahjong.mahjong;
 
 /**
  * Represents a tile in Mahjong.

@@ -3,7 +3,8 @@ package unit.use_case;
 import data_access.InMemoryUniversalDataAccessObject;
 import entity.Player;
 import entity.Tile;
-import mahjong.BaseTile;
+import mahjong.mahjong.BaseTile;
+
 import org.junit.jupiter.api.Test;
 import use_case.remove_tile.*;
 

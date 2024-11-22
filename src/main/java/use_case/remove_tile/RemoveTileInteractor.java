@@ -2,8 +2,8 @@ package use_case.remove_tile;
 
 import entity.Player;
 import entity.Tile;
-import mahjong.BaseTile;
-import mahjong.BaseTileToPathMapping;
+import mahjong.mahjong.BaseTile;
+import mahjong.mahjong.BaseTileToPathMapping;
 
 import java.util.ArrayList;
 import java.util.List;

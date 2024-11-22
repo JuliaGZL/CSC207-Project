@@ -1,4 +1,4 @@
-package mahjong;
+package mahjong.mahjong;
 
 import java.util.ArrayList;
 import java.util.List;

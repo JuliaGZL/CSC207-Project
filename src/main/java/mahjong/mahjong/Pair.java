@@ -1,4 +1,4 @@
-package mahjong;
+package mahjong.mahjong;
 
 /**
  * A generic pair of objects.

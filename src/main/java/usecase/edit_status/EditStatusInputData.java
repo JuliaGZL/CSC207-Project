@@ -1,6 +1,6 @@
 package usecase.edit_status;
 
-import mahjong.BaseTile;
+import mahjong.mahjong.BaseTile;
 
 /**
  * The input data for the Edit Status Use Case.

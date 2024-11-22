@@ -1,7 +1,7 @@
 package interface_adapter.edit_tiles;
 
 import interface_adapter.ViewModel;
-import mahjong.BaseTile;
+import mahjong.mahjong.BaseTile;
 
 public class TileSelectorViewModel extends ViewModel<TileSelectorState> {
     // Tiles to display defines here.

@@ -2,7 +2,7 @@ package use_case.add_tile;
 
 import java.util.List;
 
-import mahjong.BaseTile;
+import mahjong.mahjong.BaseTile;
 
 /**
  * Output data format for the add_tile use case.
