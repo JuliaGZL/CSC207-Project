@@ -5,7 +5,7 @@ import use_case.clear_tiles.ClearTilesOutputData;
 
 import java.util.ArrayList;
 
-import mahjong.mahjong.BaseTile;
+import mahjong.BaseTile;
 
 public class ClearTilePresenter implements ClearTilesOutputBoundary {
 

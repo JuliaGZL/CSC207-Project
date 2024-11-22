@@ -2,7 +2,7 @@ package interface_adapter.edit_tiles;
 
 import java.util.List;
 
-import mahjong.mahjong.BaseTile;
+import mahjong.BaseTile;
 
 /**
  * State for property change listening for tile list display panels (both hand and dora).

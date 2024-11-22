@@ -1,6 +1,6 @@
 package interface_adapter.edit_tiles;
 
-import mahjong.mahjong.BaseTile;
+import mahjong.BaseTile;
 import use_case.clear_tiles.ClearTilesInputBoundary;
 import use_case.clear_tiles.ClearTilesInputData;
 

@@ -1,7 +1,7 @@
 package view;
 
 import interface_adapter.edit_tiles.TileSelectorViewModel;
-import mahjong.mahjong.BaseTile;
+import mahjong.BaseTile;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,6 +1,6 @@
 package use_case.remove_tile;
 
-import mahjong.mahjong.BaseTile;
+import mahjong.BaseTile;
 
 /**
  * Input data format for the remove_tile use case.

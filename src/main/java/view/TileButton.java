@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-import mahjong.mahjong.BaseTile;
+import mahjong.BaseTile;
 
 /**
  * A TileButton is simply a JButton which with an extra property indicating the associated Tile ID.
