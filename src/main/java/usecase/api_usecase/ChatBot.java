@@ -38,7 +38,7 @@ public class ChatBot {
             parellel = subEvent1.union(subEvent2);
 
             for (int i = 0; i < subEventsClasses.size(); i++){
-                parellel = parellel.union(subEventFactory.createSubEvent(subEventsClasses.get(0), client, gateway));
+                parellel = parellel.union(subEventFactory.createSubEvent(subEventsClasses.get(i), client, gateway));
             }
             return parellel.getEvent();
         });

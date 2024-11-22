@@ -7,8 +7,8 @@ public class TestFinalChatBotWithOutFactory {
         ChatBot bot = new ChatBot(token);
         bot.addEvent(LoginEvent.class);
         bot.addEvent(GreetingEvent.class);
-        bot.addEvent(QuitBotEvent.class);
         bot.addEvent(MahjongComboInteractor.class);
+        bot.addEvent(QuitBotEvent.class);
         System.out.println(bot.subEventsClasses);
         // [class usecase.api_usecase.LoginEvent, class usecase.api_usecase.GreetingEvent,
         // class usecase.api_usecase.MahjongComboInteractor, class usecase.api_usecase.QuitBotEvent]

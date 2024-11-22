@@ -12,6 +12,7 @@ public class DefaultBotFactory {
         bot = new ChatBot(token);
         bot.addEvent(LoginEvent.class);
         bot.addEvent(GreetingEvent.class);
+        bot.addEvent(StatusEvent.class);
         bot.addEvent(MahjongComboInteractor.class);
         bot.addEvent(QuitBotEvent.class);
     }

@@ -24,7 +24,6 @@ public class QuitBotEvent extends MessageInteractor {
     }
 
     public static boolean invokeMessage(String message) {
-        System.out.println("Try");
         return message.equals("!vc leave");
     }
 }
