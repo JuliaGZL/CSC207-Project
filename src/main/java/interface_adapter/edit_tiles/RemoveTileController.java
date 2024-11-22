@@ -1,8 +1,8 @@
 package interface_adapter.edit_tiles;
 
 import mahjong.BaseTile;
-import use_case.remove_tile.RemoveTileInputBoundary;
-import use_case.remove_tile.RemoveTileInputData;
+import usecase.remove_tile.RemoveTileInputBoundary;
+import usecase.remove_tile.RemoveTileInputData;
 
 public class RemoveTileController {
     private final RemoveTileInputBoundary interactor;

@@ -1,10 +1,10 @@
 package interface_adapter.edit_tiles;
 
-import use_case.add_tile.AddTileInputData;
-import use_case.add_tile.AddTileOutputBoundary;
-import use_case.add_tile.AddTileOutputData;
-import use_case.remove_tile.RemoveTileOutputBoundary;
-import use_case.remove_tile.RemoveTileOutputData;
+import usecase.add_tile.AddTileInputData;
+import usecase.add_tile.AddTileOutputBoundary;
+import usecase.add_tile.AddTileOutputData;
+import usecase.remove_tile.RemoveTileOutputBoundary;
+import usecase.remove_tile.RemoveTileOutputData;
 
 public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTileOutputBoundary {
 
