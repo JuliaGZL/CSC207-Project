@@ -1,7 +1,9 @@
-package mahjong;
+package utils;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import mahjong.BaseTile;
 
 public class BaseTileToPathMapping {
     private static final Map<BaseTile, String> BASE_TILES_STRING_MAP = new HashMap<>();

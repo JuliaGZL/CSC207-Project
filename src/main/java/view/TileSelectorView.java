@@ -5,7 +5,7 @@ import interface_adapter.edit_tiles.SelectDoraController;
 import interface_adapter.edit_tiles.TileSelectorState;
 import interface_adapter.edit_tiles.TileSelectorViewModel;
 import mahjong.BaseTile;
-import mahjong.BaseTileToPathMapping;
+import utils.BaseTileToPathMapping;
 
 import javax.swing.*;
 import java.awt.*;

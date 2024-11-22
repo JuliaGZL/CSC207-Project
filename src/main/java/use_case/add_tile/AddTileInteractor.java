@@ -6,7 +6,7 @@ import java.util.List;
 import entity.Player;
 import entity.Tile;
 import mahjong.BaseTile;
-import mahjong.BaseTileToPathMapping;
+import utils.BaseTileToPathMapping;
 
 /**
  * Interactor for the add_tile use case.
