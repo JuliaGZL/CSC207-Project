@@ -1,7 +1,6 @@
-package mahjong.utils;
+package utils;
 
 import java.util.List;
-
 import mahjong.BaseTile;
 
 /**

@@ -1,6 +1,6 @@
 package mahjong;
 
-import mahjong.utils.Localization;
+import utils.Localization;
 
 /**
  * An enumeration of Yaku (役), which are the scoring elements in Mahjong.

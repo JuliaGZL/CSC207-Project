@@ -1,9 +1,9 @@
-package mahjong.utils;
+package utils;
 
 /**
  * Utility class for formatting display strings in the Mahjong game.
  */
-public class DisplayFormatter {
+public class ScoreDisplayFormatter {
   private static Localization<String> localization = new Localization<>(String::valueOf);
   private static boolean isInitialized = false;
 

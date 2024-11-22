@@ -1,6 +1,6 @@
 package mahjong;
 
-import mahjong.utils.Localization;
+import utils.Localization;
 
 /**
  * An enumeration of base tiles used in Mahjong, including numbered tiles for the Man (m),

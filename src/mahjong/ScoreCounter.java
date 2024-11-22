@@ -1,7 +1,7 @@
 package mahjong;
 
-import mahjong.utils.DisplayFormatter;
-import mahjong.utils.Pair;
+import utils.ScoreDisplayFormatter;
+import utils.Pair;
 
 /**
  * The ScoreCounter class calculates and registers the score in a Mahjong game
@@ -174,10 +174,10 @@ public class ScoreCounter {
   /**
    * Converts the current score information into a formatted string.
    *
-   * @return A formatted string representing the scores, formatted using the DisplayFormatter.
+   * @return A formatted string representing the scores, formatted using the ScoreDisplayFormatter.
    */
   public String toFormattedScores() {
-    return DisplayFormatter.formatScore(isOya, isTsumo, getScores());
+    return ScoreDisplayFormatter.formatScore(isOya, isTsumo, getScores());
   }
 
   private boolean isOya;

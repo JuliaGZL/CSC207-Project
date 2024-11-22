@@ -3,7 +3,8 @@ package mahjong;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import mahjong.utils.Algorithm;
+
+import utils.Algorithm;
 
 /**
  * A singleton class responsible for splitting tiles into completed sets in Mahjong.

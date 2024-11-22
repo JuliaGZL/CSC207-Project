@@ -2,7 +2,8 @@ package mahjong;
 
 import java.util.Arrays;
 import java.util.List;
-import mahjong.utils.Algorithm;
+
+import utils.Algorithm;
 
 /**
  * This class contains various rules and utility methods for Mahjong.

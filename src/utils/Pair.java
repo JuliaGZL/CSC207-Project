@@ -1,4 +1,4 @@
-package mahjong.utils;
+package utils;
 
 /**
  * A generic pair of objects.

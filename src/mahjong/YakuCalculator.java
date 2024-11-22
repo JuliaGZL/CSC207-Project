@@ -3,8 +3,9 @@ package mahjong;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import mahjong.utils.Algorithm;
-import mahjong.utils.Pair;
+
+import utils.Algorithm;
+import utils.Pair;
 
 /**
  * The YakuCalculator class is responsible for calculating the Yaku (winning

@@ -3,8 +3,8 @@ package mahjong;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import mahjong.utils.DisplayFormatter;
-import mahjong.utils.Pair;
+import utils.ScoreDisplayFormatter;
+import utils.Pair;
 
 /**
  * This class provides a method to compute the result of a Mahjong hand.
@@ -28,8 +28,8 @@ public class HandResult {
         playerStats.isTsumo());
     List<String> res = Arrays.asList(
         result.getFst().stream().map(Yaku::toString).collect(Collectors.joining(",")),
-        DisplayFormatter.formatFan(result.getSnd().getFst()),
-        DisplayFormatter.formatFu(result.getSnd().getSnd()),
+        ScoreDisplayFormatter.formatFan(result.getSnd().getFst()),
+        ScoreDisplayFormatter.formatFu(result.getSnd().getSnd()),
         sc.toFormattedScores());
     return res;
   }
