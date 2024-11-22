@@ -13,6 +13,7 @@ public class DefaultBotFactory {
         bot.addEvent(LoginEvent.class);
         bot.addEvent(GreetingEvent.class);
         bot.addEvent(MahjongComboInteractor.class);
+        bot.addEvent(QuitBotEvent.class);
     }
 
     public DefaultBotFactory(String token) {
