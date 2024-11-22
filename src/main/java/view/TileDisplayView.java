@@ -2,7 +2,7 @@ package view;
 
 import interface_adapter.edit_tiles.*;
 import mahjong.BaseTile;
-import mahjong.BaseTileToPathMapping;
+import utils.BaseTileToPathMapping;
 
 import javax.swing.*;
 import java.awt.*;

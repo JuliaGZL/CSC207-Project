@@ -5,23 +5,21 @@ import entity.PlayerFactory;
 import entity.Tile;
 import interface_adapter.edit_status.EditStatusViewModel;
 import interface_adapter.edit_tiles.*;
-
-import mahjong.BaseTileToPathMapping;
-import use_case.add_tile.AddTileInputBoundary;
-import use_case.add_tile.AddTileInteractor;
-import use_case.clear_tiles.ClearTilesInputBoundary;
-import use_case.clear_tiles.ClearTilesInteractor;
-import use_case.clear_tiles.ClearTilesOutputBoundary;
-import use_case.remove_tile.RemoveTileInputBoundary;
-import use_case.remove_tile.RemoveTileInteractor;
+import mahjong.BaseTile;
+import usecase.add_tile.AddTileInputBoundary;
+import usecase.add_tile.AddTileInteractor;
+import usecase.clear_tiles.ClearTilesInputBoundary;
+import usecase.clear_tiles.ClearTilesInteractor;
+import usecase.clear_tiles.ClearTilesOutputBoundary;
+import usecase.remove_tile.RemoveTileInputBoundary;
+import usecase.remove_tile.RemoveTileInteractor;
+import utils.BaseTileToPathMapping;
 import view.EditStatusView;
 import view.TileDisplayView;
 import view.TileSelectorView;
 
 import javax.swing.*;
 
-// TODO: TEMPORARY
-import mahjong.BaseTile;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,10 +1,10 @@
 package interface_adapter.edit_tiles;
 
-import mahjong.BaseTile;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import mahjong.BaseTile;
 
 /**
  * The state information representing the dora indicator selections.

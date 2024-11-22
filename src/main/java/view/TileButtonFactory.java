@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.edit_tiles.TileSelectorViewModel;
 import mahjong.BaseTile;
+
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
