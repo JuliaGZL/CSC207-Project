@@ -7,13 +7,15 @@ import entity.Player;
 import usecase.add_tile.AddTileDataAccessInterface;
 import usecase.clear_tiles.ClearTilesDataAccessInterface;
 import usecase.remove_tile.RemoveTileDataAccessInterface;
+import usecase.update_enabled_tiles.UpdateEnabledTileDataAccessInterface;
 
 /**
  * Universal player data storage object for our project.
  */
 public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInterface,
         RemoveTileDataAccessInterface,
-        ClearTilesDataAccessInterface {
+        ClearTilesDataAccessInterface,
+        UpdateEnabledTileDataAccessInterface {
     private final Map<String, Player> players = new HashMap<String, Player>();
 
     public InMemoryUniversalDataAccessObject() {

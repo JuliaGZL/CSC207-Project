@@ -118,8 +118,12 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
             // update player name
             TileSelectorState state = (TileSelectorState) evt.getNewValue();
             playerName = state.getPlayerName();
-        } else if (property.equals("enabled")) {
+        } else if (property.equals("enabled_tiles")) {
             // update buttons to show only enabled ones
+            tileButtonsPanel.removeAll();
+            addButtons();
+            tileButtonsPanel.revalidate();
+            tileButtonsPanel.repaint();
         }
     }
 

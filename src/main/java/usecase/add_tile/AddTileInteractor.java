@@ -18,8 +18,8 @@ public class AddTileInteractor implements AddTileInputBoundary {
     public static final int URADORA = 3;
     private final int target;
 
-    private AddTileDataAccessInterface dataAccessObj;
-    private AddTileOutputBoundary presenter;
+    private final AddTileDataAccessInterface dataAccessObj;
+    private final AddTileOutputBoundary presenter;
 
     public AddTileInteractor(AddTileDataAccessInterface dataAccessObj,
                              AddTileOutputBoundary presenter,
