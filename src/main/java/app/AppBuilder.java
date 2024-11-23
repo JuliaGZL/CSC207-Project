@@ -2,7 +2,6 @@ package app;
 
 import data_access.InMemoryUniversalDataAccessObject;
 import entity.PlayerFactory;
-import entity.Tile;
 import interface_adapter.edit_status.EditStatusViewModel;
 import interface_adapter.edit_tiles.*;
 
@@ -112,27 +111,28 @@ public class AppBuilder {
     }
 
     public JFrame build() {
-        // TODO: we have to fix this -- it should take BaseTile instead of Tile!
-        DAO.savePlayer(playerFactory.create("default", 0, new ArrayList<Tile>()));
+        DAO.savePlayer(playerFactory.createEmpty("default"));
 
         JFrame app = new JFrame();
-        JPanel leftPanel = new JPanel();
-        JPanel rightPanel = new JPanel();
+        JPanel upperPanel = new JPanel();
+        JPanel lowerPanel = new JPanel();
         JPanel appPanel = new JPanel();
 
-        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
-        leftPanel.add(tileSelectorView);
-        leftPanel.add(handDisplayView);
-        leftPanel.add(doraDisplayView);
+        upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.X_AXIS));
+        upperPanel.add(tileSelectorView);
+        upperPanel.add(editStatusView);
 
-        rightPanel.add(editStatusView);
+        lowerPanel.setLayout(new BoxLayout(lowerPanel, BoxLayout.Y_AXIS));
+        lowerPanel.add(handDisplayView);
+        lowerPanel.add(doraDisplayView);
 
-        appPanel.setLayout(new BoxLayout(appPanel, BoxLayout.X_AXIS));
-        appPanel.add(leftPanel);
-        appPanel.add(rightPanel);
+        appPanel.setLayout(new BoxLayout(appPanel, BoxLayout.Y_AXIS));
+        appPanel.add(upperPanel);
+        appPanel.add(lowerPanel);
 
         app.add(appPanel);
         app.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        app.setResizable(false);
 
         return app;
     }

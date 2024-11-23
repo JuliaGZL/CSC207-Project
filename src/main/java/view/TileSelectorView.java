@@ -24,8 +24,7 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
 
     private JLabel titleLabel = new JLabel("Select hand");
 
-    private JPanel doraIndicatorPanel;
-    // private JButton confirmButton = new JButton(SelectDoraViewModel.CONFIRM_BUTTON_LABEL);
+    private JPanel tileButtonsPanel;
 
     // Target to add the tile
     private String tileAddTarget = "hand";
@@ -43,19 +42,23 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Configure doraIndicatorPanel
-        doraIndicatorPanel = new JPanel();
-        doraIndicatorPanel.setLayout(new GridLayout(4, 9));
+        tileButtonsPanel = new JPanel();
+        tileButtonsPanel.setLayout(new GridLayout(4, 9));
 
         // Configure style of the title label
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        titleLabel.setFont(new Font("A" +
+                "rial", Font.BOLD, 20));
 
-        // Create the buttons for the dora indicators and add them to the panel.
+        // Create the buttons for the tile buttons and add them to the panel.
         addButtons();
 
         // Add all components to the panel
+        final JPanel buttonsWrapperPanel = new JPanel();
+        buttonsWrapperPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 30));
+        buttonsWrapperPanel.add(tileButtonsPanel);
         this.add(titleLabel);
-        this.add(doraIndicatorPanel);
+        this.add(buttonsWrapperPanel);
         // this.add(confirmButton); - we don't need a confirm button
     }
 
@@ -83,7 +86,7 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
                 });
 
                 // add to panel
-                doraIndicatorPanel.add(button);
+                tileButtonsPanel.add(button);
             }
         }
     }
