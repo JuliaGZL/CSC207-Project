@@ -6,6 +6,7 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
+import discord4j.voice.VoiceConnection;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
@@ -56,6 +57,7 @@ public class TestAPIMultipleResponse {
                 String content = message.getContent();
 
                 if (content.equalsIgnoreCase("report status")) {
+                    assert false;
                     return message.getChannel()
                             .flatMap(channel -> channel.createMessage("Dear " + memberName + " , everything is fine"));
                 }
@@ -63,8 +65,27 @@ public class TestAPIMultipleResponse {
                 return Mono.empty();
             }).then();
 
+            Mono<Void> handleQuitCmmand = gateway.on(MessageCreateEvent.class, event -> {
+                if (event.getMessage().getContent().equals("!vc leave")) {
+                    System.out.println("no leave");
+                    gateway.logout().block();
+                    return Mono.justOrEmpty(event.getMember())
+                            .flatMap(Member::getVoiceState)
+                            .flatMap(vs -> gateway.getVoiceConnectionRegistry()
+                                    .getVoiceConnection(vs.getGuildId())
+                                    .doOnSuccess(vc -> {
+                                        if (vc == null) {
+                                            System.out.println("No voice connection to leave!");
+                                        }
+                                    }))
+                            .flatMap(VoiceConnection::disconnect);
+                }
+                return Mono.empty();
+            }).then();
+
+
             // combine them!
-            return printOnLogin.and(handleGreetingCommand).and(handleTestingCommand);
+            return printOnLogin.and(handleGreetingCommand).and(handleTestingCommand).and(handleQuitCmmand);
         });
 
         login.block();
