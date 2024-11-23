@@ -5,10 +5,9 @@ import java.util.Map;
 
 import entity.AddTileManager;
 import entity.Player;
-import use_case.add_tile.AddTileDataAccessInterface;
-import use_case.clear_tiles.ClearTilesDataAccessInterface;
-import use_case.edit_status.EditStatusDataAccessInterface;
-import use_case.remove_tile.RemoveTileDataAccessInterface;
+import usecase.add_tile.AddTileDataAccessInterface;
+import usecase.clear_tiles.ClearTilesDataAccessInterface;
+import usecase.remove_tile.RemoveTileDataAccessInterface;
 
 /**
  * Universal player data storage object for our project.

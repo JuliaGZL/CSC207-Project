@@ -1,12 +1,15 @@
 package interface_adapter.edit_status;
 
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
 
 /**
  * The state information representing the statuses being edited.
  */
 public class EditStatusState {
 
+    private Boolean[] redDoraStatus = new Boolean[3];
+    private BaseTile[] doraIndicators = new BaseTile[5];
+    private String selectIndicatorError;
     private String selectedTileType;
     private String selectedWinType;
     private String seatWind;
@@ -58,8 +61,32 @@ public class EditStatusState {
         return attributes;
     }
 
+    public Boolean[] getRedDoraStatus() {
+        return redDoraStatus;
+    }
+
+    public BaseTile[] getDoraIndicators() {
+        return doraIndicators;
+    }
+
+    public String getSelectIndicatorError() {
+        return selectIndicatorError;
+    }
+
     public void setAttributes(Boolean[] attributes) {
         this.attributes = attributes;
+    }
+
+    public void setRedDoraStatus(Boolean[] redDoraStatus) {
+        this.redDoraStatus = redDoraStatus;
+    }
+
+    public void setDoraIndicators(BaseTile[] doraIndicators) {
+        this.doraIndicators = doraIndicators;
+    }
+
+    public void setSelectIndicatorError(String selectIndicatorError) {
+        this.selectIndicatorError = selectIndicatorError;
     }
 
     public String getAttributeString() {

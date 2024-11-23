@@ -3,9 +3,10 @@ package unit.use_case;
 import data_access.InMemoryUniversalDataAccessObject;
 import entity.Player;
 import entity.Tile;
-import mahjong.BaseTiles;
+import mahjong.BaseTile;
+import usecase.remove_tile.*;
+
 import org.junit.jupiter.api.Test;
-import use_case.remove_tile.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RemoveTileInteractorTest {
     final String name = "player1";
-    final BaseTiles tileId = BaseTiles._1m;
+    final BaseTile tileId = BaseTile._1m;
     private final RemoveTileDataAccessInterface DAO = new InMemoryUniversalDataAccessObject();
     private final RemoveTileInputBoundary interactor = new RemoveTileInteractor(DAO, new dummyRemoveTileOTB(name));
 

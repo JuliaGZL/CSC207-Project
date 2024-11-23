@@ -15,4 +15,15 @@ public interface EditStatusOutputBoundary {
      * @param errorMessage the explanation of the failure
      */
     void prepareFailView(String errorMessage);
+
+    /**
+     * Switches to the Select Dora View.
+     * @param outputData the output data
+     */
+    void switchToSelectDoraView(EditStatusOutputData outputData);
+
+    /**
+     * Switches to add tiles to hand.
+     */
+    void switchToSelectForHand();
 }
