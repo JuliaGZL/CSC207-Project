@@ -31,11 +31,13 @@ public class AppBuilder {
     private EditStatusView editStatusView;
     private TileDisplayView handDisplayView;
     private TileDisplayView doraDisplayView;
+    private TileDisplayView uradoraDisplayView;
     private TileSelectorView tileSelectorView;
 
     // shared presenters
     private AddRemoveTilePresenter handPresenter;
     private AddRemoveTilePresenter doraPresenter;
+    private AddRemoveTilePresenter uradoraPresenter;
 
     // factory
     private PlayerFactory playerFactory = new PlayerFactory();
@@ -57,12 +59,14 @@ public class AppBuilder {
 
         // configure clear tile
         ClearTilesOutputBoundary clearPresenter = new ClearTilePresenter(model);
-        ClearTilesInputBoundary clearInteractor = new ClearTilesInteractor(DAO, clearPresenter);
+        ClearTilesInputBoundary clearInteractor = new ClearTilesInteractor(
+                DAO, clearPresenter, ClearTilesInteractor.HAND);
         ClearTilesController clearController = new ClearTilesController(clearInteractor);
 
         // configure remove tile
         handPresenter = new AddRemoveTilePresenter(model);
-        RemoveTileInputBoundary removeInteractor = new RemoveTileInteractor(DAO, handPresenter);
+        RemoveTileInputBoundary removeInteractor = new RemoveTileInteractor(
+                DAO, handPresenter, RemoveTileInteractor.HAND);
         RemoveTileController removeController = new RemoveTileController(removeInteractor);
 
         // configure view
@@ -73,38 +77,71 @@ public class AppBuilder {
     }
 
     public AppBuilder addDoraDisplayView() {
+        // instantiate view model
         TilesDisplayViewModel model = new TilesDisplayViewModel("Dora");
+
+        // configure clear tile
+        ClearTilesOutputBoundary clearPresenter = new ClearTilePresenter(model);
+        ClearTilesInputBoundary clearInteractor = new ClearTilesInteractor(
+                DAO, clearPresenter, ClearTilesInteractor.DORA);
+        ClearTilesController clearController = new ClearTilesController(clearInteractor);
+
+        // configure remove tile
+        doraPresenter = new AddRemoveTilePresenter(model);
+        RemoveTileInputBoundary removeInteractor = new RemoveTileInteractor(
+                DAO, doraPresenter, RemoveTileInteractor.DORA);
+        RemoveTileController removeController = new RemoveTileController(removeInteractor);
+
+        // configure view
         doraDisplayView = new TileDisplayView(model);
+        doraDisplayView.setClearTilesController(clearController);
+        doraDisplayView.setRemoveTileController(removeController);
+        return this;
+    }
 
-        // TODO: FOR TEMPORARY TESTING PURPOSE ONLY
-        List<BaseTile> idList = new ArrayList<BaseTile>();
-        idList.add(BaseTile._1p);
-        List<String> nameList = new ArrayList<String>();
-        nameList.add("test");
-        List<String> iconList = new ArrayList<String>();
-        iconList.add(BaseTileToPathMapping.getTilePath(BaseTile._1p));
-        model.getState().setIdList(idList);
-        model.getState().setNameList(nameList);
-        model.getState().setIconList(iconList);
-        model.firePropertyChanged("tiles");
-        // TODO: REMOVE THIS LATER
+    public AppBuilder addUradoraDisplayView() {
+        // instantiate view model
+        TilesDisplayViewModel model = new TilesDisplayViewModel("Uradora");
 
+        // configure clear tile
+        ClearTilesOutputBoundary clearPresenter = new ClearTilePresenter(model);
+        ClearTilesInputBoundary clearInteractor = new ClearTilesInteractor(
+                DAO, clearPresenter, ClearTilesInteractor.URADORA);
+        ClearTilesController clearController = new ClearTilesController(clearInteractor);
+
+        // configure remove tile
+        uradoraPresenter = new AddRemoveTilePresenter(model);
+        RemoveTileInputBoundary removeInteractor = new RemoveTileInteractor(
+                DAO, uradoraPresenter, RemoveTileInteractor.URADORA);
+        RemoveTileController removeController = new RemoveTileController(removeInteractor);
+
+        // configure view
+        uradoraDisplayView = new TileDisplayView(model);
+        uradoraDisplayView.setClearTilesController(clearController);
+        uradoraDisplayView.setRemoveTileController(removeController);
         return this;
     }
 
     public AppBuilder addTileSelectorView() {
-        // TODO: also support selecting dora
-
         // instantiate view model
         TileSelectorViewModel model = new TileSelectorViewModel();
 
         // configure add tile
-        AddTileInputBoundary interactor = new AddTileInteractor(DAO, handPresenter);
-        AddTileController controller = new AddTileController(interactor);
+        AddTileInputBoundary handInteractor = new AddTileInteractor(
+                DAO, handPresenter, AddTileInteractor.HAND);
+        AddTileController handController = new AddTileController(handInteractor);
+
+        AddTileInputBoundary doraInteractor = new AddTileInteractor(
+                DAO, doraPresenter, AddTileInteractor.DORA);
+        AddTileController doraController = new AddTileController(doraInteractor);
+
+        AddTileInputBoundary uradoraInteractor = new AddTileInteractor(
+                DAO, uradoraPresenter, AddTileInteractor.URADORA);
+        AddTileController uradoraController = new AddTileController(uradoraInteractor);
 
         // configure selector
         tileSelectorView = new TileSelectorView(model);
-        tileSelectorView.setAddTileController(controller);
+        tileSelectorView.setAddToHandController(handController);
         return this;
     }
 
@@ -123,6 +160,7 @@ public class AppBuilder {
         lowerPanel.setLayout(new BoxLayout(lowerPanel, BoxLayout.Y_AXIS));
         lowerPanel.add(handDisplayView);
         lowerPanel.add(doraDisplayView);
+        lowerPanel.add(uradoraDisplayView);
 
         appPanel.setLayout(new BoxLayout(appPanel, BoxLayout.Y_AXIS));
         appPanel.add(upperPanel);

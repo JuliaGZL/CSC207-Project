@@ -1,7 +1,6 @@
 package view;
 
 import interface_adapter.edit_tiles.AddTileController;
-import interface_adapter.edit_tiles.SelectDoraController;
 import interface_adapter.edit_tiles.TileSelectorState;
 import interface_adapter.edit_tiles.TileSelectorViewModel;
 import mahjong.BaseTile;
@@ -13,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Set;
 
 /**
  * The tile selector, for both hand and dora.
@@ -31,8 +31,10 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
     // Player to insert tiles
     private String playerName = "default";
 
-    private SelectDoraController selectDoraController;
-    private AddTileController addTileController;
+    // Controllers to insert tile to a list (hand/dora/uradora)
+    private AddTileController addToHandController;
+    private AddTileController addToDoraController;
+    private AddTileController addToUradoraController;
 
     public TileSelectorView(TileSelectorViewModel tileSelectorViewModel) {
         this.tileSelectorViewModel = tileSelectorViewModel;
@@ -63,30 +65,37 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
     }
 
     private void addButtons() {
+        Set<BaseTile> enabledTiles = tileSelectorViewModel.getState().getEnabledTiles();
         for (BaseTile[] row : TileSelectorViewModel.tileRows){
             for (BaseTile tile : row) {
-                // create the button object
-                TileButton button = TileButtonFactory.createImageButton(
-                        BaseTileToPathMapping.getTilePath(tile),
-                        tile
-                );
+                if (enabledTiles.contains(tile)) {
+                    // create the button object
+                    TileButton button = TileButtonFactory.createImageButton(
+                            tile, BaseTileToPathMapping.getTilePath(tile)
+                    );
 
-                // add action listener
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent actionEvent) {
-                        // Add card to either dora or hand according to current state
-                        //      indicated by addTarget.
-                        if (tileAddTarget.equals("dora")) {
-                            // TODO: selectDoraController.execute(...)
-                        } else if (tileAddTarget.equals("hand")) {
-                            addTileController.execute(button.getTileId(), playerName);
+                    // add action listener
+                    button.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent actionEvent) {
+                            // Add card to either dora or hand according to current state
+                            //      indicated by addTarget.
+                            if (tileAddTarget.equals("dora")) {
+                                addToDoraController.execute(button.getTileId(), playerName);
+                            } else if (tileAddTarget.equals("uradora")) {
+                                addToUradoraController.execute(button.getTileId(), playerName);
+                            } else if (tileAddTarget.equals("hand")) {
+                                addToHandController.execute(button.getTileId(), playerName);
+                            }
                         }
-                    }
-                });
+                    });
 
-                // add to panel
-                tileButtonsPanel.add(button);
+                    // add to panel
+                    tileButtonsPanel.add(button);
+                } else {
+                    // if tile not enabled, show blank button
+                    tileButtonsPanel.add(TileButtonFactory.createDummyButton());
+                }
             }
         }
     }
@@ -99,14 +108,18 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         // update tile insertion destination as needed
-        if (evt.getPropertyName().equals("target")) {
+        final String property = evt.getPropertyName();
+        if (property.equals("tiles")) {
             TileSelectorState state = (TileSelectorState) evt.getNewValue();
             setTileAddTarget(state.getTarget());
             // update title label
             this.titleLabel.setText("Select " + state.getTarget());
-        } else if (evt.getPropertyName().equals("player")) {
+        } else if (property.equals("player")) {
+            // update player name
             TileSelectorState state = (TileSelectorState) evt.getNewValue();
             playerName = state.getPlayerName();
+        } else if (property.equals("enabled")) {
+            // update buttons to show only enabled ones
         }
     }
 
@@ -114,12 +127,16 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
         return viewName;
     }
 
-    public void setSelectDoraController(SelectDoraController selectDoraController) {
-        this.selectDoraController = selectDoraController;
+    public void setAddToHandController(AddTileController addToHandController) {
+        this.addToHandController = addToHandController;
     }
 
-    public void setAddTileController(AddTileController addTileController) {
-        this.addTileController = addTileController;
+    public void setAddToDoraController(AddTileController addToDoraController) {
+        this.addToDoraController = addToDoraController;
+    }
+
+    public void setAddToUradoraController(AddTileController addToUradoraController) {
+        this.addToUradoraController = addToUradoraController;
     }
 
     public String getTileAddTarget() {

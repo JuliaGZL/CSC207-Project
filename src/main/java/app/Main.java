@@ -20,6 +20,7 @@ public class Main {
                                     .addEditStatusView()
                                     .addHandDisplayView()
                                     .addDoraDisplayView()
+                                    .addUradoraDisplayView()
                                     .addTileSelectorView()
                                     .build();
         app.pack();

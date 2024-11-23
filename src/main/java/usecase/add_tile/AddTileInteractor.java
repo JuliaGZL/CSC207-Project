@@ -12,13 +12,21 @@ import utils.BaseTileToPathMapping;
  * Interactor for the add_tile use case.
  */
 public class AddTileInteractor implements AddTileInputBoundary {
+    // Where to add the tile - hand, dora or uradora
+    public static final int HAND = 1;
+    public static final int DORA = 2;
+    public static final int URADORA = 3;
+    private final int target;
+
     private AddTileDataAccessInterface dataAccessObj;
     private AddTileOutputBoundary presenter;
 
     public AddTileInteractor(AddTileDataAccessInterface dataAccessObj,
-                             AddTileOutputBoundary presenter) {
+                             AddTileOutputBoundary presenter,
+                             int target) {
         this.dataAccessObj = dataAccessObj;
         this.presenter = presenter;
+        this.target = target;
     }
 
     /**
@@ -36,27 +44,47 @@ public class AddTileInteractor implements AddTileInputBoundary {
         }
         else {
             final Player player = dataAccessObj.getPlayer(name);
-            final List<Tile> hand = player.getHand();
-            final int fullNum = 14;
-            if (hand.size() == fullNum) {
-                presenter.prepareFailView("Hand already full (with 14 tiles)!");
+            List<Tile> tileList;
+            switch (target) {
+                case HAND:
+                    tileList = player.getHand();
+                    break;
+                case DORA:
+                    tileList = player.getDora();
+                    break;
+                case URADORA:
+                    tileList = player.getUradora();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid target: " + target);
             }
-            else {
-                addTile(id, hand, player, name);
-            }
+            addTile(id, tileList, player, name, target);
         }
     }
 
-    private void addTile(BaseTile id, List<Tile> hand, Player player, String name) {
-        final Tile newTile = new Tile(id, false, false, false);
-        hand.add(newTile);
-        player.setHand(hand);
+    private void addTile(BaseTile id, List<Tile> tileList,
+                         Player player, String name, int target) {
+        final Tile newTile = new Tile(id);
+        tileList.add(newTile);
+
+        // add to hand, dora or uradora according to target
+        switch (target) {
+            case HAND:
+                player.setHand(tileList);
+                break;
+            case DORA:
+                player.setDora(tileList);
+                break;
+            case URADORA:
+                player.setUradora(tileList);
+                break;
+        }
         dataAccessObj.savePlayer(player);
 
         final List<BaseTile> idList = new ArrayList<BaseTile>();
         final List<String> nameList = new ArrayList<String>();
         final List<String> iconList = new ArrayList<String>();
-        for (Tile tile : hand) {
+        for (Tile tile : tileList) {
             idList.add(tile.getBaseTile());
             nameList.add(tile.toString());
             iconList.add(BaseTileToPathMapping.getTilePath(tile.getBaseTile()));

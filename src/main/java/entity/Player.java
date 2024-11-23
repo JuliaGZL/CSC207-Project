@@ -19,7 +19,7 @@ public class Player {
 
     /**
      * For a new player with name only.
-     * @param name
+     * @param name literally
      */
     public Player(String name) {
         this.name = name;

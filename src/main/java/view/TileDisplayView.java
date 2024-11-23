@@ -44,7 +44,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
 
         // Configure style of the title label
         titleLabel = new JLabel(getViewName());
-        titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
         // Configure clear button
@@ -78,7 +78,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
             if(i < idList.size()) {
                 final BaseTile tileId = idList.get(i);
                 final String iconPath = iconList.get(i);
-                TileButton button = TileButtonFactory.createImageButton(iconPath, tileId);
+                TileButton button = TileButtonFactory.createImageButton(tileId, iconPath);
                 // add button action listener (for removing tile on click)
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -90,8 +90,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
             } else {
                 // fill in the blank with dummy buttons
                 final TileButton button = TileButtonFactory.createImageButton(
-                        BaseTileToPathMapping.getTilePath(BaseTile._5z),
-                        null
+                        null, BaseTileToPathMapping.getTilePath(BaseTile._5z)
                 );
                 tileListPanel.add(button);
             }
