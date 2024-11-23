@@ -115,12 +115,30 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Get the object where the event occurred
+        Object source = e.getSource();
 
+        if (source instanceof JComboBox) {
+            // If the event occurred on a combo box
+            JComboBox<String> comboBox = (JComboBox<String>) source;
+            String selectedItem = (String) comboBox.getSelectedItem();
+            handleComboBoxSelection(comboBox, selectedItem);
+        }
+    }
+
+    /**
+     * Method for handling selection events on combo boxes.
+     * @param comboBox the combo box where the selection event occurred
+     * @param selectedItem the item (String) that was selected
+     */
+    private void handleComboBoxSelection(JComboBox<String> comboBox, String selectedItem) {
+        // TODO: disable certain checkboxes based on combo box selections
+        // TODO: update the view model/state and use controller to update entities
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        // Update what the user is looking at, which is unnecessary under this view
     }
 
     private ImageIcon loadImageIcon(String path) {
