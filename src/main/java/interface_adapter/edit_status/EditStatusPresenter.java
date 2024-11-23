@@ -5,8 +5,8 @@ import interface_adapter.edit_tiles.SelectDoraState;
 import interface_adapter.edit_tiles.SelectDoraViewModel;
 import interface_adapter.edit_tiles.TileSelectorState;
 import interface_adapter.edit_tiles.TileSelectorViewModel;
-import use_case.edit_status.EditStatusOutputBoundary;
-import use_case.edit_status.EditStatusOutputData;
+import usecase.edit_status.EditStatusOutputBoundary;
+import usecase.edit_status.EditStatusOutputData;
 
 /**
  * The Presenter for the Edit Status Use Case.

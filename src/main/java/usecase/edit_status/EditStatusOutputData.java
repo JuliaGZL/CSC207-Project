@@ -1,4 +1,4 @@
-package use_case.edit_status;
+package usecase.edit_status;
 
 import java.util.Map;
 

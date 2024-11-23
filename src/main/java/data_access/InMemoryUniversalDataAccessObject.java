@@ -7,6 +7,7 @@ import entity.AddTileManager;
 import entity.Player;
 import usecase.add_tile.AddTileDataAccessInterface;
 import usecase.clear_tiles.ClearTilesDataAccessInterface;
+import usecase.edit_status.EditStatusDataAccessInterface;
 import usecase.remove_tile.RemoveTileDataAccessInterface;
 
 /**

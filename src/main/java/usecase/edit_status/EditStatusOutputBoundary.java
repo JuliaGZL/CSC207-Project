@@ -1,4 +1,4 @@
-package use_case.edit_status;
+package usecase.edit_status;
 
 /**
  * The output boundary for the Edit Status Use Case.
