@@ -3,6 +3,7 @@ package interface_adapter.edit_tiles;
 import mahjong.BaseTile;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class TileSelectorState {
@@ -13,7 +14,7 @@ public class TileSelectorState {
     private String playerName = "default";
 
     // Only tiles in this set will be enabled for selection.
-    private Set<BaseTile> enabledTiles = new HashSet<BaseTile>();
+    private Set<BaseTile> enabledTiles = new HashSet<BaseTile>(List.of(BaseTile.values()));
 
     public TileSelectorState() {
 

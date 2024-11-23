@@ -2,11 +2,14 @@ package view;
 
 import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.EditStatusViewModel;
+import interface_adapter.edit_tiles.UpdateEnabledTileController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -22,6 +25,12 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
     private Boolean[] statuses;
     private final EditStatusViewModel editStatusViewModel;
     private EditStatusController editStatusController;
+
+    // TODO: this is very awful. Let's actually create a use case later.
+    // NOTE: this is just for updating the addTileTarget property.
+    // originally planned to create a use case, but looks like it is overcomplicating.
+    private TileSelectorView tileSelectorView;
+    private UpdateEnabledTileController updateEnabledTileController;
 
     /**
      * Constructs a EditStatusView object with the specified view model and controller.
@@ -39,6 +48,28 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         JComboBox<String> tileTypeComboBox = new JComboBox<>(EditStatusViewModel.TILE_TYPES);
         tileTypePanel.add(tileTypeLabel);
         tileTypePanel.add(tileTypeComboBox);
+
+        // TODO: change this to an actual use case.
+        // Combo box event to inform the tile selector for updating destination
+        tileTypeComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                switch (itemEvent.getItem().toString()) {
+                    case "Hand":
+                        tileSelectorView.setTileAddTarget("hand");
+                        updateEnabledTileController.execute(tileSelectorView.getPlayerName(), "hand");
+                        break;
+                    case "Dora":
+                        tileSelectorView.setTileAddTarget("dora");
+                        updateEnabledTileController.execute(tileSelectorView.getPlayerName(), "dora");
+                        break;
+                    case "Uradora":
+                        tileSelectorView.setTileAddTarget("uradora");
+                        updateEnabledTileController.execute(tileSelectorView.getPlayerName(), "uradora");
+                        break;
+                }
+            }
+        });
 
         // Constructs panel with combo box for how the player has won
         JPanel winTypePanel = new JPanel();
@@ -64,13 +95,13 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         seatWindPanel.add(seatWindLabel);
         seatWindPanel.add(seatWindComboBox);
 
-//        // Constructs panel with spinner for selecting the number of Akadora
-//        JPanel akadoraPanel = new JPanel();
-//        akadoraPanel.setLayout(new FlowLayout());
-//        JLabel akadoraLabel = new JLabel("Akadora:");
-//        JSpinner akadoraSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
-//        akadoraPanel.add(akadoraLabel);
-//        akadoraPanel.add(akadoraSpinner);
+        // Constructs panel with spinner for selecting the number of Akadora
+        JPanel akadoraPanel = new JPanel();
+        akadoraPanel.setLayout(new FlowLayout());
+        JLabel akadoraLabel = new JLabel("Akadora:");
+        JSpinner akadoraSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 3, 1));
+        akadoraPanel.add(akadoraLabel);
+        akadoraPanel.add(akadoraSpinner);
 
         // Add all combo box and spinner panels to a big panel
         JPanel leftPanel = new JPanel();
@@ -79,7 +110,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         leftPanel.add(winTypePanel);
         leftPanel.add(roundWindPanel);
         leftPanel.add(seatWindPanel);
-//        leftPanel.add(akadoraPanel);
+        leftPanel.add(akadoraPanel);
 
         // Construct panel for the list of checkboxes
         JPanel checkboxPanel = new JPanel();
@@ -134,5 +165,13 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
     public void setEditStatusController(EditStatusController editStatusController) {
         this.editStatusController = editStatusController;
+    }
+
+    public void setTileSelectorView(TileSelectorView tileSelectorView) {
+        this.tileSelectorView = tileSelectorView;
+    }
+
+    public void setUpdateEnabledTileController(UpdateEnabledTileController updateEnabledTileController) {
+        this.updateEnabledTileController = updateEnabledTileController;
     }
 }

@@ -42,6 +42,7 @@ public class UpdateEnabledTileInteractor implements UpdateEnabledTilesInputBound
                 if (player.getHand().size() >= maxTiles) {
                     outputData = new UpdateEnabledTileOutputData(enabledTiles);
                     presenter.prepareSuccessView(outputData);
+                    return;
                 }
                 break;
             }
@@ -50,6 +51,7 @@ public class UpdateEnabledTileInteractor implements UpdateEnabledTilesInputBound
                 if (player.getDora().size() >= maxTiles) {
                     outputData = new UpdateEnabledTileOutputData(enabledTiles);
                     presenter.prepareSuccessView(outputData);
+                    return;
                 }
                 break;
             }
@@ -58,6 +60,7 @@ public class UpdateEnabledTileInteractor implements UpdateEnabledTilesInputBound
                 if (player.getUradora().size() >= maxTiles) {
                     outputData = new UpdateEnabledTileOutputData(enabledTiles);
                     presenter.prepareSuccessView(outputData);
+                    return;
                 }
                 break;
             }

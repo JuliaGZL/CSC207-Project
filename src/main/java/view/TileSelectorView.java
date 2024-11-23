@@ -3,6 +3,7 @@ package view;
 import interface_adapter.edit_tiles.AddTileController;
 import interface_adapter.edit_tiles.TileSelectorState;
 import interface_adapter.edit_tiles.TileSelectorViewModel;
+import interface_adapter.edit_tiles.UpdateEnabledTileController;
 import mahjong.BaseTile;
 import utils.BaseTileToPathMapping;
 
@@ -35,6 +36,9 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
     private AddTileController addToHandController;
     private AddTileController addToDoraController;
     private AddTileController addToUradoraController;
+
+    // controller to handle updating enabled tiles
+    private UpdateEnabledTileController updateEnabledTileController;
 
     public TileSelectorView(TileSelectorViewModel tileSelectorViewModel) {
         this.tileSelectorViewModel = tileSelectorViewModel;
@@ -87,6 +91,8 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
                             } else if (tileAddTarget.equals("hand")) {
                                 addToHandController.execute(button.getTileId(), playerName);
                             }
+                            // update enabled buttons
+                            updateEnabledTileController.execute(playerName, tileAddTarget);
                         }
                     });
 
@@ -143,11 +149,19 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
         this.addToUradoraController = addToUradoraController;
     }
 
+    public void setUpdateEnabledTileController(UpdateEnabledTileController updateEnabledTileController) {
+        this.updateEnabledTileController = updateEnabledTileController;
+    }
+
     public String getTileAddTarget() {
         return tileAddTarget;
     }
 
     public void setTileAddTarget(String tileAddTarget) {
         this.tileAddTarget = tileAddTarget;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 }
