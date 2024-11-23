@@ -1,5 +1,7 @@
 package mahjong;
 
+import entity.Tile;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import utils.Algorithm;
@@ -244,5 +246,59 @@ public class Rule {
       }
     }
     return color;
+  }
+
+  /**
+   * Generates a list of Dora tiles based on the provided Dora indicator tiles.
+   *
+   * @param doraIndicators the list of Dora indicator tiles
+   * @return a list of the corresponding Dora tiles
+   */
+  public static List<BaseTile> getDoraList(List<Tile> doraIndicators) {
+    List<BaseTile> doraList = new ArrayList<>();
+    for (Tile tile : doraIndicators) {
+      switch (tile.getBaseTile()) {
+        case _9m:
+          doraList.add(BaseTile._1m);
+          break;
+        case _9p:
+          doraList.add(BaseTile._1p);
+          break;
+        case _9s:
+          doraList.add(BaseTile._1s);
+          break;
+        case _4z:
+          doraList.add(BaseTile._1z);
+          break;
+        case _7z:
+          doraList.add(BaseTile._5z);
+          break;
+        default:
+          doraList.add(tile.getBaseTile().getNext());
+          break;
+      }
+    }
+    return doraList;
+  }
+
+  /**
+   * Sets the Dora and UraDora status for the tiles in the player's hand.
+   *
+   * @param doraIndicators   a list of tiles that indicate the Dora tiles.
+   * @param uraDoraIndicator a list of tiles that indicate the UraDora tiles.
+   * @param hands            a list of tiles in the player's hand.
+   */
+  public static void setDora(List<Tile> doraIndicators, 
+      List<Tile> uraDoraIndicator, List<Tile> hands) {
+    List<BaseTile> doraList = getDoraList(doraIndicators);
+    List<BaseTile> uraDoraList = getDoraList(uraDoraIndicator);
+    for (Tile tile : hands) {
+      if (doraList.contains(tile.getBaseTile())) {
+        tile.setDora(true);
+      }
+      if (uraDoraList.contains(tile.getBaseTile())) {
+        tile.setUraDora(true);
+      }
+    }
   }
 }
