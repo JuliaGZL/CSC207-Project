@@ -26,6 +26,7 @@ public class PlayerStats {
   private List<Tile> hand;
   private List<BaseTile> baseHand;
   private List<CallGroup> callGroups;
+  private int numAkaDora;
 
   /**
    * Checks if the player is in Riichi state.
@@ -270,53 +271,6 @@ public class PlayerStats {
   public List<BaseTile> getBaseHands() {
     return baseHand;
   }
-
-  /**
-   * Constructs a PlayerState with the specified states and hand.
-   *
-   * @param isRiichi     whether the player is in Riichi state.
-   * @param isIppatsu    whether the player is in Ippatsu state.
-   * @param isMenzenchin whether the player is in Menzenchin state.
-   * @param isTsumo      whether the player is in Tsumo state.
-   * @param isRinshan    whether the player is in Rinshan state.
-   * @param isHaitei     whether the player is in Haitei state.
-   * @param isHoutei     whether the player is in Houtei state.
-   * @param isChankan    whether the player is in Chankan state.
-   * @param isTenhou     whether the player is in Tenhou state.
-   * @param isChiihou    whether the player is in Chiihou state.
-   * @param isOya        whether the player is in Oya state.
-   * @param selfWind     the self wind tile of the player.
-   * @param prevalentWind the prevalent wind tile of the player.
-   * @param hand         the hand of the player.
-   * @param callGroups   the call groups (Fuuros) of the player.
-   */
-  public PlayerStats(
-      boolean isRiichi, boolean isIppatsu, boolean isMenzenchin,
-      boolean isTsumo, boolean isRinshan, boolean isHaitei,
-      boolean isHoutei, boolean isChankan, boolean isTenhou,
-      boolean isChiihou, boolean isOya, BaseTile selfWind,
-      BaseTile prevalentWind, List<Tile> hand, List<CallGroup> callGroups) {
-    this.isRiichi = isRiichi;
-    this.isIppatsu = isIppatsu;
-    this.isMenzenchin = isMenzenchin;
-    this.isTsumo = isTsumo;
-    this.isRinshan = isRinshan;
-    this.isHaitei = isHaitei;
-    this.isHoutei = isHoutei;
-    this.isChankan = isChankan;
-    this.isTenhou = isTenhou;
-    this.isChiihou = isChiihou;
-    this.isOya = isOya;
-    this.selfWind = selfWind;
-    this.prevalentWind = prevalentWind;
-    this.hand = hand;
-    this.callGroups = callGroups;
-    this.baseHand = new ArrayList<>();
-    for (Tile tile : hand) {
-      baseHand.add(tile.getBaseTile());
-    }
-  }
-
   /**
    * Retrieves the self wind tile of the player.
    *
@@ -387,5 +341,72 @@ public class PlayerStats {
    */
   public void setCallGroups(List<CallGroup> callGroups) {
     this.callGroups = callGroups;
+  }
+
+  /**
+   * Returns the number of red dora tiles (aka dora) the player has.
+   *
+   * @return the number of red dora tiles.
+   */
+  public int getNumAkaDora() {
+    return numAkaDora;
+  }
+
+  /**
+   * Sets the number of Aka Dora (red bonus tiles) for the player.
+   *
+   * @param numAkaDora the number of Aka Dora to set
+   */
+  public void setNumAkaDora(int numAkaDora) {
+    this.numAkaDora = numAkaDora;
+  }
+
+
+  /**
+   * Constructs a PlayerState with the specified states and hand.
+   *
+   * @param isRiichi     whether the player is in Riichi state.
+   * @param isIppatsu    whether the player is in Ippatsu state.
+   * @param isMenzenchin whether the player is in Menzenchin state.
+   * @param isTsumo      whether the player is in Tsumo state.
+   * @param isRinshan    whether the player is in Rinshan state.
+   * @param isHaitei     whether the player is in Haitei state.
+   * @param isHoutei     whether the player is in Houtei state.
+   * @param isChankan    whether the player is in Chankan state.
+   * @param isTenhou     whether the player is in Tenhou state.
+   * @param isChiihou    whether the player is in Chiihou state.
+   * @param isOya        whether the player is in Oya state.
+   * @param selfWind     the self wind tile of the player.
+   * @param prevalentWind the prevalent wind tile of the player.
+   * @param hand         the hand of the player.
+   * @param callGroups   the call groups (Fuuros) of the player.
+   */
+  public PlayerStats(
+      boolean isRiichi, boolean isIppatsu, boolean isMenzenchin,
+      boolean isTsumo, boolean isRinshan, boolean isHaitei,
+      boolean isHoutei, boolean isChankan, boolean isTenhou,
+      boolean isChiihou, boolean isOya, BaseTile selfWind,
+      BaseTile prevalentWind, List<Tile> hand, List<CallGroup> callGroups,
+      int numAkaDora) {
+    this.isRiichi = isRiichi;
+    this.isIppatsu = isIppatsu;
+    this.isMenzenchin = isMenzenchin;
+    this.isTsumo = isTsumo;
+    this.isRinshan = isRinshan;
+    this.isHaitei = isHaitei;
+    this.isHoutei = isHoutei;
+    this.isChankan = isChankan;
+    this.isTenhou = isTenhou;
+    this.isChiihou = isChiihou;
+    this.isOya = isOya;
+    this.selfWind = selfWind;
+    this.prevalentWind = prevalentWind;
+    this.hand = hand;
+    this.callGroups = callGroups;
+    this.baseHand = new ArrayList<>();
+    for (Tile tile : hand) {
+      baseHand.add(tile.getBaseTile());
+    }
+    this.numAkaDora = numAkaDora;
   }
 }

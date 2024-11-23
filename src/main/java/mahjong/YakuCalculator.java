@@ -1077,12 +1077,15 @@ public class YakuCalculator {
       if (t.isDora()) {
         yakuList.add(Yaku.Dora);
       }
-      if (t.isRedDora()) {
-        yakuList.add(Yaku.Akadora);
-      }
+      // if (t.isRedDora()) {
+      //   yakuList.add(Yaku.Akadora);
+      // } ABOLISHED
       if (t.isUraDora()) {
         yakuList.add(Yaku.Uradora);
       }
+    }
+    for (int t = 0; t < playerStats.getNumAkaDora(); t++){
+      yakuList.add(Yaku.Akadora);
     }
   }
 
