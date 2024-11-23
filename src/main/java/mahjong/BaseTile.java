@@ -109,7 +109,7 @@ public enum BaseTile {
   private static Localization<BaseTile> localization = new Localization<>(BaseTile::valueOf);
 
   static {
-    localization.initializeTranslator("localization\\tiles_l_english.yaml");
+    localization.initializeTranslator("localization/tiles_l_english.yaml");
   }
 
   /**

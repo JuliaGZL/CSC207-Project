@@ -43,7 +43,7 @@ public class RemoveTileInteractor implements RemoveTileInputBoundary {
 
     private void removeTile(BaseTile id, List<Tile> hand, Player player, String name) {
         for (Tile tile : hand) {
-            if (tile.getTile() == id) {
+            if (tile.getBaseTile() == id) {
                 hand.remove(tile);
                 break;
             }
@@ -55,9 +55,9 @@ public class RemoveTileInteractor implements RemoveTileInputBoundary {
         final List<String> nameList = new ArrayList<String>();
         final List<String> iconList = new ArrayList<String>();
         for (Tile tile : hand) {
-            idList.add(tile.getTile());
+            idList.add(tile.getBaseTile());
             nameList.add(tile.toString());
-            iconList.add(BaseTileToPathMapping.getTilePath(tile.getTile()));
+            iconList.add(BaseTileToPathMapping.getTilePath(tile.getBaseTile()));
         }
         final RemoveTileOutputData output = new RemoveTileOutputData(false, name, idList, nameList, iconList);
 

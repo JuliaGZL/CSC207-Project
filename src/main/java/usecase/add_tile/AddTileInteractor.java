@@ -57,9 +57,9 @@ public class AddTileInteractor implements AddTileInputBoundary {
         final List<String> nameList = new ArrayList<String>();
         final List<String> iconList = new ArrayList<String>();
         for (Tile tile : hand) {
-            idList.add(tile.getTile());
+            idList.add(tile.getBaseTile());
             nameList.add(tile.toString());
-            iconList.add(BaseTileToPathMapping.getTilePath(tile.getTile()));
+            iconList.add(BaseTileToPathMapping.getTilePath(tile.getBaseTile()));
         }
         final AddTileOutputData output = new AddTileOutputData(false, name, idList, nameList, iconList);
 
