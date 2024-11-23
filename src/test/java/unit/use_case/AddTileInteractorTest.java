@@ -4,7 +4,8 @@ import data_access.InMemoryUniversalDataAccessObject;
 import entity.Player;
 import entity.Tile;
 import mahjong.BaseTile;
-import use_case.add_tile.*;
+import usecase.add_tile.*;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

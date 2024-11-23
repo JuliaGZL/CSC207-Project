@@ -5,7 +5,7 @@ import interface_adapter.edit_tiles.AddRemoveTilePresenter;
 import interface_adapter.edit_tiles.AddTileController;
 import interface_adapter.edit_tiles.SelectDoraController;
 import interface_adapter.edit_tiles.TileSelectorViewModel;
-import use_case.add_tile.AddTileInteractor;
+import usecase.add_tile.AddTileInteractor;
 import view.TileSelectorView;
 
 import javax.swing.*;

@@ -1,8 +1,8 @@
 package usecase.edit_status;
 
-import mahjong.BaseTile;
-
 import java.util.Map;
+
+import mahjong.BaseTile;
 
 /**
  * The output data for the edit status use case.

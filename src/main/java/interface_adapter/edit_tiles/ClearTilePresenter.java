@@ -1,10 +1,10 @@
 package interface_adapter.edit_tiles;
 
-import mahjong.BaseTile;
-import use_case.clear_tiles.ClearTilesOutputBoundary;
-import use_case.clear_tiles.ClearTilesOutputData;
-
 import java.util.ArrayList;
+
+import mahjong.BaseTile;
+import usecase.clear_tiles.ClearTilesOutputBoundary;
+import usecase.clear_tiles.ClearTilesOutputData;
 
 public class ClearTilePresenter implements ClearTilesOutputBoundary {
 
