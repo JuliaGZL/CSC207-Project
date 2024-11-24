@@ -4,9 +4,13 @@ import data_access.InMemoryUniversalDataAccessObject;
 import entity.PlayerFactory;
 import interface_adapter.edit_status.EditStatusViewModel;
 import interface_adapter.edit_tiles.*;
+import interface_adapter.player_events.ChangePlayerController;
+import interface_adapter.player_events.ChangePlayerPresenter;
+import interface_adapter.player_events.PlayerEventsViewModel;
 import mahjong.BaseTile;
 import usecase.add_tile.AddTileInputBoundary;
 import usecase.add_tile.AddTileInteractor;
+import usecase.change_player.ChangePlayerInteractor;
 import usecase.clear_tiles.ClearTilesInputBoundary;
 import usecase.clear_tiles.ClearTilesInteractor;
 import usecase.clear_tiles.ClearTilesOutputBoundary;
@@ -15,6 +19,7 @@ import usecase.remove_tile.RemoveTileInteractor;
 import usecase.update_enabled_tiles.UpdateEnabledTileInteractor;
 import utils.BaseTileToPathMapping;
 import view.EditStatusView;
+import view.PlayerEventsView;
 import view.TileDisplayView;
 import view.TileSelectorView;
 
@@ -23,13 +28,14 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: this is a very initial version.
+// TODO: this is very messy, let's improve it later.
 public class AppBuilder {
     // data access
     private final InMemoryUniversalDataAccessObject DAO = new InMemoryUniversalDataAccessObject();
 
     // views
     private EditStatusView editStatusView;
+    private PlayerEventsView playerEventsView;
     private TileDisplayView handDisplayView;
     private TileDisplayView doraDisplayView;
     private TileDisplayView uradoraDisplayView;
@@ -40,8 +46,11 @@ public class AppBuilder {
     private AddRemoveTilePresenter doraPresenter;
     private AddRemoveTilePresenter uradoraPresenter;
 
+    // shared view model
+    private PlayerEventsViewModel playerEventsViewModel;
+
     // factory
-    private PlayerFactory playerFactory = new PlayerFactory();
+    private final PlayerFactory playerFactory = new PlayerFactory();
 
     public AppBuilder() {
 
@@ -50,6 +59,12 @@ public class AppBuilder {
     public AppBuilder addEditStatusView() {
         EditStatusViewModel model = new EditStatusViewModel();
         this.editStatusView = new EditStatusView(model);
+        return this;
+    }
+
+    public AppBuilder addPlayerEventsView() {
+        playerEventsViewModel = new PlayerEventsViewModel();
+        this.playerEventsView = new PlayerEventsView(playerEventsViewModel);
         return this;
     }
 
@@ -160,6 +175,12 @@ public class AppBuilder {
         uradoraDisplayView.setNotifier(notifier);
         editStatusView.setNotifier(notifier);
 
+        // configure change player (for the player events panel)
+        ChangePlayerPresenter changePlayerPresenter = new ChangePlayerPresenter(playerEventsViewModel, model);
+        ChangePlayerInteractor changePlayerInteractor = new ChangePlayerInteractor(DAO, changePlayerPresenter);
+        ChangePlayerController changePlayerController = new ChangePlayerController(changePlayerInteractor);
+        playerEventsView.setChangePlayerController(changePlayerController);
+
         return this;
     }
 
@@ -168,12 +189,17 @@ public class AppBuilder {
 
         JFrame app = new JFrame();
         JPanel upperPanel = new JPanel();
+        JPanel upperRightPanel = new JPanel();
         JPanel lowerPanel = new JPanel();
         JPanel appPanel = new JPanel();
 
+        upperRightPanel.setLayout(new BoxLayout(upperRightPanel, BoxLayout.Y_AXIS));
+        upperRightPanel.add(playerEventsView);
+        upperRightPanel.add(editStatusView);
+
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.X_AXIS));
         upperPanel.add(tileSelectorView);
-        upperPanel.add(editStatusView);
+        upperPanel.add(upperRightPanel);
 
         lowerPanel.setLayout(new BoxLayout(lowerPanel, BoxLayout.Y_AXIS));
         lowerPanel.add(handDisplayView);

@@ -18,6 +18,7 @@ public class Main {
         AppBuilder appBuilder = new AppBuilder();
         final JFrame app = appBuilder
                                     .addEditStatusView()
+                                    .addPlayerEventsView()
                                     .addHandDisplayView()
                                     .addDoraDisplayView()
                                     .addUradoraDisplayView()

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import entity.Player;
 import usecase.add_tile.AddTileDataAccessInterface;
+import usecase.change_player.ChangePlayerDataAccessInterface;
 import usecase.clear_tiles.ClearTilesDataAccessInterface;
 import usecase.remove_tile.RemoveTileDataAccessInterface;
 import usecase.update_enabled_tiles.UpdateEnabledTileDataAccessInterface;
@@ -15,7 +16,8 @@ import usecase.update_enabled_tiles.UpdateEnabledTileDataAccessInterface;
 public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInterface,
         RemoveTileDataAccessInterface,
         ClearTilesDataAccessInterface,
-        UpdateEnabledTileDataAccessInterface {
+        UpdateEnabledTileDataAccessInterface,
+        ChangePlayerDataAccessInterface {
     private final Map<String, Player> players = new HashMap<String, Player>();
 
     public InMemoryUniversalDataAccessObject() {
