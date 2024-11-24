@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Set;
 
 public class TileSelectorState {
-    // This determines whether clicking on a tile will add to hand or to dora/uradora.
-    private String target = "hand";
+    // Message for "inform selector" use case.
+    private String message;
 
     // Player to insert tiles
     private String playerName = "default";
@@ -20,12 +20,12 @@ public class TileSelectorState {
 
     }
 
-    public String getTarget() {
-        return target;
+    public String getMessage() {
+        return message;
     }
 
-    public void setTarget(String target) {
-        this.target = target;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getPlayerName() {

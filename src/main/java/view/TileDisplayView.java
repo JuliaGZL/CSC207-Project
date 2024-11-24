@@ -31,6 +31,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
 
     private RemoveTileController removeTileController;
     private ClearTilesController clearTilesController;
+    private TileSelectorPropertyUpdateNotifier notifier;
 
     public TileDisplayView(TilesDisplayViewModel viewModel) {
         this.viewModel = viewModel;
@@ -52,7 +53,10 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                // clear the tiles
                 clearTilesController.execute(playerName);
+                // notify the tile selector to update enabled buttons
+                notifier.notifyPropertyChange("", "");
             }
         });
 
@@ -83,14 +87,17 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
+                        // remove the tile
                         removeTileController.execute(tileId, playerName);
+                        // notify the tile selector to update enabled buttons
+                        notifier.notifyPropertyChange("", "");
                     }
                 });
                 tileListPanel.add(button);
             } else {
                 // fill in the blank with dummy buttons
                 final TileButton button = TileButtonFactory.createImageButton(
-                        null, BaseTileToPathMapping.getTilePath(BaseTile._5z)
+                        null, BaseTileToPathMapping.BLANK_TILE
                 );
                 tileListPanel.add(button);
             }
@@ -128,5 +135,9 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
 
     public void setClearTilesController(ClearTilesController clearTilesController) {
         this.clearTilesController = clearTilesController;
+    }
+
+    public void setNotifier(TileSelectorPropertyUpdateNotifier notifier) {
+        this.notifier = notifier;
     }
 }

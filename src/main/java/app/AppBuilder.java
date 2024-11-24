@@ -39,17 +39,18 @@ public class AppBuilder {
     private AddRemoveTilePresenter handPresenter;
     private AddRemoveTilePresenter doraPresenter;
     private AddRemoveTilePresenter uradoraPresenter;
-    private UpdateEnabledTilePresenter updateEnabledTilePresenter;
-
-    // shared controllers
-    // TODO: this is awful, I'll fix it later
-    private UpdateEnabledTileController updateEnabledTileController;
 
     // factory
     private PlayerFactory playerFactory = new PlayerFactory();
 
     public AppBuilder() {
 
+    }
+
+    public AppBuilder addEditStatusView() {
+        EditStatusViewModel model = new EditStatusViewModel();
+        this.editStatusView = new EditStatusView(model);
+        return this;
     }
 
     public AppBuilder addHandDisplayView() {
@@ -139,10 +140,10 @@ public class AppBuilder {
         AddTileController uradoraController = new AddTileController(uradoraInteractor);
 
         // configure update_enabled_tiles
-        updateEnabledTilePresenter = new UpdateEnabledTilePresenter(model);
+        UpdateEnabledTilePresenter updateEnabledTilePresenter = new UpdateEnabledTilePresenter(model);
         UpdateEnabledTileInteractor updateEnabledTileInteractor =
                 new UpdateEnabledTileInteractor(DAO, updateEnabledTilePresenter);
-        updateEnabledTileController =
+        UpdateEnabledTileController updateEnabledTileController =
                 new UpdateEnabledTileController(updateEnabledTileInteractor);
 
         // configure selector
@@ -150,18 +151,15 @@ public class AppBuilder {
         tileSelectorView.setAddToHandController(handController);
         tileSelectorView.setAddToDoraController(doraController);
         tileSelectorView.setAddToUradoraController(uradoraController);
-
         tileSelectorView.setUpdateEnabledTileController(updateEnabledTileController);
 
-        return this;
-    }
+        // configure update notification event
+        TileSelectorPropertyUpdateNotifier notifier = new TileSelectorPropertyUpdateNotifier(model);
+        handDisplayView.setNotifier(notifier);
+        doraDisplayView.setNotifier(notifier);
+        uradoraDisplayView.setNotifier(notifier);
+        editStatusView.setNotifier(notifier);
 
-    public AppBuilder addEditStatusView() {
-        EditStatusViewModel model = new EditStatusViewModel();
-        // TODO: make this better
-        this.editStatusView = new EditStatusView(model);
-        editStatusView.setTileSelectorView(tileSelectorView);
-        editStatusView.setUpdateEnabledTileController(updateEnabledTileController);
         return this;
     }
 

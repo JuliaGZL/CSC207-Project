@@ -17,11 +17,11 @@ public class Main {
         // build the app
         AppBuilder appBuilder = new AppBuilder();
         final JFrame app = appBuilder
+                                    .addEditStatusView()
                                     .addHandDisplayView()
                                     .addDoraDisplayView()
                                     .addUradoraDisplayView()
                                     .addTileSelectorView()
-                                    .addEditStatusView()
                                     .build();
         app.pack();
         app.setVisible(true);

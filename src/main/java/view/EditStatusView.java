@@ -2,7 +2,7 @@ package view;
 
 import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.EditStatusViewModel;
-import interface_adapter.edit_tiles.UpdateEnabledTileController;
+import interface_adapter.edit_tiles.TileSelectorPropertyUpdateNotifier;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,12 +25,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
     private Boolean[] statuses;
     private final EditStatusViewModel editStatusViewModel;
     private EditStatusController editStatusController;
-
-    // TODO: this is very awful. Let's actually create a use case later.
-    // NOTE: this is just for updating the addTileTarget property.
-    // originally planned to create a use case, but looks like it is overcomplicating.
-    private TileSelectorView tileSelectorView;
-    private UpdateEnabledTileController updateEnabledTileController;
+    private TileSelectorPropertyUpdateNotifier notifier;
 
     /**
      * Constructs a EditStatusView object with the specified view model and controller.
@@ -49,24 +44,13 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         tileTypePanel.add(tileTypeLabel);
         tileTypePanel.add(tileTypeComboBox);
 
-        // TODO: change this to an actual use case.
         // Combo box event to inform the tile selector for updating destination
         tileTypeComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent itemEvent) {
-                switch (itemEvent.getItem().toString()) {
-                    case "Hand":
-                        tileSelectorView.setTileAddTarget("hand");
-                        updateEnabledTileController.execute(tileSelectorView.getPlayerName(), "hand");
-                        break;
-                    case "Dora":
-                        tileSelectorView.setTileAddTarget("dora");
-                        updateEnabledTileController.execute(tileSelectorView.getPlayerName(), "dora");
-                        break;
-                    case "Uradora":
-                        tileSelectorView.setTileAddTarget("uradora");
-                        updateEnabledTileController.execute(tileSelectorView.getPlayerName(), "uradora");
-                        break;
+                final String item = itemEvent.getItem().toString().toLowerCase();
+                if (List.of("hand", "dora", "uradora").contains(item)) {
+                    notifier.notifyPropertyChange("target", item);
                 }
             }
         });
@@ -167,11 +151,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         this.editStatusController = editStatusController;
     }
 
-    public void setTileSelectorView(TileSelectorView tileSelectorView) {
-        this.tileSelectorView = tileSelectorView;
-    }
-
-    public void setUpdateEnabledTileController(UpdateEnabledTileController updateEnabledTileController) {
-        this.updateEnabledTileController = updateEnabledTileController;
+    public void setNotifier(TileSelectorPropertyUpdateNotifier notifier) {
+        this.notifier = notifier;
     }
 }

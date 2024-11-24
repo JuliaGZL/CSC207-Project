@@ -84,12 +84,16 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
                         public void actionPerformed(ActionEvent actionEvent) {
                             // Add card to either dora or hand according to current state
                             //      indicated by addTarget.
-                            if (tileAddTarget.equals("dora")) {
-                                addToDoraController.execute(button.getTileId(), playerName);
-                            } else if (tileAddTarget.equals("uradora")) {
-                                addToUradoraController.execute(button.getTileId(), playerName);
-                            } else if (tileAddTarget.equals("hand")) {
-                                addToHandController.execute(button.getTileId(), playerName);
+                            switch (tileAddTarget) {
+                                case "dora":
+                                    addToDoraController.execute(button.getTileId(), playerName);
+                                    break;
+                                case "uradora":
+                                    addToUradoraController.execute(button.getTileId(), playerName);
+                                    break;
+                                case "hand":
+                                    addToHandController.execute(button.getTileId(), playerName);
+                                    break;
                             }
                             // update enabled buttons
                             updateEnabledTileController.execute(playerName, tileAddTarget);
@@ -115,21 +119,31 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
     public void propertyChange(PropertyChangeEvent evt) {
         // update tile insertion destination as needed
         final String property = evt.getPropertyName();
-        if (property.equals("tiles")) {
-            TileSelectorState state = (TileSelectorState) evt.getNewValue();
-            setTileAddTarget(state.getTarget());
-            // update title label
-            this.titleLabel.setText("Select " + state.getTarget());
-        } else if (property.equals("player")) {
-            // update player name
-            TileSelectorState state = (TileSelectorState) evt.getNewValue();
-            playerName = state.getPlayerName();
-        } else if (property.equals("enabled_tiles")) {
-            // update buttons to show only enabled ones
-            tileButtonsPanel.removeAll();
-            addButtons();
-            tileButtonsPanel.revalidate();
-            tileButtonsPanel.repaint();
+        switch (property) {
+            case "target": {
+                TileSelectorState state = (TileSelectorState) evt.getNewValue();
+                setTileAddTarget(state.getMessage());
+                // update title label
+                this.titleLabel.setText("Select " + state.getMessage());
+                break;
+            }
+            case "player": {
+                // update player name
+                TileSelectorState state = (TileSelectorState) evt.getNewValue();
+                playerName = state.getPlayerName();
+                break;
+            }
+            case "enabled_tiles":
+                // update buttons to show only enabled ones
+                tileButtonsPanel.removeAll();
+                addButtons();
+                tileButtonsPanel.revalidate();
+                tileButtonsPanel.repaint();
+                break;
+        }
+        // update enabled buttons
+        if (!property.equals("enabled_tiles")) {
+            updateEnabledTileController.execute(playerName, tileAddTarget);
         }
     }
 
