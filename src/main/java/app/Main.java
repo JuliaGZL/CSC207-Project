@@ -23,6 +23,7 @@ public class Main {
                                     .addDoraDisplayView()
                                     .addUradoraDisplayView()
                                     .addTileSelectorView()
+                                    .addChangePlayerSupport()
                                     .build();
         app.pack();
         app.setVisible(true);

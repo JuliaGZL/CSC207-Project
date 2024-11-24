@@ -7,7 +7,6 @@ import interface_adapter.edit_tiles.*;
 import interface_adapter.player_events.ChangePlayerController;
 import interface_adapter.player_events.ChangePlayerPresenter;
 import interface_adapter.player_events.PlayerEventsViewModel;
-import mahjong.BaseTile;
 import usecase.add_tile.AddTileInputBoundary;
 import usecase.add_tile.AddTileInteractor;
 import usecase.change_player.ChangePlayerInteractor;
@@ -17,7 +16,6 @@ import usecase.clear_tiles.ClearTilesOutputBoundary;
 import usecase.remove_tile.RemoveTileInputBoundary;
 import usecase.remove_tile.RemoveTileInteractor;
 import usecase.update_enabled_tiles.UpdateEnabledTileInteractor;
-import utils.BaseTileToPathMapping;
 import view.EditStatusView;
 import view.PlayerEventsView;
 import view.TileDisplayView;
@@ -26,7 +24,6 @@ import view.TileSelectorView;
 import javax.swing.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 // TODO: this is very messy, let's improve it later.
 public class AppBuilder {
@@ -45,9 +42,8 @@ public class AppBuilder {
     private AddRemoveTilePresenter handPresenter;
     private AddRemoveTilePresenter doraPresenter;
     private AddRemoveTilePresenter uradoraPresenter;
-
-    // shared view model
-    private PlayerEventsViewModel playerEventsViewModel;
+    private ChangePlayerPresenter changePlayerPresenter =
+            new ChangePlayerPresenter(new ArrayList<TilesDisplayViewModel>());
 
     // factory
     private final PlayerFactory playerFactory = new PlayerFactory();
@@ -63,8 +59,9 @@ public class AppBuilder {
     }
 
     public AppBuilder addPlayerEventsView() {
-        playerEventsViewModel = new PlayerEventsViewModel();
-        this.playerEventsView = new PlayerEventsView(playerEventsViewModel);
+        PlayerEventsViewModel model = new PlayerEventsViewModel();
+        playerEventsView = new PlayerEventsView(model);
+        changePlayerPresenter.setPlayerEventsViewModel(model);
         return this;
     }
 
@@ -83,6 +80,9 @@ public class AppBuilder {
         RemoveTileInputBoundary removeInteractor = new RemoveTileInteractor(
                 DAO, handPresenter, RemoveTileInteractor.HAND);
         RemoveTileController removeController = new RemoveTileController(removeInteractor);
+
+        // configure change player
+        changePlayerPresenter.addTileDisplayViewModel(model);
 
         // configure view
         handDisplayView = new TileDisplayView(model);
@@ -107,6 +107,9 @@ public class AppBuilder {
                 DAO, doraPresenter, RemoveTileInteractor.DORA);
         RemoveTileController removeController = new RemoveTileController(removeInteractor);
 
+        // configure change player
+        changePlayerPresenter.addTileDisplayViewModel(model);
+
         // configure view
         doraDisplayView = new TileDisplayView(model);
         doraDisplayView.setClearTilesController(clearController);
@@ -129,6 +132,9 @@ public class AppBuilder {
         RemoveTileInputBoundary removeInteractor = new RemoveTileInteractor(
                 DAO, uradoraPresenter, RemoveTileInteractor.URADORA);
         RemoveTileController removeController = new RemoveTileController(removeInteractor);
+
+        // configure change player
+        changePlayerPresenter.addTileDisplayViewModel(model);
 
         // configure view
         uradoraDisplayView = new TileDisplayView(model);
@@ -175,12 +181,16 @@ public class AppBuilder {
         uradoraDisplayView.setNotifier(notifier);
         editStatusView.setNotifier(notifier);
 
-        // configure change player (for the player events panel)
-        ChangePlayerPresenter changePlayerPresenter = new ChangePlayerPresenter(playerEventsViewModel, model);
-        ChangePlayerInteractor changePlayerInteractor = new ChangePlayerInteractor(DAO, changePlayerPresenter);
-        ChangePlayerController changePlayerController = new ChangePlayerController(changePlayerInteractor);
-        playerEventsView.setChangePlayerController(changePlayerController);
+        // configure change player
+        changePlayerPresenter.setTileSelectorViewModel(model);
 
+        return this;
+    }
+
+    public AppBuilder addChangePlayerSupport() {
+        ChangePlayerInteractor interactor = new ChangePlayerInteractor(DAO, changePlayerPresenter);
+        ChangePlayerController controller = new ChangePlayerController(interactor);
+        playerEventsView.setChangePlayerController(controller);
         return this;
     }
 

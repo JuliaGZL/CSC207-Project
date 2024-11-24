@@ -1,17 +1,19 @@
 package interface_adapter.player_events;
 
 import interface_adapter.edit_tiles.TileSelectorViewModel;
+import interface_adapter.edit_tiles.TilesDisplayViewModel;
 import usecase.change_player.ChangePlayerOutputBoundary;
 import usecase.change_player.ChangePlayerOutputData;
 
-public class ChangePlayerPresenter implements ChangePlayerOutputBoundary {
-    private final PlayerEventsViewModel playerEventsViewModel;
-    private final TileSelectorViewModel tileSelectorViewModel;
+import java.util.List;
 
-    public ChangePlayerPresenter(PlayerEventsViewModel playerEventsViewModel,
-                                 TileSelectorViewModel tileSelectorViewModel) {
-        this.playerEventsViewModel = playerEventsViewModel;
-        this.tileSelectorViewModel = tileSelectorViewModel;
+public class ChangePlayerPresenter implements ChangePlayerOutputBoundary {
+    private PlayerEventsViewModel playerEventsViewModel;
+    private TileSelectorViewModel tileSelectorViewModel;
+    private List<TilesDisplayViewModel> tileDisplayViewModels;
+
+    public ChangePlayerPresenter(List<TilesDisplayViewModel> tileDisplayViewModels) {
+        this.tileDisplayViewModels = tileDisplayViewModels;
     }
 
     /**
@@ -32,6 +34,12 @@ public class ChangePlayerPresenter implements ChangePlayerOutputBoundary {
         playerEventsViewModel.getState().setPlayerName(name);
         playerEventsViewModel.getState().setScore(score);
         playerEventsViewModel.firePropertyChanged("player");
+
+        // notify the tile list displays to update content
+        for (TilesDisplayViewModel viewModel : tileDisplayViewModels) {
+            viewModel.getState().setPlayerName(name);
+            viewModel.firePropertyChanged("player");
+        }
     }
 
     /**
@@ -42,5 +50,21 @@ public class ChangePlayerPresenter implements ChangePlayerOutputBoundary {
     @Override
     public void prepareFailView(String errorMessage) {
         throw new RuntimeException("The change player use case should never fails!");
+    }
+
+    public void setPlayerEventsViewModel(PlayerEventsViewModel playerEventsViewModel) {
+        this.playerEventsViewModel = playerEventsViewModel;
+    }
+
+    public void setTileSelectorViewModel(TileSelectorViewModel tileSelectorViewModel) {
+        this.tileSelectorViewModel = tileSelectorViewModel;
+    }
+
+    /**
+     * Add a TileDisplayViewModel on which firePropertyChanged will be called
+     * @param tileDisplayViewModel the new TileDisplayViewModel
+     */
+    public void addTileDisplayViewModel(TilesDisplayViewModel tileDisplayViewModel) {
+        this.tileDisplayViewModels.add(tileDisplayViewModel);
     }
 }

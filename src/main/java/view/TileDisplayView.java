@@ -118,6 +118,9 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
         TilesDisplayState state = (TilesDisplayState) evt.getNewValue();
         if(Objects.equals(evt.getPropertyName(), "player")) {
             playerName = state.getPlayerName();
+            // NOTE: with tileId null is a special type of remove tile use case
+            //       that does not actually remove any tile but just read out the tile list.
+            removeTileController.execute(null, playerName);
         } else if (Objects.equals(evt.getPropertyName(), "tiles")) {
             setTiles(state.getIdList(), state.getNameList(), state.getIconList());
         } else if (Objects.equals(evt.getPropertyName(), "failed")) {

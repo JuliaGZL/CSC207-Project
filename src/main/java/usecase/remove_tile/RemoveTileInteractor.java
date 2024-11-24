@@ -7,6 +7,7 @@ import utils.BaseTileToPathMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Interactor for the add_tile use case.
@@ -64,24 +65,27 @@ public class RemoveTileInteractor implements RemoveTileInputBoundary {
 
     private void removeTile(BaseTile id, List<Tile> tileList,
                             Player player, String name, int target) {
-        for (Tile tile : tileList) {
-            if (tile.getBaseTile() == id) {
-                tileList.remove(tile);
-                break;
+        // id == null is a special case that just reads the list without altering it.
+        if (id != null) {
+            for (Tile tile : tileList) {
+                if (Objects.equals(tile.getBaseTile(), id)) {
+                    tileList.remove(tile);
+                    break;
+                }
             }
+            switch (target) {
+                case HAND:
+                    player.setHand(tileList);
+                    break;
+                case DORA:
+                    player.setDora(tileList);
+                    break;
+                case URADORA:
+                    player.setUradora(tileList);
+                    break;
+            }
+            dataAccessObj.savePlayer(player);
         }
-        switch (target) {
-            case HAND:
-                player.setHand(tileList);
-                break;
-            case DORA:
-                player.setDora(tileList);
-                break;
-            case URADORA:
-                player.setUradora(tileList);
-                break;
-        }
-        dataAccessObj.savePlayer(player);
 
         final List<BaseTile> idList = new ArrayList<BaseTile>();
         final List<String> nameList = new ArrayList<String>();
