@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.checkerframework.common.returnsreceiver.qual.This;
 
 /**
  * Handles the localization of given enum values to their corresponding string representations. It
@@ -22,7 +21,7 @@ public class Localization<T> {
 
   private Function<String, T> keyConverter;
 
-  private String resourcePath = This.class.getClassLoader().getResource("").getPath();
+  private String resourcePath = this.getClass().getClassLoader().getResource("").getPath();
 
   /**
    * Constructs a Localization instance with a key converter function.
