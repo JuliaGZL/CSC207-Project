@@ -16,7 +16,11 @@ public class Player {
     private List<Tile> hand;
     private List<Tile> dora;
     private List<Tile> uradora;
-    private Boolean[] attributes = new Boolean[9];
+    private Boolean[] attributes = {
+            false, false, false,
+            false, false, false,
+            false, false, false
+    };
     private int numAkaDora = 0;
     private String winType = "Tsumo";
     private String roundWind = "East";

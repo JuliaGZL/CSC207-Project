@@ -6,6 +6,7 @@ package interface_adapter.player_events;
 public class PlayerEventsState {
     private String playerName = "default";
     private int score = 0;
+    private String message = "";
 
     public PlayerEventsState(){
 
@@ -25,5 +26,13 @@ public class PlayerEventsState {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

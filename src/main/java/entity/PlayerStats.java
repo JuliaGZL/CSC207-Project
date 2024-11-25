@@ -381,10 +381,10 @@ public class PlayerStats {
    * @param callGroups   the call groups (Fuuros) of the player.
    */
   public PlayerStats(
-      boolean isRiichi, boolean isIppatsu, boolean isMenzenchin,
-      boolean isTsumo, boolean isRinshan, boolean isHaitei,
-      boolean isHoutei, boolean isChankan, boolean isTenhou,
-      boolean isChiihou, boolean isOya, BaseTile selfWind,
+      boolean isRiichi, boolean isDoubleRiichi, boolean isIppatsu,
+      boolean isMenzenchin, boolean isTsumo, boolean isRinshan,
+      boolean isHaitei, boolean isHoutei, boolean isChankan,
+      boolean isTenhou, boolean isChiihou, boolean isOya, BaseTile selfWind,
       BaseTile prevalentWind, List<Tile> hand, List<CallGroup> callGroups,
       int numAkaDora) {
     this.isRiichi = isRiichi;

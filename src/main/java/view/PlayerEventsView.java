@@ -1,6 +1,7 @@
 package view;
 
 import interface_adapter.player_events.ChangePlayerController;
+import interface_adapter.player_events.HuSolverController;
 import interface_adapter.player_events.PlayerEventsViewModel;
 
 import javax.swing.*;
@@ -16,6 +17,7 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
     private final JLabel playerScoreLabel;
 
     private ChangePlayerController changePlayerController;
+    private HuSolverController huSolverController;
     private String playerName;
     private int score;
 
@@ -43,8 +45,12 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
                 }
             }
         });
-        // TODO: complete features
-        // computeScoreButton.add...
+        computeScoreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                huSolverController.execute(playerName);
+            }
+        });
 
         // set layout
         JPanel upperPanel = new JPanel();
@@ -72,6 +78,10 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
         this.changePlayerController = changePlayerController;
     }
 
+    public void setHuSolverController(HuSolverController huSolverController) {
+        this.huSolverController = huSolverController;
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         final String property = propertyChangeEvent.getPropertyName();
@@ -80,6 +90,12 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
             this.score = this.viewModel.getState().getScore();
             this.playerNameLabel.setText("Player: " + this.playerName);
             this.playerScoreLabel.setText("Score: " + this.score);
+        } else if (property.equals("score")) {
+            this.score = this.viewModel.getState().getScore();
+            this.playerScoreLabel.setText(String.valueOf(score));
+            JOptionPane.showMessageDialog(this, this.viewModel.getState().getMessage());
+        } else if (property.equals("failed")) {
+            JOptionPane.showMessageDialog(this, this.viewModel.getState().getMessage());
         }
     }
 }

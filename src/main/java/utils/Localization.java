@@ -1,3 +1,4 @@
+
 package utils;
 
 import java.io.BufferedReader;
@@ -20,6 +21,8 @@ public class Localization<T> {
 
   private Function<String, T> keyConverter;
 
+  private String resourcePath = this.getClass().getClassLoader().getResource("").getPath();
+
   /**
    * Constructs a Localization instance with a key converter function.
    *
@@ -35,7 +38,7 @@ public class Localization<T> {
    * @param pathToDir the path to the directory containing the localization file
    */
   public void initializeTranslator(String pathToDir) {
-    try (BufferedReader br = new BufferedReader(new FileReader(pathToDir))) {
+    try (BufferedReader br = new BufferedReader(new FileReader(resourcePath + pathToDir))) {
       String line;
       while ((line = br.readLine()) != null) {
 
@@ -51,7 +54,7 @@ public class Localization<T> {
           String value = line.substring(index + 1).trim();
 
           if ((value.startsWith("\"") && value.endsWith("\""))
-              || (value.startsWith("'") && value.endsWith("'"))) {
+                  || (value.startsWith("'") && value.endsWith("'"))) {
             value = value.substring(1, value.length() - 1);
           }
 

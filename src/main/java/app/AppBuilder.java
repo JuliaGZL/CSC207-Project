@@ -8,9 +8,7 @@ import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.EditStatusPresenter;
 import interface_adapter.edit_status.EditStatusViewModel;
 import interface_adapter.edit_tiles.*;
-import interface_adapter.player_events.ChangePlayerController;
-import interface_adapter.player_events.ChangePlayerPresenter;
-import interface_adapter.player_events.PlayerEventsViewModel;
+import interface_adapter.player_events.*;
 import usecase.add_tile.AddTileInputBoundary;
 import usecase.add_tile.AddTileInteractor;
 import usecase.change_player.ChangePlayerInteractor;
@@ -20,6 +18,9 @@ import usecase.clear_tiles.ClearTilesOutputBoundary;
 import usecase.edit_status.EditStatusInteractor;
 import usecase.edit_status.EditStatusInputBoundary;
 import usecase.edit_status.EditStatusOutputBoundary;
+import usecase.hu_solver.HuSolveOutputBoundary;
+import usecase.hu_solver.HuSolverInputBoundary;
+import usecase.hu_solver.HuSolverInteractor;
 import usecase.remove_tile.RemoveTileInputBoundary;
 import usecase.remove_tile.RemoveTileInteractor;
 import usecase.update_enabled_tiles.UpdateEnabledTileInteractor;
@@ -80,8 +81,12 @@ public class AppBuilder {
 
     public AppBuilder addPlayerEventsView() {
         PlayerEventsViewModel model = new PlayerEventsViewModel();
+        HuSolveOutputBoundary presenter = new HuSolverPresenter(model);
+        HuSolverInputBoundary interactor = new HuSolverInteractor(DAO, presenter);
+        HuSolverController controller = new HuSolverController(interactor);
         playerEventsView = new PlayerEventsView(model);
         changePlayerPresenter.setPlayerEventsViewModel(model);
+        playerEventsView.setHuSolverController(controller);
         return this;
     }
 
@@ -164,10 +169,7 @@ public class AppBuilder {
     }
 
     public AppBuilder addTileSelectorView() {
-        // TODO: also support selecting dora
-
         // instantiate view model
-//        TileSelectorViewModel model = new TileSelectorViewModel();
         tileSelectorViewModel = new TileSelectorViewModel();
 
         // configure add tile
@@ -184,28 +186,28 @@ public class AppBuilder {
         AddTileController uradoraController = new AddTileController(uradoraInteractor);
 
         // configure update_enabled_tiles
-        UpdateEnabledTilePresenter updateEnabledTilePresenter = new UpdateEnabledTilePresenter(model);
+        UpdateEnabledTilePresenter updateEnabledTilePresenter = new UpdateEnabledTilePresenter(tileSelectorViewModel);
         UpdateEnabledTileInteractor updateEnabledTileInteractor =
                 new UpdateEnabledTileInteractor(DAO, updateEnabledTilePresenter);
         UpdateEnabledTileController updateEnabledTileController =
                 new UpdateEnabledTileController(updateEnabledTileInteractor);
 
         // configure selector
-        tileSelectorView = new TileSelectorView(model);
+        tileSelectorView = new TileSelectorView(tileSelectorViewModel);
         tileSelectorView.setAddToHandController(handController);
         tileSelectorView.setAddToDoraController(doraController);
         tileSelectorView.setAddToUradoraController(uradoraController);
         tileSelectorView.setUpdateEnabledTileController(updateEnabledTileController);
 
         // configure update notification event
-        TileSelectorPropertyUpdateNotifier notifier = new TileSelectorPropertyUpdateNotifier(model);
+        TileSelectorPropertyUpdateNotifier notifier = new TileSelectorPropertyUpdateNotifier(tileSelectorViewModel);
         handDisplayView.setNotifier(notifier);
         doraDisplayView.setNotifier(notifier);
         uradoraDisplayView.setNotifier(notifier);
         editStatusView.setNotifier(notifier);
 
         // configure change player
-        changePlayerPresenter.setTileSelectorViewModel(model);
+        changePlayerPresenter.setTileSelectorViewModel(tileSelectorViewModel);
 
         return this;
     }

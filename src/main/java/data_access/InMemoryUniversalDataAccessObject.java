@@ -9,7 +9,7 @@ import usecase.add_tile.AddTileDataAccessInterface;
 import usecase.change_player.ChangePlayerDataAccessInterface;
 import usecase.clear_tiles.ClearTilesDataAccessInterface;
 import usecase.edit_status.EditStatusDataAccessInterface;
-import usecase.edit_status.EditStatusDataAccessInterface;
+import usecase.hu_solver.HuSolverDataAccessInterface;
 import usecase.remove_tile.RemoveTileDataAccessInterface;
 import usecase.update_enabled_tiles.UpdateEnabledTileDataAccessInterface;
 
@@ -21,7 +21,8 @@ public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInter
         ClearTilesDataAccessInterface,
         UpdateEnabledTileDataAccessInterface,
         ChangePlayerDataAccessInterface,
-        EditStatusDataAccessInterface {
+        EditStatusDataAccessInterface,
+        HuSolverDataAccessInterface {
     private final Map<String, Player> players = new HashMap<String, Player>();
 
     public InMemoryUniversalDataAccessObject() {
