@@ -161,12 +161,21 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
             checkboxPanel.add(checkBox);
         }
 
-        handleComboBoxSelection(winTypeComboBox, "Tsumo");
+        initializeCheckBoxes();
 
         // Add all components to this panel
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.add(leftPanel);
         this.add(checkboxPanel);
+    }
+
+    private void initializeCheckBoxes() {
+        // Disable certain checkboxes based on initial combo box selections
+        checkBoxes.get(EditStatusViewModel.ONE_SHOT_INDEX).setEnabled(false);
+        checkBoxes.get(EditStatusViewModel.UNDER_THE_RIVER_INDEX).setEnabled(false);
+        checkBoxes.get(EditStatusViewModel.AFTER_A_KAN_INDEX).setEnabled(false);
+        checkBoxes.get(EditStatusViewModel.ROBBING_A_KAN_INDEX).setEnabled(false);
+        checkBoxes.get(EditStatusViewModel.CHIIHOU_INDEX).setEnabled(false);
     }
 
     @Override
@@ -199,12 +208,21 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
     private Boolean[] preHandleComboBoxSelection(JComboBox<String> comboBox, String selectedItem) {
         Boolean[] newAttributes = getAttributes();
+        // Set disabled checkboxes to false
         if (comboBox.equals(winTypeComboBox)) {
             if ("Tsumo".equals(selectedItem)) {
                 newAttributes[EditStatusViewModel.UNDER_THE_RIVER_INDEX] = false;
             }
             else if ("Ron".equals(selectedItem)) {
                 newAttributes[EditStatusViewModel.UNDER_THE_SEA_INDEX] = false;
+            }
+        }
+        if (comboBox.equals(roundWindComboBox)) {
+            if ("East".equals(selectedItem)) {
+                newAttributes[EditStatusViewModel.CHIIHOU_INDEX] = false;
+            }
+            else {
+                newAttributes[EditStatusViewModel.TENHOU_INDEX] = false;
             }
         }
         return newAttributes;
@@ -216,22 +234,39 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
      * @param selectedItem the item (String) that was selected
      */
     private void handleComboBoxSelection(JComboBox<String> comboBox, String selectedItem) {
-        // TODO: disable certain checkboxes based on combo box selections
+        // TODO: handle 门前清（disable Riichi and Double Riichi if not)
         System.out.println("ComboBox selection handled for: " + selectedItem);
+
+        // Disable/enable "Under the River/Sea" checkboxes according to win type
         if (comboBox.equals(winTypeComboBox)) {
             if ("Tsumo".equals(selectedItem)) {
                 disableCheckBox("Under the River");
                 enableCheckBox("Under the Sea");
+                // TODO: disable Robbing a Kan
             }
             else if ("Ron".equals(selectedItem)) {
                 disableCheckBox("Under the Sea");
                 enableCheckBox("Under the River");
+
+                // TODO: enable Robbing a Kan
             }
         }
-        this.revalidate();
-        this.repaint();
-        // TODO: update the view model/state and use controller to update entities
+        // Disable/enable "Tenhou/Chiihou" checkboxes according to seat wind
+        if (comboBox.equals(seatWindComboBox)) {
+            // If the player is East (starts the first), they can only win big at beginning by Tenhou
+            if ("East".equals(selectedItem))  {
+                disableCheckBox("Chiihou");
+                enableCheckBox("Tenhou");
+            }
+            // If the player is not East, they can only win big at beginning by Chiihou
+            else {
+                disableCheckBox("Tenhou");
+                enableCheckBox("Chiihou");
+            }
+        }
     }
+
+    // TODO: handle one shot, riichi and double riichi disabling and enabling
 
     /**
      * Disable and deselect a checkbox with the specified name.
