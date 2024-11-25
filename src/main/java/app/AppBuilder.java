@@ -2,6 +2,10 @@ package app;
 
 import data_access.InMemoryUniversalDataAccessObject;
 import entity.PlayerFactory;
+import entity.Tile;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.edit_status.EditStatusController;
+import interface_adapter.edit_status.EditStatusPresenter;
 import interface_adapter.edit_status.EditStatusViewModel;
 import interface_adapter.edit_tiles.*;
 import interface_adapter.player_events.ChangePlayerController;
@@ -13,6 +17,9 @@ import usecase.change_player.ChangePlayerInteractor;
 import usecase.clear_tiles.ClearTilesInputBoundary;
 import usecase.clear_tiles.ClearTilesInteractor;
 import usecase.clear_tiles.ClearTilesOutputBoundary;
+import usecase.edit_status.EditStatusInteractor;
+import usecase.edit_status.EditStatusInputBoundary;
+import usecase.edit_status.EditStatusOutputBoundary;
 import usecase.remove_tile.RemoveTileInputBoundary;
 import usecase.remove_tile.RemoveTileInteractor;
 import usecase.update_enabled_tiles.UpdateEnabledTileInteractor;
@@ -38,6 +45,12 @@ public class AppBuilder {
     private TileDisplayView uradoraDisplayView;
     private TileSelectorView tileSelectorView;
 
+    // view models
+    private EditStatusViewModel editStatusViewModel;
+    private SelectDoraViewModel selectDoraViewModel;
+    private TileSelectorViewModel tileSelectorViewModel;
+    private ViewManagerModel viewManagerMode = new ViewManagerModel();
+
     // shared presenters
     private AddRemoveTilePresenter handPresenter;
     private AddRemoveTilePresenter doraPresenter;
@@ -53,8 +66,15 @@ public class AppBuilder {
     }
 
     public AppBuilder addEditStatusView() {
-        EditStatusViewModel model = new EditStatusViewModel();
-        this.editStatusView = new EditStatusView(model);
+        editStatusViewModel = new EditStatusViewModel();
+        selectDoraViewModel = new SelectDoraViewModel();
+        EditStatusOutputBoundary presenter = new EditStatusPresenter(editStatusViewModel,
+                selectDoraViewModel, tileSelectorViewModel, viewManagerMode);
+
+        //        EditStatusInputBoundary interactor = new EditStatusPresenter(model, new SelectDoraViewModel());
+        EditStatusInputBoundary interactor = new EditStatusInteractor(DAO, presenter);
+        this.editStatusView = new EditStatusView(editStatusViewModel);
+        editStatusView.setEditStatusController(new EditStatusController(interactor));
         return this;
     }
 
@@ -144,8 +164,11 @@ public class AppBuilder {
     }
 
     public AppBuilder addTileSelectorView() {
+        // TODO: also support selecting dora
+
         // instantiate view model
-        TileSelectorViewModel model = new TileSelectorViewModel();
+//        TileSelectorViewModel model = new TileSelectorViewModel();
+        tileSelectorViewModel = new TileSelectorViewModel();
 
         // configure add tile
         AddTileInputBoundary handInteractor = new AddTileInteractor(

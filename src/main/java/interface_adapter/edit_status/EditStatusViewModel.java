@@ -10,15 +10,11 @@ public class EditStatusViewModel extends ViewModel<EditStatusState> {
     public static final String[] ATTRIBUTES = {"Riichi", "Double Riichi", "One-shot", "Under the Sea",
             "Under the River", "After a Kan", "Robbing a Kan", "Tenhou", "Chiihou"};
 
-    public static final String MAN_LABEL = "Man";
-    public static final String PIN_LABEL = "Pin";
-    public static final String SOU_LABEL = "Sou";
-    public static final String RED_DORA_LABEL = "Red Dora";
-    public static final String SELECT_INDICATOR_LABEL = "Select Dora Indicators";
+    public static final int UNDER_THE_SEA_INDEX = 3;
+    public static final int UNDER_THE_RIVER_INDEX = 4;
 
     public EditStatusViewModel() {
         super("edit status");
         setState(new EditStatusState());
     }
-
 }

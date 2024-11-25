@@ -102,4 +102,7 @@ public class Tile {
     return isDora;
   }
 
+  public BaseTile getTile() {
+    return tile;
+  }
 }

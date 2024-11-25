@@ -23,6 +23,9 @@ public class PlayerStatsBuilder {
   private BaseTile selfWind = BaseTile.windTon;
   private BaseTile prevalentWind = BaseTile.windTon;
   private List<CallGroup> callGroups = new ArrayList<>();
+  private List<Tile> doraList = new ArrayList<>();
+  private List<Tile> uraDoraList = new ArrayList<>();
+  private int numAkaDora = 0;
 
   /**
    * Sets the Riichi status.
@@ -177,6 +180,33 @@ public class PlayerStatsBuilder {
     this.callGroups = callGroups;
     return this;
   }
+  
+  /**
+   * Sets the list of Dora tiles for the player.
+   *
+   * @param doraList the list of Dora tiles to be set
+   */
+  public void setDoraList(List<Tile> doraList) {
+    this.doraList = doraList;
+  }
+
+  /**
+   * Sets the list of Dora tiles for the player.
+   *
+   * @param uraDoraList the list of Dora tiles to be set
+   */
+  public void setUraDoraList(List<Tile> uraDoraList) {
+    this.uraDoraList = uraDoraList;
+  }
+
+  /**
+   * Sets the number of Aka Dora (red bonus tiles) for the player.
+   *
+   * @param numAkaDora the number of Aka Dora to set
+   */
+  public void setNumAkaDora(int numAkaDora) {
+    this.numAkaDora = numAkaDora;
+  }
 
   /**
    * Builds and returns a PlayerStats object.
@@ -190,6 +220,7 @@ public class PlayerStatsBuilder {
         isTsumo, isRinshan, isHaitei,
         isHoutei, isChankan, isTenhou,
         isChiihou, isOya, selfWind,
-        prevalentWind, hand, callGroups);
+        prevalentWind, hand, callGroups, 
+        numAkaDora);
   }
 }
