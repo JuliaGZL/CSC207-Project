@@ -38,9 +38,7 @@ public class HandResult {
    * @return the singleton instance of HandResult
    */
   public static HandResult getInstance(PlayerStats playerStats) {
-    if (instance == null) {
-      instance = new HandResult(playerStats);
-    }
+    instance = new HandResult(playerStats);
     return instance;
   }
 
