@@ -22,7 +22,7 @@ public class Localization<T> {
 
   private Function<String, T> keyConverter;
 
-  private String resourcePath = This.class.getResource("").getPath();
+  private String resourcePath = This.class.getClassLoader().getResource("").getPath();
 
   /**
    * Constructs a Localization instance with a key converter function.
