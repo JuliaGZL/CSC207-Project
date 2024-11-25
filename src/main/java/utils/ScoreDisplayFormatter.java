@@ -60,7 +60,7 @@ public class ScoreDisplayFormatter {
    */
   public static Localization<String> getLocalization() {
     if (!isInitialized) {
-      localization.initializeTranslator("localization\\display_l_english.yaml");
+      localization.initializeTranslator("/localization/display_l_english.yaml");
       isInitialized = true;
     }
     return localization;
