@@ -8,6 +8,7 @@ import entity.Player;
 import usecase.add_tile.AddTileDataAccessInterface;
 import usecase.clear_tiles.ClearTilesDataAccessInterface;
 import usecase.edit_status.EditStatusDataAccessInterface;
+import usecase.read_hand.ReadHandDataAccessInterface;
 import usecase.remove_tile.RemoveTileDataAccessInterface;
 
 /**
@@ -16,7 +17,8 @@ import usecase.remove_tile.RemoveTileDataAccessInterface;
 public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInterface,
         RemoveTileDataAccessInterface,
         ClearTilesDataAccessInterface,
-        EditStatusDataAccessInterface {
+        EditStatusDataAccessInterface,
+        ReadHandDataAccessInterface {
     private final Map<String, Player> players = new HashMap<String, Player>();
 
     public InMemoryUniversalDataAccessObject() {
