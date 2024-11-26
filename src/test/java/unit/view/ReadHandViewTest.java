@@ -7,6 +7,7 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.read_hand.ReadHandController;
 import interface_adapter.read_hand.ReadHandPresenter;
 import interface_adapter.read_hand.ReadHandViewModel;
+import mahjong.BaseTile;
 import org.junit.jupiter.api.BeforeEach;
 import usecase.read_hand.ReadHandDataAccessInterface;
 import usecase.read_hand.ReadHandInputBoundary;
@@ -43,6 +44,7 @@ public class ReadHandViewTest {
 
         // Create dummy player
         List<Tile> hand = new ArrayList<>();
+        hand.add(new Tile(BaseTile._1m, false, false, false));
         Player player = new Player("default", 100, hand);
         Boolean[] attributes = {true, false, false, false, false, false, false, false, false};
         player.setAttributes(attributes);

@@ -56,6 +56,7 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
             if (attribute) {
                 // There is a true attributes. Early return.
                 allFalse = false;
+                break;
             }
             allFalse = true;
         }
