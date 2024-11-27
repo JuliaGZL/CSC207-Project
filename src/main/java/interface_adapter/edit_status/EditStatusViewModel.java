@@ -2,6 +2,9 @@ package interface_adapter.edit_status;
 
 import interface_adapter.ViewModel;
 
+/**
+ * The ViewModel for the Edit Status View.
+ */
 public class EditStatusViewModel extends ViewModel<EditStatusState> {
 
     public static final String[] TILE_TYPES = {"Hand", "Chii", "Pon", "Kan", "Ankan", "Dora", "Uradora", "Akadora"};

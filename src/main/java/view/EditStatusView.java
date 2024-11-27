@@ -120,9 +120,10 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
             public void actionPerformed(ActionEvent evt) {
                 if (evt.getSource().equals(seatWindComboBox)) {
                     String selectedItem = (String) seatWindComboBox.getSelectedItem();
+                    Boolean[] newAttributes = preHandleComboBoxSelection(seatWindComboBox, selectedItem);
                     final EditStatusState currentState = editStatusViewModel.getState();
 
-                    editStatusController.execute("seatWind", currentState.getAttributes(), currentState.getNumAkadora(),
+                    editStatusController.execute("seatWind", newAttributes, currentState.getNumAkadora(),
                             selectedItem, currentState.getRoundWind(), currentState.getWinType(),
                             playerName);
                 }
@@ -164,15 +165,29 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         // Constructs panel for each checkbox & label
         this.checkBoxes = addCheckBoxes(EditStatusViewModel.ATTRIBUTES);
         for (JCheckBox checkBox : checkBoxes) {
-            checkBox.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent evt) {
-                    Boolean[] newAttributes = getAttributes();
-                    final EditStatusState currentState = editStatusViewModel.getState();
-                    editStatusController.execute("attributes", newAttributes, currentState.getNumAkadora(),
-                            currentState.getSeatWind(), currentState.getRoundWind(), currentState.getWinType(),
-                            playerName);
-                }
-            });
+            if (checkBox.getText().equals("One-shot") || checkBox.getText().equals("Riichi") ||
+                    checkBox.getText().equals("Double Riichi")) {
+                checkBox.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final EditStatusState currentState = editStatusViewModel.getState();
+                        Boolean[] newAttributes = preHandleCheckBoxSelection(checkBox);
+                        editStatusController.execute("attributes", newAttributes, currentState.getNumAkadora(),
+                                currentState.getSeatWind(), currentState.getRoundWind(), currentState.getWinType(),
+                                playerName);
+                    }
+                });
+            }
+            else {
+                checkBox.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        Boolean[] newAttributes = getAttributes();
+                        final EditStatusState currentState = editStatusViewModel.getState();
+                        editStatusController.execute("attributes", newAttributes, currentState.getNumAkadora(),
+                                currentState.getSeatWind(), currentState.getRoundWind(), currentState.getWinType(),
+                                playerName);
+                    }
+                });
+            }
             checkboxPanel.add(checkBox);
         }
 
@@ -227,13 +242,14 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         if (comboBox.equals(winTypeComboBox)) {
             if ("Tsumo".equals(selectedItem)) {
                 newAttributes[EditStatusViewModel.UNDER_THE_RIVER_INDEX] = false;
+                newAttributes[EditStatusViewModel.ROBBING_A_KAN_INDEX] = false;
             }
             else if ("Ron".equals(selectedItem)) {
                 newAttributes[EditStatusViewModel.UNDER_THE_SEA_INDEX] = false;
             }
         }
-        if (comboBox.equals(roundWindComboBox)) {
-            if ("East".equals(selectedItem)) {
+        if (comboBox.equals(seatWindComboBox)) {
+            if ("Ton".equals(selectedItem)) {
                 newAttributes[EditStatusViewModel.CHIIHOU_INDEX] = false;
             }
             else {
@@ -249,7 +265,6 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
      * @param selectedItem the item (String) that was selected
      */
     private void handleComboBoxSelection(JComboBox<String> comboBox, String selectedItem) {
-        // TODO: handle 门前清（disable Riichi and Double Riichi if not)
         System.out.println("ComboBox selection handled for: " + selectedItem);
 
         // Disable/enable "Under the River/Sea" checkboxes according to win type
@@ -257,31 +272,93 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
             if ("Tsumo".equals(selectedItem)) {
                 disableCheckBox("Under the River");
                 enableCheckBox("Under the Sea");
-                // TODO: disable Robbing a Kan
+                disableCheckBox("Robbing a Kan");
             }
             else if ("Ron".equals(selectedItem)) {
                 disableCheckBox("Under the Sea");
                 enableCheckBox("Under the River");
-
-                // TODO: enable Robbing a Kan
+                enableCheckBox("Robbing a Kan");
             }
         }
         // Disable/enable "Tenhou/Chiihou" checkboxes according to seat wind
         if (comboBox.equals(seatWindComboBox)) {
             // If the player is East (starts the first), they can only win big at beginning by Tenhou
-            if ("East".equals(selectedItem))  {
+            if ("Ton".equals(selectedItem))  {
+                System.out.println("Tenhou enabled");
                 disableCheckBox("Chiihou");
                 enableCheckBox("Tenhou");
             }
             // If the player is not East, they can only win big at beginning by Chiihou
             else {
+                System.out.println("Chiihou enabled");
                 disableCheckBox("Tenhou");
                 enableCheckBox("Chiihou");
             }
         }
+        this.revalidate();
+        this.repaint();
     }
 
-    // TODO: handle one shot, riichi and double riichi disabling and enabling
+    /**
+     * Method for handling selection events on checkboxes.
+     * @param checkBox the checkbox on select.
+     */
+    private Boolean[] preHandleCheckBoxSelection(JCheckBox checkBox) {
+        System.out.println("Pre handle checkbox");
+        Boolean[] newAttributes = getAttributes();
+
+        if (checkBox.getText().equals("Riichi")) {
+            if (checkBox.isSelected()) {
+                // If there is Riichi, set Double Riichi to false
+                newAttributes[EditStatusViewModel.DOUBLE_RIICHI_INDEX] = false;
+            }
+        }
+        else if (checkBox.getText().equals("Double Riichi")) {
+            if (checkBox.isSelected()) {
+                // If there is Double Riichi, set Riichi to false
+                newAttributes[EditStatusViewModel.RIICHI_INDEX] = false;
+            }
+        }
+        // If both Riichi and Double Riichi are unselected, set One-shot to false
+        if (!(checkBoxes.get(EditStatusViewModel.RIICHI_INDEX).isSelected() ||
+                checkBoxes.get(EditStatusViewModel.DOUBLE_RIICHI_INDEX).isSelected())) {
+            newAttributes[EditStatusViewModel.ONE_SHOT_INDEX] = false;
+        }
+        return newAttributes;
+    }
+
+    /**
+     * Method for handling selection events on checkboxes.
+     */
+    private void handleCheckBoxSelection() {
+        boolean isRiichi = checkBoxes.get(EditStatusViewModel.RIICHI_INDEX).isSelected();
+        if (isRiichi) {
+            // If there is Riichi, disable Double Riichi and enable One-shot
+            enableCheckBox("One-shot");
+            disableCheckBox("Double Riichi");
+        }
+        else {
+            // If Riichi is unselected, enable Double Riichi
+            enableCheckBox("Double Riichi");
+        }
+        boolean isDoubleRiichi = checkBoxes.get(EditStatusViewModel.DOUBLE_RIICHI_INDEX).isSelected();
+        if (isDoubleRiichi) {
+            // If Double Riichi is selected, disable Riichi and enable One-shot
+            enableCheckBox("One-shot");
+            disableCheckBox("Riichi");
+        }
+        else {
+            // If Double Riichi is unselected, enable Riichi
+            enableCheckBox("Riichi");
+        }
+        // If both Riichi and Double Riichi are unselected, disable One-shot
+        if (!(checkBoxes.get(EditStatusViewModel.RIICHI_INDEX).isSelected() ||
+                checkBoxes.get(EditStatusViewModel.DOUBLE_RIICHI_INDEX).isSelected())) {
+            disableCheckBox("One-shot");
+        }
+        this.revalidate();
+        this.repaint();
+    }
 
     /**
      * Disable and deselect a checkbox with the specified name.
@@ -321,10 +398,26 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
         final EditStatusState state = (EditStatusState) evt.getNewValue();
         System.out.println(state);
-        if ("winType".equals(evt.getPropertyName())) {
-            System.out.println("Property change event for winType occurred");
-            String winType = state.getWinType();
-            handleComboBoxSelection(winTypeComboBox, winType);
+        String propertyName = evt.getPropertyName();
+        switch (propertyName) {
+            case "attributes":
+                System.out.println("Property change event for attributes occurred");
+                Boolean[] attributes = state.getAttributes();
+                for (int i = 0; i < attributes.length; i++) {
+                    checkBoxes.get(i).setSelected(attributes[i]);
+                }
+                handleCheckBoxSelection();
+                break;
+            case "seatWind":
+                System.out.println("Property change event for seatWind occurred");
+                String seatWind = state.getSeatWind();
+                handleComboBoxSelection(seatWindComboBox, seatWind);
+                break;
+            case "winType":
+                System.out.println("Property change event for winType occurred");
+                String winType = state.getWinType();
+                handleComboBoxSelection(winTypeComboBox, winType);
+                break;
         }
     }
 
