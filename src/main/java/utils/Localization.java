@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+
 /**
  * Handles the localization of given enum values to their corresponding string representations. It
  * reads from a localization file to map each element to its localized name.
@@ -19,6 +20,8 @@ public class Localization<T> {
   private Map<T, String> localization = new HashMap<>();
 
   private Function<String, T> keyConverter;
+
+  private String resourcePath = this.getClass().getClassLoader().getResource("").getPath();
 
   /**
    * Constructs a Localization instance with a key converter function.
@@ -35,7 +38,7 @@ public class Localization<T> {
    * @param pathToDir the path to the directory containing the localization file
    */
   public void initializeTranslator(String pathToDir) {
-    try (BufferedReader br = new BufferedReader(new FileReader(pathToDir))) {
+    try (BufferedReader br = new BufferedReader(new FileReader(resourcePath + pathToDir))) {
       String line;
       while ((line = br.readLine()) != null) {
 
