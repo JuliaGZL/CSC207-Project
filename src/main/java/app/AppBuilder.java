@@ -9,6 +9,9 @@ import interface_adapter.edit_status.EditStatusPresenter;
 import interface_adapter.edit_status.EditStatusViewModel;
 import interface_adapter.edit_tiles.*;
 import interface_adapter.player_events.*;
+import interface_adapter.read_hand.ReadHandController;
+import interface_adapter.read_hand.ReadHandPresenter;
+import interface_adapter.read_hand.ReadHandViewModel;
 import usecase.add_tile.AddTileInputBoundary;
 import usecase.add_tile.AddTileInteractor;
 import usecase.change_player.ChangePlayerInteractor;
@@ -21,13 +24,13 @@ import usecase.edit_status.EditStatusOutputBoundary;
 import usecase.hu_solver.HuSolveOutputBoundary;
 import usecase.hu_solver.HuSolverInputBoundary;
 import usecase.hu_solver.HuSolverInteractor;
+import usecase.read_hand.ReadHandInputBoundary;
+import usecase.read_hand.ReadHandInteractor;
+import usecase.read_hand.ReadHandOutputBoundary;
 import usecase.remove_tile.RemoveTileInputBoundary;
 import usecase.remove_tile.RemoveTileInteractor;
 import usecase.update_enabled_tiles.UpdateEnabledTileInteractor;
-import view.EditStatusView;
-import view.PlayerEventsView;
-import view.TileDisplayView;
-import view.TileSelectorView;
+import view.*;
 
 import javax.swing.*;
 
@@ -45,18 +48,16 @@ public class AppBuilder {
     private TileDisplayView doraDisplayView;
     private TileDisplayView uradoraDisplayView;
     private TileSelectorView tileSelectorView;
+    private ReadHandView readHandView;
 
-    // view models
-    private EditStatusViewModel editStatusViewModel;
-    private SelectDoraViewModel selectDoraViewModel;
     private TileSelectorViewModel tileSelectorViewModel;
-    private ViewManagerModel viewManagerMode = new ViewManagerModel();
+    private final ViewManagerModel viewManagerMode = new ViewManagerModel();
 
     // shared presenters
     private AddRemoveTilePresenter handPresenter;
     private AddRemoveTilePresenter doraPresenter;
     private AddRemoveTilePresenter uradoraPresenter;
-    private ChangePlayerPresenter changePlayerPresenter =
+    private final ChangePlayerPresenter changePlayerPresenter =
             new ChangePlayerPresenter(new ArrayList<TilesDisplayViewModel>());
 
     // factory
@@ -67,8 +68,9 @@ public class AppBuilder {
     }
 
     public AppBuilder addEditStatusView() {
-        editStatusViewModel = new EditStatusViewModel();
-        selectDoraViewModel = new SelectDoraViewModel();
+        // view models
+        EditStatusViewModel editStatusViewModel = new EditStatusViewModel();
+        SelectDoraViewModel selectDoraViewModel = new SelectDoraViewModel();
         EditStatusOutputBoundary presenter = new EditStatusPresenter(editStatusViewModel,
                 selectDoraViewModel, tileSelectorViewModel, viewManagerMode);
 
@@ -219,6 +221,16 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addHanReader() {
+        ReadHandViewModel model = new ReadHandViewModel();
+        ReadHandOutputBoundary presenter = new ReadHandPresenter(model);
+        ReadHandInputBoundary interactor = new ReadHandInteractor(DAO, presenter);
+        ReadHandController controller = new ReadHandController(interactor);
+        readHandView = new ReadHandView(model);
+        readHandView.setReadHandController(controller);
+        return this;
+    }
+
     public JFrame build() {
         DAO.savePlayer(playerFactory.createEmpty("default"));
 
@@ -230,6 +242,7 @@ public class AppBuilder {
 
         upperRightPanel.setLayout(new BoxLayout(upperRightPanel, BoxLayout.Y_AXIS));
         upperRightPanel.add(playerEventsView);
+        upperRightPanel.add(readHandView);
         upperRightPanel.add(editStatusView);
 
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.X_AXIS));

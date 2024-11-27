@@ -24,6 +24,7 @@ public class Main {
                                     .addUradoraDisplayView()
                                     .addTileSelectorView()
                                     .addChangePlayerSupport()
+                                    .addHanReader()
                                     .build();
         app.pack();
         app.setVisible(true);

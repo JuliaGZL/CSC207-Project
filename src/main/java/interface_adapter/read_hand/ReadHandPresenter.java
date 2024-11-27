@@ -9,11 +9,9 @@ import usecase.read_hand.ReadHandOutputData;
  */
 public class ReadHandPresenter implements ReadHandOutputBoundary {
     private final ReadHandViewModel readHandViewModel;
-    private final ViewManagerModel viewManagerModel;
 
-    public ReadHandPresenter(ReadHandViewModel readHandViewModel, ViewManagerModel viewManagerModel) {
+    public ReadHandPresenter(ReadHandViewModel readHandViewModel) {
         this.readHandViewModel = readHandViewModel;
-        this.viewManagerModel = viewManagerModel;
     }
 
     /**

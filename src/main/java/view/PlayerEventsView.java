@@ -92,7 +92,7 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
             this.playerScoreLabel.setText("Score: " + this.score);
         } else if (property.equals("score")) {
             this.score = this.viewModel.getState().getScore();
-            this.playerScoreLabel.setText(String.valueOf(score));
+            this.playerScoreLabel.setText("Score: " + String.valueOf(score));
             JOptionPane.showMessageDialog(this, this.viewModel.getState().getMessage());
         } else if (property.equals("failed")) {
             JOptionPane.showMessageDialog(this, this.viewModel.getState().getMessage());
