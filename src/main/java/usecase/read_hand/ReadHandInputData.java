@@ -1,9 +1,5 @@
 package usecase.read_hand;
 
-import entity.Tile;
-
-import java.util.List;
-
 public class ReadHandInputData {
     private final String playerName;
     private final String[] attributeNames;
