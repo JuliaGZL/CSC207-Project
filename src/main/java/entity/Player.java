@@ -4,25 +4,48 @@ import java.util.List;
 
 /**
  * Class that represents a player.
- *  - name: Name of the player, must be unique.
- *  - score: Score obtained by the player.
- *  - hand: List of tiles that the player is holding.
  */
 public class Player {
+    // username
     private final String name;
+
+    // accumulated score
     private int score;
+
+    // tile lists
     private List<Tile> hand;
-    private Boolean[] attributes = new Boolean[9];
+    private List<Tile> dora;
+    private List<Tile> uradora;
+    private Boolean[] attributes = {
+            false, false, false,
+            false, false, false,
+            false, false, false
+    };
     private int numAkaDora = 0;
     private String winType = "Tsumo";
     private String roundWind = "East";
     private String seatWind = "East";
 
 
-    public Player(String name, int score, List<Tile> hand) {
+    /**
+     * For a new player with name only.
+     * @param name literally
+     */
+    public Player(String name) {
+        this.name = name;
+    }
+
+    // creates a fully augmented player.
+    public Player(String name,
+                  int score,
+                  List<Tile> hand,
+                  List<Tile> dora,
+                  List<Tile> uradora) {
         this.name = name;
         this.score = score;
         this.hand = hand;
+        this.dora = dora;
+        this.uradora = uradora;
     }
 
     public Player(String name, int score, List<Tile> hand, Boolean[] attributes,
@@ -74,6 +97,22 @@ public class Player {
 
     public void setHand(List<Tile> hand) {
         this.hand = hand;
+    }
+
+    public List<Tile> getDora() {
+        return dora;
+    }
+
+    public void setDora(List<Tile> dora) {
+        this.dora = dora;
+    }
+
+    public List<Tile> getUradora() {
+        return uradora;
+    }
+
+    public void setUradora(List<Tile> uradora) {
+        this.uradora = uradora;
     }
 
     public void setAttributes(Boolean[] attributes) {

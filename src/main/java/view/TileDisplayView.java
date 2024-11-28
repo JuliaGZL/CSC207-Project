@@ -31,6 +31,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
 
     private RemoveTileController removeTileController;
     private ClearTilesController clearTilesController;
+    private TileSelectorPropertyUpdateNotifier notifier;
 
     public TileDisplayView(TilesDisplayViewModel viewModel) {
         this.viewModel = viewModel;
@@ -44,7 +45,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
 
         // Configure style of the title label
         titleLabel = new JLabel(getViewName());
-        titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
         // Configure clear button
@@ -52,7 +53,10 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                // clear the tiles
                 clearTilesController.execute(playerName);
+                // notify the tile selector to update enabled buttons
+                notifier.notifyPropertyChange("", "");
             }
         });
 
@@ -78,20 +82,22 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
             if(i < idList.size()) {
                 final BaseTile tileId = idList.get(i);
                 final String iconPath = iconList.get(i);
-                TileButton button = TileButtonFactory.createImageButton(iconPath, tileId);
+                TileButton button = TileButtonFactory.createImageButton(tileId, iconPath);
                 // add button action listener (for removing tile on click)
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent actionEvent) {
+                        // remove the tile
                         removeTileController.execute(tileId, playerName);
+                        // notify the tile selector to update enabled buttons
+                        notifier.notifyPropertyChange("", "");
                     }
                 });
                 tileListPanel.add(button);
             } else {
                 // fill in the blank with dummy buttons
                 final TileButton button = TileButtonFactory.createImageButton(
-                        BaseTileToPathMapping.getTilePath(BaseTile._5z),
-                        null
+                        null, BaseTileToPathMapping.BLANK_TILE
                 );
                 tileListPanel.add(button);
             }
@@ -112,6 +118,9 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
         TilesDisplayState state = (TilesDisplayState) evt.getNewValue();
         if(Objects.equals(evt.getPropertyName(), "player")) {
             playerName = state.getPlayerName();
+            // NOTE: with tileId null is a special type of remove tile use case
+            //       that does not actually remove any tile but just read out the tile list.
+            removeTileController.execute(null, playerName);
         } else if (Objects.equals(evt.getPropertyName(), "tiles")) {
             setTiles(state.getIdList(), state.getNameList(), state.getIconList());
         } else if (Objects.equals(evt.getPropertyName(), "failed")) {
@@ -129,5 +138,9 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
 
     public void setClearTilesController(ClearTilesController clearTilesController) {
         this.clearTilesController = clearTilesController;
+    }
+
+    public void setNotifier(TileSelectorPropertyUpdateNotifier notifier) {
+        this.notifier = notifier;
     }
 }

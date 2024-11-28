@@ -64,7 +64,7 @@ public class EditStatusPresenter implements EditStatusOutputBoundary  {
     public void switchToSelectDoraView(EditStatusOutputData outputData) {
         // Tell the tile selector to now add new tiles to dora.
         final TileSelectorState tileSelectorState = tileSelectorViewModel.getState();
-        tileSelectorState.setTarget("dora");
+        tileSelectorState.setMessage("dora");
         tileSelectorViewModel.setState(tileSelectorState);
         tileSelectorViewModel.firePropertyChanged("target");
 
@@ -81,7 +81,7 @@ public class EditStatusPresenter implements EditStatusOutputBoundary  {
     public void switchToSelectForHand() {
         // Tell the tile selector to now add new tiles to hand.
         final TileSelectorState tileSelectorState = tileSelectorViewModel.getState();
-        tileSelectorState.setTarget("hand");
+        tileSelectorState.setMessage("hand");
         tileSelectorViewModel.setState(tileSelectorState);
         tileSelectorViewModel.firePropertyChanged("target");
     }

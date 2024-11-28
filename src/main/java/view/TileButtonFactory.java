@@ -4,6 +4,7 @@ import interface_adapter.edit_tiles.TileSelectorViewModel;
 import mahjong.BaseTile;
 
 import org.jetbrains.annotations.NotNull;
+import utils.BaseTileToPathMapping;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +13,11 @@ import java.net.URL;
 public class TileButtonFactory {
     /**
      * Creates a button with the appearance of the image under imagePath.
+     *
      * @param imagePath the path of the image to be displayed on the button
      * @return the button with the image
      */
-    public static TileButton createImageButton(String imagePath, BaseTile tileId) {
+    public static TileButton createImageButton(BaseTile tileId, String imagePath) {
         // Load the image from the resources directory
         URL imageURL = TileButton.class.getResource(imagePath);
         if (imageURL == null) {
@@ -28,6 +30,13 @@ public class TileButtonFactory {
                 TileSelectorViewModel.TILE_HEIGHT, Image.SCALE_SMOOTH);
 
         return getTileButton(tileId, image);
+    }
+
+    /**
+     * Creates a dummy blank button.
+     */
+    public static TileButton createDummyButton() {
+        return createImageButton(BaseTile._1m, BaseTileToPathMapping.BLANK_TILE);
     }
 
     @NotNull

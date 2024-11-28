@@ -13,7 +13,7 @@ import utils.ScoreDisplayFormatter;
 public class HandResult {
   private Pair<List<Yaku>, Pair<Integer, Integer>> result;
   private ScoreCounter sc;
-  
+
   private static HandResult instance;
 
   /**
@@ -25,10 +25,10 @@ public class HandResult {
     YakuCalculator inst = new YakuCalculator(playerStats);
     this.result = inst.yakuCounter();
     this.sc = new ScoreCounter(
-        result.getSnd().getFst(),
-        result.getSnd().getSnd(),
-        playerStats.isOya(),
-        playerStats.isTsumo());
+            result.getSnd().getFst(),
+            result.getSnd().getSnd(),
+            playerStats.isOya(),
+            playerStats.isTsumo());
   }
 
   /**
@@ -38,9 +38,7 @@ public class HandResult {
    * @return the singleton instance of HandResult
    */
   public static HandResult getInstance(PlayerStats playerStats) {
-    if (instance == null) {
-      instance = new HandResult(playerStats);
-    }
+    instance = new HandResult(playerStats);
     return instance;
   }
 
@@ -71,10 +69,10 @@ public class HandResult {
    */
   public List<String> displayHandResult() {
     List<String> res = Arrays.asList(
-        result.getFst().stream().map(Yaku::toString).collect(Collectors.joining(",")),
-        ScoreDisplayFormatter.formatFan(result.getSnd().getFst()),
-        ScoreDisplayFormatter.formatFu(result.getSnd().getSnd()),
-        sc.toFormattedScores());
+            result.getFst().stream().map(Yaku::toString).collect(Collectors.joining(",")),
+            ScoreDisplayFormatter.formatFan(result.getSnd().getFst()),
+            ScoreDisplayFormatter.formatFu(result.getSnd().getSnd()),
+            sc.toFormattedScores());
     return res;
   }
 

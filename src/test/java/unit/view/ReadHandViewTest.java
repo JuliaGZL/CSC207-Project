@@ -34,8 +34,7 @@ public class ReadHandViewTest {
         ReadHandDataAccessInterface DAO = new InMemoryUniversalDataAccessObject();
 
         ReadHandViewModel readHandViewModel = new ReadHandViewModel();
-        ViewManagerModel viewManagerModel = new ViewManagerModel();
-        ReadHandOutputBoundary presenter = new ReadHandPresenter(readHandViewModel, viewManagerModel);
+        ReadHandOutputBoundary presenter = new ReadHandPresenter(readHandViewModel);
         ReadHandInputBoundary interactor = new ReadHandInteractor(DAO, presenter);
         ReadHandController readHandController = new ReadHandController(interactor);
 

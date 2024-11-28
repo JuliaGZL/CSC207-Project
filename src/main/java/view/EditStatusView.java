@@ -3,6 +3,7 @@ package view;
 import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.EditStatusState;
 import interface_adapter.edit_status.EditStatusViewModel;
+import interface_adapter.edit_tiles.TileSelectorPropertyUpdateNotifier;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -10,6 +11,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -25,6 +28,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
     private Boolean[] statuses;
     private final EditStatusViewModel editStatusViewModel;
     private EditStatusController editStatusController;
+    private TileSelectorPropertyUpdateNotifier notifier;
 
     private String playerName = "default";
 
@@ -53,6 +57,17 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         tileTypeComboBox = new JComboBox<>(EditStatusViewModel.TILE_TYPES);
         tileTypePanel.add(tileTypeLabel);
         tileTypePanel.add(tileTypeComboBox);
+
+        // Combo box event to inform the tile selector for updating destination
+        tileTypeComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                final String item = itemEvent.getItem().toString().toLowerCase();
+                if (List.of("hand", "dora", "uradora").contains(item)) {
+                    notifier.notifyPropertyChange("target", item);
+                }
+            }
+        });
 
         // Constructs panel with combo box for how the player has won
         JPanel winTypePanel = new JPanel();
@@ -408,6 +423,10 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
     public void setEditStatusController(EditStatusController editStatusController) {
         this.editStatusController = editStatusController;
+    }
+
+    public void setNotifier(TileSelectorPropertyUpdateNotifier notifier) {
+        this.notifier = notifier;
     }
 
     // For debugging purposes

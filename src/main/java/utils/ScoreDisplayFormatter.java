@@ -45,8 +45,8 @@ public class ScoreDisplayFormatter {
     } else {
       if (isTsumo) {
         return String.format(
-            getLocalization().toString("displayScoresChildTsumo"),
-            scores.getFst(), scores.getSnd());
+                getLocalization().toString("displayScoresChildTsumo"),
+                scores.getFst(), scores.getSnd());
       } else {
         return String.format(getLocalization().toString("displayScoresChildRon"), scores.getFst());
       }
@@ -60,7 +60,7 @@ public class ScoreDisplayFormatter {
    */
   public static Localization<String> getLocalization() {
     if (!isInitialized) {
-      localization.initializeTranslator("localization\\display_l_english.yaml");
+      localization.initializeTranslator("/localization/scoreDisplay_l_english.yaml");
       isInitialized = true;
     }
     return localization;

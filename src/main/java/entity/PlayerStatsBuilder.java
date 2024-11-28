@@ -10,6 +10,7 @@ import mahjong.BaseTile;
  */
 public class PlayerStatsBuilder {
   private boolean isRiichi = false;
+  private boolean isDoubleRiichi = false;
   private boolean isIppatsu = false;
   private boolean isMenzenchin = true;
   private boolean isTsumo = false;
@@ -23,6 +24,7 @@ public class PlayerStatsBuilder {
   private BaseTile selfWind = BaseTile.windTon;
   private BaseTile prevalentWind = BaseTile.windTon;
   private List<CallGroup> callGroups = new ArrayList<>();
+  private List<Tile> hand;
   private List<Tile> doraList = new ArrayList<>();
   private List<Tile> uraDoraList = new ArrayList<>();
   private int numAkaDora = 0;
@@ -35,6 +37,17 @@ public class PlayerStatsBuilder {
    */
   public PlayerStatsBuilder setRiichi(boolean isRiichi) {
     this.isRiichi = isRiichi;
+    return this;
+  }
+
+  /**
+   * Sets the Double Riichi status.
+   *
+   * @param isDoubleRiichi true if the player declared Double Riichi, false otherwise.
+   * @return the current instance of PlayerStatsBuilder.
+   */
+  public PlayerStatsBuilder setDoubleRiichi(boolean isDoubleRiichi) {
+    this.isDoubleRiichi = isDoubleRiichi;
     return this;
   }
 
@@ -180,23 +193,38 @@ public class PlayerStatsBuilder {
     this.callGroups = callGroups;
     return this;
   }
-  
+
+  /**
+   * Sets the list of hand tiles for the player.
+   *
+   * @param hand the list of hand tiles to be set
+   * @return the current instance of PlayerStatsBuilder.
+   */
+  public PlayerStatsBuilder setHand(List<Tile> hand) {
+    this.hand = hand;
+    return this;
+  }
+
   /**
    * Sets the list of Dora tiles for the player.
    *
    * @param doraList the list of Dora tiles to be set
+   * @return the current instance of PlayerStatsBuilder.
    */
-  public void setDoraList(List<Tile> doraList) {
+  public PlayerStatsBuilder setDoraList(List<Tile> doraList) {
     this.doraList = doraList;
+    return this;
   }
 
   /**
    * Sets the list of Dora tiles for the player.
    *
    * @param uraDoraList the list of Dora tiles to be set
+   * @return the current instance of PlayerStatsBuilder.
    */
-  public void setUraDoraList(List<Tile> uraDoraList) {
+  public PlayerStatsBuilder setUraDoraList(List<Tile> uraDoraList) {
     this.uraDoraList = uraDoraList;
+    return this;
   }
 
   /**
@@ -204,19 +232,22 @@ public class PlayerStatsBuilder {
    *
    * @param numAkaDora the number of Aka Dora to set
    */
-  public void setNumAkaDora(int numAkaDora) {
+  public PlayerStatsBuilder setNumAkaDora(int numAkaDora) {
     this.numAkaDora = numAkaDora;
+    return this;
   }
 
   /**
    * Builds and returns a PlayerStats object.
-   * 
-   * @param hand the list of tiles in the player's hand.
+   *
    * @return a new PlayerStats object.
    */
-  public PlayerStats build(List<Tile> hand) {
+  public PlayerStats build() {
+    if (hand == null) {
+      throw new IllegalArgumentException("ハンドは必要です！");
+    }
     return new PlayerStats(
-        isRiichi, isIppatsu, isMenzenchin,
+        isRiichi, isDoubleRiichi, isIppatsu, isMenzenchin,
         isTsumo, isRinshan, isHaitei,
         isHoutei, isChankan, isTenhou,
         isChiihou, isOya, selfWind,

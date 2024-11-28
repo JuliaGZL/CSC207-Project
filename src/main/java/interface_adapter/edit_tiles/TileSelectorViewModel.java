@@ -42,6 +42,6 @@ public class TileSelectorViewModel extends ViewModel<TileSelectorState> {
 
     public TileSelectorViewModel() {
         super("tile selector");
-        setState(new TileSelectorState("hand", "default"));
+        setState(new TileSelectorState());
     }
 }
