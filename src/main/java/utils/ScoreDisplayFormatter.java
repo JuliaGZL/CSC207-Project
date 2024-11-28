@@ -28,7 +28,8 @@ public class ScoreDisplayFormatter {
   }
 
   /**
-   * Formats the score into a localized display string based on the player's status and scores.
+   * Formats the score into a localized display string based on the player's
+   * status and scores.
    *
    * @param isOya   true if the player is the dealer (Oya)
    * @param isTsumo true if the win was by self-draw (Tsumo)
@@ -36,21 +37,23 @@ public class ScoreDisplayFormatter {
    * @return the formatted score string
    */
   public static String formatScore(boolean isOya, boolean isTsumo, Pair<Integer, Integer> scores) {
+    String res;
     if (isOya) {
       if (isTsumo) {
-        return String.format(getLocalization().toText("displayScoresOyaTsumo"), scores.getFst());
+        res = String.format(getLocalization().toText("displayScoresOyaTsumo"), scores.getFst());
       } else {
-        return String.format(getLocalization().toText("displayScoresOyaRon"), scores.getFst());
+        res = String.format(getLocalization().toText("displayScoresOyaRon"), scores.getFst());
       }
     } else {
       if (isTsumo) {
-        return String.format(
-                getLocalization().toText("displayScoresChildTsumo"),
-                scores.getFst(), scores.getSnd());
+        res = String.format(
+            getLocalization().toText("displayScoresChildTsumo"),
+            scores.getFst(), scores.getSnd());
       } else {
-        return String.format(getLocalization().toText("displayScoresChildRon"), scores.getFst());
+        res = String.format(getLocalization().toText("displayScoresChildRon"), scores.getFst());
       }
     }
+    return getLocalization().toText("displayScorePrefix") + res;
   }
 
   /**
