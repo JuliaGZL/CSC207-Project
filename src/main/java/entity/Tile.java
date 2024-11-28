@@ -62,6 +62,17 @@ public class Tile {
   }
 
   /**
+   * Tile with default setting.
+   * @param tile The base tile (id).
+   */
+  public Tile(BaseTile tile) {
+    this.setTile(tile);
+    this.setRedDora(false);
+    this.setUraDora(false);
+    this.setDora(false);
+  }
+
+  /**
    * Returns a string representation of the tile.
    *
    * @return A string representing the tile.
@@ -91,4 +102,7 @@ public class Tile {
     return isDora;
   }
 
+  public BaseTile getTile() {
+    return tile;
+  }
 }

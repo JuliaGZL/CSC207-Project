@@ -1,5 +1,7 @@
 package entity;
 
+import mahjong.BaseTile;
+
 import java.util.List;
 
 /**
@@ -13,5 +15,6 @@ public interface UserFactory {
      * @param hand the hand of the new Player
      * @return the new player
      */
-     Player create(String name, int score, List<Tile> hand);
+     Player create(String name, int score, List<BaseTile> hand);
+     Player createEmpty(String name);
 }

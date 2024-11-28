@@ -30,8 +30,29 @@ public class EditStatusPresenter implements EditStatusOutputBoundary  {
 
     @Override
     public void prepareSuccessView(EditStatusOutputData outputData) {
-        // This use case currently does not need to prepare a success view.
-        editStatusViewModel.firePropertyChanged();
+        System.out.println("EditStatusPresenter.prepareSuccessView");
+        final EditStatusState editStatusState = editStatusViewModel.getState();
+        editStatusState.setAttributes(outputData.getAttributes());
+        editStatusState.setNumAkadora(outputData.getNumAkadora());
+        editStatusState.setRoundWind(outputData.getRoundWind());
+        editStatusState.setSeatWind(outputData.getSeatWind());
+        editStatusState.setWinType(outputData.getWinType());
+//        editStatusState.setTileType(outputData.getTileType());
+        editStatusViewModel.setState(editStatusState);
+        editStatusViewModel.firePropertyChanged("winType");
+    }
+
+    @Override
+    public void prepareSuccessView(String updateName, EditStatusOutputData outputData) {
+        final EditStatusState editStatusState = editStatusViewModel.getState();
+        editStatusState.setAttributes(outputData.getAttributes());
+        editStatusState.setNumAkadora(outputData.getNumAkadora());
+        editStatusState.setRoundWind(outputData.getRoundWind());
+        editStatusState.setSeatWind(outputData.getSeatWind());
+        editStatusState.setWinType(outputData.getWinType());
+        editStatusViewModel.setState(editStatusState);
+
+        editStatusViewModel.firePropertyChanged(updateName);
     }
 
     @Override
@@ -43,7 +64,7 @@ public class EditStatusPresenter implements EditStatusOutputBoundary  {
     public void switchToSelectDoraView(EditStatusOutputData outputData) {
         // Tell the tile selector to now add new tiles to dora.
         final TileSelectorState tileSelectorState = tileSelectorViewModel.getState();
-        tileSelectorState.setTarget("dora");
+        tileSelectorState.setMessage("dora");
         tileSelectorViewModel.setState(tileSelectorState);
         tileSelectorViewModel.firePropertyChanged("target");
 
@@ -60,7 +81,7 @@ public class EditStatusPresenter implements EditStatusOutputBoundary  {
     public void switchToSelectForHand() {
         // Tell the tile selector to now add new tiles to hand.
         final TileSelectorState tileSelectorState = tileSelectorViewModel.getState();
-        tileSelectorState.setTarget("hand");
+        tileSelectorState.setMessage("hand");
         tileSelectorViewModel.setState(tileSelectorState);
         tileSelectorViewModel.firePropertyChanged("target");
     }

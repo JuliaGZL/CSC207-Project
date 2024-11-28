@@ -6,6 +6,9 @@ import java.util.Map;
 import mahjong.BaseTile;
 
 public class BaseTileToPathMapping {
+    // Blank or disabled tiles
+    public static final String BLANK_TILE = "/mahjong-tiles/Front.png";
+
     private static final Map<BaseTile, String> BASE_TILES_STRING_MAP = new HashMap<>();
 
     static {

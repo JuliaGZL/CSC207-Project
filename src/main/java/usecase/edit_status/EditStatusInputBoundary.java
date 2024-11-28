@@ -12,7 +12,15 @@ public interface EditStatusInputBoundary {
     void execute(EditStatusInputData editStatusInputData);
 
     /**
-     * Executes the switch to select dora use case.
+     * Execute the Edit Status Use Case.
+     * @param updateName the element updated as inputted in ViewModel
+     * @param editStatusInputData the input data for this use case
      */
-    void switchToSelectDoraView();
+    void execute(String updateName, EditStatusInputData editStatusInputData);
+
+    /**
+     * Executes the switch to select dora use case.
+     * @param inputData the input data for this use case
+     */
+    void switchToSelectDoraView(EditStatusInputData inputData);
 }

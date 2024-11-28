@@ -10,13 +10,13 @@ import mahjong.BaseTile;
 public class PlayerStats {
   private boolean isRiichi;
   private boolean isDoubleRiichi;
-  private boolean isIppatsu;
+  private boolean isIppatsu;      // One Shot
   private boolean isMenzenchin;
   private boolean isTsumo;
-  private boolean isRinshan;
-  private boolean isHaitei;
-  private boolean isHoutei;
-  private boolean isChankan;
+  private boolean isRinshan;      // After a Kan
+  private boolean isHaitei;       // Under the Sea
+  private boolean isHoutei;       // Under the River
+  private boolean isChankan;      // Robbing a Kan
   private boolean isTenhou;
   private boolean isChiihou;
   private boolean isOya;
@@ -381,10 +381,10 @@ public class PlayerStats {
    * @param callGroups   the call groups (Fuuros) of the player.
    */
   public PlayerStats(
-      boolean isRiichi, boolean isIppatsu, boolean isMenzenchin,
-      boolean isTsumo, boolean isRinshan, boolean isHaitei,
-      boolean isHoutei, boolean isChankan, boolean isTenhou,
-      boolean isChiihou, boolean isOya, BaseTile selfWind,
+      boolean isRiichi, boolean isDoubleRiichi, boolean isIppatsu,
+      boolean isMenzenchin, boolean isTsumo, boolean isRinshan,
+      boolean isHaitei, boolean isHoutei, boolean isChankan,
+      boolean isTenhou, boolean isChiihou, boolean isOya, BaseTile selfWind,
       BaseTile prevalentWind, List<Tile> hand, List<CallGroup> callGroups,
       int numAkaDora) {
     this.isRiichi = isRiichi;
