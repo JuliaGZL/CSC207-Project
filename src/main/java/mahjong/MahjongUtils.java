@@ -45,6 +45,13 @@ public class MahjongUtils {
     return false;
   }
 
+  /**
+   * Merges elements from one list into another.
+   *
+   * @param to   the list to merge elements into
+   * @param from the list from which elements are taken
+   * @param <T>  the type of elements in the lists
+   */
   public static <T> void mergeInto(List<T> to, List<? extends T> from) {
     to.addAll(from);
   }
