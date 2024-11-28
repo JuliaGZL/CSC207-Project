@@ -92,7 +92,7 @@ public class Localization<T> {
   public String keysToString(ArrayList<T> keys) {
     StringBuilder sb = new StringBuilder("|");
     for (T key : keys) {
-      sb.append(toString(key)).append("|");
+      sb.append(toText(key)).append("|");
     }
     return sb.toString();
   }
