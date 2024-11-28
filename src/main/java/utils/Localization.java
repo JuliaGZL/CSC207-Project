@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
+import utils.Constants;
 
 /**
- * Handles the localization of given enum values to their corresponding string representations. It
+ * Handles the localization of given enum values to their corresponding string
+ * representations. It
  * reads from a localization file to map each element to its localized name.
  *
  * @param <T> the type of keys used for localization
@@ -21,8 +22,6 @@ public class Localization<T> {
   private Map<T, String> localization = new HashMap<>();
 
   private Function<String, T> keyConverter;
-
-  private String resourcePath = this.getClass().getClassLoader().getResource("").getPath();
 
   /**
    * Constructs a Localization instance with a key converter function.
@@ -39,7 +38,9 @@ public class Localization<T> {
    * @param pathToDir the path to the directory containing the localization file
    */
   public void initializeTranslator(String pathToDir) {
-    try (BufferedReader br = new BufferedReader(new FileReader(resourcePath + pathToDir))) {
+    try (
+        BufferedReader br = new BufferedReader(
+            new FileReader(Constants.resourcePath + pathToDir))) {
       String line;
       while ((line = br.readLine()) != null) {
 
@@ -55,7 +56,7 @@ public class Localization<T> {
           String value = line.substring(index + 1).trim();
 
           if ((value.startsWith("\"") && value.endsWith("\""))
-                  || (value.startsWith("'") && value.endsWith("'"))) {
+              || (value.startsWith("'") && value.endsWith("'"))) {
             value = value.substring(1, value.length() - 1);
           }
 
@@ -75,7 +76,7 @@ public class Localization<T> {
    * @return the localized string of the key
    * @throws RuntimeException if the key is not found in the localization map
    */
-  public String toString(T key) {
+  public String toText(T key) {
     if (!this.localization.containsKey(key)) {
       throw new RuntimeException("Invalid key: " + key);
     }

@@ -239,13 +239,23 @@ public enum Yaku {
     }
   }
 
+  
+  /**
+   * Returns the basic string representation of this Yaku.
+   *
+   * @return the basic name of the Yaku
+   */
+  @Override
+  public String toString() {
+    return this.name();
+  }
+
   /**
    * Returns the localized string representation of this Yaku.
    *
    * @return the localized name of the Yaku.
    */
-  @Override
-  public String toString() {
-    return localization.toString(this) + ": " + localization.toString(this.getFan());
+  public String toText() {
+    return localization.toText(this) + ": " + localization.toText(this.getFan());
   }
 }

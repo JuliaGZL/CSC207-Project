@@ -14,7 +14,7 @@ public class ScoreDisplayFormatter {
    * @return the formatted fan string
    */
   public static String formatFan(int fan) {
-    return String.format(getLocalization().toString("displayFan"), fan);
+    return String.format(getLocalization().toText("displayFan"), fan);
   }
 
   /**
@@ -24,7 +24,7 @@ public class ScoreDisplayFormatter {
    * @return the formatted fu string
    */
   public static String formatFu(int fu) {
-    return String.format(getLocalization().toString("displayFu"), fu);
+    return String.format(getLocalization().toText("displayFu"), fu);
   }
 
   /**
@@ -38,17 +38,17 @@ public class ScoreDisplayFormatter {
   public static String formatScore(boolean isOya, boolean isTsumo, Pair<Integer, Integer> scores) {
     if (isOya) {
       if (isTsumo) {
-        return String.format(getLocalization().toString("displayScoresOyaTsumo"), scores.getFst());
+        return String.format(getLocalization().toText("displayScoresOyaTsumo"), scores.getFst());
       } else {
-        return String.format(getLocalization().toString("displayScoresOyaRon"), scores.getFst());
+        return String.format(getLocalization().toText("displayScoresOyaRon"), scores.getFst());
       }
     } else {
       if (isTsumo) {
         return String.format(
-                getLocalization().toString("displayScoresChildTsumo"),
+                getLocalization().toText("displayScoresChildTsumo"),
                 scores.getFst(), scores.getSnd());
       } else {
-        return String.format(getLocalization().toString("displayScoresChildRon"), scores.getFst());
+        return String.format(getLocalization().toText("displayScoresChildRon"), scores.getFst());
       }
     }
   }
