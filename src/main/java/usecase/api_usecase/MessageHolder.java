@@ -7,6 +7,6 @@ public class MessageHolder {
         MessageHolder.msg = msg;
     }
     static String getMessage() {
-        return msg;
+        return msg.substring(msg.indexOf(' ') + 1);
     }
 }
