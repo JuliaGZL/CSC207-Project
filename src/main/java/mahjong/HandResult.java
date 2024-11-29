@@ -81,7 +81,7 @@ public class HandResult {
    *
    * @return the total score
    */
-  public int getHandResult() {
+  public int getHandScoreResult() {
     Pair<Integer, Integer> scores = sc.getScores();
     return scores.getFst() + scores.getSnd();
   }
