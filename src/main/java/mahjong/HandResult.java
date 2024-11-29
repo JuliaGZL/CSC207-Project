@@ -5,15 +5,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import utils.Pair;
-import utils.ScoreDisplayFormatter;
 
 /**
  * This class provides a method to compute the result of a Mahjong hand.
  */
 public class HandResult {
+  /**
+   * The result of the hand, 
+   * containing a list of Yaku and a pair of integers representing the fan and fu.
+   */
   private Pair<List<Yaku>, Pair<Integer, Integer>> result;
+
+  /**
+   * The score counter for the hand.
+   */
   private ScoreCounter sc;
 
+  /**
+   * The singleton instance of HandResult.
+   */
   private static HandResult instance;
 
   /**
@@ -28,7 +38,8 @@ public class HandResult {
             result.getSnd().getFst(),
             result.getSnd().getSnd(),
             playerStats.isOya(),
-            playerStats.isTsumo());
+            playerStats.isTsumo(),
+            inst.hasYakuman());
   }
 
   /**
@@ -69,7 +80,8 @@ public class HandResult {
    */
   public List<String> displayHandResult() {
     List<String> res = Arrays.asList(
-            result.getFst().stream().map(Yaku::toString).collect(Collectors.joining(",")),
+            sc.getScoreLevel().toText(),
+            result.getFst().stream().map(Yaku::toText).collect(Collectors.joining(",")),
             ScoreDisplayFormatter.formatFan(result.getSnd().getFst()),
             ScoreDisplayFormatter.formatFu(result.getSnd().getSnd()),
             sc.toFormattedScores());
@@ -81,8 +93,43 @@ public class HandResult {
    *
    * @return the total score
    */
-  public int getHandResult() {
-    Pair<Integer, Integer> scores = sc.getScores();
-    return scores.getFst() + scores.getSnd();
+  public int getHandScoreResult() {
+    return sc.getScores().get(0);
+  }
+
+  /**
+   * Gets the list of Yaku for the hand.
+   *
+   * @return the list of Yaku
+   */
+  public List<Yaku> getHandYakuList() {
+    return result.getFst();
+  }
+
+  /**
+   * Gets the fan value of the hand.
+   *
+   * @return the fan value
+   */
+  public int getHandFan() {
+    return result.getSnd().getFst();
+  }
+
+  /**
+   * Gets the fu value of the hand.
+   *
+   * @return the fu value
+   */
+  public int getHandFu() {
+    return result.getSnd().getSnd();
+  }
+
+  /**
+   * Retrieves the score level of the current hand.
+   *
+   * @return the score level of the current hand as a {@link ScoreLevel} object.
+   */
+  public ScoreLevel getScoreLevel() {
+    return sc.getScoreLevel();
   }
 }

@@ -66,7 +66,7 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
         int score;
         try {
             handResult = HandResult.getInstance(stats);
-            score = handResult.getHandResult();
+            score = handResult.getHandScoreResult();
         } catch (RuntimeException e) {
             presenter.prepareFailView(e.getMessage());
             return;

@@ -348,9 +348,11 @@ public class TileGroup implements Comparable<TileGroup> {
     
     ArrayList<ArrayList<String>> tileGroupStrings = new ArrayList<>();
     String lastTileString = lastTile.toString();
-    for (String tileGroup : rawTileGroupString) {
+    for (int i = 0; i < rawTileGroupString.size(); i++) {
+      // Since in java strings are literals, we need to do some extra work
+      // I hate it
+      String tileGroup = rawTileGroupString.get(i);
       char attr = tileGroup.charAt(tileGroup.length() - 1);
-
       if (attr == markKoutsu || attr == markToitsu) {
         if (tileGroup.substring(0, 2).equals(lastTileString.substring(0, 2))) {
           if (tsumo) {
@@ -358,8 +360,8 @@ public class TileGroup implements Comparable<TileGroup> {
           } else {
             tileGroup += markRon1st;
           }
+          rawTileGroupString.set(i, tileGroup);
           tileGroupStrings.add(new ArrayList<>(rawTileGroupString));
-          tileGroup = tileGroup.substring(0, tileGroup.length() - 2);
         }
       } else if (attr == markShuntsu) {
         if (tileGroup.substring(0, 2).equals(lastTileString.substring(0, 2))) {
@@ -368,8 +370,8 @@ public class TileGroup implements Comparable<TileGroup> {
           } else {
             tileGroup += markRon1st;
           }
+          rawTileGroupString.set(i, tileGroup);
           tileGroupStrings.add(new ArrayList<>(rawTileGroupString));
-          tileGroup = tileGroup.substring(0, tileGroup.length() - 2);
         } else if (tileGroup.charAt(0) + 1 == lastTileString.charAt(0)
             && tileGroup.charAt(1) == lastTileString.charAt(1)) {
           if (tsumo) {
@@ -377,8 +379,8 @@ public class TileGroup implements Comparable<TileGroup> {
           } else {
             tileGroup += markRon2nd;
           }
+          rawTileGroupString.set(i, tileGroup);
           tileGroupStrings.add(new ArrayList<>(rawTileGroupString));
-          tileGroup = tileGroup.substring(0, tileGroup.length() - 2);
         } else if (tileGroup.charAt(0) + 2 == lastTileString.charAt(0)
             && tileGroup.charAt(1) == lastTileString.charAt(1)) {
           if (tsumo) {
@@ -386,8 +388,8 @@ public class TileGroup implements Comparable<TileGroup> {
           } else {
             tileGroup += markRon3rd;
           }
+          rawTileGroupString.set(i, tileGroup);
           tileGroupStrings.add(new ArrayList<>(rawTileGroupString));
-          tileGroup = tileGroup.substring(0, tileGroup.length() - 2);
         }
       }
     }

@@ -117,8 +117,8 @@ public enum BaseTile {
    *
    * @return the localized name of the tile
    */
-  public String toLocalizedString() {
-    return localization.toString(this);
+  public String toText() {
+    return localization.toText(this);
   }
 
   /**

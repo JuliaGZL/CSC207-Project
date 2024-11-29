@@ -86,22 +86,47 @@ public class Tile {
         + "]";
   }
 
+  /**
+   * Returns the base tile.
+   *
+   * @return The base tile.
+   */
   public BaseTile getBaseTile() {
     return tile;
   }
 
+  /**
+   * Checks if the tile is a red dora.
+   *
+   * @return True if the tile is a red dora; false otherwise.
+   */
   public boolean isRedDora() {
     return isRedDora;
   }
 
+  /**
+   * Checks if the tile is an ura dora.
+   *
+   * @return True if the tile is an ura dora; false otherwise.
+   */
   public boolean isUraDora() {
     return isUraDora;
   }
 
+  /**
+   * Checks if the tile is a dora.
+   *
+   * @return True if the tile is a dora; false otherwise.
+   */
   public boolean isDora() {
     return isDora;
   }
 
+  /**
+   * Returns the base tile.
+   *
+   * @return The base tile.
+   */
   public BaseTile getTile() {
     return tile;
   }

@@ -1,7 +1,8 @@
 ﻿# English Localizations for display strings
 displayScoresOyaTsumo: "%,d Points All"
-displayScoresChildTsumo: "%,d Parent Points pays, %,d Points Children pay"
+displayScoresChildTsumo: "Oya pays %,d  Points , each Ko pays %,d Points"
 displayScoresOyaRon: "%,d Points"
 displayScoresChildRon: "%,d Points"
 displayFan: "Fan: %,d"
 displayFu: "Fu: %,d"
+displayScorePrefix: "Score: "
