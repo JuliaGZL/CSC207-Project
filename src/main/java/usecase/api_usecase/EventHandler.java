@@ -8,20 +8,20 @@ import discord4j.core.event.domain.Event;
 
 import java.util.function.Function;
 
-public class SubEventCreator<E extends Event> {
+public class EventHandler<E extends Event> {
     DiscordClient client;
     Mono<Void> eventVoid;
     GatewayDiscordClient gateway;
     Function<E, Publisher<Void>> eventMapper;
 
-    public SubEventCreator(DiscordClient client, GatewayDiscordClient gateway, Mono<Void> eventVoid){
+    public EventHandler(DiscordClient client, GatewayDiscordClient gateway, Mono<Void> eventVoid){
         this.client = client;
         this.eventVoid = eventVoid;
         this.gateway = gateway;
     }
 
-    public SubEventCreator(DiscordClient client, GatewayDiscordClient gateway, Class<E> eventClass,
-                           Function<E, Publisher<Void>> eventMapper) {
+    public EventHandler(DiscordClient client, GatewayDiscordClient gateway, Class<E> eventClass,
+                        Function<E, Publisher<Void>> eventMapper) {
         this.client = client;
         this.gateway = gateway;
         this.eventMapper = eventMapper;
@@ -41,7 +41,7 @@ public class SubEventCreator<E extends Event> {
         return Mono.empty();
     }
 
-    public ParallelEventCombiner union(SubEventCreator<? extends Event> other) {
+    public ParallelEventCombiner union(EventHandler<? extends Event> other) {
         return new ParallelEventCombiner(this.client, this.getExecutableEvent().and(other.getExecutableEvent()));
     }
 }
