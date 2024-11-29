@@ -1,5 +1,8 @@
 package view;
 
+import interface_adapter.display_tiles.TileSelectorPropertyUpdateNotifier;
+import interface_adapter.display_tiles.TilesDisplayState;
+import interface_adapter.display_tiles.TilesDisplayViewModel;
 import interface_adapter.edit_tiles.*;
 import mahjong.BaseTile;
 import mahjong.BaseTileToPathMapping;

@@ -3,7 +3,7 @@ package view;
 import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.EditStatusState;
 import interface_adapter.edit_status.EditStatusViewModel;
-import interface_adapter.edit_tiles.TileSelectorPropertyUpdateNotifier;
+import interface_adapter.display_tiles.TileSelectorPropertyUpdateNotifier;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

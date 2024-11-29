@@ -1,6 +1,7 @@
 package interface_adapter.edit_tiles;
 
-import usecase.add_tile.AddTileInputData;
+import interface_adapter.display_tiles.TilesDisplayState;
+import interface_adapter.display_tiles.TilesDisplayViewModel;
 import usecase.add_tile.AddTileOutputBoundary;
 import usecase.add_tile.AddTileOutputData;
 import usecase.remove_tile.RemoveTileOutputBoundary;
