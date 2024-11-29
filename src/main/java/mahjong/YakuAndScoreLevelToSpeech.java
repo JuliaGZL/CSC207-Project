@@ -6,6 +6,9 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.checkerframework.checker.units.qual.s;
+
 import javazoom.jl.player.Player;
 import utils.Constants;
 
@@ -13,7 +16,7 @@ import utils.Constants;
  * Utility class for converting Yaku strings to speech by playing corresponding
  * MP3 files.
  */
-public class YakuToSpeech {
+public class YakuAndScoreLevelToSpeech {
   // TODO: maybe can change character voice in the future?
   /**
    * The path prefix for the MP3 files.
@@ -26,8 +29,11 @@ public class YakuToSpeech {
    * 
    * @param yakus the list of Yaku to be played
    */
-  public static void playYakuSound(List<Yaku> yakus) {
+  public static void playYakuSound(List<Yaku> yakus, ScoreLevel scoreLevel) {
     List<String> tokens = getPlayList(yakus);
+    if (scoreLevel != ScoreLevel.None) {
+      tokens.add(scoreLevel.toString());
+    }
     for (String token : tokens) {
       String filename = token + ".mp3";
       playSoundWithJlayer(pathPrefix + filename);
@@ -78,7 +84,7 @@ public class YakuToSpeech {
           }
           tokens.add("Nan");
           break;
-        case JikazeShaa: 
+        case JikazeShaa:
           if (hasSameWindYaku == -1) {
             hasSameWindYaku = 2;
           }
@@ -93,32 +99,28 @@ public class YakuToSpeech {
         case BakazeTon:
           if (hasSameWindYaku == 0) {
             tokens.add("DoubleTon");
-          }
-          else {
+          } else {
             tokens.add("Ton");
           }
           break;
         case BakazeNan:
           if (hasSameWindYaku == 1) {
             tokens.add("DoubleNan");
-          }
-          else {
+          } else {
             tokens.add("Nan");
           }
           break;
         case BakazeShaa:
           if (hasSameWindYaku == 2) {
             tokens.add("DoubleShaa");
-          }
-          else {
+          } else {
             tokens.add("Shaa");
           }
           break;
         case BakazePei:
           if (hasSameWindYaku == 3) {
             tokens.add("DoublePei");
-          }
-          else {
+          } else {
             tokens.add("Pei");
           }
           break;
