@@ -11,7 +11,8 @@ import utils.Pair;
  */
 public class HandResult {
   /**
-   * The result of the hand, containing a list of Yaku and a pair of integers representing the fan and fu.
+   * The result of the hand, 
+   * containing a list of Yaku and a pair of integers representing the fan and fu.
    */
   private Pair<List<Yaku>, Pair<Integer, Integer>> result;
 
