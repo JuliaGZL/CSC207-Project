@@ -122,4 +122,13 @@ public class HandResult {
   public int getHandFu() {
     return result.getSnd().getSnd();
   }
+
+  /**
+   * Retrieves the score level of the current hand.
+   *
+   * @return the score level of the current hand as a {@link ScoreLevel} object.
+   */
+  public ScoreLevel getScoreLevel() {
+    return sc.getScoreLevel();
+  }
 }
