@@ -79,7 +79,8 @@ public class HandResult {
    */
   public List<String> displayHandResult() {
     List<String> res = Arrays.asList(
-            result.getFst().stream().map(Yaku::toString).collect(Collectors.joining(",")),
+            sc.getScoreLevel().toText(),
+            result.getFst().stream().map(Yaku::toText).collect(Collectors.joining(",")),
             ScoreDisplayFormatter.formatFan(result.getSnd().getFst()),
             ScoreDisplayFormatter.formatFu(result.getSnd().getSnd()),
             sc.toFormattedScores());
@@ -92,8 +93,7 @@ public class HandResult {
    * @return the total score
    */
   public int getHandScoreResult() {
-    Pair<Integer, Integer> scores = sc.getScores();
-    return scores.getFst() + scores.getSnd();
+    return sc.getScores().get(0);
   }
 
   /**

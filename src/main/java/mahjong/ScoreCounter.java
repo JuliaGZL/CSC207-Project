@@ -1,5 +1,7 @@
 package mahjong;
 
+import java.util.ArrayList;
+import java.util.List;
 import utils.Pair;
 
 /**
@@ -166,21 +168,33 @@ public class ScoreCounter {
    * the type of win.
    *
    * @return an ArrayList of Integer containing the relevant scores
+   *         (index 0 for total score the player can get, index 1,2 for the score
+   *         other players have to pay)
    */
-  public Pair<Integer, Integer> getScores() {
+  public List<Integer> getScores() {
+    List<Integer> scores = new ArrayList<>();
     if (isOya) {
       if (isTsumo) {
-        return new Pair<>(this.scoreParentTsumoAll, 0);
+        scores.add(this.scoreParentTsumoAll * (numOfPlayers - 1));
+        scores.add(this.scoreParentTsumoAll);
+        scores.add(0);
       } else {
-        return new Pair<>(this.scoreParentRon, 0);
+        scores.add(this.scoreParentRon);
+        scores.add(this.scoreParentRon);
+        scores.add(0);
       }
     } else {
       if (isTsumo) {
-        return new Pair<>(this.scoreChildTsumoParent, this.scoreChildTsumoChild);
+        scores.add(this.scoreChildTsumoParent + this.scoreChildTsumoChild * (numOfPlayers - 2));
+        scores.add(this.scoreChildTsumoParent);
+        scores.add(this.scoreChildTsumoChild);
       } else {
-        return new Pair<>(this.scoreChildRon, 0);
+        scores.add(this.scoreChildRon);
+        scores.add(this.scoreChildRon);
+        scores.add(0);
       }
     }
+    return scores;
   }
 
   /**
@@ -201,6 +215,8 @@ public class ScoreCounter {
   public String toFormattedScores() {
     return ScoreDisplayFormatter.formatScore(isOya, isTsumo, getScores());
   }
+
+  private int numOfPlayers = 4;
 
   private boolean isOya;
   private boolean isTsumo;
