@@ -4,7 +4,6 @@ import com.microsoft.cognitiveservices.speech.SpeechConfig;
 import com.microsoft.cognitiveservices.speech.SpeechSynthesizer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Timer;
 import java.io.IOException;
 
 /**
