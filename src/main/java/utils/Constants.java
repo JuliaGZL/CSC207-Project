@@ -7,6 +7,5 @@ public class Constants {
   /**
    * The path to the resource directory.
    */
-  public static final String resourcePath = Constants.class.getClassLoader()
-      .getResource("").getPath();
+  public static final String resourcePath = System.getProperty("user.dir") + "/src/main/resources";
 }

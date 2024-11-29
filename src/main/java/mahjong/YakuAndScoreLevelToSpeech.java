@@ -21,7 +21,7 @@ public class YakuAndScoreLevelToSpeech {
   /**
    * The path prefix for the MP3 files.
    */
-  private static final String pathPrefix = Constants.resourcePath + "/sounds/yaku/Female-Fuji";
+  private static final String pathPrefix = Constants.resourcePath + "/sounds/yakus/Female-Fuji/";
 
   /**
    * Plays a series of MP3 files based on the given list of Yaku.
@@ -29,7 +29,7 @@ public class YakuAndScoreLevelToSpeech {
    * 
    * @param yakus the list of Yaku to be played
    */
-  public static void playYakuSound(List<Yaku> yakus, ScoreLevel scoreLevel) {
+  public static void playSound(List<Yaku> yakus, ScoreLevel scoreLevel) {
     List<String> tokens = getPlayList(yakus);
     if (scoreLevel != ScoreLevel.None) {
       tokens.add(scoreLevel.toString());
@@ -38,7 +38,7 @@ public class YakuAndScoreLevelToSpeech {
       String filename = token + ".mp3";
       playSoundWithJlayer(pathPrefix + filename);
       try {
-        Thread.sleep(250); // Pause for 0.25 second
+        Thread.sleep(100); // Pause for 0.1 second
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
@@ -135,10 +135,18 @@ public class YakuAndScoreLevelToSpeech {
           break;
       }
     }
-    tokens.add("Peidora" + String.valueOf(doraCount));
-    tokens.add("Dora" + String.valueOf(peidoraCount));
-    tokens.add("Akadora" + String.valueOf(akadoraCount));
-    tokens.add("Uradora" + String.valueOf(uradoraCount));
+    if (doraCount > 0) {
+      tokens.add("Dora" + String.valueOf(doraCount));
+    }
+    if (peidoraCount > 0) {
+      tokens.add("Dora" + String.valueOf(peidoraCount));
+    }
+    if (akadoraCount > 0) {
+      tokens.add("Dora" + String.valueOf(akadoraCount));
+    }
+    if (uradoraCount > 0) {
+      tokens.add("Dora" + String.valueOf(uradoraCount));
+    }
     return tokens;
   }
 

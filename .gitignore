@@ -3,3 +3,4 @@ lib
 SelfTest.java
 target
 *.py
+*.txt

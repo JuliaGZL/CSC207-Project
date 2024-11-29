@@ -1,20 +1,35 @@
 package utils;
 
-import com.sun.speech.freetts.Voice;
-import com.sun.speech.freetts.VoiceManager;
+import com.microsoft.cognitiveservices.speech.SpeechSynthesizer;
+import com.microsoft.cognitiveservices.speech.SpeechConfig;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.IOException;
 
 public class TextToSpeech {
-  private Voice voice;
+
+  // This requires files named "speech_key.txt" and "speech_region.txt" in the
+  // project root directory
+  private static String speechKey;
+  private static String speechRegion;
+
+  private SpeechSynthesizer synthesizer;
   private static TextToSpeech instance;
 
-  private TextToSpeech() {
-    // Initialize the voice
-    voice = VoiceManager.getInstance().getVoice("kevin16");
-    if (voice != null) {
-      voice.allocate();
-    } else {
-      throw new IllegalStateException("Voice 'kevin16' not found.");
+  static {
+    try {
+      String basePath = Paths.get(Constants.resourcePath).toString();
+      speechKey = new String(Files.readAllBytes(Paths.get(basePath, "/speech_key.txt"))).trim();
+      speechRegion = new String(Files.readAllBytes(Paths.get(basePath, "/speech_region.txt"))).trim();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
+
+  private TextToSpeech() {
+    // Initialize the Azure Speech Synthesizer
+    SpeechConfig config = SpeechConfig.fromSubscription(speechKey, speechRegion);
+    synthesizer = new SpeechSynthesizer(config);
   }
 
   public static TextToSpeech getInstance() {
@@ -26,11 +41,11 @@ public class TextToSpeech {
 
   public void speak(String text) {
     // Convert text to speech
-    voice.speak(text);
+    synthesizer.SpeakText(text);
   }
 
   public void close() {
-    // Deallocate the voice
-    voice.deallocate();
+    // Close the synthesizer
+    synthesizer.close();
   }
 }
