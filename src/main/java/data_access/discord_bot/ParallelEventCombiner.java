@@ -1,4 +1,4 @@
-package usecase.api_usecase;
+package data_access.discord_bot;
 
 import discord4j.core.DiscordClient;
 import reactor.core.publisher.Mono;

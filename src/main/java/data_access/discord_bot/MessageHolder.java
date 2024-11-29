@@ -1,4 +1,4 @@
-package usecase.api_usecase;
+package data_access.discord_bot;
 
 public class MessageHolder {
     static String msg =  "";

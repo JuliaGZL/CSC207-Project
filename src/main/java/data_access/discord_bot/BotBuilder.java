@@ -1,4 +1,4 @@
-package usecase.api_usecase;
+package data_access.discord_bot;
 
 public abstract class BotBuilder {
     ChatBot bot;

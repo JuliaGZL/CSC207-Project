@@ -1,4 +1,4 @@
-package usecase.api_usecase;
+package data_access.discord_bot;
 
 public class TestProcessMahjongInput {
     public static void main(String[] args) {
