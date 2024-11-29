@@ -47,7 +47,7 @@
         <dependency>
             <groupId>com.github.umjammer</groupId>
             <artifactId>jlayer</artifactId>
-            <version>1.0.3</version>
+            <version>1.0.2</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.sf.sociaal/freetts -->
         <dependency>
