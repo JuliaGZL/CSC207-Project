@@ -50,7 +50,7 @@ public class YakuAndScoreLevelToSpeech {
    * @param yakus the list of Yaku to be played
    * @param scoreLevel the ScoreLevel to be played
    */
-  public void playSoundInThread(List<Yaku> yakus, ScoreLevel scoreLevel) {
+  public static void playSoundInThread(List<Yaku> yakus, ScoreLevel scoreLevel) {
     new Thread(() -> playSound(yakus, scoreLevel)).start();
   }
 
