@@ -2,6 +2,7 @@ package unit.view;
 
 import data_access.InMemoryUniversalDataAccessObject;
 import entity.Player;
+import entity.PlayerFactory;
 import entity.Tile;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.read_hand.ReadHandController;
@@ -44,7 +45,9 @@ public class ReadHandViewTest {
         // Create dummy player
         List<Tile> hand = new ArrayList<>();
         hand.add(new Tile(BaseTile._1m, false, false, false));
-        Player player = new Player("default", 100, hand);
+        Player player = new PlayerFactory().createEmpty("default");
+        player.setHand(hand);
+        player.setNumAkaDora(9);
         Boolean[] attributes = {true, false, false, false, false, false, false, false, false};
         player.setAttributes(attributes);
         DAO.savePlayer(player);
