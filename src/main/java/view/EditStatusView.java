@@ -195,7 +195,12 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
         // Add all components to this panel
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        this.add(leftPanel);
+        this.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+        JPanel leftPanelWrapper = new JPanel();
+        leftPanelWrapper.setLayout(new FlowLayout(FlowLayout.LEFT));
+        leftPanelWrapper.setAlignmentX(Component.LEFT_ALIGNMENT);
+        leftPanelWrapper.add(leftPanel);
+        this.add(leftPanelWrapper);
         this.add(checkboxPanel);
     }
 
