@@ -5,11 +5,11 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import java.util.*;
 
-public class MahjongComboInteractor extends MessageHandler {
+public class MahjongComboHandler extends MessageHandler {
     static final List<Character> LEGAL_IDENTIFIER = Arrays.asList(
             'm', 'p', 's', 'z', 'M', 'P', 'S', 'Z');
 
-    public MahjongComboInteractor(DiscordClient client, GatewayDiscordClient gateway) {
+    public MahjongComboHandler(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
             String memberName = getMemberName(event);
             String content = getContent(event);

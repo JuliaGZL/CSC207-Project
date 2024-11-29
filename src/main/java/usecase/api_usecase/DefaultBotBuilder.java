@@ -10,7 +10,7 @@ public class DefaultBotBuilder extends BotBuilder{
         bot.addEvent(LoginHandler.class);
         bot.addEvent(GreetingHandler.class);
         bot.addEvent(StatusReportHandler.class);
-        bot.addEvent(MahjongComboInteractor.class);
+        bot.addEvent(MahjongComboHandler.class);
         bot.addEvent(QuitHandler.class);
     }
 
@@ -20,7 +20,7 @@ public class DefaultBotBuilder extends BotBuilder{
         bot.addEvent(LoginHandler.class);
         bot.addEvent(GreetingHandler.class);
         bot.addEvent(StatusReportHandler.class);
-        bot.addEvent(MahjongComboInteractor.class);
+        bot.addEvent(MahjongComboHandler.class);
         bot.addEvent(QuitHandler.class);
     }
 

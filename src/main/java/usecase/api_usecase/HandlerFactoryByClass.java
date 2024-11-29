@@ -4,16 +4,18 @@ import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 
 
-public class SubEventFactory {
-    public EventHandler createSubEvent(Class<? extends EventHandler> eventType,
-                                       DiscordClient client, GatewayDiscordClient gateway) {
+public class HandlerFactoryByClass implements EventHandlerFactory{
+
+    @Override
+    public EventHandler createEventHandler(Class<? extends EventHandler> eventType,
+                                           DiscordClient client, GatewayDiscordClient gateway) {
         if (eventType.equals(LoginHandler.class)) {
             System.out.println("Login Event Created");
             return new LoginHandler(client, gateway);
         }
-        if (eventType.equals(MahjongComboInteractor.class)) {
+        if (eventType.equals(MahjongComboHandler.class)) {
             System.out.println("Mahjong Event Created");
-            return new MahjongComboInteractor(client, gateway);
+            return new MahjongComboHandler(client, gateway);
         }
         if (eventType.equals(GreetingHandler.class)) {
             System.out.println("Greating Event Created");
@@ -29,4 +31,5 @@ public class SubEventFactory {
         }
         throw new IllegalArgumentException("Unknown event type: " + eventType);
     }
+
 }
