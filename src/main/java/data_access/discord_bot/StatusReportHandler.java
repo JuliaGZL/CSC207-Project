@@ -1,13 +1,13 @@
-package usecase.api_usecase;
+package data_access.discord_bot;
 
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
 
-public class StatusEvent extends MessageInteractor {
+public class StatusReportHandler extends MessageHandler {
 
-    public StatusEvent(DiscordClient client, GatewayDiscordClient gateway) {
+    public StatusReportHandler(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
             String memberName = getMemberName(event);
             String content = getContent(event);
@@ -16,7 +16,7 @@ public class StatusEvent extends MessageInteractor {
                 return sendMessage(event, newMessage(memberName));
             }
 
-            return SubEventCreator.defaultReturn();
+            return EventHandler.defaultReturn();
         });
     }
 

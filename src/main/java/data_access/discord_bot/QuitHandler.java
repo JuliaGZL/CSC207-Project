@@ -1,11 +1,11 @@
-package usecase.api_usecase;
+package data_access.discord_bot;
 
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
-public class QuitBotEvent extends MessageInteractor {
-    public QuitBotEvent(DiscordClient client, GatewayDiscordClient gateway) {
+public class QuitHandler extends MessageHandler {
+    public QuitHandler(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
             String memberName = getMemberName(event);
             String content = getContent(event);
@@ -15,7 +15,7 @@ public class QuitBotEvent extends MessageInteractor {
                 return sendMessage(event, newMessage(content, memberName)).and(gateway.logout());
             }
 
-            return SubEventCreator.defaultReturn();
+            return EventHandler.defaultReturn();
         });
     }
 
