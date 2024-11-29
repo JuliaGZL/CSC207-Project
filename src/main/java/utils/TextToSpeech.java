@@ -1,11 +1,14 @@
 package utils;
 
-import com.microsoft.cognitiveservices.speech.SpeechSynthesizer;
 import com.microsoft.cognitiveservices.speech.SpeechConfig;
+import com.microsoft.cognitiveservices.speech.SpeechSynthesizer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.IOException;
 
+/**
+ * Utility class for converting text to speech using Azure Cognitive Services.
+ */
 public class TextToSpeech {
 
   // This requires files named "speech_key.txt" and "speech_region.txt" in the
@@ -26,12 +29,20 @@ public class TextToSpeech {
     }
   }
 
+  /**
+   * Private constructor to initialize the Azure Speech Synthesizer.
+   */
   private TextToSpeech() {
     // Initialize the Azure Speech Synthesizer
     SpeechConfig config = SpeechConfig.fromSubscription(speechKey, speechRegion);
     synthesizer = new SpeechSynthesizer(config);
   }
 
+  /**
+   * Returns the singleton instance of the TextToSpeech class.
+   * 
+   * @return the singleton instance of TextToSpeech
+   */
   public static TextToSpeech getInstance() {
     if (instance == null) {
       instance = new TextToSpeech();
@@ -39,11 +50,19 @@ public class TextToSpeech {
     return instance;
   }
 
+  /**
+   * Converts the given text to speech.
+   * 
+   * @param text the text to be converted to speech
+   */
   public void speak(String text) {
     // Convert text to speech
     synthesizer.SpeakText(text);
   }
 
+  /**
+   * Closes the speech synthesizer.
+   */
   public void close() {
     // Close the synthesizer
     synthesizer.close();
