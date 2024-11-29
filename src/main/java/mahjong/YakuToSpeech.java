@@ -51,6 +51,7 @@ public class YakuToSpeech {
     int akadoraCount = 0;
     int uradoraCount = 0;
     int doraCount = 0;
+    int hasSameWindYaku = -1; // 0 for Ton, 1 for Nan, 2 for Shaa, 3 for Pei
     for (Yaku yaku : yakus) {
       switch (yaku) {
         case Peidora:
@@ -65,8 +66,70 @@ public class YakuToSpeech {
         case Dora:
           doraCount += 1;
           break;
+        case JikazeTon:
+          if (hasSameWindYaku == -1) {
+            hasSameWindYaku = 0;
+          }
+          tokens.add("Ton");
+          break;
+        case JikazeNan:
+          if (hasSameWindYaku == -1) {
+            hasSameWindYaku = 1;
+          }
+          tokens.add("Nan");
+          break;
+        case JikazeShaa: 
+          if (hasSameWindYaku == -1) {
+            hasSameWindYaku = 2;
+          }
+          tokens.add("Shaa");
+          break;
+        case JikazePei:
+          if (hasSameWindYaku == -1) {
+            hasSameWindYaku = 3;
+          }
+          tokens.add("Pei");
+          break;
+        case BakazeTon:
+          if (hasSameWindYaku == 0) {
+            tokens.add("DoubleTon");
+          }
+          else {
+            tokens.add("Ton");
+          }
+          break;
+        case BakazeNan:
+          if (hasSameWindYaku == 1) {
+            tokens.add("DoubleNan");
+          }
+          else {
+            tokens.add("Nan");
+          }
+          break;
+        case BakazeShaa:
+          if (hasSameWindYaku == 2) {
+            tokens.add("DoubleShaa");
+          }
+          else {
+            tokens.add("Shaa");
+          }
+          break;
+        case BakazePei:
+          if (hasSameWindYaku == 3) {
+            tokens.add("DoublePei");
+          }
+          else {
+            tokens.add("Pei");
+          }
+          break;
         default:
-          tokens.add(yaku.toString());
+          String token = yaku.toString();
+          // Special case for Yaku with Naki suffix
+          // remove the Naki suffix in token
+          if (token.endsWith("Naki")) {
+            token = token.substring(0, token.length() - 4);
+          }
+          tokens.add(token);
           break;
       }
     }
