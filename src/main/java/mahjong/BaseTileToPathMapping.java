@@ -1,9 +1,7 @@
-package utils;
+package mahjong;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import mahjong.BaseTile;
 
 public class BaseTileToPathMapping {
     // Blank or disabled tiles

@@ -1,4 +1,7 @@
-package utils;
+package mahjong;
+
+import utils.Localization;
+import utils.Pair;
 
 /**
  * Utility class for formatting display strings in the Mahjong game.
