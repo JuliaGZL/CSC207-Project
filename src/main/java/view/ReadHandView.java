@@ -3,6 +3,7 @@ package view;
 import interface_adapter.read_hand.ReadHandController;
 import interface_adapter.read_hand.ReadHandState;
 import interface_adapter.read_hand.ReadHandViewModel;
+import utils.TextToSpeech;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,7 @@ public class ReadHandView extends JButton implements ActionListener, PropertyCha
     private ReadHandController readHandController;
 
     public ReadHandView(ReadHandViewModel readHandViewModel) {
-        super("Read"); // set the text of the button to "Read"
+        super("Read (Ctrl+R)"); // set the text of the button to "Read"
 //        setMnemonic(KeyEvent.VK_R); // set the mnemonic to 'R' (Alt + R will trigger the button)
 
         this.readHandViewModel = readHandViewModel;
@@ -86,8 +87,10 @@ public class ReadHandView extends JButton implements ActionListener, PropertyCha
      */
     private void readOutLoud(String handInfo) {
         // Add read functionality here
-        System.out.println("readOutLoud called");
-        System.out.println(handInfo);
+        // System.out.println("readOutLoud called");
+        // System.out.println(handInfo);
+        TextToSpeech ttsInstance = TextToSpeech.getInstance();
+        ttsInstance.speak(handInfo);
     }
 
     public void setReadHandController(ReadHandController readHandController) {

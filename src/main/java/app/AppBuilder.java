@@ -2,7 +2,6 @@ package app;
 
 import data_access.InMemoryUniversalDataAccessObject;
 import entity.PlayerFactory;
-import entity.Tile;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.EditStatusPresenter;
