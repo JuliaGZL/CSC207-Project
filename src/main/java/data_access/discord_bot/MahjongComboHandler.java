@@ -1,30 +1,31 @@
-package usecase.api_usecase;
+package data_access.discord_bot;
 
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import java.util.*;
 
-public class MahjongComboInteractor extends MessageInteractor {
+public class MahjongComboHandler extends MessageHandler {
     static final List<Character> LEGAL_IDENTIFIER = Arrays.asList(
             'm', 'p', 's', 'z', 'M', 'P', 'S', 'Z');
 
-    public MahjongComboInteractor(DiscordClient client, GatewayDiscordClient gateway) {
+    public MahjongComboHandler(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
             String memberName = getMemberName(event);
             String content = getContent(event);
 
             if (invokeMessage(content)) {
-                return sendMessage(event, newMessage(content, memberName));
+                MessageHolder.setMessage(content);
+                return sendMessage(event, newMessage(content));
             }
 
-            return SubEventCreator.defaultReturn();
+            return EventHandler.defaultReturn();
         });
     }
 
-    public static String newMessage(String content, String memberName) {
+    public static String newMessage(String content) {
         Map<Character, List<Integer>> mahjongCombo = processMahjongInput(content);
-        return getFeedback(mahjongCombo);
+        return getFeedback(content);
     }
 
     public static Map<Character, List<Integer>> processMahjongInput(String content) {
@@ -66,7 +67,10 @@ public class MahjongComboInteractor extends MessageInteractor {
         return Character.isLetter(c) && target.length() == 1;
     }
 
-    public static String getFeedback(Map<Character, List<Integer>> mahjongCombo) {
-        return "Unimplemented";
+    public static String getFeedback(String content) {
+        content = content.substring(content.indexOf(' ') + 1);
+        FeedbackGenerator generator = new FeedbackGenerator();
+        List<String> feedback =  FeedbackGenerator.getFeedback(content);
+        return String.join("\n", feedback);
     }
 }

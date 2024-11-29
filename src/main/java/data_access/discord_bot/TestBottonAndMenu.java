@@ -1,4 +1,4 @@
-package usecase.api_usecase;
+package data_access.discord_bot;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClient;
