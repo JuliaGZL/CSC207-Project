@@ -16,16 +16,16 @@ public class MahjongComboHandler extends MessageHandler {
 
             if (invokeMessage(content)) {
                 MessageHolder.setMessage(content);
-                return sendMessage(event, newMessage(content, memberName));
+                return sendMessage(event, newMessage(content));
             }
 
             return EventHandler.defaultReturn();
         });
     }
 
-    public static String newMessage(String content, String memberName) {
+    public static String newMessage(String content) {
         Map<Character, List<Integer>> mahjongCombo = processMahjongInput(content);
-        return getFeedback(mahjongCombo);
+        return getFeedback(content);
     }
 
     public static Map<Character, List<Integer>> processMahjongInput(String content) {
@@ -67,7 +67,10 @@ public class MahjongComboHandler extends MessageHandler {
         return Character.isLetter(c) && target.length() == 1;
     }
 
-    public static String getFeedback(Map<Character, List<Integer>> mahjongCombo) {
-        return "Unimplemented";
+    public static String getFeedback(String content) {
+        content = content.substring(content.indexOf(' ') + 1);
+        FeedbackGenerator generator = new FeedbackGenerator();
+        List<String> feedback =  FeedbackGenerator.getFeedback(content);
+        return String.join("\n", feedback);
     }
 }
