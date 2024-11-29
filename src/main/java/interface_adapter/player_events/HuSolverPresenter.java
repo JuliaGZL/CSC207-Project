@@ -1,7 +1,13 @@
 package interface_adapter.player_events;
 
+import mahjong.HandResult;
+import mahjong.Yaku;
+import mahjong.YakuAndScoreLevelToSpeech;
 import usecase.hu_solver.HuSolveOutputBoundary;
 import usecase.hu_solver.HuSolverOutputData;
+import utils.TextToSpeech;
+
+import java.util.List;
 
 /**
  * Presenter for the Hu solver.
@@ -23,6 +29,13 @@ public class HuSolverPresenter implements HuSolveOutputBoundary {
         viewModel.getState().setScore(viewModel.getState().getScore() + outputData.getScore());
         viewModel.getState().setMessage(outputData.getMessage());
         viewModel.firePropertyChanged("score");
+
+        // read out result
+        HandResult handResult = HandResult.getInstance();
+        List<Yaku> yakus = handResult.getHandYakuList();
+        yakus.sort(null);
+        YakuAndScoreLevelToSpeech.playSound(yakus, handResult.getScoreLevel());
+        HandResult.resetInstance();
     }
 
     /**
@@ -34,5 +47,8 @@ public class HuSolverPresenter implements HuSolveOutputBoundary {
     public void prepareFailView(String errorMessage) {
         viewModel.getState().setMessage(errorMessage);
         viewModel.firePropertyChanged("failed");
+
+        // read out error
+        TextToSpeech.getInstance().speak(errorMessage);
     }
 }
