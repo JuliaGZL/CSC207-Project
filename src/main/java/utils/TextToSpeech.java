@@ -35,6 +35,8 @@ public class TextToSpeech {
   private TextToSpeech() {
     // Initialize the Azure Speech Synthesizer
     SpeechConfig config = SpeechConfig.fromSubscription(speechKey, speechRegion);
+    // Note: the voice setting will not overwrite the voice element in input SSML.
+    config.setSpeechSynthesisVoiceName("wuu-CN-XiaotongNeural");
     synthesizer = new SpeechSynthesizer(config);
   }
 
@@ -58,6 +60,16 @@ public class TextToSpeech {
   public void speak(String text) {
     // Convert text to speech
     synthesizer.SpeakText(text);
+  }
+
+  /**
+   * Converts the given text to speech in a new thread.
+   * 
+   * @param text the text to be converted to speech
+   */
+  public void speakInThread(String text) {
+    new Thread(() -> speak(text)).start();
+    System.out.println("Speaking: " + text);
   }
 
   /**
