@@ -26,16 +26,16 @@ public class HuSolverPresenter implements HuSolveOutputBoundary {
      */
     @Override
     public void prepareSuccessView(HuSolverOutputData outputData) {
-        viewModel.getState().setScore(viewModel.getState().getScore() + outputData.getScore());
-        viewModel.getState().setMessage(outputData.getMessage());
-        viewModel.firePropertyChanged("score");
-
         // read out result
         HandResult handResult = HandResult.getInstance();
         List<Yaku> yakus = handResult.getHandYakuList();
         yakus.sort(null);
-        YakuAndScoreLevelToSpeech.playSound(yakus, handResult.getScoreLevel());
+        YakuAndScoreLevelToSpeech.playSoundInThread(yakus, handResult.getScoreLevel());
         HandResult.resetInstance();
+
+        viewModel.getState().setScore(viewModel.getState().getScore() + outputData.getScore());
+        viewModel.getState().setMessage(outputData.getMessage());
+        viewModel.firePropertyChanged("score");
     }
 
     /**
@@ -49,6 +49,6 @@ public class HuSolverPresenter implements HuSolveOutputBoundary {
         viewModel.firePropertyChanged("failed");
 
         // read out error
-        TextToSpeech.getInstance().speak(errorMessage);
+        TextToSpeech.getInstance().speakInThread(errorMessage);
     }
 }

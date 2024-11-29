@@ -90,7 +90,7 @@ public class ReadHandView extends JButton implements ActionListener, PropertyCha
         // System.out.println("readOutLoud called");
         // System.out.println(handInfo);
         TextToSpeech ttsInstance = TextToSpeech.getInstance();
-        ttsInstance.speak(handInfo);
+        ttsInstance.speakInThread(handInfo);
     }
 
     public void setReadHandController(ReadHandController readHandController) {
