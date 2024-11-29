@@ -5,10 +5,10 @@ public class TestFinalChatBotWithOutFactory {
         String token = "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto";
 
         ChatBot bot = new ChatBot(token);
-        bot.addEvent(LoginEvent.class);
-        bot.addEvent(GreetingEvent.class);
+        bot.addEvent(LoginHandler.class);
+        bot.addEvent(GreetingHandler.class);
         bot.addEvent(MahjongComboInteractor.class);
-        bot.addEvent(QuitBotEvent.class);
+        bot.addEvent(QuitHandler.class);
         System.out.println(bot.subEventsClasses);
         // [class usecase.api_usecase.LoginEvent, class usecase.api_usecase.GreetingEvent,
         // class usecase.api_usecase.MahjongComboInteractor, class usecase.api_usecase.QuitBotEvent]

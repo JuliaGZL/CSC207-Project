@@ -14,15 +14,15 @@ public class TestSubEventCreatorsCombined {
 
         Mono<Void> login = client.withGateway((GatewayDiscordClient gateway) -> {
             // ReadyEvent example
-            LoginEvent loginReport = new LoginEvent(client, gateway);
+            LoginHandler loginReport = new LoginHandler(client, gateway);
             // Mono<Void> printOnLogin = loginReport.getExecutableEvent();
 
             // MessageCreateEvent example
-            GreetingEvent greetingResponse = new GreetingEvent(client, gateway);
+            GreetingHandler greetingResponse = new GreetingHandler(client, gateway);
             // Mono<Void> handleGreetingCommand = greetingResponse.getExecutableEvent();
 
             // MessageCreateEvent example
-            StatusEvent statusReporter = new StatusEvent(client, gateway);
+            StatusReportHandler statusReporter = new StatusReportHandler(client, gateway);
             // Mono<Void> handleTestingCommand = statusReporter.getExecutableEvent();
 
             // combine them!

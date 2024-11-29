@@ -3,21 +3,21 @@ package usecase.api_usecase;
 import discord4j.core.DiscordClient;
 import reactor.core.publisher.Mono;
 
-public class ParallelEvent {
+public class ParallelEventCombiner {
     DiscordClient client;
     Mono<Void> event;
 
-    public ParallelEvent(DiscordClient client, Mono<Void> event) {
+    public ParallelEventCombiner(DiscordClient client, Mono<Void> event) {
         this.client = client;
         this.event = event;
     }
 
-    public ParallelEvent union(ParallelEvent other) {
-        return new ParallelEvent(client, this.event.and(other.event));
+    public ParallelEventCombiner union(ParallelEventCombiner other) {
+        return new ParallelEventCombiner(client, this.event.and(other.event));
     }
 
-    public ParallelEvent union(SubEventCreator other) {
-        return new ParallelEvent(client, this.event.and(other.getExecutableEvent()));
+    public ParallelEventCombiner union(EventHandler other) {
+        return new ParallelEventCombiner(client, this.event.and(other.getExecutableEvent()));
     }
 
     public Mono<Void> getEvent() {

@@ -5,27 +5,27 @@ import discord4j.core.GatewayDiscordClient;
 
 
 public class SubEventFactory {
-    public SubEventCreator createSubEvent(Class<? extends SubEventCreator> eventType,
-                                          DiscordClient client, GatewayDiscordClient gateway) {
-        if (eventType.equals(LoginEvent.class)) {
+    public EventHandler createSubEvent(Class<? extends EventHandler> eventType,
+                                       DiscordClient client, GatewayDiscordClient gateway) {
+        if (eventType.equals(LoginHandler.class)) {
             System.out.println("Login Event Created");
-            return new LoginEvent(client, gateway);
+            return new LoginHandler(client, gateway);
         }
         if (eventType.equals(MahjongComboInteractor.class)) {
             System.out.println("Mahjong Event Created");
             return new MahjongComboInteractor(client, gateway);
         }
-        if (eventType.equals(GreetingEvent.class)) {
+        if (eventType.equals(GreetingHandler.class)) {
             System.out.println("Greating Event Created");
-            return new GreetingEvent(client, gateway);
+            return new GreetingHandler(client, gateway);
         }
-        if (eventType.equals(StatusEvent.class)) {
+        if (eventType.equals(StatusReportHandler.class)) {
             System.out.println("Status Event Created");
-            return new StatusEvent(client, gateway);
+            return new StatusReportHandler(client, gateway);
         }
-        if (eventType.equals(QuitBotEvent.class)) {
+        if (eventType.equals(QuitHandler.class)) {
             System.out.println("Quit Bot Event Created");
-            return new QuitBotEvent(client, gateway);
+            return new QuitHandler(client, gateway);
         }
         throw new IllegalArgumentException("Unknown event type: " + eventType);
     }
