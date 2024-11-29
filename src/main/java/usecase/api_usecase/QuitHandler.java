@@ -4,27 +4,26 @@ import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 
-
-public class StatusEvent extends MessageInteractor {
-
-    public StatusEvent(DiscordClient client, GatewayDiscordClient gateway) {
+public class QuitBotEvent extends MessageHandler {
+    public QuitBotEvent(DiscordClient client, GatewayDiscordClient gateway) {
         super(client, gateway, MessageCreateEvent.class, event -> {
             String memberName = getMemberName(event);
             String content = getContent(event);
 
             if (invokeMessage(content)) {
-                return sendMessage(event, newMessage(memberName));
+                System.out.println("Invoke Leaving.");
+                return sendMessage(event, newMessage(content, memberName)).and(gateway.logout());
             }
 
             return SubEventCreator.defaultReturn();
         });
     }
 
-    public static String newMessage(String memberName) {
-        return "Dear " + memberName + " , everything is fine";
+    public static String newMessage(String content, String memberName) {
+        return "See ya'll! Especially you,  " + memberName;
     }
 
     public static boolean invokeMessage(String message) {
-        return message.equalsIgnoreCase("report status");
+        return message.equals("!vc leave");
     }
 }

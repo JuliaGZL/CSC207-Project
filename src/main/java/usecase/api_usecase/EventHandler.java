@@ -41,7 +41,7 @@ public class SubEventCreator<E extends Event> {
         return Mono.empty();
     }
 
-    public ParallelEvent union(SubEventCreator<? extends Event> other) {
-        return new ParallelEvent(this.client, this.getExecutableEvent().and(other.getExecutableEvent()));
+    public ParallelEventCombiner union(SubEventCreator<? extends Event> other) {
+        return new ParallelEventCombiner(this.client, this.getExecutableEvent().and(other.getExecutableEvent()));
     }
 }
