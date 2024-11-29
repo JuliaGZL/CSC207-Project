@@ -1,8 +1,8 @@
 package interface_adapter.read_hand;
 
-import interface_adapter.ViewManagerModel;
 import usecase.read_hand.ReadHandOutputBoundary;
 import usecase.read_hand.ReadHandOutputData;
+import utils.TextToSpeech;
 
 /**
  * The Presenter for the read hand use case.

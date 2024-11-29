@@ -41,7 +41,7 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
             handInfo.append("Your hand includes");
             for (Tile tile : hand) {
                 handInfo.append(" ");
-                handInfo.append(tile.getTile().toString());
+                handInfo.append(tile.getTile().toText());
                 handInfo.append(",");
             }
             handInfo.deleteCharAt(handInfo.length() - 1); // Delete the final comma

@@ -1,4 +1,6 @@
-package interface_adapter.edit_tiles;
+package interface_adapter.display_tiles;
+
+import interface_adapter.edit_tiles.TileSelectorViewModel;
 
 /**
  * This is for the communication from the tile display panels and status editor panel toward the tile selector view.

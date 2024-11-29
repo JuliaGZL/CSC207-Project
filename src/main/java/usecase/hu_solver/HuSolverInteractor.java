@@ -79,7 +79,6 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
                 messageBuilder.append(s).append("\n");
             }
             String message = messageBuilder.toString();
-            player.setScore(player.getScore() + score);
             dataAccessObj.savePlayer(player);
             presenter.prepareSuccessView(new HuSolverOutputData(message, player.getScore() + score));
         }

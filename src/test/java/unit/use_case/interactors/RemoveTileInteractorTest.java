@@ -1,4 +1,4 @@
-package unit.use_case;
+package unit.use_case.interactors;
 
 import data_access.InMemoryUniversalDataAccessObject;
 import entity.Player;

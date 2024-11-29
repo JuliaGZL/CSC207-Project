@@ -8,7 +8,7 @@ public class Main {
         try {
             // TODO: just a workaround to make it looks better on my device...
             System.setProperty("sun.java2d.uiScale","2");
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+            // UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -24,7 +24,7 @@ public class Main {
                                     .addUradoraDisplayView()
                                     .addTileSelectorView()
                                     .addChangePlayerSupport()
-                                    .addHanReader()
+                                    .addHandReader()
                                     .build();
         app.pack();
         app.setVisible(true);
