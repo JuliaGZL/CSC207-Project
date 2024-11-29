@@ -102,26 +102,22 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
                             updateEnabledTileController.execute(playerName, tileAddTarget);
                         }
                     });
-
-                    // add hovering event (read out)
                     button.addMouseListener(new MouseAdapter() {
-                        private final Timer timer = new Timer(3000, new ActionListener() {
+                        Timer timer = new Timer(500, new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                // read out tile
-                                // TextToSpeech.getInstance().speak(tile.toText());
+                                TextToSpeech.getInstance().speakInThread(tile.toText());
                             }
                         });
 
                         @Override
                         public void mouseEntered(MouseEvent e) {
-                            System.out.println("timer started!" + tile);
+                            timer.setRepeats(false);
                             timer.start();
                         }
 
                         @Override
                         public void mouseExited(MouseEvent e) {
-                            System.out.println("timer stopped!" + tile);
                             timer.stop();
                         }
                     });
