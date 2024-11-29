@@ -20,7 +20,7 @@ public class HuSolverPresenter implements HuSolveOutputBoundary {
      */
     @Override
     public void prepareSuccessView(HuSolverOutputData outputData) {
-        viewModel.getState().setScore(outputData.getScore());
+        viewModel.getState().setScore(viewModel.getState().getScore() + outputData.getScore());
         viewModel.getState().setMessage(outputData.getMessage());
         viewModel.firePropertyChanged("score");
     }

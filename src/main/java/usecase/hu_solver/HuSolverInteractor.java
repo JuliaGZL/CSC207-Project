@@ -70,6 +70,8 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
         } catch (RuntimeException e) {
             presenter.prepareFailView(e.getMessage());
             return;
+        } finally {
+            HandResult.resetInstance();
         }
         if (score == 0) {
             presenter.prepareFailView("Current hand is not valid for Hu!");
@@ -79,7 +81,6 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
                 messageBuilder.append(s).append("\n");
             }
             String message = messageBuilder.toString();
-            player.setScore(player.getScore() + score);
             dataAccessObj.savePlayer(player);
             presenter.prepareSuccessView(new HuSolverOutputData(message, player.getScore() + score));
         }
