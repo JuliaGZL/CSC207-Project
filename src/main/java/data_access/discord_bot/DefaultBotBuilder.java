@@ -1,6 +1,6 @@
 package data_access.discord_bot;
 
-public class DefaultBotBuilder extends BotBuilder{
+public class DefaultBotBuilder extends BotBuilder {
     String token;
 
     public DefaultBotBuilder() {
