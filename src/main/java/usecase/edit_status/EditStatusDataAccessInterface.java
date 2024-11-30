@@ -1,19 +1,11 @@
 package usecase.edit_status;
 
-import entity.AddTileManager;
 import entity.Player;
 
 /**
  * The interface of the DAO for the Edit Status Use Case.
  */
 public interface EditStatusDataAccessInterface {
-
-    /**
-     * Changes the type of tile to be added to the hand.
-     * @param addTileManager the AddTileManager object that manages the adding of tiles
-     * @param addTileType the new type of tile to be added
-     */
-    void changeAddTileType(AddTileManager addTileManager, String addTileType);
 
     /**
      * Updates the system to record this player's gameplay attributes.

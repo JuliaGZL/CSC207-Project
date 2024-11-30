@@ -1,9 +1,5 @@
 package interface_adapter.read_hand;
 
-import entity.Tile;
-
-import java.util.List;
-
 /**
  * The state information about reading the hand.
  */

@@ -4,11 +4,13 @@ import interface_adapter.player_events.ChangePlayerController;
 import interface_adapter.player_events.HuSolverController;
 import interface_adapter.player_events.PlayerEventsViewModel;
 import interface_adapter.player_events.PullRemoteHandController;
+import utils.TextToSpeech;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -112,9 +114,52 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
         } else if (property.equals("score")) {
             this.score = this.viewModel.getState().getScore();
             this.playerScoreLabel.setText("Score: " + String.valueOf(score));
-            JOptionPane.showMessageDialog(this, this.viewModel.getState().getMessage());
+
+            String message = this.viewModel.getState().getMessage();
+            showDialogWithHotkey(message);
         } else if (property.equals("failed")) {
-            JOptionPane.showMessageDialog(this, this.viewModel.getState().getMessage());
+            String message = this.viewModel.getState().getMessage();
+            showDialogWithHotkey(message);
         }
+    }
+
+    /**
+     * Helper function for showing a dialog that binds with the hotkey CTRL+R
+     * for accessibility purposes.
+     * @param message the message to show in the dialog and to be read out loud
+     */
+    public void showDialogWithHotkey(String message) {
+        // Create JOptionPane
+        JOptionPane optionPane = new JOptionPane(
+                message,
+                JOptionPane.INFORMATION_MESSAGE,
+                JOptionPane.DEFAULT_OPTION
+        );
+        // Create JDialog
+        JDialog dialog = optionPane.createDialog(this, message);
+
+        // Add hotkey binding
+        dialog.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyStroke.getKeyStroke("ctrl R"), "readMessage");
+        dialog.getRootPane().getActionMap().put("readMessage", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Read the message out loud
+                readOutLoud(message);
+            }
+        });
+
+        // Show the dialog
+        dialog.setVisible(true);
+    }
+
+    /**
+     * Read out loud the message.
+     * @param message the message to be read
+     */
+    public void readOutLoud(String message) {
+//        System.out.println(message);
+        TextToSpeech ttsInstance = TextToSpeech.getInstance();
+        ttsInstance.speakInThread(message);
     }
 }

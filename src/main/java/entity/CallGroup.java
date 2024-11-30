@@ -130,7 +130,7 @@ public class CallGroup {
 
       case KAKAN:
         for (int i = 0; i < 4; i++) {
-          if (i == take && i == 4) {
+          if (i == take && i == 3) {
             ret.append("(").append(tiles.get(i).toString()).append(")");
           } else {
             ret.append(tiles.get(i).toString());
