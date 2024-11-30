@@ -3,7 +3,6 @@ package data_access;
 import java.util.HashMap;
 import java.util.Map;
 
-import entity.AddTileManager;
 import entity.Player;
 import usecase.add_tile.AddTileDataAccessInterface;
 import usecase.change_player.ChangePlayerDataAccessInterface;
@@ -58,16 +57,6 @@ public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInter
     @Override
     public void savePlayer(Player player) {
         players.put(player.getName(), player);
-    }
-
-
-    /**
-     * Changes the type of tile to be added to the hand.
-     * @param addTileManager the AddTileManager object that manages the adding of tiles
-     */
-    @Override
-    public void changeAddTileType(AddTileManager addTileManager, String newAddTileType) {
-        addTileManager.setAddTileType(newAddTileType);
     }
 
     /**
