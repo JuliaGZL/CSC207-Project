@@ -5,6 +5,7 @@ import entity.Player;
 import entity.PlayerFactory;
 import entity.Tile;
 import mahjong.BaseTile;
+import org.junit.jupiter.api.Assertions;
 import usecase.add_tile.*;
 
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class AddTileInteractorTest {
         player.setHand(hand);
         DAO.savePlayer(player);
         interactorHand.execute(new AddTileInputData(tileId, name));
-        assertEquals(tileId, DAO.getPlayer(name).getHand().get(0).getTile());
+        Assertions.assertEquals(tileId, DAO.getPlayer(name).getHand().get(0).getTile());
     }
 
     @Test
@@ -41,7 +42,7 @@ public class AddTileInteractorTest {
         player.setDora(dora);
         DAO.savePlayer(player);
         interactorDora.execute(new AddTileInputData(tileId, name));
-        assertEquals(tileId, DAO.getPlayer(name).getDora().get(0).getTile());
+        Assertions.assertEquals(tileId, DAO.getPlayer(name).getDora().get(0).getTile());
     }
 
     @Test
@@ -53,12 +54,33 @@ public class AddTileInteractorTest {
         player.setUradora(uradora);
         DAO.savePlayer(player);
         interactorUradora.execute(new AddTileInputData(tileId, name));
-        assertEquals(tileId, DAO.getPlayer(name).getUradora().get(0).getTile());
+        Assertions.assertEquals(tileId, DAO.getPlayer(name).getUradora().get(0).getTile());
     }
 
     @Test
-    void FailTest() {
-        // shouldn't happen
+    void FailTestPlayerNotExist() {
+        AddTileInputBoundary interactorHand = new AddTileInteractor(
+                DAO, new dummyAddTileOTB(name), AddTileInteractor.HAND);
+        Assertions.assertThrows(
+                RuntimeException.class,
+                () -> {
+                    interactorHand.execute(new AddTileInputData(tileId, "no_exist"));
+                }
+        );
+    }
+
+    @Test
+    void FailTestInvalidTarget() {
+        AddTileInputBoundary interactorInvalid = new AddTileInteractor(
+                DAO, new dummyAddTileOTB(name), 233);
+        Player player = factory.createEmpty(name);
+        DAO.savePlayer(player);
+        Assertions.assertThrows(
+                RuntimeException.class,
+                () -> {
+                    interactorInvalid.execute(new AddTileInputData(tileId, name));
+                }
+        );
     }
 }
 
