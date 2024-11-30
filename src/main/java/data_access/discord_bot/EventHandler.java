@@ -8,7 +8,7 @@ import discord4j.core.event.domain.Event;
 
 import java.util.function.Function;
 
-public class EventHandler<E extends Event> {
+public abstract class EventHandler<E extends Event> {
     DiscordClient client;
     Mono<Void> eventVoid;
     GatewayDiscordClient gateway;
