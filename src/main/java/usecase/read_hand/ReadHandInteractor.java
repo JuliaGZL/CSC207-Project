@@ -8,8 +8,8 @@ import java.util.List;
  * Interactor for the read hand use case.
  */
 public class ReadHandInteractor implements ReadHandInputBoundary {
-   private ReadHandDataAccessInterface dataAccessObj;
-   private ReadHandOutputBoundary presenter;
+   private final ReadHandDataAccessInterface dataAccessObj;
+   private final ReadHandOutputBoundary presenter;
 
     public ReadHandInteractor(ReadHandDataAccessInterface dataAccessObj, ReadHandOutputBoundary presenter) {
         this.dataAccessObj = dataAccessObj;
