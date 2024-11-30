@@ -13,6 +13,6 @@ public class CommonAddTileManagerFactory implements AddTileManagerFactory {
      */
     @Override
     public AddTileManager create(String type) {
-        return new CommonAddTileManager(type);
+        return new CommonAddTileManager("default", type);
     }
 }

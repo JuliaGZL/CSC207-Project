@@ -32,11 +32,13 @@ public class PlayerFactory {
         List<Tile> doraTiles = new ArrayList<Tile>();
         for(BaseTile t : dora) {
             handTiles.add(new Tile(t));
+            doraTiles.add(new Tile(t));
         }
 
         List<Tile> uradoraTiles = new ArrayList<Tile>();
         for(BaseTile t : uradora) {
             handTiles.add(new Tile(t));
+            uradoraTiles.add(new Tile(t));
         }
 
         return new Player(name, score, handTiles, doraTiles, uradoraTiles);
