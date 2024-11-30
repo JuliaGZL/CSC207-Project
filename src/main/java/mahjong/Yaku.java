@@ -1,5 +1,6 @@
 package mahjong;
 
+import java.util.Comparator;
 import utils.Localization;
 
 /**
@@ -53,12 +54,12 @@ public enum Yaku {
   Ippatsu,
   /** Dora (ドラ): Bonus tile. */
   Dora,
-  /** Uradora (裏ドラ): Hidden bonus tile. */
-  Uradora,
-  /** Akadora (赤ドラ): Red bonus tile. */
-  Akadora,
   /** Peidora (北ドラ): North bonus tile (only in 3-player Mahjong). */
   Peidora,
+  /** Akadora (赤ドラ): Red bonus tile. */
+  Akadora,
+  /** Uradora (裏ドラ): Hidden bonus tile. */
+  Uradora,
   /** Honchantaiyaochu Naki (混全帯么九 鳴き): Mixed outside hand with open melds. */
   HonchantaiyaochuNaki,
   /** Ikkitsuukan Naki (一気通貫 鳴き): Pure straight with open melds. */
@@ -164,13 +165,13 @@ public enum Yaku {
   /** Yakuman Double (倍役満): Double limit hand. */
   YakumanDouble;
 
-  private static final int valYaku1han      = 1;
-  private static final int valYaku2han      = 2;
-  private static final int valYaku3han      = 3;
-  private static final int valYaku5han      = 5;
-  private static final int valYaku6han      = 6;
-  private static final int valYakumangan    = 5;
-  private static final int valYakuman       = 13;
+  private static final int valYaku1han = 1;
+  private static final int valYaku2han = 2;
+  private static final int valYaku3han = 3;
+  private static final int valYaku5han = 5;
+  private static final int valYaku6han = 6;
+  private static final int valYakumangan = 5;
+  private static final int valYakuman = 13;
   private static final int valYakumanDouble = 26;
 
   /**
@@ -240,12 +241,50 @@ public enum Yaku {
   }
 
   /**
+   * Returns the basic string representation of this Yaku.
+   *
+   * @return the basic name of the Yaku
+   */
+  @Override
+  public String toString() {
+    return this.name();
+  }
+
+  /**
    * Returns the localized string representation of this Yaku.
    *
    * @return the localized name of the Yaku.
    */
-  @Override
-  public String toString() {
-    return localization.toString(this) + ": " + localization.toString(this.getFan());
+  public String toText() {
+    return localization.toText(this) + ": " + localization.toText(this.getFan());
+  }
+
+  /**
+   * Returns a comparator for Yaku objects.
+   *
+   * @return a comparator for Yaku instances
+   */
+  public static Comparator<Yaku> comparator() {
+    // always put bonus tile into the end of a list
+    return (g1, g2) -> {
+      // Check if g1 is a bonus tile (Peidora, Akadora, Uradora, Dora) and g2 is not
+      if ((g1 == Peidora || g1 == Akadora || g1 == Uradora || g1 == Dora)
+          && (g2 != Peidora && g2 != Akadora && g2 != Uradora && g2 != Dora)) {
+        return 1;
+      // Check if g2 is a bonus tile (Peidora, Akadora, Uradora, Dora) and g1 is not
+      } else if ((g2 == Peidora || g2 == Akadora || g2 == Uradora || g2 == Dora)
+          && (g1 != Peidora && g1 != Akadora && g1 != Uradora && g1 != Dora)) {
+        return -1;
+      } else {
+        // Compare based on ordinal values
+        if (g1.ordinal() > g2.ordinal()) {
+          return 1;
+        } else if (g1.ordinal() < g2.ordinal()) {
+          return -1;
+        } else {
+          return 0;
+        }
+      }
+    };
   }
 }

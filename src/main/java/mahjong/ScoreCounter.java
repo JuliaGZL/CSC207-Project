@@ -1,7 +1,7 @@
 package mahjong;
 
-import utils.Pair;
-import utils.ScoreDisplayFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The ScoreCounter class calculates and registers the score in a Mahjong game
@@ -16,11 +16,13 @@ public class ScoreCounter {
    * @param isOya   true if the player is the dealer (oya), false otherwise
    * @param isTsumo true if the win was by tsumo, false if by ron
    */
-  public ScoreCounter(int fan, int fu, boolean isOya, boolean isTsumo) {
+  public ScoreCounter(int fan, int fu, boolean isOya, boolean isTsumo, boolean hasYakuman) {
     this.fan = fan;
     this.fu = fu;
     this.isOya = isOya;
     this.isTsumo = isTsumo;
+    this.hasYakuman = hasYakuman;
+    this.scoreLevel = ScoreLevel.None;
     fanfuToScore();
   }
 
@@ -30,25 +32,35 @@ public class ScoreCounter {
    * Throws a RuntimeException if the combination of fan and fu is not supported.
    */
   private void fanfuToScore() {
-    if (fan > 13) {
+    if (fan >= 13) {
       // if we have achieved a Yakuman
+      if (hasYakuman) {
+        this.scoreLevel = ScoreLevel.valueOf("Yakuman" + String.valueOf(fan / 13));
+      } else {
+        this.scoreLevel = ScoreLevel.Kazoeyakuman;
+      }
       registerScore(48000 * (fan / 13), 16000 * (fan / 13), 32000 * (fan / 13), 16000 * (fan / 13),
           8000 * (fan / 13));
     } else if (fan >= 11) {
       // if we have achieved a Sanbaiman
+      this.scoreLevel = ScoreLevel.Sanbaiman;
       registerScore(36000, 12000, 24000, 12000, 6000);
     } else if (fan >= 8) {
       // if we have achieved a Baiman
+      this.scoreLevel = ScoreLevel.Baiman;
       registerScore(24000, 8000, 16000, 8000, 4000);
     } else if (fan >= 6) {
       // if we have achieved a Haneman
+      this.scoreLevel = ScoreLevel.Haneman;
       registerScore(18000, 6000, 12000, 6000, 3000);
     } else if (fan == 5) {
       // if we have achieved a Mangan
+      this.scoreLevel = ScoreLevel.Mangan;
       registerScore(12000, 4000, 8000, 4000, 2000);
     } else if (fan == 4) {
       // 40 fus above is Mangan
       if (fu >= 40) {
+        this.scoreLevel = ScoreLevel.Mangan;
         registerScore(12000, 4000, 8000, 4000, 2000);
       } else if (fu == 30) {
         registerScore(11600, 3900, 7700, 3900, 2000);
@@ -60,6 +72,7 @@ public class ScoreCounter {
     } else if (fan == 3) {
       // 70 fus above is Mangan
       if (fu >= 70) {
+        this.scoreLevel = ScoreLevel.Mangan;
         registerScore(12000, 4000, 8000, 4000, 2000);
       } else if (fu == 60) {
         registerScore(11600, 3900, 7700, 3900, 2000);
@@ -154,37 +167,63 @@ public class ScoreCounter {
    * the type of win.
    *
    * @return an ArrayList of Integer containing the relevant scores
+   *         (index 0 for total score the player can get, index 1,2 for the score
+   *         other players have to pay)
    */
-  public Pair<Integer, Integer> getScores() {
+  public List<Integer> getScores() {
+    List<Integer> scores = new ArrayList<>();
     if (isOya) {
       if (isTsumo) {
-        return new Pair<>(this.scoreParentTsumoAll, 0);
+        scores.add(this.scoreParentTsumoAll * (numOfPlayers - 1));
+        scores.add(this.scoreParentTsumoAll);
+        scores.add(0);
       } else {
-        return new Pair<>(this.scoreParentRon, 0);
+        scores.add(this.scoreParentRon);
+        scores.add(this.scoreParentRon);
+        scores.add(0);
       }
     } else {
       if (isTsumo) {
-        return new Pair<>(this.scoreChildTsumoParent, this.scoreChildTsumoChild);
+        scores.add(this.scoreChildTsumoParent + this.scoreChildTsumoChild * (numOfPlayers - 2));
+        scores.add(this.scoreChildTsumoParent);
+        scores.add(this.scoreChildTsumoChild);
       } else {
-        return new Pair<>(this.scoreChildRon, 0);
+        scores.add(this.scoreChildRon);
+        scores.add(this.scoreChildRon);
+        scores.add(0);
       }
     }
+    return scores;
+  }
+
+  /**
+   * Retrieves the current score level.
+   *
+   * @return the current {@link ScoreLevel} of the hand.
+   */
+  public ScoreLevel getScoreLevel() {
+    return this.scoreLevel;
   }
 
   /**
    * Converts the current score information into a formatted string.
    *
-   * @return A formatted string representing the scores, formatted using the ScoreDisplayFormatter.
+   * @return A formatted string representing the scores, formatted using the
+   *         ScoreDisplayFormatter.
    */
   public String toFormattedScores() {
     return ScoreDisplayFormatter.formatScore(isOya, isTsumo, getScores());
   }
+
+  private int numOfPlayers = 4;
 
   private boolean isOya;
   private boolean isTsumo;
 
   private int fan;
   private int fu;
+  private ScoreLevel scoreLevel;
+  private boolean hasYakuman;
 
   private int scoreChildRon;
   private int scoreChildTsumoParent;

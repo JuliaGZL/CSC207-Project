@@ -7,7 +7,9 @@ import interface_adapter.ViewModel;
  */
 public class EditStatusViewModel extends ViewModel<EditStatusState> {
 
-    public static final String[] TILE_TYPES = {"Hand", "Chii", "Pon", "Kan", "Ankan", "Dora", "Uradora", "Akadora"};
+    // We don't have time to support fuuro
+    // public static final String[] TILE_TYPES = {"Hand", "Chii", "Pon", "Kan", "Ankan", "Dora", "Uradora", "Akadora"};
+    public static final String[] TILE_TYPES = {"Hand", "Dora", "Uradora"};
     public static final String[] WIN_TYPES = {"Tsumo", "Ron"};
     public static final String[] WINDS = {"Ton", "Nan", "Shaa", "Pei"};
     public static final String[] ATTRIBUTES = {"Riichi", "Double Riichi", "One-shot", "Under the Sea",

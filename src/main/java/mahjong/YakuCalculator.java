@@ -1139,4 +1139,13 @@ public class YakuCalculator {
 
     return maxYakuFanFu;
   }
+
+  /**
+   * Checks if the player has a Yakuman (highest value hand).
+   *
+   * @return true if the player has a Yakuman, false otherwise
+   */
+  public boolean hasYakuman() {
+    return hasYakuman;
+  }
 }

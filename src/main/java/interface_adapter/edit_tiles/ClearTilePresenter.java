@@ -2,6 +2,8 @@ package interface_adapter.edit_tiles;
 
 import java.util.ArrayList;
 
+import interface_adapter.display_tiles.TilesDisplayState;
+import interface_adapter.display_tiles.TilesDisplayViewModel;
 import mahjong.BaseTile;
 import usecase.clear_tiles.ClearTilesOutputBoundary;
 import usecase.clear_tiles.ClearTilesOutputData;

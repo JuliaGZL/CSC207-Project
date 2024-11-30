@@ -1,7 +1,7 @@
 package interface_adapter.player_events;
 
 import interface_adapter.edit_tiles.TileSelectorViewModel;
-import interface_adapter.edit_tiles.TilesDisplayViewModel;
+import interface_adapter.display_tiles.TilesDisplayViewModel;
 import usecase.change_player.ChangePlayerOutputBoundary;
 import usecase.change_player.ChangePlayerOutputData;
 

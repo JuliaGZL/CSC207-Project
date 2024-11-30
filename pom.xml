@@ -8,6 +8,13 @@
     <artifactId>CSC207-Project</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
     <dependencies>
 
         <dependency>
@@ -15,7 +22,6 @@
             <artifactId>json</artifactId>
             <version>20240303</version>
         </dependency>
-
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
@@ -38,7 +44,22 @@
             <artifactId>discord4j-core</artifactId>
             <version>3.2.6</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.umjammer</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.sf.sociaal/freetts -->
+        <!-- <dependency>
+            <groupId>net.sf.sociaal</groupId>
+            <artifactId>freetts</artifactId>
+            <version>1.2.2</version>
+        </dependency> --> 
+        <dependency>
+            <groupId>com.microsoft.cognitiveservices.speech</groupId>
+            <artifactId>client-sdk</artifactId>
+            <version>1.40.0</version>
+        </dependency>
     </dependencies>
 
     <properties>
