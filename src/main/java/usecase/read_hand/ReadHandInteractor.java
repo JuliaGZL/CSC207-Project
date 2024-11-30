@@ -35,7 +35,7 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
 
         // 1. Create string that describes the hand
         if (hand.isEmpty()) {
-            handInfo.append("Your hand is empty.");
+            handInfo.append("Your hand is empty. ");
         }
         else {
             handInfo.append("Your hand includes");
