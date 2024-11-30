@@ -2,7 +2,6 @@ package mahjong;
 
 import java.util.ArrayList;
 import java.util.List;
-import utils.Pair;
 
 /**
  * The ScoreCounter class calculates and registers the score in a Mahjong game

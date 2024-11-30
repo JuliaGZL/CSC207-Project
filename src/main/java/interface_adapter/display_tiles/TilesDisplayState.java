@@ -1,4 +1,4 @@
-package interface_adapter.edit_tiles;
+package interface_adapter.display_tiles;
 
 import java.util.List;
 

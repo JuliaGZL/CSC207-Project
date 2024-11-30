@@ -6,11 +6,14 @@ import interface_adapter.edit_tiles.TileSelectorViewModel;
 import interface_adapter.edit_tiles.UpdateEnabledTileController;
 import mahjong.BaseTile;
 import mahjong.BaseTileToPathMapping;
+import utils.TextToSpeech;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Set;
@@ -97,6 +100,25 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
                             }
                             // update enabled buttons
                             updateEnabledTileController.execute(playerName, tileAddTarget);
+                        }
+                    });
+                    button.addMouseListener(new MouseAdapter() {
+                        Timer timer = new Timer(500, new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                TextToSpeech.getInstance().speakInThread(tile.toText());
+                            }
+                        });
+
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+                            timer.setRepeats(false);
+                            timer.start();
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+                            timer.stop();
                         }
                     });
 

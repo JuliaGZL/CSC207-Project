@@ -1,9 +1,12 @@
 package app;
 
 import data_access.InMemoryUniversalDataAccessObject;
+import data_access.discord_bot.PullRemoteHandDataAccessObject;
 import entity.PlayerFactory;
-import entity.Tile;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.display_tiles.PullRemoteHandPresenter;
+import interface_adapter.display_tiles.TileSelectorPropertyUpdateNotifier;
+import interface_adapter.display_tiles.TilesDisplayViewModel;
 import interface_adapter.edit_status.EditStatusController;
 import interface_adapter.edit_status.EditStatusPresenter;
 import interface_adapter.edit_status.EditStatusViewModel;
@@ -24,6 +27,7 @@ import usecase.edit_status.EditStatusOutputBoundary;
 import usecase.hu_solver.HuSolveOutputBoundary;
 import usecase.hu_solver.HuSolverInputBoundary;
 import usecase.hu_solver.HuSolverInteractor;
+import usecase.pull_remote_hand.PullRemoteHandInteractor;
 import usecase.read_hand.ReadHandInputBoundary;
 import usecase.read_hand.ReadHandInteractor;
 import usecase.read_hand.ReadHandOutputBoundary;
@@ -59,6 +63,9 @@ public class AppBuilder {
     private AddRemoveTilePresenter uradoraPresenter;
     private final ChangePlayerPresenter changePlayerPresenter =
             new ChangePlayerPresenter(new ArrayList<TilesDisplayViewModel>());
+
+    // shard controller
+    private PullRemoteHandController pullRemoteHandController;
 
     // factory
     private final PlayerFactory playerFactory = new PlayerFactory();
@@ -107,6 +114,13 @@ public class AppBuilder {
         RemoveTileInputBoundary removeInteractor = new RemoveTileInteractor(
                 DAO, handPresenter, RemoveTileInteractor.HAND);
         RemoveTileController removeController = new RemoveTileController(removeInteractor);
+
+        // configure pull remote hand
+        PullRemoteHandDataAccessObject pullRemoteHandDAO = new PullRemoteHandDataAccessObject(DAO);
+        PullRemoteHandPresenter pullRemoteHandPresenter = new PullRemoteHandPresenter(handPresenter);
+        PullRemoteHandInteractor pullRemoteHandInteractor = new PullRemoteHandInteractor(
+                pullRemoteHandDAO, pullRemoteHandPresenter);
+        pullRemoteHandController = new PullRemoteHandController(pullRemoteHandInteractor);
 
         // configure change player
         changePlayerPresenter.addTileDisplayViewModel(model);
@@ -218,10 +232,11 @@ public class AppBuilder {
         ChangePlayerInteractor interactor = new ChangePlayerInteractor(DAO, changePlayerPresenter);
         ChangePlayerController controller = new ChangePlayerController(interactor);
         playerEventsView.setChangePlayerController(controller);
+        playerEventsView.setPullRemoteHandController(pullRemoteHandController);
         return this;
     }
 
-    public AppBuilder addHanReader() {
+    public AppBuilder addHandReader() {
         ReadHandViewModel model = new ReadHandViewModel();
         ReadHandOutputBoundary presenter = new ReadHandPresenter(model);
         ReadHandInputBoundary interactor = new ReadHandInteractor(DAO, presenter);
@@ -242,8 +257,8 @@ public class AppBuilder {
 
         upperRightPanel.setLayout(new BoxLayout(upperRightPanel, BoxLayout.Y_AXIS));
         upperRightPanel.add(playerEventsView);
-        upperRightPanel.add(readHandView);
         upperRightPanel.add(editStatusView);
+        upperRightPanel.add(readHandView);
 
         upperPanel.setLayout(new BoxLayout(upperPanel, BoxLayout.X_AXIS));
         upperPanel.add(tileSelectorView);

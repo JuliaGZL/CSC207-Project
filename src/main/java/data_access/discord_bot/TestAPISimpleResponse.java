@@ -11,7 +11,8 @@ import reactor.core.publisher.Mono;
 
 public class TestAPISimpleResponse {
     public static void main(String[] args) {
-        DiscordClient client = DiscordClient.create("MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto");
+        DiscordClient client = DiscordClient.create(
+                "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto");
 
         Mono<Void> login = client.withGateway((GatewayDiscordClient gateway) ->
                 gateway.on(MessageCreateEvent.class, event -> {

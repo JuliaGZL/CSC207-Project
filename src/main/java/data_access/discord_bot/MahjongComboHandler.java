@@ -25,7 +25,7 @@ public class MahjongComboHandler extends MessageHandler {
 
     public static String newMessage(String content) {
         Map<Character, List<Integer>> mahjongCombo = processMahjongInput(content);
-        return getFeedback(content);
+        return getResultString(content);
     }
 
     public static Map<Character, List<Integer>> processMahjongInput(String content) {
@@ -67,10 +67,10 @@ public class MahjongComboHandler extends MessageHandler {
         return Character.isLetter(c) && target.length() == 1;
     }
 
-    public static String getFeedback(String content) {
+    public static String getResultString(String content) {
         content = content.substring(content.indexOf(' ') + 1);
         FeedbackGenerator generator = new FeedbackGenerator();
-        List<String> feedback =  FeedbackGenerator.getFeedback(content);
+        List<String> feedback =  FeedbackGenerator.getResultString(content);
         return String.join("\n", feedback);
     }
 }
