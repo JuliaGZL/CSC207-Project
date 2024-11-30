@@ -20,7 +20,7 @@ public class QuitHandler extends MessageHandler {
     }
 
     public static String newMessage(String content, String memberName) {
-        return "See ya'll! Especially you,  " + memberName;
+        return "See ya'll! Especially you, " + memberName;
     }
 
     public static boolean invokeMessage(String message) {
