@@ -96,7 +96,7 @@ class EditStatusInteractorTest {
         // Assume a mock player named "default" is created and saved in DAO
         List<Tile> hand = new ArrayList<>();
         hand.add(new Tile(BaseTile._1m, false, false, false));
-        Player player = new Player("default", 100, hand);
+        Player player = new Player("default", 100, hand, new ArrayList<>(), new ArrayList<>());
         Boolean[] attributes = {true, false, false, false, false, false, false, false, false};
         player.setAttributes(attributes);
         DAO.savePlayer(player);
@@ -124,7 +124,7 @@ class EditStatusInteractorTest {
         // Assume a mock player named "default" is created and saved in DAO
         List<Tile> hand = new ArrayList<>();
         hand.add(new Tile(BaseTile._1m, false, false, false));
-        Player player = new Player("default", 100, hand);
+        Player player = new Player("default", 100, hand, new ArrayList<>(), new ArrayList<>());
         Boolean[] attributes = {true, false, false, false, false, false, false, false, false};
         player.setAttributes(attributes);
         DAO.savePlayer(player);
