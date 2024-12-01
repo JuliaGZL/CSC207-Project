@@ -59,7 +59,7 @@ public class ReadHandInteractorTest {
 
     @Test
     void testHandNonEmptyAllFalse() {
-        List<Tile> hand = List.of(new Tile[]{new Tile(BaseTile._1m)});
+        List<Tile> hand = List.of(new Tile[] { new Tile(BaseTile._1m) });
         player.setHand(hand);
         DAO.savePlayer(player);
         interactor.execute(new ReadHandInputData(name, attrib));
@@ -76,11 +76,11 @@ public class ReadHandInteractorTest {
                 false, false, false
         };
         player.setAttributes(newAttrib);
-        List<Tile> hand = List.of(new Tile[]{new Tile(BaseTile._2m)});
+        List<Tile> hand = List.of(new Tile[] { new Tile(BaseTile._2m) });
         player.setHand(hand);
-        List<Tile> dora = List.of(new Tile[]{new Tile(BaseTile._2m)});
+        List<Tile> dora = List.of(new Tile[] { new Tile(BaseTile._2m) });
         player.setDora(dora);
-        List<Tile> uradora = List.of(new Tile[]{new Tile(BaseTile._2m)});
+        List<Tile> uradora = List.of(new Tile[] { new Tile(BaseTile._2m) });
         player.setUradora(uradora);
         DAO.savePlayer(player);
         interactor.execute(new ReadHandInputData(name, attrib));

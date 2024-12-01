@@ -62,6 +62,7 @@ public class ChangePlayerPresenter implements ChangePlayerOutputBoundary {
 
     /**
      * Add a TileDisplayViewModel on which firePropertyChanged will be called
+     * 
      * @param tileDisplayViewModel the new TileDisplayViewModel
      */
     public void addTileDisplayViewModel(TilesDisplayViewModel tileDisplayViewModel) {

@@ -9,7 +9,8 @@ public class EditStatusInteractor implements EditStatusInputBoundary {
     private final EditStatusDataAccessInterface playerDataAccessObject;
     private final EditStatusOutputBoundary playerPresenter;
 
-    public EditStatusInteractor(EditStatusDataAccessInterface playerDataAccessObject, EditStatusOutputBoundary playerPresenter) {
+    public EditStatusInteractor(EditStatusDataAccessInterface playerDataAccessObject,
+            EditStatusOutputBoundary playerPresenter) {
         this.playerDataAccessObject = playerDataAccessObject;
         this.playerPresenter = playerPresenter;
     }
@@ -20,8 +21,7 @@ public class EditStatusInteractor implements EditStatusInputBoundary {
         if (!playerDataAccessObject.existsByName(name)) {
             // This should never happen!
             throw new RuntimeException("Player name not found!");
-        }
-        else {
+        } else {
             final Player player = playerDataAccessObject.getPlayer(name);
             // Update data
             player.setWinType(editStatusInputData.getWinType());
@@ -42,8 +42,7 @@ public class EditStatusInteractor implements EditStatusInputBoundary {
         if (!playerDataAccessObject.existsByName(name)) {
             // This should never happen!
             throw new RuntimeException("Player name not found!");
-        }
-        else {
+        } else {
             final Player player = playerDataAccessObject.getPlayer(name);
             // Update data
             player.setWinType(editStatusInputData.getWinType());
@@ -62,7 +61,6 @@ public class EditStatusInteractor implements EditStatusInputBoundary {
     @Override
     public void switchToSelectDoraView(EditStatusInputData inputData) {
 
-
-//        playerPresenter.switchToSelectDoraView();
+        // playerPresenter.switchToSelectDoraView();
     }
 }

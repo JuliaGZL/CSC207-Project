@@ -8,7 +8,7 @@ public class PlayerEventsState {
     private int score = 0;
     private String message = "";
 
-    public PlayerEventsState(){
+    public PlayerEventsState() {
 
     }
 

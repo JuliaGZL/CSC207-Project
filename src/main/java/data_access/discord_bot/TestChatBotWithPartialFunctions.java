@@ -10,11 +10,12 @@ public class TestChatBotWithPartialFunctions {
         bot.addEvent(MahjongComboHandler.class);
         bot.addEvent(QuitHandler.class);
         System.out.println(bot.subEventsClasses);
-        // [class usecase.api_usecase.LoginEvent, class usecase.api_usecase.GreetingEvent,
-        // class usecase.api_usecase.MahjongComboInteractor, class usecase.api_usecase.QuitBotEvent]
+        // [class usecase.api_usecase.LoginEvent, class
+        // usecase.api_usecase.GreetingEvent,
+        // class usecase.api_usecase.MahjongComboInteractor, class
+        // usecase.api_usecase.QuitBotEvent]
         bot.run();
         System.out.println(bot.subEventsClasses);
-
 
         System.out.println("First round ended");
 

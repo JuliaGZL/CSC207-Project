@@ -22,8 +22,8 @@ public class AddTileInteractor implements AddTileInputBoundary {
     private final AddTileOutputBoundary presenter;
 
     public AddTileInteractor(AddTileDataAccessInterface dataAccessObj,
-                             AddTileOutputBoundary presenter,
-                             int target) {
+            AddTileOutputBoundary presenter,
+            int target) {
         this.dataAccessObj = dataAccessObj;
         this.presenter = presenter;
         this.target = target;
@@ -41,8 +41,7 @@ public class AddTileInteractor implements AddTileInputBoundary {
         if (!dataAccessObj.existsByName(name)) {
             // This should never happen!
             throw new RuntimeException("Player name not found!");
-        }
-        else {
+        } else {
             final Player player = dataAccessObj.getPlayer(name);
             List<Tile> tileList;
             switch (target) {
@@ -63,7 +62,7 @@ public class AddTileInteractor implements AddTileInputBoundary {
     }
 
     private void addTile(BaseTile id, List<Tile> tileList,
-                         Player player, String name, int target) {
+            Player player, String name, int target) {
         final Tile newTile = new Tile(id);
         tileList.add(newTile);
 

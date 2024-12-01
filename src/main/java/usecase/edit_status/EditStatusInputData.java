@@ -14,7 +14,8 @@ public class EditStatusInputData {
     private int numAkadora = 0;
     private final Boolean[] attributes; // Attributes of the hand in this round
 
-    public EditStatusInputData(Boolean[] attributes, int numAkadora, String seatWind, String roundWind, String winType, String playerName) {
+    public EditStatusInputData(Boolean[] attributes, int numAkadora, String seatWind, String roundWind, String winType,
+            String playerName) {
         this.attributes = attributes;
         this.numAkadora = numAkadora;
         this.seatWind = seatWind;

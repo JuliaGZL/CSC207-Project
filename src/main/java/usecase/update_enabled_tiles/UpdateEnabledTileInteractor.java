@@ -17,7 +17,7 @@ public class UpdateEnabledTileInteractor implements UpdateEnabledTilesInputBound
     private final UpdateEnabledTileOutputBoundary presenter;
 
     public UpdateEnabledTileInteractor(UpdateEnabledTileDataAccessInterface dataAccessObj,
-                                       UpdateEnabledTileOutputBoundary presenter) {
+            UpdateEnabledTileOutputBoundary presenter) {
         this.dataAccessObj = dataAccessObj;
         this.presenter = presenter;
     }
@@ -72,25 +72,25 @@ public class UpdateEnabledTileInteractor implements UpdateEnabledTilesInputBound
     }
 
     private Set<BaseTile> buildEnabledSet(List<Tile> hand,
-                                          List<Tile> dora,
-                                          List<Tile> uradora) {
+            List<Tile> dora,
+            List<Tile> uradora) {
         // A tile is enabled if and only if its total count in the three lists <4.
         Set<BaseTile> ret = new HashSet<BaseTile>();
         for (BaseTile t : BaseTile.values()) {
             int count = 0;
             for (Tile tile : hand) {
                 if (tile.getBaseTile() == t) {
-                    count ++;
+                    count++;
                 }
             }
             for (Tile tile : dora) {
                 if (tile.getBaseTile() == t) {
-                    count ++;
+                    count++;
                 }
             }
             for (Tile tile : uradora) {
                 if (tile.getBaseTile() == t) {
-                    count ++;
+                    count++;
                 }
             }
             if (count < 4) {

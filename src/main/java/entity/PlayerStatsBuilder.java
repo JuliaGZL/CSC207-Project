@@ -43,7 +43,8 @@ public class PlayerStatsBuilder {
   /**
    * Sets the Double Riichi status.
    *
-   * @param isDoubleRiichi true if the player declared Double Riichi, false otherwise.
+   * @param isDoubleRiichi true if the player declared Double Riichi, false
+   *                       otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
   public PlayerStatsBuilder setDoubleRiichi(boolean isDoubleRiichi) {
@@ -251,7 +252,7 @@ public class PlayerStatsBuilder {
         isTsumo, isRinshan, isHaitei,
         isHoutei, isChankan, isTenhou,
         isChiihou, isOya, selfWind,
-        prevalentWind, hand, callGroups, 
+        prevalentWind, hand, callGroups,
         numAkaDora);
   }
 }

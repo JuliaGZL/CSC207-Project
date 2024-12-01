@@ -77,8 +77,7 @@ public class ClearTilesInteractorTest {
                 RuntimeException.class,
                 () -> {
                     interactorHand.execute(new ClearTilesInputData("no_exist"));
-                }
-        );
+                });
     }
 
     @Test
@@ -91,8 +90,7 @@ public class ClearTilesInteractorTest {
                 RuntimeException.class,
                 () -> {
                     interactorInvalid.execute(new ClearTilesInputData(name));
-                }
-        );
+                });
     }
 }
 
@@ -114,4 +112,5 @@ class dummyClearTilesOTB implements ClearTilesOutputBoundary {
     }
 }
 
-class ExpectedFail extends RuntimeException {}
+class ExpectedFail extends RuntimeException {
+}

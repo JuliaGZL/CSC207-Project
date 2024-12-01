@@ -15,6 +15,7 @@ public class HuSolverController {
 
     /**
      * Execute the Hu solver that calculates score.
+     * 
      * @param playerName name of the player
      */
     public void execute(String playerName) {

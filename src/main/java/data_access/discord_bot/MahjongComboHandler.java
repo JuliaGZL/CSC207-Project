@@ -44,8 +44,7 @@ public class MahjongComboHandler extends MessageHandler {
                 original.addAll(tempConnectedInts);
                 Collections.sort(original);
                 tempConnectedInts = new ArrayList<>();
-            }
-            else {
+            } else {
                 throw new IllegalArgumentException("Integers before legal identifiers must be 1-9");
             }
         }
@@ -70,7 +69,7 @@ public class MahjongComboHandler extends MessageHandler {
     public static String getResultString(String content) {
         content = content.substring(content.indexOf(' ') + 1);
         FeedbackGenerator generator = new FeedbackGenerator();
-        List<String> feedback =  FeedbackGenerator.getResultString(content);
+        List<String> feedback = FeedbackGenerator.getResultString(content);
         return String.join("\n", feedback);
     }
 }

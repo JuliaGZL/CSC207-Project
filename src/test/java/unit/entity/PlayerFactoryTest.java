@@ -43,7 +43,7 @@ public class PlayerFactoryTest {
         assertEquals(dora.size(), player.getDora().size());
         assertEquals(uradora.size(), player.getUradora().size());
         assertEquals(hand.get(0), player.getHand().get(0).getBaseTile());
-//        assertEquals(dora, player.getDora());
+        // assertEquals(dora, player.getDora());
     }
 
     @Test

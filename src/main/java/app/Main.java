@@ -7,25 +7,24 @@ public class Main {
         // set GUI appearance
         try {
             // TODO: just a workaround to make it looks better on my device...
-            System.setProperty("sun.java2d.uiScale","2");
+            System.setProperty("sun.java2d.uiScale", "2");
             // UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
         // build the app
         AppBuilder appBuilder = new AppBuilder();
         final JFrame app = appBuilder
-                                    .addEditStatusView()
-                                    .addPlayerEventsView()
-                                    .addHandDisplayView()
-                                    .addDoraDisplayView()
-                                    .addUradoraDisplayView()
-                                    .addTileSelectorView()
-                                    .addChangePlayerSupport()
-                                    .addHandReader()
-                                    .build();
+                .addEditStatusView()
+                .addPlayerEventsView()
+                .addHandDisplayView()
+                .addDoraDisplayView()
+                .addUradoraDisplayView()
+                .addTileSelectorView()
+                .addChangePlayerSupport()
+                .addHandReader()
+                .build();
         app.pack();
         app.setVisible(true);
     }

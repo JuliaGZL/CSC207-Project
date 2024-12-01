@@ -19,12 +19,12 @@ public class YakuAndScoreLevelToSpeech {
    * The path prefix for the MP3 files.
    */
   private static final String pathPrefix = Constants.resourcePath + "/sounds/yakus/Female-Fuji/";
-  
+
   /**
    * Plays a series of MP3 files based on the given list of Yaku.
    * Each Yaku in the list corresponds to an MP3 file to be played.
    * 
-   * @param yakus the list of Yaku to be played
+   * @param yakus      the list of Yaku to be played
    * @param scoreLevel the ScoreLevel to be played
    */
   public static void playSound(List<Yaku> yakus, ScoreLevel scoreLevel) {
@@ -43,17 +43,15 @@ public class YakuAndScoreLevelToSpeech {
     }
   }
 
-  
   /**
    * Multithreaded version of the playSound method.
    * 
-   * @param yakus the list of Yaku to be played
+   * @param yakus      the list of Yaku to be played
    * @param scoreLevel the ScoreLevel to be played
    */
   public static void playSoundInThread(List<Yaku> yakus, ScoreLevel scoreLevel) {
     new Thread(() -> playSound(yakus, scoreLevel)).start();
   }
-
 
   /**
    * Generates a list of tokens representing the Yaku to be played.

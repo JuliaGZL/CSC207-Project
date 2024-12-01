@@ -6,6 +6,7 @@ import usecase.remove_tile.RemoveTileInputData;
 
 public class RemoveTileController {
     private final RemoveTileInputBoundary interactor;
+
     public RemoveTileController(RemoveTileInputBoundary interactor) {
         this.interactor = interactor;
     }

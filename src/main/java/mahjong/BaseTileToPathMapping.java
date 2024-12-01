@@ -44,13 +44,13 @@ public class BaseTileToPathMapping {
         BASE_TILES_STRING_MAP.put(BaseTile._9s, "/mahjong-tiles/Sou9.png");
 
         // Mappings for honor tiles
-        BASE_TILES_STRING_MAP.put(BaseTile._1z, "/mahjong-tiles/Ton.png");      // East wind
-        BASE_TILES_STRING_MAP.put(BaseTile._2z, "/mahjong-tiles/Nan.png");      // South wind
-        BASE_TILES_STRING_MAP.put(BaseTile._3z, "/mahjong-tiles/Shaa.png");     // West wind
-        BASE_TILES_STRING_MAP.put(BaseTile._4z, "/mahjong-tiles/Pei.png");      // North wind
-        BASE_TILES_STRING_MAP.put(BaseTile._5z, "/mahjong-tiles/Haku.png");     // White dragon
-        BASE_TILES_STRING_MAP.put(BaseTile._6z, "/mahjong-tiles/Hatsu.png");    // Green dragon
-        BASE_TILES_STRING_MAP.put(BaseTile._7z, "/mahjong-tiles/Chun.png");     // Red dragon
+        BASE_TILES_STRING_MAP.put(BaseTile._1z, "/mahjong-tiles/Ton.png"); // East wind
+        BASE_TILES_STRING_MAP.put(BaseTile._2z, "/mahjong-tiles/Nan.png"); // South wind
+        BASE_TILES_STRING_MAP.put(BaseTile._3z, "/mahjong-tiles/Shaa.png"); // West wind
+        BASE_TILES_STRING_MAP.put(BaseTile._4z, "/mahjong-tiles/Pei.png"); // North wind
+        BASE_TILES_STRING_MAP.put(BaseTile._5z, "/mahjong-tiles/Haku.png"); // White dragon
+        BASE_TILES_STRING_MAP.put(BaseTile._6z, "/mahjong-tiles/Hatsu.png"); // Green dragon
+        BASE_TILES_STRING_MAP.put(BaseTile._7z, "/mahjong-tiles/Chun.png"); // Red dragon
     }
 
     public static String getTilePath(BaseTile baseTile) {

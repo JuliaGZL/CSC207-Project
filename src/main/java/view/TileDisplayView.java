@@ -76,13 +76,13 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
     }
 
     private void setTiles(List<BaseTile> idList,
-                          List<String> nameList,
-                          List<String> iconList) {
+            List<String> nameList,
+            List<String> iconList) {
         // clear all current components
         this.tileListPanel.removeAll();
         // rebuild the list
         for (int i = 0; i < 14; i++) {
-            if(i < idList.size()) {
+            if (i < idList.size()) {
                 final BaseTile tileId = idList.get(i);
                 final String iconPath = iconList.get(i);
                 TileButton button = TileButtonFactory.createImageButton(tileId, iconPath);
@@ -100,8 +100,7 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
             } else {
                 // fill in the blank with dummy buttons
                 final TileButton button = TileButtonFactory.createImageButton(
-                        null, BaseTileToPathMapping.BLANK_TILE
-                );
+                        null, BaseTileToPathMapping.BLANK_TILE);
                 tileListPanel.add(button);
             }
             // refresh display
@@ -119,10 +118,10 @@ public class TileDisplayView extends JPanel implements ActionListener, PropertyC
     public void propertyChange(PropertyChangeEvent evt) {
         // update tile list
         TilesDisplayState state = (TilesDisplayState) evt.getNewValue();
-        if(Objects.equals(evt.getPropertyName(), "player")) {
+        if (Objects.equals(evt.getPropertyName(), "player")) {
             playerName = state.getPlayerName();
             // NOTE: with tileId null is a special type of remove tile use case
-            //       that does not actually remove any tile but just read out the tile list.
+            // that does not actually remove any tile but just read out the tile list.
             removeTileController.execute(null, playerName);
         } else if (Objects.equals(evt.getPropertyName(), "tiles")) {
             setTiles(state.getIdList(), state.getNameList(), state.getIconList());

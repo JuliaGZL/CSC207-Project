@@ -9,10 +9,9 @@ import reactor.core.publisher.Mono;
 public class LoginHandler extends EventHandler<ReadyEvent> {
 
     public LoginHandler(DiscordClient client, GatewayDiscordClient gateway) {
-        super(client, gateway, ReadyEvent.class, event ->
-                Mono.fromRunnable(() -> {
-                    final User self = event.getSelf();
-                    System.out.printf("Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator());
-                }));
+        super(client, gateway, ReadyEvent.class, event -> Mono.fromRunnable(() -> {
+            final User self = event.getSelf();
+            System.out.printf("Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator());
+        }));
     }
 }

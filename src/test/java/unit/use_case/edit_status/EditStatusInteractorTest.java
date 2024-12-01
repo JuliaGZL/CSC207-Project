@@ -89,7 +89,7 @@ class EditStatusInteractorTest {
      */
     @Test
     void testExecuteSuccessOneVar() {
-        Boolean[] mockAttributes = {false, true, false, false, false, false, false, false, true, false};
+        Boolean[] mockAttributes = { false, true, false, false, false, false, false, false, true, false };
         EditStatusInputData editStatusInputData = new EditStatusInputData(mockAttributes, 3,
                 "East", "South", "Ron", "default");
 
@@ -97,7 +97,7 @@ class EditStatusInteractorTest {
         List<Tile> hand = new ArrayList<>();
         hand.add(new Tile(BaseTile._1m, false, false, false));
         Player player = new Player("default", 100, hand, new ArrayList<>(), new ArrayList<>());
-        Boolean[] attributes = {true, false, false, false, false, false, false, false, false};
+        Boolean[] attributes = { true, false, false, false, false, false, false, false, false };
         player.setAttributes(attributes);
         DAO.savePlayer(player);
 
@@ -113,11 +113,12 @@ class EditStatusInteractorTest {
     }
 
     /**
-     * Test for execute method (success) with two inputs updateName and editStatusInputData.
+     * Test for execute method (success) with two inputs updateName and
+     * editStatusInputData.
      */
     @Test
     void testExecuteSuccessTwoVar() {
-        Boolean[] mockAttributes = {false, true, false, false, false, false, false, false, true, false};
+        Boolean[] mockAttributes = { false, true, false, false, false, false, false, false, true, false };
         EditStatusInputData editStatusInputData = new EditStatusInputData(mockAttributes, 3,
                 "East", "South", "Ron", "default");
 
@@ -125,7 +126,7 @@ class EditStatusInteractorTest {
         List<Tile> hand = new ArrayList<>();
         hand.add(new Tile(BaseTile._1m, false, false, false));
         Player player = new Player("default", 100, hand, new ArrayList<>(), new ArrayList<>());
-        Boolean[] attributes = {true, false, false, false, false, false, false, false, false};
+        Boolean[] attributes = { true, false, false, false, false, false, false, false, false };
         player.setAttributes(attributes);
         DAO.savePlayer(player);
 
@@ -145,7 +146,7 @@ class EditStatusInteractorTest {
      */
     @Test
     void testExecuteFailOneVar() {
-        Boolean[] mockAttributes = {false, true, false, false, false, false, false, false, true, false};
+        Boolean[] mockAttributes = { false, true, false, false, false, false, false, false, true, false };
         EditStatusInputData editStatusInputData = new EditStatusInputData(mockAttributes, 3,
                 "East", "South", "Ron", "dummy");
 
@@ -158,11 +159,12 @@ class EditStatusInteractorTest {
     }
 
     /**
-     * Test for execute method (failure) with two inputs updateName and editStatusInputData.
+     * Test for execute method (failure) with two inputs updateName and
+     * editStatusInputData.
      */
     @Test
     void testExecuteFailTwoVar() {
-        Boolean[] mockAttributes = {false, true, false, false, false, false, false, false, true, false};
+        Boolean[] mockAttributes = { false, true, false, false, false, false, false, false, true, false };
         EditStatusInputData editStatusInputData = new EditStatusInputData(mockAttributes, 3,
                 "East", "South", "Ron", "dummy");
 
@@ -180,14 +182,13 @@ class EditStatusInteractorTest {
      */
     @Test
     void testSwitchToSelectDoraView() {
-        Boolean[] mockAttributes = {false, true, false, false, false, false, false, false, true, false};
+        Boolean[] mockAttributes = { false, true, false, false, false, false, false, false, true, false };
         EditStatusInputData editStatusInputData = new EditStatusInputData(mockAttributes, 3,
                 "East", "South", "Ron", "dummy");
         interactor.switchToSelectDoraView(editStatusInputData);
 
-        // Currently, this method does not have implementation, so the test to it should always be true.
+        // Currently, this method does not have implementation, so the test to it should
+        // always be true.
         assertNotNull(interactor);
     }
 }
-
-

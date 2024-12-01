@@ -23,8 +23,8 @@ public class RemoveTileInteractor implements RemoveTileInputBoundary {
     private RemoveTileOutputBoundary presenter;
 
     public RemoveTileInteractor(RemoveTileDataAccessInterface dataAccessObj,
-                                RemoveTileOutputBoundary presenter,
-                                int target) {
+            RemoveTileOutputBoundary presenter,
+            int target) {
         this.dataAccessObj = dataAccessObj;
         this.presenter = presenter;
         this.target = target;
@@ -42,8 +42,7 @@ public class RemoveTileInteractor implements RemoveTileInputBoundary {
         if (!dataAccessObj.existsByName(name)) {
             // This should never happen!
             throw new RuntimeException("Player name not found!");
-        }
-        else {
+        } else {
             final Player player = dataAccessObj.getPlayer(name);
             List<Tile> tileList;
             switch (target) {
@@ -64,7 +63,7 @@ public class RemoveTileInteractor implements RemoveTileInputBoundary {
     }
 
     private void removeTile(BaseTile id, List<Tile> tileList,
-                            Player player, String name, int target) {
+            Player player, String name, int target) {
         // id == null is a special case that just reads the list without altering it.
         if (id != null) {
             for (Tile tile : tileList) {

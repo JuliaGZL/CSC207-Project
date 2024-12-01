@@ -15,7 +15,7 @@ public class EditStatusState {
     private String seatWind = "East";
     private String roundWind = "East";
     private int numAkadora = 0;
-    private Boolean[] attributes = {false, false, false, false, false, false, false, false, false};
+    private Boolean[] attributes = { false, false, false, false, false, false, false, false, false };
 
     // Setters and getters
     public String getTileType() {
@@ -57,7 +57,6 @@ public class EditStatusState {
     public Boolean[] getAttributes() {
         return attributes;
     }
-
 
     public BaseTile[] getDoraIndicators() {
         return doraIndicators;

@@ -77,7 +77,8 @@ public class CallGroupTest {
         chiTiles.add(new Tile(BaseTile._3m));
         CallGroup callGroup = new CallGroup(CallGroup.Type.CHI, chiTiles, 0);
 
-        assertEquals("(Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false])Tile [tile=2m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=3m, isRedDora=false, isUraDora=false, isDora=false]",
+        assertEquals(
+                "(Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false])Tile [tile=2m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=3m, isRedDora=false, isUraDora=false, isDora=false]",
                 callGroup.toString());
     }
 
@@ -89,7 +90,8 @@ public class CallGroupTest {
         ponTiles.add(new Tile(BaseTile._1m));
         CallGroup callGroup = new CallGroup(CallGroup.Type.PON, ponTiles, 0);
 
-        assertEquals("(Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false])Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]",
+        assertEquals(
+                "(Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false])Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]",
                 callGroup.toString());
     }
 
@@ -101,7 +103,8 @@ public class CallGroupTest {
         daiminkanTiles.add(new Tile(BaseTile._1m));
         CallGroup callGroup = new CallGroup(CallGroup.Type.DAIMINKAN, daiminkanTiles, 0);
 
-        assertEquals("(Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false])Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]",
+        assertEquals(
+                "(Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false])Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]",
                 callGroup.toString());
     }
 
@@ -114,7 +117,8 @@ public class CallGroupTest {
         kakanTiles.add(new Tile(BaseTile._1m));
         CallGroup callGroup = new CallGroup(CallGroup.Type.KAKAN, kakanTiles, 0);
 
-        assertEquals("Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]",
+        assertEquals(
+                "Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]",
                 callGroup.toString());
     }
 
@@ -127,20 +131,22 @@ public class CallGroupTest {
         ankanTiles.add(new Tile(BaseTile._1m));
         CallGroup callGroup = new CallGroup(CallGroup.Type.ANKAN, ankanTiles, 0);
 
-        assertEquals("Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]**Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]",
+        assertEquals(
+                "Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]**Tile [tile=1m, isRedDora=false, isUraDora=false, isDora=false]",
                 callGroup.toString());
     }
 
-//    @Test
-//    void testToStringFail() {
-//        List<Tile> failTiles = new ArrayList<>();
-//        failTiles.add(new Tile(BaseTile._1m));
-//        failTiles.add(new Tile(BaseTile._1m));
-//        CallGroup callGroup = new CallGroup(CallGroup.Type.PON, failTiles, 0);
-//        callGroup.setType(null);
-//
-//        RuntimeException exception = Assertions.assertThrows(RuntimeException.class, callGroup::toString);
-//
-//        assertEquals("Bad call group (fuuro) type.", exception.getMessage());
-//    }
+    // @Test
+    // void testToStringFail() {
+    // List<Tile> failTiles = new ArrayList<>();
+    // failTiles.add(new Tile(BaseTile._1m));
+    // failTiles.add(new Tile(BaseTile._1m));
+    // CallGroup callGroup = new CallGroup(CallGroup.Type.PON, failTiles, 0);
+    // callGroup.setType(null);
+    //
+    // RuntimeException exception = Assertions.assertThrows(RuntimeException.class,
+    // callGroup::toString);
+    //
+    // assertEquals("Bad call group (fuuro) type.", exception.getMessage());
+    // }
 }

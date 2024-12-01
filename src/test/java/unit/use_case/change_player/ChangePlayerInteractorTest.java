@@ -57,6 +57,7 @@ public class ChangePlayerInteractorTest {
         // this never happens
     }
 }
+
 class MockOTB implements ChangePlayerOutputBoundary {
     private String playerName = null;
 

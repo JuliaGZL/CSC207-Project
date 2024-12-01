@@ -7,7 +7,8 @@ import usecase.pull_remote_hand.PullRemoteHandOutputData;
 
 /**
  * Presenter for the pull hand from discord use case
- * This is an adapter: it adapts the AddTilePresenter to implement the output logic.
+ * This is an adapter: it adapts the AddTilePresenter to implement the output
+ * logic.
  */
 public class PullRemoteHandPresenter implements PullRemoteHandOutputBoundary {
     private AddRemoveTilePresenter addRemoveTilePresenter;
@@ -29,13 +30,11 @@ public class PullRemoteHandPresenter implements PullRemoteHandOutputBoundary {
     public void prepareSuccessView(PullRemoteHandOutputData outputData) {
         addRemoveTilePresenter.prepareSuccessView(
                 new AddTileOutputData(
-                    false,
-                    outputData.getPlayerName(),
-                    outputData.getPlayerHand(),
-                    outputData.getNameList(),
-                    outputData.getIconList()
-                )
-        );
+                        false,
+                        outputData.getPlayerName(),
+                        outputData.getPlayerHand(),
+                        outputData.getNameList(),
+                        outputData.getIconList()));
     }
 
     /**

@@ -13,7 +13,7 @@ import java.util.function.Function;
 public class MessageHandler extends EventHandler<MessageCreateEvent> {
 
     public MessageHandler(DiscordClient client, GatewayDiscordClient gateway, Class<MessageCreateEvent> eventClass,
-                          Function<MessageCreateEvent, Publisher<Void>> eventMapper) {
+            Function<MessageCreateEvent, Publisher<Void>> eventMapper) {
         super(client, gateway, eventClass, eventMapper);
     }
 

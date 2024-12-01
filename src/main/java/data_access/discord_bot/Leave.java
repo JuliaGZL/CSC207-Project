@@ -8,14 +8,13 @@ import discord4j.voice.VoiceConnection;
 
 import java.beans.EventHandler;
 
-public class Leave  {
+public class Leave {
 
     private final GatewayDiscordClient client;
 
     public Leave(GatewayDiscordClient client) {
         this.client = client;
     }
-
 
     public Mono<Void> onMessageCreate(MessageCreateEvent event) {
         if (event.getMessage().getContent().equals("!vc leave")) {

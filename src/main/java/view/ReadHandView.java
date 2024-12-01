@@ -13,8 +13,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * The view for reading the player's hand (as well as special attributes) out loud.
- * Note that this is only a button triggered by a keyboard shortcut and presented with sound.
+ * The view for reading the player's hand (as well as special attributes) out
+ * loud.
+ * Note that this is only a button triggered by a keyboard shortcut and
+ * presented with sound.
  */
 public class ReadHandView extends JButton implements ActionListener, PropertyChangeListener {
     // Shortcut (Ctrl + R) to trigger the reading of the player's hand
@@ -25,7 +27,8 @@ public class ReadHandView extends JButton implements ActionListener, PropertyCha
 
     public ReadHandView(ReadHandViewModel readHandViewModel) {
         super("Read (Ctrl+R)"); // set the text of the button to "Read"
-//        setMnemonic(KeyEvent.VK_R); // set the mnemonic to 'R' (Alt + R will trigger the button)
+        // setMnemonic(KeyEvent.VK_R); // set the mnemonic to 'R' (Alt + R will trigger
+        // the button)
 
         this.readHandViewModel = readHandViewModel;
         readHandViewModel.addPropertyChangeListener(this);
@@ -71,7 +74,9 @@ public class ReadHandView extends JButton implements ActionListener, PropertyCha
     }
 
     /**
-     * Invoked when the user taps the button or inputs keyboard shortcuts related to this ReadHandView.
+     * Invoked when the user taps the button or inputs keyboard shortcuts related to
+     * this ReadHandView.
+     * 
      * @param evt
      */
     private void onEvent(ActionEvent evt) {

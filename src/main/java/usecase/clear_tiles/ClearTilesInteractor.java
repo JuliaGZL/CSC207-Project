@@ -19,8 +19,8 @@ public class ClearTilesInteractor implements ClearTilesInputBoundary {
     private ClearTilesOutputBoundary presenter;
 
     public ClearTilesInteractor(ClearTilesDataAccessInterface dataAccessObj,
-                                ClearTilesOutputBoundary presenter,
-                                int target) {
+            ClearTilesOutputBoundary presenter,
+            int target) {
         this.dataAccessObj = dataAccessObj;
         this.presenter = presenter;
         this.target = target;
@@ -37,8 +37,7 @@ public class ClearTilesInteractor implements ClearTilesInputBoundary {
         if (!dataAccessObj.existsByName(name)) {
             // This should never happen!
             throw new RuntimeException("Player name not found!");
-        }
-        else {
+        } else {
             final Player player = dataAccessObj.getPlayer(name);
             ArrayList<Tile> tileList = new ArrayList<Tile>();
             switch (target) {

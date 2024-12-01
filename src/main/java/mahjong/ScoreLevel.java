@@ -19,7 +19,6 @@ public enum ScoreLevel {
   Yakuman5,
   Yakuman6;
 
-  
   /**
    * Localization object for translating tile identifiers to localized strings.
    */
@@ -29,7 +28,6 @@ public enum ScoreLevel {
     localization.initializeTranslator("/localization/scoreLevel_l_english.yaml");
   }
 
-  
   /**
    * Returns the basic string representation of this ScoreLevel.
    *

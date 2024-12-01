@@ -18,8 +18,8 @@ public class PullRemoteHandInteractorTest {
         final MockDAO DAO = new MockDAO();
         final MockOTB presenter = new MockOTB();
         final PullRemoteHandInputBoundary interactor = new PullRemoteHandInteractor(DAO, presenter);
-        final List<BaseTile> inputBase = List.of(new BaseTile[]{BaseTile._1m});
-        final List<Tile> input = List.of(new Tile[]{new Tile(BaseTile._1m)});
+        final List<BaseTile> inputBase = List.of(new BaseTile[] { BaseTile._1m });
+        final List<Tile> input = List.of(new Tile[] { new Tile(BaseTile._1m) });
 
         DAO.savePlayer(factory.createEmpty(name));
         DAO.setInput(input);

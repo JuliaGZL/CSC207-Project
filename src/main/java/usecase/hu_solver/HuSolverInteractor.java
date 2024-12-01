@@ -44,22 +44,22 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
 
         // build stats
         PlayerStats stats = new PlayerStatsBuilder().setHand(player.getHand())
-                                                    .setDoraList(player.getDora())
-                                                    .setUraDoraList(player.getUradora())
-                                                    .setRiichi(attributes[0])
-                                                    .setDoubleRiichi(attributes[1])
-                                                    .setIppatsu(attributes[2])
-                                                    .setHaitei(attributes[3])
-                                                    .setHoutei(attributes[4])
-                                                    .setRinshan(attributes[5])
-                                                    .setChankan(attributes[6])
-                                                    .setTenhou(attributes[7])
-                                                    .setChiihou(attributes[8])
-                                                    .setTsumo(isTsumo)
-                                                    .setOya(isOya)
-                                                    .setSelfWind(selfWind)
-                                                    .setPrevalentWind(prevalentWind)
-                                                    .build();
+                .setDoraList(player.getDora())
+                .setUraDoraList(player.getUradora())
+                .setRiichi(attributes[0])
+                .setDoubleRiichi(attributes[1])
+                .setIppatsu(attributes[2])
+                .setHaitei(attributes[3])
+                .setHoutei(attributes[4])
+                .setRinshan(attributes[5])
+                .setChankan(attributes[6])
+                .setTenhou(attributes[7])
+                .setChiihou(attributes[8])
+                .setTsumo(isTsumo)
+                .setOya(isOya)
+                .setSelfWind(selfWind)
+                .setPrevalentWind(prevalentWind)
+                .build();
 
         // get results
         HandResult handResult;

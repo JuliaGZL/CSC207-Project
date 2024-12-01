@@ -65,8 +65,7 @@ public class AddTileInteractorTest {
                 RuntimeException.class,
                 () -> {
                     interactorHand.execute(new AddTileInputData(tileId, "no_exist"));
-                }
-        );
+                });
     }
 
     @Test
@@ -79,8 +78,7 @@ public class AddTileInteractorTest {
                 RuntimeException.class,
                 () -> {
                     interactorInvalid.execute(new AddTileInputData(tileId, name));
-                }
-        );
+                });
     }
 }
 
@@ -102,4 +100,5 @@ class dummyAddTileOTB implements AddTileOutputBoundary {
     }
 }
 
-class ExpectedFail extends RuntimeException {}
+class ExpectedFail extends RuntimeException {
+}

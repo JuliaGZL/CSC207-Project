@@ -25,7 +25,7 @@ public class EditStatusOutputDataTest {
 
     @BeforeEach
     void setUp() {
-        attributes = new Boolean[] {false, true, false, false, false, false, true, false, false};
+        attributes = new Boolean[] { false, true, false, false, false, false, true, false, false };
         numAkadora = 0;
         seatWind = "East";
         roundWind = "East";

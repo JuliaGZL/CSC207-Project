@@ -34,20 +34,10 @@ public class PlayerStatsBuilderTest {
     @BeforeEach
     void setUp() {
         List<Tile> hand = new ArrayList<>();
-        builder = new PlayerStatsBuilder().
-                setRiichi(isRiichi).
-                setDoubleRiichi(isDoubleRiichi).
-                setIppatsu(isIppatsu).
-                setMenzenchin(isMenzenchin).
-                setTsumo(isTsumo).
-                setRinshan(isRinshan).
-                setHaitei(isHaitei).
-                setHoutei(isHoutei).
-                setChankan(isChankan).
-                setTenhou(isTenhou).
-                setChiihou(isChiihou).
-                setOya(isOya).
-                setHand(hand);
+        builder = new PlayerStatsBuilder().setRiichi(isRiichi).setDoubleRiichi(isDoubleRiichi).setIppatsu(isIppatsu)
+                .setMenzenchin(isMenzenchin).setTsumo(isTsumo).setRinshan(isRinshan).setHaitei(isHaitei)
+                .setHoutei(isHoutei).setChankan(isChankan).setTenhou(isTenhou).setChiihou(isChiihou).setOya(isOya)
+                .setHand(hand);
 
     }
 

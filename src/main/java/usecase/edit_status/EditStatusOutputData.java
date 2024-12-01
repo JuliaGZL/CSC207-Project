@@ -22,7 +22,8 @@ public class EditStatusOutputData {
     // TODO: Should I keep these?
     private int doraCount = 0;
 
-    public EditStatusOutputData(Boolean[] attributes, int numAkadora, String seatWind, String roundWind, String winType, String playerName) {
+    public EditStatusOutputData(Boolean[] attributes, int numAkadora, String seatWind, String roundWind, String winType,
+            String playerName) {
         this.attributes = attributes;
         this.numAkadora = numAkadora;
         this.seatWind = seatWind;

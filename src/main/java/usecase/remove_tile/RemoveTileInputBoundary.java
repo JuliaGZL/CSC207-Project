@@ -6,6 +6,7 @@ package usecase.remove_tile;
 public interface RemoveTileInputBoundary {
     /**
      * Executes the add_tile use case.
+     * 
      * @param inputData the input data
      */
     void execute(RemoveTileInputData inputData);

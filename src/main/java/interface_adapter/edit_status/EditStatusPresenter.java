@@ -11,17 +11,17 @@ import usecase.edit_status.EditStatusOutputData;
 /**
  * The Presenter for the Edit Status Use Case.
  */
-public class EditStatusPresenter implements EditStatusOutputBoundary  {
+public class EditStatusPresenter implements EditStatusOutputBoundary {
 
     private final EditStatusViewModel editStatusViewModel;
     private final SelectDoraViewModel selectDoraViewModel;
     private final TileSelectorViewModel tileSelectorViewModel;
-    private final ViewManagerModel  viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public EditStatusPresenter(EditStatusViewModel editStatusViewModel,
-                               SelectDoraViewModel selectDoraViewModel,
-                               TileSelectorViewModel tileSelectorViewModel,
-                               ViewManagerModel viewManagerModel) {
+            SelectDoraViewModel selectDoraViewModel,
+            TileSelectorViewModel tileSelectorViewModel,
+            ViewManagerModel viewManagerModel) {
         this.editStatusViewModel = editStatusViewModel;
         this.selectDoraViewModel = selectDoraViewModel;
         this.tileSelectorViewModel = tileSelectorViewModel;
@@ -37,7 +37,7 @@ public class EditStatusPresenter implements EditStatusOutputBoundary  {
         editStatusState.setRoundWind(outputData.getRoundWind());
         editStatusState.setSeatWind(outputData.getSeatWind());
         editStatusState.setWinType(outputData.getWinType());
-//        editStatusState.setTileType(outputData.getTileType());
+        // editStatusState.setTileType(outputData.getTileType());
         editStatusViewModel.setState(editStatusState);
         editStatusViewModel.firePropertyChanged("winType");
     }

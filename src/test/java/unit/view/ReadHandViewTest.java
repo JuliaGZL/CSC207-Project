@@ -45,7 +45,7 @@ public class ReadHandViewTest {
         List<Tile> hand = new ArrayList<>();
         hand.add(new Tile(BaseTile._1m, false, false, false));
         Player player = new Player("default", 100, hand, new ArrayList<>(), new ArrayList<>());
-        Boolean[] attributes = {true, false, false, false, false, false, false, false, false};
+        Boolean[] attributes = { true, false, false, false, false, false, false, false, false };
         player.setAttributes(attributes);
         DAO.savePlayer(player);
 

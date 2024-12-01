@@ -16,7 +16,7 @@ public class PullRemoteHandInteractor implements PullRemoteHandInputBoundary {
     private final PullRemoteHandOutputBoundary presenter;
 
     public PullRemoteHandInteractor(PullRemoteHandDataAccessInterface dataAccessObj,
-                                    PullRemoteHandOutputBoundary presenter) {
+            PullRemoteHandOutputBoundary presenter) {
         this.dataAccessObj = dataAccessObj;
         this.presenter = presenter;
     }

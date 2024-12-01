@@ -38,7 +38,7 @@ public class EditStatusPresenterTest {
     @Test
     void testPrepareSuccessViewOneVar() {
         // Create dummy outputData
-        Boolean[] mockAttributes = {false, true, false, false, false, false, false, false, true, false};
+        Boolean[] mockAttributes = { false, true, false, false, false, false, false, false, true, false };
         int mockNumAkadora = 1;
         String mockSeatWind = "West";
         String mockRoundWind = "East";
@@ -62,7 +62,7 @@ public class EditStatusPresenterTest {
     @Test
     void testPrepareSuccessViewTwoVar() {
         // Create dummy outputData
-        Boolean[] mockAttributes = {false, true, false, false, false, false, false, false, true, false};
+        Boolean[] mockAttributes = { false, true, false, false, false, false, false, false, true, false };
         int mockNumAkadora = 1;
         String mockSeatWind = "West";
         String mockRoundWind = "East";
@@ -88,14 +88,15 @@ public class EditStatusPresenterTest {
         // Call the method
         presenter.prepareFailView("dummyErrorMessage");
 
-        // This method does not have any implementation, so the test to it should always be true.
+        // This method does not have any implementation, so the test to it should always
+        // be true.
         assertTrue(true);
     }
 
     @Test
     void testSwitchToSelectDoraView() {
         // Create dummy outputData
-        Boolean[] mockAttributes = {false, true, false, false, false, false, false, false, true, false};
+        Boolean[] mockAttributes = { false, true, false, false, false, false, false, false, true, false };
         int mockNumAkadora = 1;
         String mockSeatWind = "West";
         String mockRoundWind = "East";
@@ -109,7 +110,7 @@ public class EditStatusPresenterTest {
         presenter.switchToSelectDoraView(dummyOutputData);
 
         // Check whether all state variables are set correctly
-//        assertEquals("dora", tileSelectorViewModel.getState().getTarget());
+        // assertEquals("dora", tileSelectorViewModel.getState().getTarget());
         assertEquals(dummyOutputData.getDoraCounts(), selectDoraViewModel.getState().getIndicatorSelections());
         assertEquals(selectDoraViewModel.getViewName(), viewManagerModel.getState());
     }
@@ -120,7 +121,7 @@ public class EditStatusPresenterTest {
         presenter.switchToSelectForHand();
 
         // Check whether all state variables are set correctly
-//        assertEquals("hand", tileSelectorViewModel.getState().getTarget());
+        // assertEquals("hand", tileSelectorViewModel.getState().getTarget());
         assertTrue(true);
     }
 }

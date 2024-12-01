@@ -5,7 +5,8 @@ import java.util.List;
 import mahjong.BaseTile;
 
 /**
- * State for property change listening for tile list display panels (both hand and dora).
+ * State for property change listening for tile list display panels (both hand
+ * and dora).
  */
 public class TilesDisplayState {
     private List<BaseTile> idList;

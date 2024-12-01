@@ -10,18 +10,18 @@ import mahjong.BaseTile;
 public class PlayerStats {
   private boolean isRiichi;
   private boolean isDoubleRiichi;
-  private boolean isIppatsu;      // One Shot
+  private boolean isIppatsu; // One Shot
   private boolean isMenzenchin;
   private boolean isTsumo;
-  private boolean isRinshan;      // After a Kan
-  private boolean isHaitei;       // Under the Sea
-  private boolean isHoutei;       // Under the River
-  private boolean isChankan;      // Robbing a Kan
+  private boolean isRinshan; // After a Kan
+  private boolean isHaitei; // Under the Sea
+  private boolean isHoutei; // Under the River
+  private boolean isChankan; // Robbing a Kan
   private boolean isTenhou;
   private boolean isChiihou;
   private boolean isOya;
   private BaseTile selfWind;
-  private BaseTile prevalentWind; 
+  private BaseTile prevalentWind;
   private List<Tile> hand;
   private List<BaseTile> baseHand;
   private List<CallGroup> callGroups;
@@ -57,7 +57,8 @@ public class PlayerStats {
   /**
    * Sets the Double Richi state of the player.
    * 
-   * @param isDoubleRiichi true to set the player in Riichi state, false otherwise.
+   * @param isDoubleRiichi true to set the player in Riichi state, false
+   *                       otherwise.
    */
   public void setDoubleRiichi(boolean isDoubleRiichi) {
     this.isDoubleRiichi = isDoubleRiichi;
@@ -270,6 +271,7 @@ public class PlayerStats {
   public List<BaseTile> getBaseHands() {
     return baseHand;
   }
+
   /**
    * Retrieves the self wind tile of the player.
    *
@@ -318,7 +320,8 @@ public class PlayerStats {
   /**
    * Sets the base hand for the player.
    *
-   * @param baseHand the list of BaseTile objects representing the player's base hand
+   * @param baseHand the list of BaseTile objects representing the player's base
+   *                 hand
    */
   public void setBaseHand(List<BaseTile> baseHand) {
     this.baseHand = baseHand;
@@ -336,7 +339,8 @@ public class PlayerStats {
   /**
    * Sets the call groups for the player.
    *
-   * @param callGroups the list of CallGroup objects representing the player's Fuuros.
+   * @param callGroups the list of CallGroup objects representing the player's
+   *                   Fuuros.
    */
   public void setCallGroups(List<CallGroup> callGroups) {
     this.callGroups = callGroups;
@@ -360,25 +364,24 @@ public class PlayerStats {
     this.numAkaDora = numAkaDora;
   }
 
-
   /**
    * Constructs a PlayerState with the specified states and hand.
    *
-   * @param isRiichi     whether the player is in Riichi state.
-   * @param isIppatsu    whether the player is in Ippatsu state.
-   * @param isMenzenchin whether the player is in Menzenchin state.
-   * @param isTsumo      whether the player is in Tsumo state.
-   * @param isRinshan    whether the player is in Rinshan state.
-   * @param isHaitei     whether the player is in Haitei state.
-   * @param isHoutei     whether the player is in Houtei state.
-   * @param isChankan    whether the player is in Chankan state.
-   * @param isTenhou     whether the player is in Tenhou state.
-   * @param isChiihou    whether the player is in Chiihou state.
-   * @param isOya        whether the player is in Oya state.
-   * @param selfWind     the self wind tile of the player.
+   * @param isRiichi      whether the player is in Riichi state.
+   * @param isIppatsu     whether the player is in Ippatsu state.
+   * @param isMenzenchin  whether the player is in Menzenchin state.
+   * @param isTsumo       whether the player is in Tsumo state.
+   * @param isRinshan     whether the player is in Rinshan state.
+   * @param isHaitei      whether the player is in Haitei state.
+   * @param isHoutei      whether the player is in Houtei state.
+   * @param isChankan     whether the player is in Chankan state.
+   * @param isTenhou      whether the player is in Tenhou state.
+   * @param isChiihou     whether the player is in Chiihou state.
+   * @param isOya         whether the player is in Oya state.
+   * @param selfWind      the self wind tile of the player.
    * @param prevalentWind the prevalent wind tile of the player.
-   * @param hand         the hand of the player.
-   * @param callGroups   the call groups (Fuuros) of the player.
+   * @param hand          the hand of the player.
+   * @param callGroups    the call groups (Fuuros) of the player.
    */
   public PlayerStats(
       boolean isRiichi, boolean isDoubleRiichi, boolean isIppatsu,

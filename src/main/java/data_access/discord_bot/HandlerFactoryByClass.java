@@ -3,12 +3,11 @@ package data_access.discord_bot;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 
-
-public class HandlerFactoryByClass implements EventHandlerFactory{
+public class HandlerFactoryByClass implements EventHandlerFactory {
 
     @Override
     public EventHandler createEventHandler(Class<? extends EventHandler> eventType,
-                                           DiscordClient client, GatewayDiscordClient gateway) {
+            DiscordClient client, GatewayDiscordClient gateway) {
         if (eventType.equals(LoginHandler.class)) {
             System.out.println("Login Event Created");
             return new LoginHandler(client, gateway);

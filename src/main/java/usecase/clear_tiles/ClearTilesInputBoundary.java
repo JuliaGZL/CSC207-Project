@@ -6,6 +6,7 @@ package usecase.clear_tiles;
 public interface ClearTilesInputBoundary {
     /**
      * Executes the add_tile use case.
+     * 
      * @param inputData the input data
      */
     void execute(ClearTilesInputData inputData);

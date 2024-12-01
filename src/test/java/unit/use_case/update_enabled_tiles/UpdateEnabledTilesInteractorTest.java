@@ -49,10 +49,10 @@ public class UpdateEnabledTilesInteractorTest {
         List<Tile> hand = List.of(new Tile[] {
                 new Tile(newTile), new Tile(newTile)
         });
-        List<Tile> dora = List.of(new Tile[]{
+        List<Tile> dora = List.of(new Tile[] {
                 new Tile(newTile)
         });
-        List<Tile> uradora = List.of(new Tile[]{
+        List<Tile> uradora = List.of(new Tile[] {
                 new Tile(newTile)
         });
         player.setHand(hand);

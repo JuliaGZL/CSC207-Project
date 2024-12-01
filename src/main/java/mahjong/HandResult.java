@@ -11,7 +11,7 @@ import utils.Pair;
  */
 public class HandResult {
   /**
-   * The result of the hand, 
+   * The result of the hand,
    * containing a list of Yaku and a pair of integers representing the fan and fu.
    */
   private Pair<List<Yaku>, Pair<Integer, Integer>> result;
@@ -35,11 +35,11 @@ public class HandResult {
     YakuCalculator inst = new YakuCalculator(playerStats);
     this.result = inst.yakuCounter();
     this.sc = new ScoreCounter(
-            result.getSnd().getFst(),
-            result.getSnd().getSnd(),
-            playerStats.isOya(),
-            playerStats.isTsumo(),
-            inst.hasYakuman());
+        result.getSnd().getFst(),
+        result.getSnd().getSnd(),
+        playerStats.isOya(),
+        playerStats.isTsumo(),
+        inst.hasYakuman());
   }
 
   /**
@@ -80,11 +80,11 @@ public class HandResult {
    */
   public List<String> displayHandResult() {
     List<String> res = Arrays.asList(
-            sc.getScoreLevel().toText(),
-            result.getFst().stream().map(Yaku::toText).collect(Collectors.joining(",")),
-            ScoreDisplayFormatter.formatFan(result.getSnd().getFst()),
-            ScoreDisplayFormatter.formatFu(result.getSnd().getSnd()),
-            sc.toFormattedScores());
+        sc.getScoreLevel().toText(),
+        result.getFst().stream().map(Yaku::toText).collect(Collectors.joining(",")),
+        ScoreDisplayFormatter.formatFan(result.getSnd().getFst()),
+        ScoreDisplayFormatter.formatFu(result.getSnd().getSnd()),
+        sc.toFormattedScores());
     return res;
   }
 

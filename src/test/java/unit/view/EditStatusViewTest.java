@@ -27,7 +27,6 @@ public class EditStatusViewTest {
     ViewManagerModel viewManagerModel;
     EditStatusView editStatusView;
 
-
     @BeforeEach
     void setUp() {
         editStatusViewModel = new EditStatusViewModel();
@@ -39,7 +38,8 @@ public class EditStatusViewTest {
         EditStatusOutputBoundary playerPresenter = new EditStatusPresenter(editStatusViewModel,
                 selectDoraViewModel, tileSelectorViewModel, viewManagerModel);
 
-        EditStatusInputBoundary editStatusUseCaseInteractor = new EditStatusInteractor(playerDataAccessObject, playerPresenter);
+        EditStatusInputBoundary editStatusUseCaseInteractor = new EditStatusInteractor(playerDataAccessObject,
+                playerPresenter);
         editStatusView = new EditStatusView(editStatusViewModel);
     }
 
@@ -53,8 +53,8 @@ public class EditStatusViewTest {
         EditStatusOutputBoundary playerPresenter = new EditStatusPresenter(editStatusViewModel,
                 selectDoraViewModel, tileSelectorViewModel, viewManagerModel);
 
-        EditStatusInputBoundary editStatusUseCaseInteractor = new EditStatusInteractor(playerDataAccessObject, playerPresenter);
-
+        EditStatusInputBoundary editStatusUseCaseInteractor = new EditStatusInteractor(playerDataAccessObject,
+                playerPresenter);
 
         EditStatusController editStatusController = new EditStatusController(editStatusUseCaseInteractor);
         EditStatusView editStatusView = new EditStatusView(editStatusViewModel);
@@ -66,7 +66,7 @@ public class EditStatusViewTest {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-//        showMessageDialog(null, editStatusView.checkBoxesToString());
+        // showMessageDialog(null, editStatusView.checkBoxesToString());
     }
 
     @Test

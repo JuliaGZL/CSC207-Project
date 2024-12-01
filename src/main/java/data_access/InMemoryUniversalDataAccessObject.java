@@ -32,6 +32,7 @@ public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInter
 
     /**
      * Return whether a player exists.
+     * 
      * @param name name of the player
      * @return true if the player exists
      */
@@ -42,6 +43,7 @@ public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInter
 
     /**
      * Get a player by name.
+     * 
      * @param name name of the player.
      * @return the corresponding Player object.
      */
@@ -51,7 +53,9 @@ public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInter
     }
 
     /**
-     * Save a player. Append it into the storage if it wasn't already in, otherwise update it.
+     * Save a player. Append it into the storage if it wasn't already in, otherwise
+     * update it.
+     * 
      * @param player the player to insert or update.
      */
     @Override
@@ -61,8 +65,10 @@ public class InMemoryUniversalDataAccessObject implements AddTileDataAccessInter
 
     /**
      * Updates the system to record this player's gameplay attributes.
-     * @param player the player whose gameplay attributes are to be updated
-     * @param newAttributes a boolean array of length 9 that are the new attributes to be set
+     * 
+     * @param player        the player whose gameplay attributes are to be updated
+     * @param newAttributes a boolean array of length 9 that are the new attributes
+     *                      to be set
      */
     @Override
     public void changeAttributes(Player player, Boolean[] newAttributes) {

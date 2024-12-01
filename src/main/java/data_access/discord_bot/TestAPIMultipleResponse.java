@@ -1,4 +1,5 @@
 package data_access.discord_bot;
+
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.lifecycle.ReadyEvent;
@@ -13,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-
 public class TestAPIMultipleResponse {
     static final List<String> GREETING_LIST = Arrays.asList("hello", "hi", "hey", "你好");
 
@@ -24,11 +24,10 @@ public class TestAPIMultipleResponse {
 
         Mono<Void> login = client.withGateway((GatewayDiscordClient gateway) -> {
             // ReadyEvent example
-            Mono<Void> printOnLogin = gateway.on(ReadyEvent.class, event ->
-                            Mono.fromRunnable(() -> {
-                                final User self = event.getSelf();
-                                System.out.printf("Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator());
-                            }))
+            Mono<Void> printOnLogin = gateway.on(ReadyEvent.class, event -> Mono.fromRunnable(() -> {
+                final User self = event.getSelf();
+                System.out.printf("Logged in as %s#%s%n", self.getUsername(), self.getDiscriminator());
+            }))
                     .then();
 
             // MessageCreateEvent example
@@ -82,7 +81,6 @@ public class TestAPIMultipleResponse {
                 }
                 return Mono.empty();
             }).then();
-
 
             // combine them!
             return printOnLogin.and(handleGreetingCommand).and(handleTestingCommand).and(handleQuitCmmand);

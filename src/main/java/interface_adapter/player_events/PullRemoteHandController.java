@@ -12,6 +12,7 @@ public class PullRemoteHandController {
 
     /**
      * Entry to run the use case.
+     * 
      * @param playerName name of the current player
      */
     public void execute(String playerName) {

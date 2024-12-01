@@ -14,8 +14,8 @@ public class PullRemoteHandOutputData {
     private final List<String> iconList;
 
     public PullRemoteHandOutputData(String playerName, List<BaseTile> playerHand,
-                                    List<String> nameList,
-                                    List<String> iconList) {
+            List<String> nameList,
+            List<String> iconList) {
         this.playerName = playerName;
         this.playerHand = playerHand;
         this.nameList = nameList;

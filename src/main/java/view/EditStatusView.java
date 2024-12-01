@@ -20,7 +20,8 @@ import java.util.List;
 
 /**
  * The panel for editing user gameplay status.
- * Handles selecting/unselecting gameplay statuses as well as selecting Dora indicators.
+ * Handles selecting/unselecting gameplay statuses as well as selecting Dora
+ * indicators.
  */
 public class EditStatusView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -39,9 +40,10 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
     private JSpinner akadoraSpinner;
     private List<JCheckBox> checkBoxes = new ArrayList<>();
 
-
     /**
-     * Constructs a EditStatusView object with the specified view model and controller.
+     * Constructs a EditStatusView object with the specified view model and
+     * controller.
+     * 
      * @param editStatusViewModel the view model for editing gameplay statuses.
      */
     public EditStatusView(EditStatusViewModel editStatusViewModel) {
@@ -102,7 +104,8 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
                     String selectedItem = (String) roundWindComboBox.getSelectedItem();
                     final EditStatusState currentState = editStatusViewModel.getState();
 
-                    editStatusController.execute("roundWind", currentState.getAttributes(), currentState.getNumAkadora(),
+                    editStatusController.execute("roundWind", currentState.getAttributes(),
+                            currentState.getNumAkadora(),
                             currentState.getSeatWind(), selectedItem, currentState.getWinType(),
                             playerName);
                 }
@@ -176,8 +179,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
                                 playerName);
                     }
                 });
-            }
-            else {
+            } else {
                 checkBox.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         Boolean[] newAttributes = getAttributes();
@@ -248,16 +250,14 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
             if ("Tsumo".equals(selectedItem)) {
                 newAttributes[EditStatusViewModel.UNDER_THE_RIVER_INDEX] = false;
                 newAttributes[EditStatusViewModel.ROBBING_A_KAN_INDEX] = false;
-            }
-            else if ("Ron".equals(selectedItem)) {
+            } else if ("Ron".equals(selectedItem)) {
                 newAttributes[EditStatusViewModel.UNDER_THE_SEA_INDEX] = false;
             }
         }
         if (comboBox.equals(seatWindComboBox)) {
             if ("Ton".equals(selectedItem)) {
                 newAttributes[EditStatusViewModel.CHIIHOU_INDEX] = false;
-            }
-            else {
+            } else {
                 newAttributes[EditStatusViewModel.TENHOU_INDEX] = false;
             }
         }
@@ -266,7 +266,8 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
     /**
      * Method for handling selection events on combo boxes.
-     * @param comboBox the combo box where the selection event occurred
+     * 
+     * @param comboBox     the combo box where the selection event occurred
      * @param selectedItem the item (String) that was selected
      */
     private void handleComboBoxSelection(JComboBox<String> comboBox, String selectedItem) {
@@ -278,8 +279,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
                 disableCheckBox("Under the River");
                 enableCheckBox("Under the Sea");
                 disableCheckBox("Robbing a Kan");
-            }
-            else if ("Ron".equals(selectedItem)) {
+            } else if ("Ron".equals(selectedItem)) {
                 disableCheckBox("Under the Sea");
                 enableCheckBox("Under the River");
                 enableCheckBox("Robbing a Kan");
@@ -287,8 +287,9 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         }
         // Disable/enable "Tenhou/Chiihou" checkboxes according to seat wind
         if (comboBox.equals(seatWindComboBox)) {
-            // If the player is East (starts the first), they can only win big at beginning by Tenhou
-            if ("Ton".equals(selectedItem))  {
+            // If the player is East (starts the first), they can only win big at beginning
+            // by Tenhou
+            if ("Ton".equals(selectedItem)) {
                 System.out.println("Tenhou enabled");
                 disableCheckBox("Chiihou");
                 enableCheckBox("Tenhou");
@@ -306,6 +307,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
     /**
      * Method for handling selection events on checkboxes.
+     * 
      * @param checkBox the checkbox on select.
      */
     private Boolean[] preHandleCheckBoxSelection(JCheckBox checkBox) {
@@ -317,8 +319,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
                 // If there is Riichi, set Double Riichi to false
                 newAttributes[EditStatusViewModel.DOUBLE_RIICHI_INDEX] = false;
             }
-        }
-        else if (checkBox.getText().equals("Double Riichi")) {
+        } else if (checkBox.getText().equals("Double Riichi")) {
             if (checkBox.isSelected()) {
                 // If there is Double Riichi, set Riichi to false
                 newAttributes[EditStatusViewModel.RIICHI_INDEX] = false;
@@ -341,8 +342,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
             // If there is Riichi, disable Double Riichi and enable One-shot
             enableCheckBox("One-shot");
             disableCheckBox("Double Riichi");
-        }
-        else {
+        } else {
             // If Riichi is unselected, enable Double Riichi
             enableCheckBox("Double Riichi");
         }
@@ -351,8 +351,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
             // If Double Riichi is selected, disable Riichi and enable One-shot
             enableCheckBox("One-shot");
             disableCheckBox("Riichi");
-        }
-        else {
+        } else {
             // If Double Riichi is unselected, enable Riichi
             enableCheckBox("Riichi");
         }
@@ -367,6 +366,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
     /**
      * Disable and deselect a checkbox with the specified name.
+     * 
      * @param checkBoxName name/label of the checkbox, as shown on the GUI
      */
     private void disableCheckBox(String checkBoxName) {
@@ -376,8 +376,8 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
                     checkBox.setEnabled(false);
                     checkBox.setSelected(false);
                 });
-//                checkBox.setEnabled(false);
-//                checkBox.setSelected(false);
+                // checkBox.setEnabled(false);
+                // checkBox.setSelected(false);
             }
         }
         System.out.println("Disabled checkbox: " + checkBoxName);
@@ -385,6 +385,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
 
     /**
      * Enable a checkbox with the specified name.
+     * 
      * @param checkBoxName name/label of the checkbox, as shown on the GUI
      */
     private void enableCheckBox(String checkBoxName) {

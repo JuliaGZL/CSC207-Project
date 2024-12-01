@@ -6,6 +6,7 @@ import usecase.clear_tiles.ClearTilesInputData;
 
 public class ClearTilesController {
     private final ClearTilesInputBoundary interactor;
+
     public ClearTilesController(ClearTilesInputBoundary interactor) {
         this.interactor = interactor;
     }

@@ -77,8 +77,7 @@ public class RemoveTileInteractorTest {
                 RuntimeException.class,
                 () -> {
                     interactorHand.execute(new RemoveTileInputData(tileId, "no_exist"));
-                }
-        );
+                });
     }
 
     @Test
@@ -91,8 +90,7 @@ public class RemoveTileInteractorTest {
                 RuntimeException.class,
                 () -> {
                     interactorInvalid.execute(new RemoveTileInputData(tileId, name));
-                }
-        );
+                });
     }
 }
 
@@ -114,4 +112,5 @@ class dummyRemoveTileOTB implements RemoveTileOutputBoundary {
     }
 }
 
-class ExpectedFail extends RuntimeException {}
+class ExpectedFail extends RuntimeException {
+}

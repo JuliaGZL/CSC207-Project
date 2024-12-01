@@ -8,8 +8,8 @@ import java.util.List;
  * Interactor for the read hand use case.
  */
 public class ReadHandInteractor implements ReadHandInputBoundary {
-   private final ReadHandDataAccessInterface dataAccessObj;
-   private final ReadHandOutputBoundary presenter;
+    private final ReadHandDataAccessInterface dataAccessObj;
+    private final ReadHandOutputBoundary presenter;
 
     public ReadHandInteractor(ReadHandDataAccessInterface dataAccessObj, ReadHandOutputBoundary presenter) {
         this.dataAccessObj = dataAccessObj;
@@ -36,8 +36,7 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
         // 1. Create string that describes the hand
         if (hand.isEmpty()) {
             handInfo.append("Your hand is empty. ");
-        }
-        else {
+        } else {
             handInfo.append("Your hand includes");
             for (Tile tile : hand) {
                 handInfo.append(" ");
@@ -52,8 +51,7 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
         List<Tile> doras = dataAccessObj.getPlayer(playerName).getDora();
         if (doras.isEmpty()) {
             handInfo.append("There are no dora tiles.");
-        }
-        else {
+        } else {
             handInfo.append("The dora tiles are");
             for (Tile dora : doras) {
                 handInfo.append(" ");
@@ -67,8 +65,7 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
         List<Tile> uradoras = dataAccessObj.getPlayer(playerName).getUradora();
         if (uradoras.isEmpty()) {
             handInfo.append("There are no uradora tiles.");
-        }
-        else {
+        } else {
             handInfo.append("The uradora tiles are");
             for (Tile uradora : uradoras) {
                 handInfo.append(" ");
@@ -79,7 +76,7 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
             handInfo.append(". ");
         }
         handInfo.append("That's all tiles.");
-        
+
         // 4. Create string that describes the player's attributes.
         // Get whether all attributes are false.
         Boolean[] attributes = dataAccessObj.getPlayer(playerName).getAttributes();

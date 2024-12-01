@@ -85,6 +85,7 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
 
     /**
      * get the view name
+     * 
      * @return view name from the viewModel
      */
     public String getViewName() {
@@ -126,6 +127,7 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
     /**
      * Helper function for showing a dialog that binds with the hotkey CTRL+R
      * for accessibility purposes.
+     * 
      * @param message the message to show in the dialog and to be read out loud
      */
     public void showDialogWithHotkey(String message) {
@@ -133,8 +135,7 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
         JOptionPane optionPane = new JOptionPane(
                 message,
                 JOptionPane.INFORMATION_MESSAGE,
-                JOptionPane.DEFAULT_OPTION
-        );
+                JOptionPane.DEFAULT_OPTION);
         // Create JDialog
         JDialog dialog = optionPane.createDialog(this, message);
 
@@ -155,10 +156,11 @@ public class PlayerEventsView extends JPanel implements PropertyChangeListener {
 
     /**
      * Read out loud the message.
+     * 
      * @param message the message to be read
      */
     public void readOutLoud(String message) {
-//        System.out.println(message);
+        // System.out.println(message);
         TextToSpeech ttsInstance = TextToSpeech.getInstance();
         ttsInstance.speakInThread(message);
     }

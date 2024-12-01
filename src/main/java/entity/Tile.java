@@ -1,6 +1,7 @@
 package entity;
 
 import mahjong.BaseTile;
+
 /**
  * Represents a tile in Mahjong.
  */
@@ -49,10 +50,10 @@ public class Tile {
   /**
    * Initializes the tile with the specified attributes.
    *
-   * @param tile    The base tile to set.
+   * @param tile      The base tile to set.
    * @param isRedDora True if the tile is a red dora.
    * @param isUraDora True if the tile is an ura dora.
-   * @param isDora  True if the tile is a dora.
+   * @param isDora    True if the tile is a dora.
    */
   public Tile(BaseTile tile, boolean isRedDora, boolean isUraDora, boolean isDora) {
     this.setTile(tile);
@@ -63,6 +64,7 @@ public class Tile {
 
   /**
    * Tile with default setting.
+   * 
    * @param tile The base tile (id).
    */
   public Tile(BaseTile tile) {
@@ -79,8 +81,8 @@ public class Tile {
    */
   @Override
   public String toString() {
-    return "Tile [tile=" + tile.toString() 
-        + ", isRedDora=" + isRedDora 
+    return "Tile [tile=" + tile.toString()
+        + ", isRedDora=" + isRedDora
         + ", isUraDora=" + isUraDora + ", isDora="
         + isDora
         + "]";

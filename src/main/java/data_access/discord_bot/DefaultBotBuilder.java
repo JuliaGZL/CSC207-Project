@@ -1,6 +1,6 @@
 package data_access.discord_bot;
 
-public class DefaultBotBuilder extends BotBuilder{
+public class DefaultBotBuilder extends BotBuilder {
     String token;
 
     public DefaultBotBuilder() {
@@ -32,7 +32,7 @@ public class DefaultBotBuilder extends BotBuilder{
         bot.run();
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return MessageHolder.getMessage();
     }
 }

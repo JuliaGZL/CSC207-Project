@@ -26,9 +26,9 @@ public class Player {
     private String roundWind = "East";
     private String seatWind = "East";
 
-
     /**
      * For a new player with name only.
+     * 
      * @param name literally
      */
     public Player(String name) {
@@ -37,10 +37,10 @@ public class Player {
 
     // creates a fully augmented player.
     public Player(String name,
-                  int score,
-                  List<Tile> hand,
-                  List<Tile> dora,
-                  List<Tile> uradora) {
+            int score,
+            List<Tile> hand,
+            List<Tile> dora,
+            List<Tile> uradora) {
         this.name = name;
         this.score = score;
         this.hand = hand;
@@ -49,7 +49,7 @@ public class Player {
     }
 
     public Player(String name, int score, List<Tile> hand, Boolean[] attributes,
-                  int numAkaDora, String roundWind, String seatWind) {
+            int numAkaDora, String roundWind, String seatWind) {
         this.name = name;
         this.score = score;
         this.hand = hand;

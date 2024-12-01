@@ -11,7 +11,7 @@ public class ChangePlayerInteractor implements ChangePlayerInputBoundary {
     private final ChangePlayerOutputBoundary presenter;
 
     public ChangePlayerInteractor(ChangePlayerDataAccessInterface dataAccessObj,
-                                  ChangePlayerOutputBoundary presenter) {
+            ChangePlayerOutputBoundary presenter) {
         this.dataAccessObj = dataAccessObj;
         this.presenter = presenter;
     }

@@ -8,12 +8,13 @@ import interface_adapter.ViewModel;
 public class EditStatusViewModel extends ViewModel<EditStatusState> {
 
     // We don't have time to support fuuro
-    // public static final String[] TILE_TYPES = {"Hand", "Chii", "Pon", "Kan", "Ankan", "Dora", "Uradora", "Akadora"};
-    public static final String[] TILE_TYPES = {"Hand", "Dora", "Uradora"};
-    public static final String[] WIN_TYPES = {"Tsumo", "Ron"};
-    public static final String[] WINDS = {"Ton", "Nan", "Shaa", "Pei"};
-    public static final String[] ATTRIBUTES = {"Riichi", "Double Riichi", "One-shot", "Under the Sea",
-            "Under the River", "After a Kan", "Robbing a Kan", "Tenhou", "Chiihou"};
+    // public static final String[] TILE_TYPES = {"Hand", "Chii", "Pon", "Kan",
+    // "Ankan", "Dora", "Uradora", "Akadora"};
+    public static final String[] TILE_TYPES = { "Hand", "Dora", "Uradora" };
+    public static final String[] WIN_TYPES = { "Tsumo", "Ron" };
+    public static final String[] WINDS = { "Ton", "Nan", "Shaa", "Pei" };
+    public static final String[] ATTRIBUTES = { "Riichi", "Double Riichi", "One-shot", "Under the Sea",
+            "Under the River", "After a Kan", "Robbing a Kan", "Tenhou", "Chiihou" };
 
     public static final int RIICHI_INDEX = 0;
     public static final int DOUBLE_RIICHI_INDEX = 1;

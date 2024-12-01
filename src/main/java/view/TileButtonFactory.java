@@ -49,7 +49,7 @@ public class TileButtonFactory {
 
         // Remove button's default look
         button.setBorderPainted(true); // Remove border
-        button.setFocusPainted(true);  // Remove focus border
+        button.setFocusPainted(true); // Remove focus border
         button.setContentAreaFilled(false); // Make the background transparent
         return button;
     }

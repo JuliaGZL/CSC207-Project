@@ -16,7 +16,7 @@ class EditStatusInputDataTest {
     String roundWind = "South";
     String seatWind = "East";
     int numAkadora = 1;
-    Boolean[] attributes = { false, true, false, true, false, false, false, false, false};
+    Boolean[] attributes = { false, true, false, true, false, false, false, false, false };
 
     EditStatusInputData editStatusInputData;
 

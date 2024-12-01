@@ -73,20 +73,19 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
 
     private void addButtons() {
         Set<BaseTile> enabledTiles = tileSelectorViewModel.getState().getEnabledTiles();
-        for (BaseTile[] row : TileSelectorViewModel.tileRows){
+        for (BaseTile[] row : TileSelectorViewModel.tileRows) {
             for (BaseTile tile : row) {
                 if (enabledTiles.contains(tile)) {
                     // create the button object
                     TileButton button = TileButtonFactory.createImageButton(
-                            tile, BaseTileToPathMapping.getTilePath(tile)
-                    );
+                            tile, BaseTileToPathMapping.getTilePath(tile));
 
                     // add action listener
                     button.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent actionEvent) {
                             // Add card to either dora or hand according to current state
-                            //      indicated by addTarget.
+                            // indicated by addTarget.
                             switch (tileAddTarget) {
                                 case "dora":
                                     addToDoraController.execute(button.getTileId(), playerName);

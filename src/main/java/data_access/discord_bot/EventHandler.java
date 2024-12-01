@@ -14,14 +14,14 @@ public class EventHandler<E extends Event> {
     GatewayDiscordClient gateway;
     Function<E, Publisher<Void>> eventMapper;
 
-    public EventHandler(DiscordClient client, GatewayDiscordClient gateway, Mono<Void> eventVoid){
+    public EventHandler(DiscordClient client, GatewayDiscordClient gateway, Mono<Void> eventVoid) {
         this.client = client;
         this.eventVoid = eventVoid;
         this.gateway = gateway;
     }
 
     public EventHandler(DiscordClient client, GatewayDiscordClient gateway, Class<E> eventClass,
-                        Function<E, Publisher<Void>> eventMapper) {
+            Function<E, Publisher<Void>> eventMapper) {
         this.client = client;
         this.gateway = gateway;
         this.eventMapper = eventMapper;
@@ -29,7 +29,7 @@ public class EventHandler<E extends Event> {
     }
 
     public Mono<Void> mapperToEvent(GatewayDiscordClient gateway, Class<E> eventClass,
-                                    Function<E, Publisher<Void>> eventMapper){
+            Function<E, Publisher<Void>> eventMapper) {
         return gateway.on(eventClass, eventMapper).then();
     }
 

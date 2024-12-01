@@ -6,6 +6,7 @@ package usecase.change_player;
 public interface ChangePlayerInputBoundary {
     /**
      * Executes the add_tile use case.
+     * 
      * @param inputData the input data
      */
     void execute(ChangePlayerInputData inputData);
