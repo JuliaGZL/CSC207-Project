@@ -177,73 +177,7 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
       default:
         break;
     }
-<<<<<<< HEAD
-    // update enabled buttons
-    if (!property.equals("enabled_tiles")) {
-      updateEnabledTileController.execute(playerName, tileAddTarget);
-=======
 
-    private void addButtons() {
-        Set<BaseTile> enabledTiles = tileSelectorViewModel.getState().getEnabledTiles();
-        for (BaseTile[] row : TileSelectorViewModel.tileRows){
-            for (BaseTile tile : row) {
-                if (enabledTiles.contains(tile)) {
-                    // create the button object
-                    TileButton button = TileButtonFactory.createImageButton(
-                            tile, BaseTileToPathMapping.getTilePath(tile)
-                    );
-
-                    // add action listener
-                    button.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent actionEvent) {
-                            // Add card to either dora or hand according to current state
-                            //      indicated by addTarget.
-                            switch (tileAddTarget) {
-                                case "dora":
-                                    addToDoraController.execute(button.getTileId(), playerName);
-                                    break;
-                                case "uradora":
-                                    addToUradoraController.execute(button.getTileId(), playerName);
-                                    break;
-                                case "hand":
-                                    addToHandController.execute(button.getTileId(), playerName);
-                                    break;
-                            }
-                            // update enabled buttons
-                            updateEnabledTileController.execute(playerName, tileAddTarget);
-                        }
-                    });
-                    button.addMouseListener(new MouseAdapter() {
-                        Timer timer = new Timer(2000, new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                TextToSpeech.getInstance().speakInThread(tile.toText());
-                            }
-                        });
-
-                        @Override
-                        public void mouseEntered(MouseEvent e) {
-                            timer.setRepeats(false);
-                            timer.start();
-                        }
-
-                        @Override
-                        public void mouseExited(MouseEvent e) {
-                            timer.stop();
-                        }
-                    });
-
-                    // add to panel
-                    tileButtonsPanel.add(button);
-                } else {
-                    // if tile not enabled, show blank button
-                    tileButtonsPanel.add(TileButtonFactory.createDummyButton());
-                }
-            }
-        }
->>>>>>> 7d91e70385984a4316676034c69ba617340ee3bc
-    }
   }
 
   public String getViewName() {
