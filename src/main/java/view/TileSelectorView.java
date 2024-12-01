@@ -103,7 +103,8 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
                         }
                     });
                     button.addMouseListener(new MouseAdapter() {
-                        Timer timer = new Timer(500, new ActionListener() {
+                        // if hovered, speak the tile
+                        Timer timer = new Timer(200, new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 TextToSpeech.getInstance().speakInThread(tile.toText());
