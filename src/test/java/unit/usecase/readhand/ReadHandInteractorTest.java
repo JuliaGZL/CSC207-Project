@@ -41,9 +41,9 @@ public class ReadHandInteractorTest {
   void testHandEmptyAllFalse() {
     DAO.savePlayer(player);
     interactor.execute(new ReadHandInputData(name, attrib));
-    final String expected = "Your hand is empty." +
-        "There are no dora tiles.There are no uradora tiles." +
-        "That's all tiles.You have no special attributes.";
+    final String expected = "Your hand is empty."
+        + "There are no dora tiles.There are no uradora tiles."
+        + "That's all tiles.You have no special attributes.";
     Assertions.assertEquals(expected, presenter.getMessage());
   }
 
@@ -57,8 +57,9 @@ public class ReadHandInteractorTest {
     player.setAttributes(newAttrib);
     DAO.savePlayer(player);
     interactor.execute(new ReadHandInputData(name, attrib));
-    final String expected = "Your hand is empty. There are no dora tiles.There are no uradora tiles." +
-        "That's all tiles.You have the following special attributes: Riichi. Finish. ";
+    final String expected = "Your hand is empty."
+        + "There are no dora tiles.There are no uradora tiles."
+        + "That's all tiles.You have the following special attributes: Riichi. Finish. ";
     Assertions.assertEquals(expected, presenter.getMessage());
   }
 
@@ -68,8 +69,9 @@ public class ReadHandInteractorTest {
     player.setHand(hand);
     DAO.savePlayer(player);
     interactor.execute(new ReadHandInputData(name, attrib));
-    final String expected = "Your hand includes 1 Man. There are no dora tiles.There are no uradora tiles." +
-        "That's all tiles.You have no special attributes.";
+    final String expected = "Your hand includes 1 Man."
+        + "There are no dora tiles.There are no uradora tiles."
+        + "That's all tiles.You have no special attributes.";
     Assertions.assertEquals(expected, presenter.getMessage());
   }
 
