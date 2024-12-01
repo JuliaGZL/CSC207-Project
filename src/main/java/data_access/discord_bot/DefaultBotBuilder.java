@@ -1,11 +1,12 @@
 package data_access.discord_bot;
 
-public class DefaultBotBuilder extends BotBuilder {
-    String token;
+public class DefaultBotBuilder implements BotBuilder {
+    final String token;
+    private final ChatBot bot;
 
     public DefaultBotBuilder() {
-        String token = "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto";
-        this.token = token;
+        final String defaultToken = "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto";
+        this.token = defaultToken;
         bot = new ChatBot(token);
         bot.addEvent(LoginHandler.class);
         bot.addEvent(GreetingHandler.class);

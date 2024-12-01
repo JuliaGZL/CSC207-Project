@@ -10,6 +10,7 @@ public class TestChatBotWithPartialFunctions {
         bot.addEvent(MahjongComboHandler.class);
         bot.addEvent(QuitHandler.class);
         bot.run();
+
         System.out.println("End Testing");
     }
 }
