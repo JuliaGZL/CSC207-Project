@@ -1,6 +1,5 @@
 package unit.usecase.readhand;
 
-
 import dataaccess.InMemoryUniversalDataAccessObject;
 import entity.Player;
 import entity.PlayerFactory;
@@ -42,7 +41,8 @@ public class ReadHandInteractorTest {
   void testHandEmptyAllFalse() {
     DAO.savePlayer(player);
     interactor.execute(new ReadHandInputData(name, attrib));
-    final String expected = "Your hand is empty. There are no dora tiles.There are no uradora tiles." +
+    final String expected = "Your hand is empty." +
+        "There are no dora tiles.There are no uradora tiles." +
         "That's all tiles.You have no special attributes.";
     Assertions.assertEquals(expected, presenter.getMessage());
   }
