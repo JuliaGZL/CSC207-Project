@@ -36,7 +36,7 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
 
         Boolean[] attributes = player.getAttributes();
         boolean isTsumo = (player.getWinType().equals("Tsumo"));
-        boolean isOya = (player.getWinType().equals("East"));
+        boolean isOya = (player.getSeatWind().equals("East"));
 
         // get wind
         BaseTile selfWind = getWindBaseTile(player.getSeatWind());
