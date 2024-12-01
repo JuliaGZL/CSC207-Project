@@ -29,7 +29,6 @@ public class HuSolverPresenter implements HuSolveOutputBoundary {
         // read out result
         HandResult handResult = HandResult.getInstance();
         List<Yaku> yakus = handResult.getHandYakuList();
-        yakus.sort(null);
         YakuAndScoreLevelToSpeech.playSoundInThread(yakus, handResult.getScoreLevel());
         HandResult.resetInstance();
 
