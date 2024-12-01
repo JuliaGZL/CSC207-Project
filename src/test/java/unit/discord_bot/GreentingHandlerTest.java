@@ -1,7 +1,8 @@
 package unit.discord_bot;
 
-import data_access.discord_bot.GreetingHandler;
 import org.junit.Test;
+
+import dataaccess.discordbot.GreetingHandler;
 
 import static org.junit.Assert.*;
 

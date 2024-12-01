@@ -29,7 +29,7 @@ public class ChatBot {
   }
 
   /**
-   * Adds an event handler class to the list of events to be handled.
+   * Adds an event type to be handled by the ChatBot.
    *
    * @param eventType the class of the event handler to be added
    */
@@ -38,7 +38,7 @@ public class ChatBot {
   }
 
   /**
-   * Sets up the main service to handle events by combining all event handlers.
+   * Sets up the main service to handle events when connected to Discord.
    */
   public void setMainService() {
     this.onConnect = client.withGateway((GatewayDiscordClient gateway) -> {
@@ -55,19 +55,27 @@ public class ChatBot {
       parellel = subEvent1.union(subEvent2);
 
       for (int i = 0; i < subEventsClasses.size(); i++) {
-        parellel = parellel.union(
-            handlerFactory.createEventHandler(subEventsClasses.get(i), client, gateway));
+        parellel = parellel.union(handlerFactory.createEventHandler(
+          subEventsClasses.get(i), client, gateway));
       }
       return parellel.getEvent();
     });
   }
 
   /**
-   * Runs the ChatBot by setting up the main service and blocking until the
-   * connection is closed.
+   * Runs the ChatBot, blocking until the connection is closed.
    */
   public void run() {
     setMainService();
     this.onConnect.block();
+  }
+
+  /**
+   * Returns the list of event handler classes that have been added.
+   *
+   * @return the list of event handler classes
+   */
+  public List<Class<? extends EventHandler>> getSubEventsClasses() {
+    return subEventsClasses;
   }
 }

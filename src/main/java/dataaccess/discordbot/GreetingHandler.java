@@ -7,15 +7,15 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Handles greeting messages in a Discord bot.
+ * Handles greeting messages for the Discord bot.
  */
 public class GreetingHandler extends MessageHandler {
-  static final List<String> GREETING_LIST = Arrays.asList("hello", "hi", "hey", "你好");
+  static final List<String> GREETING_LIST = Arrays.asList("hello", "hi", "hey", "你好", "こんにちは");
 
   /**
    * Constructs a GreetingHandler.
    *
-   * @param client the Discord client
+   * @param client  the Discord client
    * @param gateway the GatewayDiscordClient
    */
   public GreetingHandler(DiscordClient client, GatewayDiscordClient gateway) {
@@ -34,7 +34,7 @@ public class GreetingHandler extends MessageHandler {
   /**
    * Creates a new greeting message.
    *
-   * @param content the content of the message
+   * @param content    the content of the message
    * @param memberName the name of the member
    * @return the new greeting message
    */

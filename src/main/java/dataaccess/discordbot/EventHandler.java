@@ -8,11 +8,11 @@ import org.reactivestreams.Publisher;
 import reactor.core.publisher.Mono;
 
 /**
- * Handles Discord events of a specified type.
+ * Abstract class representing an event handler for Discord events.
  *
- * @param <E> the type of event to handle
+ * @param <E> the type of event this handler processes
  */
-public class EventHandler<E extends Event> {
+public abstract class EventHandler<E extends Event> {
   DiscordClient client;
   Mono<Void> eventVoid;
   GatewayDiscordClient gateway;
@@ -23,9 +23,9 @@ public class EventHandler<E extends Event> {
    *
    * @param client the Discord client
    * @param gateway the gateway Discord client
-   * @param eventVoid the Mono representing the event handling logic
+   * @param eventVoid the Mono representing the event void
    */
-  public EventHandler(DiscordClient client, GatewayDiscordClient gateway, Mono<Void> eventVoid) {
+  public EventHandler(DiscordClient client, GatewayDiscordClient gateway, Mono<Void> eventVoid){
     this.client = client;
     this.eventVoid = eventVoid;
     this.gateway = gateway;
@@ -36,11 +36,11 @@ public class EventHandler<E extends Event> {
    *
    * @param client the Discord client
    * @param gateway the gateway Discord client
-   * @param eventClass the class of the event to handle
-   * @param eventMapper the function to map the event to a publisher
+   * @param eventClass the class of the event
+   * @param eventMapper the function mapping the event to a publisher
    */
   public EventHandler(DiscordClient client, GatewayDiscordClient gateway, Class<E> eventClass,
-      Function<E, Publisher<Void>> eventMapper) {
+            Function<E, Publisher<Void>> eventMapper) {
     this.client = client;
     this.gateway = gateway;
     this.eventMapper = eventMapper;
@@ -48,45 +48,44 @@ public class EventHandler<E extends Event> {
   }
 
   /**
-   * Maps the specified event class to the event mapper 
-   * and returns a Mono representing the event handling logic.
+   * Maps the specified event class to the event mapper and returns a Mono representing the event.
    *
    * @param gateway the gateway Discord client
-   * @param eventClass the class of the event to handle
-   * @param eventMapper the function to map the event to a publisher
-   * @return a Mono representing the event handling logic
+   * @param eventClass the class of the event
+   * @param eventMapper the function mapping the event to a publisher
+   * @return a Mono representing the event
    */
   public Mono<Void> mapperToEvent(GatewayDiscordClient gateway, Class<E> eventClass,
-      Function<E, Publisher<Void>> eventMapper) {
+                  Function<E, Publisher<Void>> eventMapper){
     return gateway.on(eventClass, eventMapper).then();
   }
 
   /**
-   * Returns the Mono representing the event handling logic.
+   * Returns the executable event as a Mono.
    *
-   * @return the Mono representing the event handling logic
+   * @return the executable event as a Mono
    */
   public Mono<Void> getExecutableEvent() {
     return eventVoid;
   }
 
   /**
-   * Returns a Mono that completes immediately.
+   * Returns a default Mono that completes empty.
    *
-   * @return a Mono that completes immediately
+   * @return a default Mono that completes empty
    */
   public static Mono<Void> defaultReturn() {
     return Mono.empty();
   }
 
   /**
-   * Combines this event handler with another event handler to handle events in parallel.
+   * Combines this event handler with another event handler to run in parallel.
    *
    * @param other the other event handler
-   * @return a ParallelEventCombiner that combines the event handling logic of both handlers
+   * @return a ParallelEventCombiner combining both event handlers
    */
   public ParallelEventCombiner union(EventHandler<? extends Event> other) {
     return new ParallelEventCombiner(
-      this.client, this.getExecutableEvent().and(other.getExecutableEvent()));
+        this.client, this.getExecutableEvent().and(other.getExecutableEvent()));
   }
 }

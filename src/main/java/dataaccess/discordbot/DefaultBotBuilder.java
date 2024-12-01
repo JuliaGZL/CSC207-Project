@@ -1,18 +1,17 @@
 package dataaccess.discordbot;
 
 /**
- * DefaultBotBuilder is a concrete implementation of BotBuilder that initializes
- * a ChatBot with a set of predefined event handlers.
+ * DefaultBotBuilder is responsible for building and configuring a ChatBot instance.
  */
-public class DefaultBotBuilder extends BotBuilder {
-  String token;
+public class DefaultBotBuilder implements BotBuilder {
+  final String token;
+  private final ChatBot bot;
 
   /**
    * Constructs a DefaultBotBuilder with a default token.
    */
   public DefaultBotBuilder() {
-    String token = "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto";
-    this.token = token;
+    this.token = "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto";
     bot = new ChatBot(token);
     bot.addEvent(LoginHandler.class);
     bot.addEvent(GreetingHandler.class);
@@ -22,7 +21,7 @@ public class DefaultBotBuilder extends BotBuilder {
   }
 
   /**
-   * Constructs a DefaultBotBuilder with the specified token.
+   * Constructs a DefaultBotBuilder with a specified token.
    *
    * @param token the token to be used by the ChatBot
    */
@@ -37,7 +36,7 @@ public class DefaultBotBuilder extends BotBuilder {
   }
 
   /**
-   * Returns the ChatBot instance.
+   * Returns the configured ChatBot instance.
    *
    * @return the ChatBot instance
    */
@@ -53,11 +52,11 @@ public class DefaultBotBuilder extends BotBuilder {
   }
 
   /**
-   * Retrieves the message from the MessageHolder.
+   * Retrieves a message from the MessageHolder.
    *
    * @return the message from the MessageHolder
    */
-  public String getMessage() {
+  public String getMessage(){
     return MessageHolder.getMessage();
   }
 }

@@ -1,20 +1,18 @@
 package dataaccess.discordbot;
 
 /**
- * Abstract class for building a ChatBot.
+ * Interface for building and activating a ChatBot.
  */
-public abstract class BotBuilder {
-  ChatBot bot;
-
+public interface BotBuilder {
   /**
-   * Returns the built ChatBot instance.
+   * Retrieves the built ChatBot instance.
    *
    * @return the ChatBot instance
    */
-  public abstract ChatBot getBot();
+  public ChatBot getBot();
 
   /**
-   * Activates the built ChatBot.
+   * Activates the ChatBot.
    */
-  public abstract void activateBot();
+  public void activateBot();
 }

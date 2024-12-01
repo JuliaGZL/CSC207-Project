@@ -1,10 +1,11 @@
 package unit.discord_bot;
 
 import data_access.discord_bot.LoginHandler;
-import data_access.discord_bot.GreetingHandler;
 import data_access.discord_bot.MahjongComboHandler;
-import data_access.discord_bot.QuitHandler;
-import data_access.discord_bot.ChatBot;
+import dataaccess.discordbot.ChatBot;
+import dataaccess.discordbot.GreetingHandler;
+import dataaccess.discordbot.QuitHandler;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 

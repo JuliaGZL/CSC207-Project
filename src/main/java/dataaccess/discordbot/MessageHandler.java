@@ -10,21 +10,20 @@ import org.reactivestreams.Publisher;
 import reactor.core.publisher.Mono;
 
 /**
- * Handles message-related events for a Discord bot.
+ * Abstract class for handling Discord message events.
  */
-public class MessageHandler extends EventHandler<MessageCreateEvent> {
+public abstract class MessageHandler extends EventHandler<MessageCreateEvent> {
 
   /**
    * Constructs a MessageHandler.
    *
-   * @param client      the Discord client
-   * @param gateway     the gateway Discord client
-   * @param eventClass  the class of the event to handle
-   * @param eventMapper the function to map events to publishers
+   * @param client the Discord client
+   * @param gateway the GatewayDiscordClient
+   * @param eventClass the class of the event to handle
+   * @param eventMapper the function to map the event to a Publisher
    */
-  public MessageHandler(DiscordClient client,
-      GatewayDiscordClient gateway,
-      Class<MessageCreateEvent> eventClass,
+  public MessageHandler(
+      DiscordClient client, GatewayDiscordClient gateway, Class<MessageCreateEvent> eventClass,
       Function<MessageCreateEvent, Publisher<Void>> eventMapper) {
     super(client, gateway, eventClass, eventMapper);
   }
@@ -50,10 +49,10 @@ public class MessageHandler extends EventHandler<MessageCreateEvent> {
   }
 
   /**
-   * Sends a message to the same channel where the event was triggered.
+   * Sends a message to the same channel from which the event originated.
    *
    * @param fromEvent the message create event
-   * @param text      the text to send
+   * @param text the text to send
    * @return a Mono that completes when the message is sent
    */
   public static Mono<Void> sendMessage(MessageCreateEvent fromEvent, String text) {
@@ -67,7 +66,7 @@ public class MessageHandler extends EventHandler<MessageCreateEvent> {
    *
    * @param input the input text
    * @return the new message
-   * @throws UnsupportedOperationException if the operation is not supported
+   * @throws UnsupportedOperationException if the method is not supported
    */
   public static String newMessage(String input) {
     throw new UnsupportedOperationException("Not supported yet.");
@@ -78,7 +77,7 @@ public class MessageHandler extends EventHandler<MessageCreateEvent> {
    *
    * @param message the input message
    * @return true if the message was successfully invoked, false otherwise
-   * @throws UnsupportedOperationException if the operation is not supported
+   * @throws UnsupportedOperationException if the method is not supported
    */
   public static boolean invokeMessage(String message) {
     throw new UnsupportedOperationException("Not supported yet.");

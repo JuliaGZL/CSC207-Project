@@ -1,7 +1,8 @@
 package unit.discord_bot;
 
 import data_access.discord_bot.FeedbackGenerator;
-import data_access.discord_bot.MessageHandler;
+import dataaccess.discordbot.MessageHandler;
+
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
