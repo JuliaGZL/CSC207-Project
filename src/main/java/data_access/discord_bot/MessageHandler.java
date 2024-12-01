@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
 
-public class MessageHandler extends EventHandler<MessageCreateEvent> {
+public abstract class MessageHandler extends EventHandler<MessageCreateEvent> {
 
     public MessageHandler(DiscordClient client, GatewayDiscordClient gateway, Class<MessageCreateEvent> eventClass,
                           Function<MessageCreateEvent, Publisher<Void>> eventMapper) {

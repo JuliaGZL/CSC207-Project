@@ -20,10 +20,19 @@ public class QuitHandler extends MessageHandler {
     }
 
     public static String newMessage(String content, String memberName) {
-        return "See ya'll! Especially you,  " + memberName;
+        if (content.equalsIgnoreCase("push") || content.equalsIgnoreCase("send")) {
+            return "Your combination sent!";
+        }
+        return "See ya'll! Especially you, " + memberName;
     }
 
     public static boolean invokeMessage(String message) {
-        return message.equals("!vc leave");
+        if (message.equals("!vc leave")){
+            return true;
+        }
+        if (message.equalsIgnoreCase("push")){
+            return true;
+        }
+        return message.equalsIgnoreCase("send");
     }
 }

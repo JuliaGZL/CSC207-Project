@@ -48,4 +48,8 @@ public class ChatBot {
         setMainService();
         this.onConnect.block();
     }
+
+    public List<Class<? extends EventHandler>> getSubEventsClasses() {
+        return subEventsClasses;
+    }
 }
