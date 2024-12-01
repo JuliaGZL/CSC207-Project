@@ -1120,7 +1120,6 @@ public class YakuCalculator {
         System.out.println(completeTilesList);
       }
       
-    System.out.println("CompletedTiles: " + completeTilesList.get(0).toString());
       // Next
 
       for (CompletedTiles cts : completeTilesList) {

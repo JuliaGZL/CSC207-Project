@@ -64,7 +64,7 @@ public class Tile {
 
   /**
    * Tile with default setting.
-   * 
+   *
    * @param tile The base tile (id).
    */
   public Tile(BaseTile tile) {

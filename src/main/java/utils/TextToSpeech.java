@@ -2,9 +2,9 @@ package utils;
 
 import com.microsoft.cognitiveservices.speech.SpeechConfig;
 import com.microsoft.cognitiveservices.speech.SpeechSynthesizer;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.io.IOException;
 
 /**
  * Utility class for converting text to speech using Azure Cognitive Services.
@@ -23,7 +23,8 @@ public class TextToSpeech {
     try {
       String basePath = Paths.get(Constants.resourcePath).toString();
       speechKey = new String(Files.readAllBytes(Paths.get(basePath, "/speech_key.txt"))).trim();
-      speechRegion = new String(Files.readAllBytes(Paths.get(basePath, "/speech_region.txt"))).trim();
+      speechRegion = new String(
+          Files.readAllBytes(Paths.get(basePath, "/speech_region.txt"))).trim();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -42,7 +43,7 @@ public class TextToSpeech {
 
   /**
    * Returns the singleton instance of the TextToSpeech class.
-   * 
+   *
    * @return the singleton instance of TextToSpeech
    */
   public static TextToSpeech getInstance() {

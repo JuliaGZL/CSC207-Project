@@ -2,8 +2,8 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import mahjong.BaseTile;
+import mahjong.Rule;
 
 /**
  * Builder class for constructing PlayerStats objects.
@@ -31,7 +31,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Riichi status.
-   * 
+   *
    * @param isRiichi true if the player declared Riichi, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -54,7 +54,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Ippatsu status.
-   * 
+   *
    * @param isIppatsu true if the player won with Ippatsu, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -65,7 +65,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Menzenchin status.
-   * 
+   *
    * @param isMenzenchin true if the player has a closed hand, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -76,7 +76,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Tsumo status.
-   * 
+   *
    * @param isTsumo true if the player won by Tsumo, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -87,7 +87,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Rinshan status.
-   * 
+   *
    * @param isRinshan true if the player won with Rinshan, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -98,7 +98,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Haitei status.
-   * 
+   *
    * @param isHaitei true if the player won with Haitei, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -109,7 +109,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Houtei status.
-   * 
+   *
    * @param isHoutei true if the player won with Houtei, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -120,7 +120,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Chankan status.
-   * 
+   *
    * @param isChankan true if the player won with Chankan, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -131,7 +131,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Tenhou status.
-   * 
+   *
    * @param isTenhou true if the player won with Tenhou, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -142,7 +142,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Chiihou status.
-   * 
+   *
    * @param isChiihou true if the player won with Chiihou, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -153,7 +153,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the Oya status.
-   * 
+   *
    * @param isOya true if the player is the dealer, false otherwise.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -164,7 +164,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the player's self wind.
-   * 
+   *
    * @param selfWind the self wind tile.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -175,7 +175,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the prevalent wind.
-   * 
+   *
    * @param prevalentWind the prevalent wind tile.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -186,7 +186,7 @@ public class PlayerStatsBuilder {
 
   /**
    * Sets the player's call groups.
-   * 
+   *
    * @param callGroups the list of call groups.
    * @return the current instance of PlayerStatsBuilder.
    */
@@ -246,6 +246,16 @@ public class PlayerStatsBuilder {
   public PlayerStats build() {
     if (hand == null) {
       throw new IllegalArgumentException("ハンドは必要です！");
+    }
+    List<BaseTile> doras = Rule.getDoraList(doraList);
+    List<BaseTile> uraDoras = Rule.getDoraList(uraDoraList);
+    for (Tile tile : hand) {
+      if (doras.contains(tile.getBaseTile())) {
+        tile.setDora(true);
+      }
+      if (uraDoras.contains(tile.getBaseTile())) {
+        tile.setUraDora(true);
+      }
     }
     return new PlayerStats(
         isRiichi, isDoubleRiichi, isIppatsu, isMenzenchin,

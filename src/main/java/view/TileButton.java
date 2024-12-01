@@ -1,7 +1,7 @@
 package view;
 
-import javax.swing.*;
-
+import javax.swing.Icon;
+import javax.swing.JButton;
 import mahjong.BaseTile;
 
 /**
@@ -9,14 +9,25 @@ import mahjong.BaseTile;
  * associated Tile ID.
  */
 public class TileButton extends JButton {
-    private final BaseTile tileId;
+  private final BaseTile tileId;
 
-    public TileButton(Icon icon, BaseTile tileId) {
-        super(icon);
-        this.tileId = tileId;
-    }
+  /**
+   * Constructs a TileButton with the specified icon and tile ID.
+   *
+   * @param icon the icon to be displayed on the button
+   * @param tileId the tile ID associated with this button
+   */
+  public TileButton(Icon icon, BaseTile tileId) {
+    super(icon);
+    this.tileId = tileId;
+  }
 
-    public BaseTile getTileId() {
-        return tileId;
-    }
+  /**
+   * Retrieves the tile identifier associated with this TileButton.
+   *
+   * @return the tile identifier of type BaseTile
+   */
+  public BaseTile getTileId() {
+    return tileId;
+  }
 }

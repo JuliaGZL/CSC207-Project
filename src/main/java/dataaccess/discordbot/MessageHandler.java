@@ -1,0 +1,86 @@
+package dataaccess.discordbot;
+
+import discord4j.core.DiscordClient;
+import discord4j.core.GatewayDiscordClient;
+import discord4j.core.event.domain.message.MessageCreateEvent;
+import discord4j.core.object.entity.Member;
+import discord4j.core.object.entity.Message;
+import java.util.function.Function;
+import org.reactivestreams.Publisher;
+import reactor.core.publisher.Mono;
+
+/**
+ * Handles message-related events for a Discord bot.
+ */
+public class MessageHandler extends EventHandler<MessageCreateEvent> {
+
+  /**
+   * Constructs a MessageHandler.
+   *
+   * @param client      the Discord client
+   * @param gateway     the gateway Discord client
+   * @param eventClass  the class of the event to handle
+   * @param eventMapper the function to map events to publishers
+   */
+  public MessageHandler(DiscordClient client,
+      GatewayDiscordClient gateway,
+      Class<MessageCreateEvent> eventClass,
+      Function<MessageCreateEvent, Publisher<Void>> eventMapper) {
+    super(client, gateway, eventClass, eventMapper);
+  }
+
+  /**
+   * Gets the content of the message from the event.
+   *
+   * @param fromEvent the message create event
+   * @return the content of the message
+   */
+  public static String getContent(MessageCreateEvent fromEvent) {
+    return fromEvent.getMessage().getContent();
+  }
+
+  /**
+   * Gets the username of the member who sent the message.
+   *
+   * @param fromEvent the message create event
+   * @return the username of the member, or "Guest" if not available
+   */
+  public static String getMemberName(MessageCreateEvent fromEvent) {
+    return fromEvent.getMember().map(Member::getUsername).orElse("Guest");
+  }
+
+  /**
+   * Sends a message to the same channel where the event was triggered.
+   *
+   * @param fromEvent the message create event
+   * @param text      the text to send
+   * @return a Mono that completes when the message is sent
+   */
+  public static Mono<Void> sendMessage(MessageCreateEvent fromEvent, String text) {
+    Message message = fromEvent.getMessage();
+    return message.getChannel()
+        .flatMap(channel -> channel.createMessage(text).then());
+  }
+
+  /**
+   * Creates a new message based on the input.
+   *
+   * @param input the input text
+   * @return the new message
+   * @throws UnsupportedOperationException if the operation is not supported
+   */
+  public static String newMessage(String input) {
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
+
+  /**
+   * Invokes a message based on the input.
+   *
+   * @param message the input message
+   * @return true if the message was successfully invoked, false otherwise
+   * @throws UnsupportedOperationException if the operation is not supported
+   */
+  public static boolean invokeMessage(String message) {
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
+}
