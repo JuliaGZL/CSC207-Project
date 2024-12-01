@@ -39,7 +39,7 @@ public class HuResolverInteractorTest {
     MockOTB mockOTB = new MockOTB();
     HuSolverInteractor interactor = new HuSolverInteractor(DAO, mockOTB);
     interactor.execute(new HuSolverInputData(playerName));
-    Assertions.assertEquals(mockOTB.getScore(), 64000);
+    Assertions.assertEquals(mockOTB.getScore(), 96000);
   }
 
   @Test
