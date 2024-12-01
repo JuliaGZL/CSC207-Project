@@ -8,8 +8,8 @@ import java.util.List;
  * Interactor for the read hand use case.
  */
 public class ReadHandInteractor implements ReadHandInputBoundary {
-   private ReadHandDataAccessInterface dataAccessObj;
-   private ReadHandOutputBoundary presenter;
+   private final ReadHandDataAccessInterface dataAccessObj;
+   private final ReadHandOutputBoundary presenter;
 
     public ReadHandInteractor(ReadHandDataAccessInterface dataAccessObj, ReadHandOutputBoundary presenter) {
         this.dataAccessObj = dataAccessObj;
@@ -35,7 +35,7 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
 
         // 1. Create string that describes the hand
         if (hand.isEmpty()) {
-            handInfo.append("Your hand is empty.");
+            handInfo.append("Your hand is empty. ");
         }
         else {
             handInfo.append("Your hand includes");

@@ -5,6 +5,7 @@ import entity.Player;
 import entity.PlayerFactory;
 import entity.Tile;
 import mahjong.BaseTile;
+import org.junit.jupiter.api.Assertions;
 import usecase.remove_tile.*;
 
 import org.junit.jupiter.api.Test;
@@ -69,8 +70,29 @@ public class RemoveTileInteractorTest {
     }
 
     @Test
-    void FailTest() {
-        // shouldn't happen.
+    void FailTestPlayerNotExist() {
+        RemoveTileInputBoundary interactorHand = new RemoveTileInteractor(
+                DAO, new dummyRemoveTileOTB(name), RemoveTileInteractor.HAND);
+        Assertions.assertThrows(
+                RuntimeException.class,
+                () -> {
+                    interactorHand.execute(new RemoveTileInputData(tileId, "no_exist"));
+                }
+        );
+    }
+
+    @Test
+    void FailTestInvalidTarget() {
+        RemoveTileInputBoundary interactorInvalid = new RemoveTileInteractor(
+                DAO, new dummyRemoveTileOTB(name), 233);
+        Player player = factory.createEmpty(name);
+        DAO.savePlayer(player);
+        Assertions.assertThrows(
+                RuntimeException.class,
+                () -> {
+                    interactorInvalid.execute(new RemoveTileInputData(tileId, name));
+                }
+        );
     }
 }
 

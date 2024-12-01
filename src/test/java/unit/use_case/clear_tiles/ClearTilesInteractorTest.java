@@ -5,6 +5,7 @@ import entity.Player;
 import entity.PlayerFactory;
 import entity.Tile;
 import mahjong.BaseTile;
+import org.junit.jupiter.api.Assertions;
 import usecase.clear_tiles.*;
 
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ClearTilesInteractorTest {
     private final String name = "player1";
     private final BaseTile tileId = BaseTile._1m;
-    private final PlayerFactory factor = new PlayerFactory();
+    private final PlayerFactory factory = new PlayerFactory();
     private final ClearTilesDataAccessInterface DAO = new InMemoryUniversalDataAccessObject();
 
     @Test
@@ -29,7 +30,7 @@ public class ClearTilesInteractorTest {
         for (int i = 0; i < 10; i++) {
             hand.add(newTile);
         }
-        Player player = factor.createEmpty(name);
+        Player player = factory.createEmpty(name);
         player.setHand(hand);
         DAO.savePlayer(player);
         interactor.execute(new ClearTilesInputData(name));
@@ -45,7 +46,7 @@ public class ClearTilesInteractorTest {
         for (int i = 0; i < 10; i++) {
             dora.add(newTile);
         }
-        Player player = factor.createEmpty(name);
+        Player player = factory.createEmpty(name);
         player.setDora(dora);
         DAO.savePlayer(player);
         interactor.execute(new ClearTilesInputData(name));
@@ -61,7 +62,7 @@ public class ClearTilesInteractorTest {
         for (int i = 0; i < 10; i++) {
             uradora.add(newTile);
         }
-        Player player = factor.createEmpty(name);
+        Player player = factory.createEmpty(name);
         player.setUradora(uradora);
         DAO.savePlayer(player);
         interactor.execute(new ClearTilesInputData(name));
@@ -69,8 +70,29 @@ public class ClearTilesInteractorTest {
     }
 
     @Test
-    void FailTest() {
-        // shouldn't happen.
+    void FailTestPlayerNotExist() {
+        ClearTilesInputBoundary interactorHand = new ClearTilesInteractor(
+                DAO, new dummyClearTilesOTB(name), ClearTilesInteractor.HAND);
+        Assertions.assertThrows(
+                RuntimeException.class,
+                () -> {
+                    interactorHand.execute(new ClearTilesInputData("no_exist"));
+                }
+        );
+    }
+
+    @Test
+    void FailTestInvalidTarget() {
+        ClearTilesInputBoundary interactorInvalid = new ClearTilesInteractor(
+                DAO, new dummyClearTilesOTB(name), 233);
+        Player player = factory.createEmpty(name);
+        DAO.savePlayer(player);
+        Assertions.assertThrows(
+                RuntimeException.class,
+                () -> {
+                    interactorInvalid.execute(new ClearTilesInputData(name));
+                }
+        );
     }
 }
 
