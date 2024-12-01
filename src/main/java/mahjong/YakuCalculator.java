@@ -1078,13 +1078,13 @@ public class YakuCalculator {
         yakuList.add(Yaku.Dora);
       }
       // if (t.isRedDora()) {
-      //   yakuList.add(Yaku.Akadora);
+      // yakuList.add(Yaku.Akadora);
       // } ABOLISHED
       if (t.isUraDora()) {
         yakuList.add(Yaku.Uradora);
       }
     }
-    for (int t = 0; t < playerStats.getNumAkaDora(); t++){
+    for (int t = 0; t < playerStats.getNumAkaDora(); t++) {
       yakuList.add(Yaku.Akadora);
     }
   }
@@ -1137,7 +1137,11 @@ public class YakuCalculator {
       maxYakuFanFu.getFst().add(Yaku.None);
     }
 
-    return maxYakuFanFu;
+    maxYakuFanFu.getFst().sort(null);
+
+    return new Pair<>(maxYakuFanFu.getFst(),
+        new Pair<>(maxYakuFanFu.getSnd().getFst() + calculateFan(maxYakuList),
+            maxYakuFanFu.getSnd().getSnd()));
   }
 
   /**
