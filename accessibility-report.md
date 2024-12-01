@@ -39,3 +39,9 @@
 - We target specifically to Japanese Mahjong (Riichi) player.
 - For beginner players and Mahjong teachers, our software can help to demonstrate scoring in an interactive way. This is crutial to newcomers who find Mahjong scording complex. 
 - In addition, our software can also help tournaments organizer / online Mahjong Communities to calculate scores for different players. Especially with our extensive support on discord bot, different users can get feedback without installing the software. Real-time scoring and sharing can promote discussions about better strategy.
+
+# Exclusion Analysis
+- By the nature of our program, those without interest in Japeneses Mahjong are not likely to use this sofetware at all.
+- This program assumes user understood terminologies of Japenese Mahjong settings and rule, IN ENGLISH. Those who is proficient in Mahjong but does not know vocabularies might be excluded.
+- In addition, our Text To Speech only supports Japenese. Those with visual difficulties and do not distinguish Japanese sounds might not be benified
+.
