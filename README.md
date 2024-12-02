@@ -166,6 +166,11 @@ This project is licensed under the General Public License v3.0. You can view the
 You can give feedback by creating an issue on this repository. We will review the issue and respond to it as soon as possible.
 
 Alternatively, you can also share your feedback on the Google Forms [here](https://docs.google.com/forms/d/e/1FAIpQLSflEqnzYVAIO2DjtFSz8hkjzJtEug4QI_Z3QQjjEBrcHxHGxw/viewform?usp=sf_link).
+To submit feedback on the Google Forms, you need to have a Google account. The Google Forms will ask for your email address,
+but it is optional. It will also provide a space for you to share your feedback, of which is mandatory to fill in.
+
+To provide a meaningful feedback, please provide a summary of the feedback either on the title of the issue or in the Google Forms.
+Please also provide necessary details and/or the context and reason of the feedback in the description of the issue or in the Google Forms.
 
 
 ## Contributions
@@ -175,6 +180,13 @@ We will review the pull request and merge it if it is appropriate.
 To fork this project, click the "Fork" button on the top right corner of this repository.
 
 To create a good merge request, please provide a summary of the changes you have made and the reason for the changes.
+
+The authors of this project as listed in the [Authors](#authors-in-alphabetical-order) section will review the pull request and merge it if it is appropriate.
+Please keep the changes relevant to the purpose of this project and the features that we have implemented, and please
+keep the code clean and readable. Tests are not mandatory but are recommended.
+
+
+[//]: # (## Data accessing
 
 
 [//]: # (## Use cases)
