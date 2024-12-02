@@ -2,16 +2,23 @@
 A CSC207 project for calculating the score of a round of Riichi (Japanese) Mahjong.
 
 ## Table of Contents
-- [Authors](#authors-in-alphabetical-order)
-- [Purpose of this project](#purpose-of-this-project)
-- [Features](#features)
-- [Installation instructions](#installation-instructions)
-- [Usage Guide](#usage-guide)
-- [License](#license)
-- [Giving feedback](#how-to-give-feedback)
-- [Contributions](#contributions)
-
-[//]: # (- [Use cases]&#40;#use-cases&#41;)
+- [1. Authors](#authors-in-alphabetical-order)
+- [2. Purpose of this project](#purpose-of-this-project)
+- [3. Features](#features)
+  - [3.1 Add Tile](#add-tile)
+  - [3.2 Update Enabled Tiles](#update-enabled-tiles)
+  - [3.3 Remove Tile](#remove-tile)
+  - [3.4 Clear Tiles](#clear-tiles)
+  - [3.5 Edit Status](#edit-status)
+  - [3.6 Calculate Score](#calculate-score)
+  - [3.7 Discord Bot](#discord-bot)
+  - [3.8 Change Player](#change-player)
+  - [3.9 Read Out Loud](#read-out-loud)
+- [4. Installation instructions](#installation-instructions)
+- [5. Usage Guide](#usage-guide)
+- [6. License](#license)
+- [7. Giving feedback](#how-to-give-feedback)
+- [8. Contributions](#contributions)
 
 
 ## Authors (in alphabetical order)
@@ -37,6 +44,10 @@ same common functionalities that this calculator has implemented.
 This project was made to provide an offline service for calculating the scores of a round of Riichi Mahjong.
 While previous solutions were made either in [commercial Riichi Mahjong games](https://mahjongsoul.yo-star.com/) or on [websites](https://linlexiao.com/maj/#/calculator),
 this project provides a rare software alternative in English language. 
+
+Lastly, this project can read the Hand and statuses out loud after the user triggers a HotKey, 
+which is a feature that is not available in the previous solutions. This feature is designed to help 
+users who are visually impaired to use this software.
 
 
 ## Features
@@ -90,6 +101,13 @@ calculate the score, and display the score and the details directly on Discord.
 
 ![Change Player](assets/change_player.gif)
 
+### Read Out Loud
+- **Description**: Read out the Hand and the statuses or the score and the details out loud.
+- This is named as `read_hand` in the use cases.
+- To use this feature, either click the "Read (Ctrl+R)" button or press "Ctrl+R" on the keyboard.
+To read the score messages, "Ctrl+R" is the only option.
+
+![Read Out Loud](assets/read_hand.gif)
 
 ## Installation Instructions
 This software is meant to be installed on Linux, macOS, or Windows devices.
@@ -125,7 +143,6 @@ To fork this project, click the "Fork" button on the top right corner of this re
 
 To create a good merge request, please provide a summary of the changes you have made and the reason for the changes.
 
-[//]: # ()
 
 [//]: # (## Use cases)
 
