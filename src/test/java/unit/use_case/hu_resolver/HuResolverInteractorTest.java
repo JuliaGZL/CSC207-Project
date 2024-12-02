@@ -40,6 +40,20 @@ public class HuResolverInteractorTest {
         HuSolverInteractor interactor = new HuSolverInteractor(DAO, mockOTB);
         interactor.execute(new HuSolverInputData(playerName));
         Assertions.assertEquals(mockOTB.getScore(), 64000);
+
+        // other round wind types
+        player.setRoundWind("West");
+        DAO.savePlayer(player);
+        interactor.execute(new HuSolverInputData(playerName));
+        Assertions.assertEquals(mockOTB.getScore(), 64000);
+        player.setRoundWind("South");
+        DAO.savePlayer(player);
+        interactor.execute(new HuSolverInputData(playerName));
+        Assertions.assertEquals(mockOTB.getScore(), 64000);
+        player.setRoundWind("North");
+        DAO.savePlayer(player);
+        interactor.execute(new HuSolverInputData(playerName));
+        Assertions.assertEquals(mockOTB.getScore(), 64000);
     }
 
     @Test
