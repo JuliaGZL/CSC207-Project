@@ -1,20 +1,3 @@
-/*
- Copyright (c) 2024 YAizhou, li-tianchu, JuliaGZL, TurkeyBilly
-
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <https://www.gnu.org/licenses/>.
- */
-
 package usecase.husolver;
 
 import entity.Player;
@@ -30,16 +13,7 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
   private final HuSolverDataAccessInterface dataAccessObj;
   private final HuSolveOutputBoundary presenter;
 
-  /**
-   * Constructs a HuSolverInteractor with the specified data access object and
-   * presenter.
-   *
-   * @param dataAccessObj the data access object
-   * @param presenter     the presenter
-   */
-  public HuSolverInteractor(
-      HuSolverDataAccessInterface dataAccessObj,
-      HuSolveOutputBoundary presenter) {
+  public HuSolverInteractor(HuSolverDataAccessInterface dataAccessObj, HuSolveOutputBoundary presenter) {
     this.dataAccessObj = dataAccessObj;
     this.presenter = presenter;
   }
@@ -62,7 +36,7 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
 
     Boolean[] attributes = player.getAttributes();
     boolean isTsumo = (player.getWinType().equals("Tsumo"));
-    boolean isOya = (player.getSeatWind().equals("East"));
+    boolean isOya = (player.getWinType().equals("East"));
 
     // get wind
     BaseTile selfWind = getWindBaseTile(player.getSeatWind());
@@ -70,22 +44,22 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
 
     // build stats
     PlayerStats stats = new PlayerStatsBuilder().setHand(player.getHand())
-        .setDoraList(player.getDora())
-        .setUraDoraList(player.getUradora())
-        .setRiichi(attributes[0])
-        .setDoubleRiichi(attributes[1])
-        .setIppatsu(attributes[2])
-        .setHaitei(attributes[3])
-        .setHoutei(attributes[4])
-        .setRinshan(attributes[5])
-        .setChankan(attributes[6])
-        .setTenhou(attributes[7])
-        .setChiihou(attributes[8])
-        .setTsumo(isTsumo)
-        .setOya(isOya)
-        .setSelfWind(selfWind)
-        .setPrevalentWind(prevalentWind)
-        .build();
+            .setDoraList(player.getDora())
+            .setUraDoraList(player.getUradora())
+            .setRiichi(attributes[0])
+            .setDoubleRiichi(attributes[1])
+            .setIppatsu(attributes[2])
+            .setHaitei(attributes[3])
+            .setHoutei(attributes[4])
+            .setRinshan(attributes[5])
+            .setChankan(attributes[6])
+            .setTenhou(attributes[7])
+            .setChiihou(attributes[8])
+            .setTsumo(isTsumo)
+            .setOya(isOya)
+            .setSelfWind(selfWind)
+            .setPrevalentWind(prevalentWind)
+            .build();
 
     // get results
     HandResult handResult;
@@ -98,7 +72,8 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
       return;
     }
     if (score == 0) {
-      presenter.prepareFailView("Current hand is not valid for Hu!");
+      // presenter.prepareFailView("Current hand is not valid for Hu!");
+      // never occurs for now
     } else {
       StringBuilder messageBuilder = new StringBuilder();
       for (String s : handResult.displayHandResult()) {
@@ -110,13 +85,6 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
     }
   }
 
-  /**
-   * Converts a wind string to its corresponding BaseTile.
-   *
-   * @param wind the wind string
-   * @return the corresponding BaseTile
-   * @throws IllegalArgumentException if the wind string is invalid
-   */
   private BaseTile getWindBaseTile(String wind) {
     BaseTile windBaseTile = BaseTile.windTon;
     switch (wind) {
@@ -131,8 +99,6 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
       case "South":
         windBaseTile = BaseTile.windNan;
         break;
-      default:
-        throw new IllegalArgumentException("Invalid wind: " + wind);
     }
     return windBaseTile;
   }
