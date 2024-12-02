@@ -95,6 +95,8 @@ This section corresponds to the use cases that we have implemented.
 calculate the score, and display the score and the details directly on Discord.
 - This is named as `discord_bot` in the data accessing section and `pull_remote_hand` in the use cases.
 
+![Discord Bot](assets/discord_bot.gif)
+
 ### Change Player
 - **Description**: Change the player name to store the Hand and the statuses.
 - This is named as `change_player` in the use cases.
