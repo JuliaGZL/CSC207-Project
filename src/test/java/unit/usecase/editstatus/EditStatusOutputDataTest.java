@@ -1,12 +1,29 @@
+/*
+ Copyright (c) 2024 YAizhou, li-tianchu, JuliaGZL, TurkeyBilly
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package unit.usecase.editstatus;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import usecase.editstatus.EditStatusOutputData;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Test class to cover untested parts of EditStatusOutputData.
@@ -26,85 +43,85 @@ public class EditStatusOutputDataTest {
 
   @BeforeEach
   void setUp() {
-    attributes = new Boolean[] { false, true, false, false, false, false, true, false, false };
-    numAkadora = 0;
-    seatWind = "East";
-    roundWind = "East";
-    winType = "Ron";
-    playerName = "default";
+  attributes = new Boolean[] { false, true, false, false, false, false, true, false, false };
+  numAkadora = 0;
+  seatWind = "East";
+  roundWind = "East";
+  winType = "Ron";
+  playerName = "default";
 
-    outputData = new EditStatusOutputData(attributes, numAkadora, seatWind, roundWind, winType, playerName);
+  outputData = new EditStatusOutputData(attributes, numAkadora, seatWind, roundWind, winType, playerName);
   }
 
   @Test
   void testGetPlayerName() {
-    // Call the method
-    String result = outputData.getPlayerName();
+  // Call the method
+  String result = outputData.getPlayerName();
 
-    // Check whether the result is correct
-    assertEquals(playerName, result);
+  // Check whether the result is correct
+  assertEquals(playerName, result);
   }
 
   @Test
   void testGetWinType() {
-    // Call the method
-    String result = outputData.getWinType();
+  // Call the method
+  String result = outputData.getWinType();
 
-    // Check whether the result is correct
-    assertEquals(winType, result);
+  // Check whether the result is correct
+  assertEquals(winType, result);
   }
 
   @Test
   void testGetRoundWind() {
-    // Call the method
-    String result = outputData.getRoundWind();
+  // Call the method
+  String result = outputData.getRoundWind();
 
-    // Check whether the result is correct
-    assertEquals(roundWind, result);
+  // Check whether the result is correct
+  assertEquals(roundWind, result);
   }
 
   @Test
   void testGetSeatWind() {
-    // Call the method
-    String result = outputData.getSeatWind();
+  // Call the method
+  String result = outputData.getSeatWind();
 
-    // Check whether the result is correct
-    assertEquals(seatWind, result);
+  // Check whether the result is correct
+  assertEquals(seatWind, result);
   }
 
   @Test
   void testGetNumAkadora() {
-    // Call the method
-    int result = outputData.getNumAkadora();
+  // Call the method
+  int result = outputData.getNumAkadora();
 
-    // Check whether the result is correct
-    assertEquals(numAkadora, result);
+  // Check whether the result is correct
+  assertEquals(numAkadora, result);
   }
 
   @Test
   void testGetAttributes() {
-    // Call the method
-    Boolean[] result = outputData.getAttributes();
+  // Call the method
+  Boolean[] result = outputData.getAttributes();
 
-    // Check whether the result is correct
-    assertEquals(attributes, result);
+  // Check whether the result is correct
+  assertEquals(attributes, result);
   }
 
   @Test
   void testIsUseCaseFailed() {
-    // Call the method
-    boolean result = outputData.isUseCaseFailed();
+  // Call the method
+  boolean result = outputData.isUseCaseFailed();
 
-    // Check whether the result is correct
-    assertEquals(useCaseFailed, result);
+  // Check whether the result is correct
+  assertEquals(useCaseFailed, result);
   }
 
   @Test
   void testGetDoraCounts() {
-    // Call the method
-    Boolean[][] result = outputData.getDoraCounts();
+  // Call the method
+  Boolean[][] result = outputData.getDoraCounts();
 
-    // Check whether the result is correct
-    assertNull(result);
+  // Check whether the result is correct
+  assertNull(result);
   }
 }
