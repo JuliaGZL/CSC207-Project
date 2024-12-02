@@ -4,9 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+
     <groupId>edu.csc207</groupId>
     <artifactId>CSC207-Project</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <licenses>
+        <license>
+            <name>General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <repositories>
 		<repository>
@@ -15,8 +24,33 @@
 		</repository>
 	</repositories>
 
-    <dependencies>
+    <distributionManagement>
+        <repository>
+            <!-- This ID must match the `server-id` in settings.xml -->
+            <id>github</id>
+            <url>https://maven.pkg.github.com/JuliaGZL/CSC207-Project</url>
+        </repository>
+    </distributionManagement>
 
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-jar-plugin</artifactId>-->
+<!--&lt;!&ndash;                <version>4.0.0</version>&ndash;&gt;-->
+<!--                <configuration>-->
+<!--                    <archive>-->
+<!--                        <manifest>-->
+<!--                            <mainClass>app.Main</mainClass>-->
+<!--                        </manifest>-->
+<!--                    </archive>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+
+    <dependencies>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -49,12 +83,6 @@
             <artifactId>jlayer</artifactId>
             <version>1.0.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/net.sf.sociaal/freetts -->
-        <!-- <dependency>
-            <groupId>net.sf.sociaal</groupId>
-            <artifactId>freetts</artifactId>
-            <version>1.2.2</version>
-        </dependency> --> 
         <dependency>
             <groupId>com.microsoft.cognitiveservices.speech</groupId>
             <artifactId>client-sdk</artifactId>
