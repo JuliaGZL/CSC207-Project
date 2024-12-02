@@ -1,3 +1,20 @@
+/*
+ Copyright (c) 2024 YAizhou, li-tianchu, JuliaGZL, TurkeyBilly
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package dataaccess.discordbot;
 
 import discord4j.core.DiscordClient;
@@ -17,9 +34,9 @@ public abstract class MessageHandler extends EventHandler<MessageCreateEvent> {
   /**
    * Constructs a MessageHandler.
    *
-   * @param client the Discord client
-   * @param gateway the GatewayDiscordClient
-   * @param eventClass the class of the event to handle
+   * @param client      the Discord client
+   * @param gateway     the GatewayDiscordClient
+   * @param eventClass  the class of the event to handle
    * @param eventMapper the function to map the event to a Publisher
    */
   public MessageHandler(
@@ -52,7 +69,7 @@ public abstract class MessageHandler extends EventHandler<MessageCreateEvent> {
    * Sends a message to the same channel from which the event originated.
    *
    * @param fromEvent the message create event
-   * @param text the text to send
+   * @param text      the text to send
    * @return a Mono that completes when the message is sent
    */
   public static Mono<Void> sendMessage(MessageCreateEvent fromEvent, String text) {

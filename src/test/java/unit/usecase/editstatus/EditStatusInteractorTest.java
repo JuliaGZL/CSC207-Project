@@ -1,13 +1,27 @@
+/*
+ Copyright (c) 2024 YAizhou, li-tianchu, JuliaGZL, TurkeyBilly
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package unit.usecase.editstatus;
 
-import entity.Player;
-import entity.Tile;
-import interfaceadapter.ViewManagerModel;
-import interfaceadapter.editstatus.EditStatusViewModel;
-import interfaceadapter.edittiles.SelectDoraViewModel;
-import interfaceadapter.edittiles.TileSelectorViewModel;
-import mahjong.BaseTile;
-import usecase.editstatus.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -15,12 +29,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import dataaccess.InMemoryUniversalDataAccessObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import entity.Player;
+import entity.Tile;
+import interfaceadapter.ViewManagerModel;
+import interfaceadapter.editstatus.EditStatusViewModel;
+import interfaceadapter.edittiles.SelectDoraViewModel;
+import interfaceadapter.edittiles.TileSelectorViewModel;
+import mahjong.BaseTile;
+import usecase.editstatus.EditStatusDataAccessInterface;
+import usecase.editstatus.EditStatusInputData;
+import usecase.editstatus.EditStatusInteractor;
+import usecase.editstatus.EditStatusOutputBoundary;
+import usecase.editstatus.EditStatusOutputData;
 
 /**
  * Test class for EditStatusInputBoundary.
