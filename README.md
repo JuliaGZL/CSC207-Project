@@ -31,7 +31,7 @@ A CSC207 project for calculating the score of a round of Riichi (Japanese) Mahjo
 ## Purpose of this project
 This project is a calculator for the score of a round of Riichi (Japanese) Mahjong. It is designed to be used by 
 players who want to calculate the score of their Hand after winning a round of Mahjong with others offline, but does not
-want to do the calculation by themselves manually or does not have an automatic calculation as there are
+want to calculate manually or does not have an automatic calculation as there are
 in online Riichi Mahjong games. The calculator will take in a username, the tiles in the Hand, and the special 
 statuses that the user has experienced during this round. The calculator will output the score and display
 the details to the score, as the details are fundamentally important and interesting to the calculation of scores in 
@@ -41,11 +41,11 @@ Alternatively, this project is also for players who want to calculate the scores
 opening a specific website or app. The calculator can be used as a Discord bot that can calculate the scores with the
 same common functionalities that this calculator has implemented.
 
-This project was made to provide an offline service for calculating the scores of a round of Riichi Mahjong.
+This project was created to provide an offline service for calculating the scores of a round of Riichi Mahjong.
 While previous solutions were made either in [commercial Riichi Mahjong games](https://mahjongsoul.yo-star.com/) or on [websites](https://linlexiao.com/maj/#/calculator),
 this project provides a rare software alternative in English language. 
 
-Lastly, this project can read the Hand and statuses out loud after the user triggers a HotKey, 
+Lastly, this project can read the Hand and statuses aloud after the user triggers a HotKey, 
 which is a feature that is not available in the previous solutions. This feature is designed to help 
 users who are visually impaired to use this software.
 
