@@ -126,11 +126,30 @@ We have tried this project on Java 11, Java 17, and Java 22, but it is not guara
 
 1. `git clone` this repository.
 2. If you do not have [Java](https://www.java.com/en/download/) on your device, download and install Java.
-3. Open the terminal and navigate to the directory where you have cloned this repository.
-4. Run `src/main/java/app/Main.java` after compilation with any Java IDE.
+3. Open the terminal and navigate to the directory where you have cloned this repository with an IDE.
+4. Mark the `src/main/java` directory as the source root if it is not done automatically.
+5. The required packages should have be automatically installed if you have Maven configured correctly. If
+the Maven is not configured correctly, you can reconfigure Maven or reload Maven.
+6. Run `src/main/java/app/Main.java` after compilation with any Java IDE to run the project.
 
-Currently, the only package that needs to be installed is `com.discord4j` for the Discord Bot.
-This should be installed automatically if maven is configured correctly. If not, you can
+![Reload Maven](assets/reload_maven.jpeg)
+
+### Required packages
+The required packages are also listed in `pom.xml`.
+
+| Package        | Version  |
+|----------------|----------|
+| maven          | 4.0.0    |
+| discord4j-core | 3.2.6    |
+| json           | 20240303 |
+| okhttp         | 4.12.0   |     
+| junit          | 4.13.1   |
+| junit-jupiter  | 5.8.1    |
+| jlayer         | 1.0.2    |
+| client-sdk     | 1.40.0   |
+
+Currently, the package that might need attention if the project is not running correctly is `com.discord4j`.
+This package is for the Discord Bot and should be installed automatically if Maven is configured correctly. If not, you can
 view the [Discord4J Guide on Download/Installation](https://docs.discord4j.com/quickstart) for more information.
 
 ## Usage Guide
