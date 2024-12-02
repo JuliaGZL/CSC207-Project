@@ -135,6 +135,9 @@ This project is licensed under the General Public License v3.0. You can view the
 ## How to give feedback
 You can give feedback by creating an issue on this repository. We will review the issue and respond to it as soon as possible.
 
+Alternatively, you can also share your feedback on the Google Forms [here](https://docs.google.com/forms/d/e/1FAIpQLSflEqnzYVAIO2DjtFSz8hkjzJtEug4QI_Z3QQjjEBrcHxHGxw/viewform?usp=sf_link).
+
+
 ## Contributions
 We welcome contributions to this project. You can fork this repository, make changes, and create a pull request. 
 We will review the pull request and merge it if it is appropriate.
