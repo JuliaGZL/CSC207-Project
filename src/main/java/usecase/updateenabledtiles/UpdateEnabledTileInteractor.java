@@ -1,3 +1,20 @@
+/*
+ Copyright (c) 2024 YAizhou, li-tianchu, JuliaGZL, TurkeyBilly
+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package usecase.updateenabledtiles;
 
 import entity.Player;
@@ -16,10 +33,11 @@ public class UpdateEnabledTileInteractor implements UpdateEnabledTilesInputBound
   private final UpdateEnabledTileOutputBoundary presenter;
 
   /**
-   * Constructs an UpdateEnabledTileInteractor with the specified data access object and presenter.
+   * Constructs an UpdateEnabledTileInteractor with the specified data access
+   * object and presenter.
    *
    * @param dataAccessObj the data access object
-   * @param presenter the presenter
+   * @param presenter     the presenter
    */
   public UpdateEnabledTileInteractor(UpdateEnabledTileDataAccessInterface dataAccessObj,
       UpdateEnabledTileOutputBoundary presenter) {
@@ -79,10 +97,11 @@ public class UpdateEnabledTileInteractor implements UpdateEnabledTilesInputBound
   }
 
   /**
-   * Builds a set of enabled tiles based on the player's hand, dora, and uradora tiles.
+   * Builds a set of enabled tiles based on the player's hand, dora, and uradora
+   * tiles.
    *
-   * @param hand the player's hand tiles
-   * @param dora the player's dora tiles
+   * @param hand    the player's hand tiles
+   * @param dora    the player's dora tiles
    * @param uradora the player's uradora tiles
    * @return a set of enabled tiles
    */

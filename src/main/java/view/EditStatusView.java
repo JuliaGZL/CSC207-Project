@@ -1,5 +1,21 @@
-package view;
+/*
+ Copyright (c) 2024 YAizhou, li-tianchu, JuliaGZL, TurkeyBilly
 
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package view;
 
 import interfaceadapter.displaytiles.TileSelectorPropertyUpdateNotifier;
 import interfaceadapter.editstatus.EditStatusController;
@@ -25,6 +41,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 /**
  * The panel for editing user gameplay status.
  * Handles selecting/unselecting gameplay statuses as well as selecting Dora
@@ -275,7 +292,7 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
   /**
    * Method for handling selection events on combo boxes.
    *
-   * @param comboBox   the combo box where the selection event occurred
+   * @param comboBox     the combo box where the selection event occurred
    * @param selectedItem the item (String) that was selected
    */
   private void handleComboBoxSelection(JComboBox<String> comboBox, String selectedItem) {
