@@ -194,7 +194,11 @@ public class TileSelectorView extends JPanel implements ActionListener, Property
       default:
         break;
     }
-
+    
+    // update enabled buttons
+    if (!property.equals("enabled_tiles")) {
+      updateEnabledTileController.execute(playerName, tileAddTarget);
+    }
   }
 
   public String getViewName() {
