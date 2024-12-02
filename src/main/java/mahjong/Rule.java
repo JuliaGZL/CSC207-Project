@@ -288,7 +288,7 @@ public class Rule {
    * @param uraDoraIndicator a list of tiles that indicate the UraDora tiles.
    * @param hands            a list of tiles in the player's hand.
    */
-  public static void setDora(List<Tile> doraIndicators, 
+  public static void setDora(List<Tile> doraIndicators,
       List<Tile> uraDoraIndicator, List<Tile> hands) {
     List<BaseTile> doraList = getDoraList(doraIndicators);
     List<BaseTile> uraDoraList = getDoraList(uraDoraIndicator);

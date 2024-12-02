@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-import utils.Constants;
 
 /**
  * Handles the localization of given enum values to their corresponding string

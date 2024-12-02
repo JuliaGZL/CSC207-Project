@@ -48,8 +48,8 @@ public class Algorithm {
   /**
    * Merges all elements from the source list into the destination list.
    *
-   * @param <T> the type of elements in the lists
-   * @param to the destination list where elements will be added
+   * @param <T>  the type of elements in the lists
+   * @param to   the destination list where elements will be added
    * @param from the source list from which elements will be taken
    */
   public static <T> void mergeInto(List<T> to, List<? extends T> from) {
@@ -59,10 +59,10 @@ public class Algorithm {
   /**
    * Removes a specified number of occurrences of a element from the list.
    *
-   * @param <T> the type of elements in the lists
+   * @param <T>         the type of elements in the lists
    * @param elementList the list of elements
-   * @param element the element to remove
-   * @param n the number of times to remove the tile
+   * @param element     the element to remove
+   * @param n           the number of times to remove the tile
    */
   public static <T> void eraseN(List<T> elementList, T element, int n) {
     for (int i = 0; i < n; i++) {

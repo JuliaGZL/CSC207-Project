@@ -85,8 +85,7 @@ public class TileGroup implements Comparable<TileGroup> {
    */
   public static String makeTileGroup(BaseTile t, char mark1, char mark2) {
     String ret = new String(
-        new char[] { t.toString().charAt(0), t.toString().charAt(1), mark1, mark2 }
-    );
+        new char[] { t.toString().charAt(0), t.toString().charAt(1), mark1, mark2 });
     return ret;
   }
 
@@ -292,10 +291,10 @@ public class TileGroup implements Comparable<TileGroup> {
   /**
    * Generates possible tile group strings for given completed tiles.
    *
-   * @param ct          the completed tiles
-   * @param callgroups  the list of call groups
-   * @param tsumo       whether the winning tile was self-drawn
-   * @param lastTile    the last tile
+   * @param ct         the completed tiles
+   * @param callgroups the list of call groups
+   * @param tsumo      whether the winning tile was self-drawn
+   * @param lastTile   the last tile
    * @return a list of possible tile group strings
    */
   public static List<List<String>> generateTileGroupStrings(
@@ -345,7 +344,7 @@ public class TileGroup implements Comparable<TileGroup> {
           break;
       }
     }
-    
+
     ArrayList<ArrayList<String>> tileGroupStrings = new ArrayList<>();
     String lastTileString = lastTile.toString();
     for (int i = 0; i < rawTileGroupString.size(); i++) {
@@ -405,7 +404,6 @@ public class TileGroup implements Comparable<TileGroup> {
     return uniqueTileGroupStrings;
   }
 
-  
   /**
    * Removes Fuuro (open melds) and winning tile information, and creates a copy.
    *

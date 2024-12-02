@@ -271,7 +271,7 @@ public enum Yaku {
       if ((g1 == Peidora || g1 == Akadora || g1 == Uradora || g1 == Dora)
           && (g2 != Peidora && g2 != Akadora && g2 != Uradora && g2 != Dora)) {
         return 1;
-      // Check if g2 is a bonus tile (Peidora, Akadora, Uradora, Dora) and g1 is not
+        // Check if g2 is a bonus tile (Peidora, Akadora, Uradora, Dora) and g1 is not
       } else if ((g2 == Peidora || g2 == Akadora || g2 == Uradora || g2 == Dora)
           && (g1 != Peidora && g1 != Akadora && g1 != Uradora && g1 != Dora)) {
         return -1;

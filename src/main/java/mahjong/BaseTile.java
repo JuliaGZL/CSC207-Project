@@ -3,7 +3,8 @@ package mahjong;
 import utils.Localization;
 
 /**
- * An enumeration of base tiles used in Mahjong, including numbered tiles for the Man (m),
+ * An enumeration of base tiles used in Mahjong, including numbered tiles for
+ * the Man (m),
  * Pin (p), Sou (s) suits, and honor tiles (z).
  */
 public enum BaseTile {
@@ -79,13 +80,13 @@ public enum BaseTile {
   private static final BaseTile[] vals = values();
 
   /** The east wind tile. */
-  public static final BaseTile windTon  = _1z;
+  public static final BaseTile windTon = _1z;
   /** The south wind tile. */
-  public static final BaseTile windNan  = _2z;
+  public static final BaseTile windNan = _2z;
   /** The west wind tile. */
   public static final BaseTile windShaa = _3z;
   /** The north wind tile. */
-  public static final BaseTile windPei  = _4z;
+  public static final BaseTile windPei = _4z;
 
   /**
    * Returns the next tile in the enumeration.
@@ -105,7 +106,9 @@ public enum BaseTile {
     return vals[(this.ordinal() + 1) % vals.length];
   }
 
-  /** Localization object for translating tile identifiers to localized strings. */
+  /**
+   * Localization object for translating tile identifiers to localized strings.
+   */
   private static Localization<BaseTile> localization = new Localization<>(BaseTile::valueOf);
 
   static {

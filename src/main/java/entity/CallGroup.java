@@ -43,9 +43,9 @@ public class CallGroup {
   /**
    * Constructs a CallGroup with the specified type, tiles, and take position.
    *
-   * @param type the type of the call group
+   * @param type  the type of the call group
    * @param tiles the list of tiles
-   * @param take the position of the "take" tile
+   * @param take  the position of the "take" tile
    */
   public CallGroup(Type type, List<Tile> tiles, int take) {
     this.type = type;

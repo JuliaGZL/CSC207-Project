@@ -10,18 +10,18 @@ import mahjong.BaseTile;
 public class PlayerStats {
   private boolean isRiichi;
   private boolean isDoubleRiichi;
-  private boolean isIppatsu;      // One Shot
+  private boolean isIppatsu; // One Shot
   private boolean isMenzenchin;
   private boolean isTsumo;
-  private boolean isRinshan;      // After a Kan
-  private boolean isHaitei;       // Under the Sea
-  private boolean isHoutei;       // Under the River
-  private boolean isChankan;      // Robbing a Kan
+  private boolean isRinshan; // After a Kan
+  private boolean isHaitei; // Under the Sea
+  private boolean isHoutei; // Under the River
+  private boolean isChankan; // Robbing a Kan
   private boolean isTenhou;
   private boolean isChiihou;
   private boolean isOya;
   private BaseTile selfWind;
-  private BaseTile prevalentWind; 
+  private BaseTile prevalentWind;
   private List<Tile> hand;
   private List<BaseTile> baseHand;
   private List<CallGroup> callGroups;
@@ -29,7 +29,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Riichi state.
-   * 
+   *
    * @return true if the player is in Riichi state, false otherwise.
    */
   public boolean isRiichi() {
@@ -38,7 +38,7 @@ public class PlayerStats {
 
   /**
    * Sets the Riichi state of the player.
-   * 
+   *
    * @param isRiichi true to set the player in Riichi state, false otherwise.
    */
   public void setRiichi(boolean isRiichi) {
@@ -47,7 +47,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Double Riichi state.
-   * 
+   *
    * @return true if the player is in Double Riichi state, false otherwise.
    */
   public boolean isDoubleRiichi() {
@@ -56,8 +56,9 @@ public class PlayerStats {
 
   /**
    * Sets the Double Richi state of the player.
-   * 
-   * @param isDoubleRiichi true to set the player in Riichi state, false otherwise.
+   *
+   * @param isDoubleRiichi true to set the player in Riichi state, false
+   *                       otherwise.
    */
   public void setDoubleRiichi(boolean isDoubleRiichi) {
     this.isDoubleRiichi = isDoubleRiichi;
@@ -65,7 +66,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Ippatsu state.
-   * 
+   *
    * @return true if the player is in Ippatsu state, false otherwise.
    */
   public boolean isIppatsu() {
@@ -74,7 +75,7 @@ public class PlayerStats {
 
   /**
    * Sets the Ippatsu state of the player.
-   * 
+   *
    * @param isIppatsu true to set the player in Ippatsu state, false otherwise.
    */
   public void setIppatsu(boolean isIppatsu) {
@@ -83,7 +84,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Menzenchin state.
-   * 
+   *
    * @return true if the player is in Menzenchin state, false otherwise.
    */
   public boolean isMenzenchin() {
@@ -92,7 +93,7 @@ public class PlayerStats {
 
   /**
    * Sets the Menzenchin state of the player.
-   * 
+   *
    * @param isMenzenchin true to set the player in Menzenchin state, false
    *                     otherwise.
    */
@@ -102,7 +103,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Tsumo state.
-   * 
+   *
    * @return true if the player is in Tsumo state, false otherwise.
    */
   public boolean isTsumo() {
@@ -111,7 +112,7 @@ public class PlayerStats {
 
   /**
    * Sets the Tsumo state of the player.
-   * 
+   *
    * @param isTsumo true to set the player in Tsumo state, false otherwise.
    */
   public void setTsumo(boolean isTsumo) {
@@ -120,7 +121,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Rinshan state.
-   * 
+   *
    * @return true if the player is in Rinshan state, false otherwise.
    */
   public boolean isRinshan() {
@@ -129,7 +130,7 @@ public class PlayerStats {
 
   /**
    * Sets the Rinshan state of the player.
-   * 
+   *
    * @param isRinshan true to set the player in Rinshan state, false otherwise.
    */
   public void setRinshan(boolean isRinshan) {
@@ -138,7 +139,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Haitei state.
-   * 
+   *
    * @return true if the player is in Haitei state, false otherwise.
    */
   public boolean isHaitei() {
@@ -147,7 +148,7 @@ public class PlayerStats {
 
   /**
    * Sets the Haitei state of the player.
-   * 
+   *
    * @param isHaitei true to set the player in Haitei state, false otherwise.
    */
   public void setHaitei(boolean isHaitei) {
@@ -156,7 +157,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Houtei state.
-   * 
+   *
    * @return true if the player is in Houtei state, false otherwise.
    */
   public boolean isHoutei() {
@@ -165,7 +166,7 @@ public class PlayerStats {
 
   /**
    * Sets the Houtei state of the player.
-   * 
+   *
    * @param isHoutei true to set the player in Houtei state, false otherwise.
    */
   public void setHoutei(boolean isHoutei) {
@@ -174,7 +175,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Chankan state.
-   * 
+   *
    * @return true if the player is in Chankan state, false otherwise.
    */
   public boolean isChankan() {
@@ -183,7 +184,7 @@ public class PlayerStats {
 
   /**
    * Sets the Chankan state of the player.
-   * 
+   *
    * @param isChankan true to set the player in Chankan state, false otherwise.
    */
   public void setChankan(boolean isChankan) {
@@ -192,7 +193,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Tenhou state.
-   * 
+   *
    * @return true if the player is in Tenhou state, false otherwise.
    */
   public boolean isTenhou() {
@@ -201,7 +202,7 @@ public class PlayerStats {
 
   /**
    * Sets the Tenhou state of the player.
-   * 
+   *
    * @param isTenhou true to set the player in Tenhou state, false otherwise.
    */
   public void setTenhou(boolean isTenhou) {
@@ -210,7 +211,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is in Chiihou state.
-   * 
+   *
    * @return true if the player is in Chiihou state, false otherwise.
    */
   public boolean isChiihou() {
@@ -219,7 +220,7 @@ public class PlayerStats {
 
   /**
    * Sets the Chiihou state of the player.
-   * 
+   *
    * @param isChiihou true to set the player in Chiihou state, false otherwise.
    */
   public void setChiihou(boolean isChiihou) {
@@ -228,7 +229,7 @@ public class PlayerStats {
 
   /**
    * Gets the hand of the player.
-   * 
+   *
    * @return an array of Tile representing the player's hand.
    */
   public List<Tile> getHand() {
@@ -237,7 +238,7 @@ public class PlayerStats {
 
   /**
    * Sets the hand of the player in Tile.
-   * 
+   *
    * @param hand an array of Tile to set as the player's hand.
    */
   public void setHand(List<Tile> hand) {
@@ -246,7 +247,7 @@ public class PlayerStats {
 
   /**
    * Checks if the player is the dealer (Oya).
-   * 
+   *
    * @return true if the player is the dealer, false otherwise.
    */
   public boolean isOya() {
@@ -255,7 +256,7 @@ public class PlayerStats {
 
   /**
    * Sets the dealer (Oya) state of the player.
-   * 
+   *
    * @param isOya true to set the player as the dealer, false otherwise.
    */
   public void setOya(boolean isOya) {
@@ -270,6 +271,7 @@ public class PlayerStats {
   public List<BaseTile> getBaseHands() {
     return baseHand;
   }
+
   /**
    * Retrieves the self wind tile of the player.
    *
@@ -318,7 +320,8 @@ public class PlayerStats {
   /**
    * Sets the base hand for the player.
    *
-   * @param baseHand the list of BaseTile objects representing the player's base hand
+   * @param baseHand the list of BaseTile objects representing the player's base
+   *                 hand
    */
   public void setBaseHand(List<BaseTile> baseHand) {
     this.baseHand = baseHand;
@@ -336,7 +339,8 @@ public class PlayerStats {
   /**
    * Sets the call groups for the player.
    *
-   * @param callGroups the list of CallGroup objects representing the player's Fuuros.
+   * @param callGroups the list of CallGroup objects representing the player's
+   *                   Fuuros.
    */
   public void setCallGroups(List<CallGroup> callGroups) {
     this.callGroups = callGroups;
@@ -360,25 +364,24 @@ public class PlayerStats {
     this.numAkaDora = numAkaDora;
   }
 
-
   /**
    * Constructs a PlayerState with the specified states and hand.
    *
-   * @param isRiichi     whether the player is in Riichi state.
-   * @param isIppatsu    whether the player is in Ippatsu state.
-   * @param isMenzenchin whether the player is in Menzenchin state.
-   * @param isTsumo      whether the player is in Tsumo state.
-   * @param isRinshan    whether the player is in Rinshan state.
-   * @param isHaitei     whether the player is in Haitei state.
-   * @param isHoutei     whether the player is in Houtei state.
-   * @param isChankan    whether the player is in Chankan state.
-   * @param isTenhou     whether the player is in Tenhou state.
-   * @param isChiihou    whether the player is in Chiihou state.
-   * @param isOya        whether the player is in Oya state.
-   * @param selfWind     the self wind tile of the player.
+   * @param isRiichi      whether the player is in Riichi state.
+   * @param isIppatsu     whether the player is in Ippatsu state.
+   * @param isMenzenchin  whether the player is in Menzenchin state.
+   * @param isTsumo       whether the player is in Tsumo state.
+   * @param isRinshan     whether the player is in Rinshan state.
+   * @param isHaitei      whether the player is in Haitei state.
+   * @param isHoutei      whether the player is in Houtei state.
+   * @param isChankan     whether the player is in Chankan state.
+   * @param isTenhou      whether the player is in Tenhou state.
+   * @param isChiihou     whether the player is in Chiihou state.
+   * @param isOya         whether the player is in Oya state.
+   * @param selfWind      the self wind tile of the player.
    * @param prevalentWind the prevalent wind tile of the player.
-   * @param hand         the hand of the player.
-   * @param callGroups   the call groups (Fuuros) of the player.
+   * @param hand          the hand of the player.
+   * @param callGroups    the call groups (Fuuros) of the player.
    */
   public PlayerStats(
       boolean isRiichi, boolean isDoubleRiichi, boolean isIppatsu,
