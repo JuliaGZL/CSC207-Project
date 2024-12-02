@@ -6,7 +6,8 @@ import java.util.List;
 import utils.Algorithm;
 
 /**
- * A singleton class responsible for splitting tiles into completed sets in Mahjong.
+ * A singleton class responsible for splitting tiles into completed sets in
+ * Mahjong.
  */
 public class TileSplitter {
 
@@ -55,7 +56,8 @@ public class TileSplitter {
   }
 
   /**
-   * Recursively finds all possible combinations of completed tiles from the given list.
+   * Recursively finds all possible combinations of completed tiles from the given
+   * list.
    *
    * @param tiles the list of tiles to process
    * @return a list of all possible {@code CompletedTiles} combinations
@@ -150,7 +152,5 @@ public class TileSplitter {
 
     return ret;
   }
-
-
 
 }

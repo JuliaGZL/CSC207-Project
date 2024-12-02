@@ -1,10 +1,11 @@
 package unit.discord_bot;
 
-import data_access.discord_bot.LoginHandler;
-import data_access.discord_bot.GreetingHandler;
-import data_access.discord_bot.MahjongComboHandler;
-import data_access.discord_bot.QuitHandler;
-import data_access.discord_bot.ChatBot;
+import dataaccess.discordbot.ChatBot;
+import dataaccess.discordbot.GreetingHandler;
+import dataaccess.discordbot.LoginHandler;
+import dataaccess.discordbot.MahjongComboHandler;
+import dataaccess.discordbot.QuitHandler;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,10 +20,10 @@ public class addEventTest {
         bot.addEvent(MahjongComboHandler.class);
         bot.addEvent(QuitHandler.class);
         System.out.println(bot.getSubEventsClasses());
-        String expected = "[class data_access.discord_bot.LoginHandler, "+
-                "class data_access.discord_bot.GreetingHandler, "+
-                "class data_access.discord_bot.MahjongComboHandler, "+
-                "class data_access.discord_bot.QuitHandler]";
+        String expected = "[class dataaccess.discordbot.LoginHandler, "+
+                "class dataaccess.discordbot.GreetingHandler, "+
+                "class dataaccess.discordbot.MahjongComboHandler, "+
+                "class dataaccess.discordbot.QuitHandler]";
         assertEquals(expected, bot.getSubEventsClasses().toString());
     }
 }

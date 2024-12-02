@@ -1,7 +1,8 @@
 package unit.discord_bot;
 
-import data_access.discord_bot.QuitHandler;
 import org.junit.Test;
+
+import dataaccess.discordbot.QuitHandler;
 
 import static org.junit.Assert.*;
 

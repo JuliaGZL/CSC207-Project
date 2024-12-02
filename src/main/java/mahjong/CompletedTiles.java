@@ -82,7 +82,7 @@ class CompletedTiles implements Comparable<CompletedTiles> {
    * completed tile sets.
    * A completed tile set is a valid Mahjong hand that can be formed from the
    * given tiles.
-   * 
+   *
    * @param tiles the list of BaseTile objects to be processed. The list must
    *              contain a number of tiles
    *              that is congruent to 2 modulo 3 (i.e., the size of the list must

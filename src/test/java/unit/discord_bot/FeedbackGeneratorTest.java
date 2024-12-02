@@ -1,13 +1,11 @@
 package unit.discord_bot;
 
-import data_access.discord_bot.FeedbackGenerator;
-import data_access.discord_bot.QuitHandler;
+import static org.junit.Assert.assertEquals;
+
+import dataaccess.discordbot.FeedbackGenerator;
+import java.util.List;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class FeedbackGeneratorTest {
     @Test

@@ -395,6 +395,7 @@ public class YakuCalculator {
     // Check for tanki (single wait)
     final boolean tanki = isTanki(tileGroupString);
 
+    System.out.println(tileGroupString);
     // Check for Chiitoitsu (Seven pairs)
     if (isChiitoitsu(tileGroupString)) {
       yakus.add(Yaku.Chiitoitsu);
@@ -1045,7 +1046,6 @@ public class YakuCalculator {
     Pair<List<Yaku>, Pair<Integer, Integer>> maxYakuFanFu = new Pair<>(
         new ArrayList<>(), new Pair<>(0, 0));
     int maxFan = 0;
-
     List<List<String>> tileGroupStrings = TileGroup.generateTileGroupStrings(
         ct, callGroups, isTsumo, winningTile);
 
@@ -1078,13 +1078,13 @@ public class YakuCalculator {
         yakuList.add(Yaku.Dora);
       }
       // if (t.isRedDora()) {
-      //   yakuList.add(Yaku.Akadora);
+      // yakuList.add(Yaku.Akadora);
       // } ABOLISHED
       if (t.isUraDora()) {
         yakuList.add(Yaku.Uradora);
       }
     }
-    for (int t = 0; t < playerStats.getNumAkaDora(); t++){
+    for (int t = 0; t < playerStats.getNumAkaDora(); t++) {
       yakuList.add(Yaku.Akadora);
     }
   }
@@ -1101,18 +1101,25 @@ public class YakuCalculator {
     getSepcialYakuman(maxYakuList);
     if (!hasSpecialYaku) {
       // Decompose the tiles (already unique)
-      List<CompletedTiles> completeTilesList = CompletedTiles.getCompletedTiles(originalHand);
+      List<CompletedTiles> completeTilesList = new ArrayList<>();
+      Algorithm.mergeInto(completeTilesList, CompletedTiles.getCompletedTiles(originalHand));
 
       /* Count Seven Pairs */
       if (!hasYakuman && Rule.is7ToitsuShape(originalHand)) {
         CompletedTiles ct = new CompletedTiles();
+        System.out.println(ct.getBody().size());
         for (int i = 0; i < 14; i += 2) {
           TileGroup tg = new TileGroup(TileGroup.Type.TOITSU);
           tg.setTiles(List.of(originalHand.get(i), originalHand.get(i)));
           ct.getBody().add(tg);
         }
+        // if not set a fake head, we will get a NullPointerException
+        TileGroup tg = new TileGroup(TileGroup.Type.TOITSU);
+        ct.setHead(tg);
         completeTilesList.add(ct);
+        System.out.println(completeTilesList);
       }
+      
       // Next
 
       for (CompletedTiles cts : completeTilesList) {
@@ -1137,7 +1144,11 @@ public class YakuCalculator {
       maxYakuFanFu.getFst().add(Yaku.None);
     }
 
-    return maxYakuFanFu;
+    maxYakuFanFu.getFst().sort(null);
+
+    return new Pair<>(maxYakuFanFu.getFst(),
+        new Pair<>(maxYakuFanFu.getSnd().getFst() + calculateFan(maxYakuList),
+            maxYakuFanFu.getSnd().getSnd()));
   }
 
   /**
