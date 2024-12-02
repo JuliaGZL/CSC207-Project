@@ -110,7 +110,20 @@ To read the score messages, "Ctrl+R" is the only option.
 ![Read Out Loud](assets/read_hand.gif)
 
 ## Installation Instructions
-This software is meant to be installed on Linux, macOS, or Windows devices.
+
+### Supported Platforms & Versions
+| Operating System | Architectures | Version  |
+|------------------|---------------|----------|
+| Windows          | x86, x64      | 7, 8, 10 |
+| macOS            | x64, ARM64    | 10.10+   |
+| Linux            | x86, x64      |          |
+
+We built this project on Java 11, so it is recommended to use Java 11 or later versions to run this project.
+We have tried this project on Java 11, Java 17, and Java 22, but it is not guaranteed to work on all versions
+(especially those later than Java 17).
+
+### Instructions
+
 1. `git clone` this repository.
 2. If you do not have [Java](https://www.java.com/en/download/) on your device, download and install Java.
 3. Open the terminal and navigate to the directory where you have cloned this repository.
@@ -119,8 +132,6 @@ This software is meant to be installed on Linux, macOS, or Windows devices.
 Currently, the only package that needs to be installed is `com.discord4j` for the Discord Bot.
 This should be installed automatically if maven is configured correctly. If not, you can
 view the [Discord4J Guide on Download/Installation](https://docs.discord4j.com/quickstart) for more information.
-
-Note that the version of Java on your device should be no earlier than Java 17.
 
 ## Usage Guide
 1. Run the program by running `src/main/java/app/Main.java`.
