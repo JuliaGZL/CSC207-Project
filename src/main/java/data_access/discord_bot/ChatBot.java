@@ -41,10 +41,10 @@ public class ChatBot {
     /**
      * Constructs a ChatBot instance with the given authentication token.
      *
-     * @param token the authentication token for the bot
+     * @param tokenIpt the authentication token for the bot
      */
-    public ChatBot(final String token) {
-        this.token = token;
+    public ChatBot(final String tokenIpt) {
+        this.token = tokenIpt;
         this.client = DiscordClient.create(token);
         this.handlerFactory = new HandlerFactoryByClass();
     }

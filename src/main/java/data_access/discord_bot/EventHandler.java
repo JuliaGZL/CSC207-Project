@@ -39,37 +39,37 @@ public abstract class EventHandler<E extends Event> {
      * Constructs an EventHandler instance with the
      * provided client, gateway, and event execution Mono.
      *
-     * @param client the Discord client
-     * @param gateway the GatewayDiscordClient
+     * @param clientIpt the Discord client
+     * @param gatewayIpt the GatewayDiscordClient
      *                for interacting with the Discord gateway
-     * @param eventVoid the Mono<Void> representing the event's execution
+     * @param eventVoidIpt the Mono<Void> representing the event's execution
      */
-    public EventHandler(final DiscordClient client,
-                        final GatewayDiscordClient gateway,
-                        final Mono<Void> eventVoid) {
-        this.client = client;
-        this.eventVoid = eventVoid;
-        this.gateway = gateway;
+    public EventHandler(final DiscordClient clientIpt,
+                        final GatewayDiscordClient gatewayIpt,
+                        final Mono<Void> eventVoidIpt) {
+        this.client = clientIpt;
+        this.eventVoid = eventVoidIpt;
+        this.gateway = gatewayIpt;
     }
 
     /**
      * Constructs an EventHandler instance with the
      * provided client, gateway, event class, and event mapper.
      *
-     * @param client the Discord client
-     * @param gateway the GatewayDiscordClient for
+     * @param clientIpt the Discord client
+     * @param gatewayIpt the GatewayDiscordClient for
      *                interacting with the Discord gateway
      * @param eventClass the class of the event to handle
-     * @param eventMapper the function that maps
+     * @param eventMapperIpt the function that maps
      *                    the event to a publisher of void
      */
-    public EventHandler(final DiscordClient client,
-                        final GatewayDiscordClient gateway,
+    public EventHandler(final DiscordClient clientIpt,
+                        final GatewayDiscordClient gatewayIpt,
                         final Class<E> eventClass,
-                        final Function<E, Publisher<Void>> eventMapper) {
-        this.client = client;
-        this.gateway = gateway;
-        this.eventMapper = eventMapper;
+                        final Function<E, Publisher<Void>> eventMapperIpt) {
+        this.client = clientIpt;
+        this.gateway = gatewayIpt;
+        this.eventMapper = eventMapperIpt;
         this.eventVoid = mapperToEvent(gateway, eventClass, eventMapper);
     }
 
@@ -78,18 +78,18 @@ public abstract class EventHandler<E extends Event> {
      * Maps the event to a Mono<Void> based on the
      * event class and the eventMapper function.
      *
-     * @param gateway the GatewayDiscordClient
+     * @param gatewayIpt the GatewayDiscordClient
      *                for interacting with the Discord gateway
      * @param eventClass the class of the event to handle
-     * @param eventMapper the function that maps
+     * @param eventMapperIpt the function that maps
      *                    the event to a publisher of void
      * @return a Mono<Void> that represents the event's execution
      */
-    public Mono<Void> mapperToEvent(final GatewayDiscordClient gateway,
+    public Mono<Void> mapperToEvent(final GatewayDiscordClient gatewayIpt,
                                     final Class<E> eventClass,
                                     final Function<E, Publisher<Void>>
-                                            eventMapper) {
-        return gateway.on(eventClass, eventMapper).then();
+                                            eventMapperIpt) {
+        return gatewayIpt.on(eventClass, eventMapperIpt).then();
     }
 
     /**

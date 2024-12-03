@@ -52,10 +52,10 @@ public class DefaultBotBuilder implements BotBuilder {
      * Constructor with custom token.
      * Initializes the bot and adds event handlers.
      *
-     * @param token the custom token to use for authentication
+     * @param tokenIpt the custom token to use for authentication
      */
-    public DefaultBotBuilder(final String token) {
-        this.token = token;
+    public DefaultBotBuilder(final String tokenIpt) {
+        this.token = tokenIpt;
         bot = new ChatBot(token);
         initializeBotEvent();
     }
