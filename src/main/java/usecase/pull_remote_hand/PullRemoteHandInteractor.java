@@ -9,16 +9,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Interactor of the pull hand from discord use case.
+ * Interactor for the pull hand from discord use case.
+ *
+ * This class is responsible for orchestrating the business logic of
+ * the pull hand use case, coordinating the data access and output
+ * interactions for pulling a hand from Discord.
  */
 public class PullRemoteHandInteractor implements PullRemoteHandInputBoundary {
+
+    /**
+     * The data access object used to interact with the data layer
+     * for the pull hand use case.
+     */
     private final PullRemoteHandDataAccessInterface dataAccessObj;
+
+    /**
+     * The presenter used to handle the output of the pull hand use case.
+     */
     private final PullRemoteHandOutputBoundary presenter;
 
-    public PullRemoteHandInteractor(PullRemoteHandDataAccessInterface dataAccessObj,
-                                    PullRemoteHandOutputBoundary presenter) {
-        this.dataAccessObj = dataAccessObj;
-        this.presenter = presenter;
+    /**
+     * Constructor to create an instance of PullRemoteHandInteractor.
+     *
+     * @param dataAccessObjInput the data access object for pulling hand data
+     * @param presenterInput   the presenter for handling output after the pull
+     *                      hand use case execution
+     */
+    public PullRemoteHandInteractor(final PullRemoteHandDataAccessInterface
+                                            dataAccessObjInput,
+                                    final PullRemoteHandOutputBoundary
+                                            presenterInput) {
+        this.dataAccessObj = dataAccessObjInput;
+        this.presenter = presenterInput;
     }
 
     /**
@@ -27,7 +49,7 @@ public class PullRemoteHandInteractor implements PullRemoteHandInputBoundary {
      * @param inputData the input data
      */
     @Override
-    public void execute(PullRemoteHandInputData inputData) {
+    public void execute(final PullRemoteHandInputData inputData) {
         List<Tile> newHand = dataAccessObj.getHandFromDiscord();
         Player player = dataAccessObj.getPlayer(inputData.getPlayerName());
         player.setHand(newHand);
