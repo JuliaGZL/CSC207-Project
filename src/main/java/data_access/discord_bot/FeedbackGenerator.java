@@ -16,11 +16,11 @@ public class FeedbackGenerator {
   /**
    * Generates a list of result strings based on the given tiles.
    *
-   * @param Tiles a string representing the tiles
+   * @param tiles1 a string representing the tiles
    * @return a list of result strings
    */
-  public static List<String> getResultString(String Tiles) {
-    List<Tile> tiles = getTiles(Tiles);
+  public static List<String> getResultString(final String tiles1) {
+    List<Tile> tiles = getTiles(tiles1);
     PlayerStats playerStats = new PlayerStatsBuilder().setHand(tiles).build();
     HandResult handResult = HandResult.getInstance(playerStats);
     return handResult.displayHandResult();
@@ -29,12 +29,12 @@ public class FeedbackGenerator {
   /**
    * Converts a string of tiles into a list of Tile objects.
    *
-   * @param Tiles a string representing the tiles
+   * @param tiles2 a string representing the tiles
    * @return a list of Tile objects
    */
-  public static List<Tile> getTiles(String Tiles) {
+  public static List<Tile> getTiles(final String tiles2) {
     List<Tile> tiles = new ArrayList<>();
-    String[] tokens = Tiles.split(" ");
+    String[] tokens = tiles2.split(" ");
     List<Integer> numbers = new ArrayList<>();
     for (String token : tokens) {
       if (Character.isDigit(token.charAt(0))) {
