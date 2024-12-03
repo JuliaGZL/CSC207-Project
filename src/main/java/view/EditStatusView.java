@@ -277,6 +277,9 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         newAttributes[EditStatusViewModel.ROBBING_A_KAN_INDEX] = false;
       } else if ("Ron".equals(selectedItem)) {
         newAttributes[EditStatusViewModel.UNDER_THE_SEA_INDEX] = false;
+        newAttributes[EditStatusViewModel.CHIIHOU_INDEX] = false;
+        newAttributes[EditStatusViewModel.TENHOU_INDEX] = false;
+        newAttributes[EditStatusViewModel.AFTER_A_KAN_INDEX] = false;
       }
     }
     if (comboBox.equals(seatWindComboBox)) {
@@ -304,8 +307,12 @@ public class EditStatusView extends JPanel implements ActionListener, PropertyCh
         disableCheckBox("Under the River");
         enableCheckBox("Under the Sea");
         disableCheckBox("Robbing a Kan");
+        enableCheckBox("After a Kan");
       } else if ("Ron".equals(selectedItem)) {
         disableCheckBox("Under the Sea");
+        disableCheckBox("Chiihou");
+        disableCheckBox("Tenhou");
+        disableCheckBox("After a Kan");
         enableCheckBox("Under the River");
         enableCheckBox("Robbing a Kan");
       }
