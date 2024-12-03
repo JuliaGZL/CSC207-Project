@@ -1,4 +1,6 @@
-package data_access.discord_bot;
+package data_access.discord_bot.example;
+
+import data_access.discord_bot.*;
 
 public class TestChatBotWithPartialFunctions {
     public static void main(String[] args) {
