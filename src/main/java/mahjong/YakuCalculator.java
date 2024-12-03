@@ -233,7 +233,6 @@ public class YakuCalculator {
   private void getSepcialYakuman(List<Yaku> yakuList) {
     getTenhouChiihouYaku(yakuList);
     if (!getKoukushimusou(yakuList)) {
-      getTsuuiisouYaku(yakuList);
       if (!getChurenPoutouYaku(yakuList)) {
         hasSpecialYaku = false;
         return;
@@ -392,6 +391,8 @@ public class YakuCalculator {
     boolean isRyuiisou = tileGroupString.stream().allMatch(Rule::isGreenpai);
     getRyuiisouYaku(yakus, isRyuiisou);
 
+    
+    getTsuuiisouYaku(yakus);
     getDaisangenYaku(yakus, jihaiKoutsu);
     getSuushiiYaku(yakus, jihaiKoutsu, jihaiToitsu);
     getSuuankouYaku(yakus, numAnkou, tanki);

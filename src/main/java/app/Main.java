@@ -33,7 +33,7 @@ public class Main {
     // set GUI appearance
     try {
       // TODO: just a workaround to make it looks better on my device...
-      System.setProperty("sun.java2d.uiScale", "2");
+      System.setProperty("sun.java2d.uiScale", "1.50");
       // UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
     } catch (Exception ex) {
       ex.printStackTrace();
