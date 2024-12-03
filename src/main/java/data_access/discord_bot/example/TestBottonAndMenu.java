@@ -21,17 +21,21 @@ public class TestBottonAndMenu {
         //final String guildId = "1212985746688974848";
 
 
-        String token = "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT.OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto";
+        String token = "MTEzODg1MzczMzQ2MDEwMzMzOQ.G9wYsT." +
+                "OpiQGsUnUJ4KoIKmSD0L9CDCETNzQhZPBCDFto";
 
 
         DiscordClient.create(token)
                 .withGateway(gw -> {
-                    Mono<Message> sendMessage = gw.on(GuildCreateEvent.class)
-                            .filter(e -> e.getGuild().getId().asString().equals(guildId))
+                    Mono<Message> sendMessage = gw.on(
+                            GuildCreateEvent.class)
+                            .filter(e -> e.getGuild().getId().asString().equals(
+                                    guildId))
                             .next()
                             .flatMap(e -> e.getGuild().getChannelById(Snowflake.of(channelId)))
                             .ofType(TextChannel.class)
-                            .flatMap(channel -> channel.createMessage("Choose your tiles!")
+                            .flatMap(channel ->
+                                    channel.createMessage("Choose your tiles!")
                                     .withComponents(
                                             ActionRow.of(
                                                     //              ID,  label

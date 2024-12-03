@@ -12,7 +12,12 @@ public class AddRemoveTilePresenter implements
 
     private final TilesDisplayViewModel viewModel;
 
-    public AddRemoveTilePresenter(TilesDisplayViewModel viewModel) {
+    /**
+     * Constructor for AddRemoveTilePresenter.
+     *
+     * @param viewModel the view model
+     */
+    public AddRemoveTilePresenter(final TilesDisplayViewModel viewModel) {
         this.viewModel = viewModel;
     }
 
