@@ -1,14 +1,15 @@
 package app;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
-public class Main {
+class Main {
     public static void main(String[] args) {
         // set GUI appearance
         try {
-            // TODO: just a workaround to make it looks better on my device...
-            System.setProperty("sun.java2d.uiScale","2");
-            // UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+            // just a workaround to make it looks better on my device...
+            System.setProperty("sun.java2d.uiScale", "2");
+            // UIManager.setLookAndFeel(
+            // "com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         }
         catch (Exception ex) {
             ex.printStackTrace();
