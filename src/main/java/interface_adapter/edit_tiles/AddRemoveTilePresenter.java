@@ -7,7 +7,8 @@ import usecase.add_tile.AddTileOutputData;
 import usecase.remove_tile.RemoveTileOutputBoundary;
 import usecase.remove_tile.RemoveTileOutputData;
 
-public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTileOutputBoundary {
+public class AddRemoveTilePresenter implements
+        AddTileOutputBoundary, RemoveTileOutputBoundary {
 
     private final TilesDisplayViewModel viewModel;
 
@@ -21,7 +22,7 @@ public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTile
      * @param outputData the output data
      */
     @Override
-    public void prepareSuccessView(AddTileOutputData outputData) {
+    public void prepareSuccessView(final AddTileOutputData outputData) {
         TilesDisplayState state = viewModel.getState();
         state.setNameList(outputData.getNameList());
         state.setIdList(outputData.getIdList());
@@ -35,7 +36,7 @@ public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTile
      * @param outputData the output data
      */
     @Override
-    public void prepareSuccessView(RemoveTileOutputData outputData) {
+    public void prepareSuccessView(final RemoveTileOutputData outputData) {
         TilesDisplayState state = viewModel.getState();
         state.setNameList(outputData.getNameList());
         state.setIdList(outputData.getIdList());
@@ -49,7 +50,7 @@ public class AddRemoveTilePresenter implements AddTileOutputBoundary, RemoveTile
      * @param errorMessage the explanation of the failure
      */
     @Override
-    public void prepareFailView(String errorMessage) {
+    public void prepareFailView(final String errorMessage) {
         TilesDisplayState state = viewModel.getState();
         state.setErrorMsg(errorMessage);
         viewModel.firePropertyChanged("failed");
