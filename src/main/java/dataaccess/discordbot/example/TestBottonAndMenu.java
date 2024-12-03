@@ -1,4 +1,4 @@
-package data_access.discord_bot.example;
+package dataaccess.discordbot.example;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClient;

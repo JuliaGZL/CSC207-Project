@@ -1,4 +1,4 @@
-package data_access.discord_bot;
+package dataaccess.discordbot;
 
 /**
  * A utility class for holding and retrieving a message.

@@ -1,6 +1,6 @@
-package data_access.discord_bot;
+package dataaccess.discordbot;
 
-import data_access.InMemoryUniversalDataAccessObject;
+import dataaccess.InMemoryUniversalDataAccessObject;
 import entity.Player;
 import entity.Tile;
 import usecase.pull_remote_hand.PullRemoteHandDataAccessInterface;

@@ -1,8 +1,8 @@
-package data_access.discord_bot.example;
+package dataaccess.discordbot.example;
 
-import data_access.discord_bot.GreetingHandler;
-import data_access.discord_bot.LoginHandler;
-import data_access.discord_bot.StatusReportHandler;
+import dataaccess.discordbot.GreetingHandler;
+import dataaccess.discordbot.LoginHandler;
+import dataaccess.discordbot.StatusReportHandler;
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
 import reactor.core.publisher.Mono;

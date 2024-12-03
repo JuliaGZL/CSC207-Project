@@ -1,4 +1,4 @@
-package data_access.discord_bot;
+package dataaccess.discordbot;
 
 import entity.PlayerStats;
 import entity.PlayerStatsBuilder;

@@ -1,4 +1,4 @@
-package data_access.discord_bot;
+package dataaccess.discordbot;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;

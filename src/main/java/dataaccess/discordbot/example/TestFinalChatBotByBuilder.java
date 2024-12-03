@@ -1,6 +1,6 @@
-package data_access.discord_bot.example;
+package dataaccess.discordbot.example;
 
-import data_access.discord_bot.DefaultBotBuilder;
+import dataaccess.discordbot.DefaultBotBuilder;
 
 public class TestFinalChatBotByBuilder {
     public static void main(String[] args) {

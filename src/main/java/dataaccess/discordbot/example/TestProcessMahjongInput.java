@@ -1,6 +1,6 @@
-package data_access.discord_bot.example;
+package dataaccess.discordbot.example;
 
-import data_access.discord_bot.MahjongComboHandler;
+import dataaccess.discordbot.MahjongComboHandler;
 
 public class TestProcessMahjongInput {
     public static void main(String[] args) {

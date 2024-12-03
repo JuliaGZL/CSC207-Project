@@ -1,4 +1,4 @@
-package data_access.discord_bot;
+package dataaccess.discordbot;
 
 import java.util.ArrayList;
 import java.util.List;

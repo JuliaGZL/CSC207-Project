@@ -1,4 +1,4 @@
-package data_access.discord_bot;
+package dataaccess.discordbot;
 
 /**
  * Interface for building and managing a bot.
