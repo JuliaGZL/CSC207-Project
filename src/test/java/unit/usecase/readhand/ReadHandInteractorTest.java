@@ -58,9 +58,13 @@ public class ReadHandInteractorTest {
   void testHandEmptyAllFalse() {
     DAO.savePlayer(player);
     interactor.execute(new ReadHandInputData(name, attrib));
-    final String expected = "Your hand is empty."
-        + "There are no dora tiles.There are no uradora tiles."
-        + "That's all tiles.You have no special attributes.";
+    final String expected = "Your hand is empty. "
+        + "There are no dora tiles.There are no uradora tiles.That's all tiles." +
+        "You won by Tsumo. " +
+        "Your seat wind is East. " +
+        "The round wind is East. " +
+        "You have 0 red dora. " +
+        "You have no special attributes.";
     Assertions.assertEquals(expected, presenter.getMessage());
   }
 
@@ -74,9 +78,13 @@ public class ReadHandInteractorTest {
     player.setAttributes(newAttrib);
     DAO.savePlayer(player);
     interactor.execute(new ReadHandInputData(name, attrib));
-    final String expected = "Your hand is empty."
-        + "There are no dora tiles.There are no uradora tiles."
-        + "That's all tiles.You have the following special attributes: Riichi. Finish. ";
+    final String expected = "Your hand is empty. "
+        + "There are no dora tiles.There are no uradora tiles.That's all tiles." +
+        "You won by Tsumo. " +
+        "Your seat wind is East. " +
+        "The round wind is East. " +
+        "You have 0 red dora. " +
+        "You have the following special attributes: Riichi. Finish. ";
     Assertions.assertEquals(expected, presenter.getMessage());
   }
 
@@ -86,9 +94,13 @@ public class ReadHandInteractorTest {
     player.setHand(hand);
     DAO.savePlayer(player);
     interactor.execute(new ReadHandInputData(name, attrib));
-    final String expected = "Your hand includes 1 Man."
-        + "There are no dora tiles.There are no uradora tiles."
-        + "That's all tiles.You have no special attributes.";
+    final String expected = "Your hand includes 1 Man. "
+        + "There are no dora tiles.There are no uradora tiles.That's all tiles." +
+        "You won by Tsumo. " +
+        "Your seat wind is East. " +
+        "The round wind is East. " +
+        "You have 0 red dora. " +
+        "You have no special attributes.";
     Assertions.assertEquals(expected, presenter.getMessage());
   }
 
@@ -110,6 +122,10 @@ public class ReadHandInteractorTest {
     interactor.execute(new ReadHandInputData(name, attrib));
     final String expected = "Your hand includes 2 Man. The dora tiles are 2 Man. " +
         "The uradora tiles are 2 Man. That's all tiles." +
+        "You won by Tsumo. " +
+        "Your seat wind is East. " +
+        "The round wind is East. " +
+        "You have 0 red dora. " +
         "You have the following special attributes: Riichi, Double Riichi. Finish. ";
     Assertions.assertEquals(expected, presenter.getMessage());
   }
