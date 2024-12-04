@@ -72,8 +72,7 @@ public class HuSolverInteractor implements HuSolverInputBoundary {
       return;
     }
     if (score == 0) {
-      // presenter.prepareFailView("Current hand is not valid for Hu!");
-      // never occurs for now
+      presenter.prepareFailView("Current hand is not valid for Hu!");
     } else {
       StringBuilder messageBuilder = new StringBuilder();
       for (String s : handResult.displayHandResult()) {
