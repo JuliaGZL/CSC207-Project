@@ -61,7 +61,6 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
    * @return a string describing the player's hand, dora, uradora, and attributes
    */
   private String getHandInfo(String playerName, String[] attributeNames) {
-    // TODO: read more than just Head
     List<Tile> hand = dataAccessObj.getPlayer(playerName).getHand();
     StringBuilder handInfo = new StringBuilder();
 
@@ -109,7 +108,17 @@ public class ReadHandInteractor implements ReadHandInputBoundary {
     }
     handInfo.append("That's all tiles.");
 
-    // 4. Create string that describes the player's attributes.
+    // 4. Create string that describes the player's attributes (comboboxes).
+    String winType = dataAccessObj.getPlayer(playerName).getWinType();
+    handInfo.append("You won by ").append(winType).append(". ");
+    String seatWind = dataAccessObj.getPlayer(playerName).getSeatWind();
+    handInfo.append("Your seat wind is ").append(seatWind).append(". ");
+    String roundWind = dataAccessObj.getPlayer(playerName).getRoundWind();
+    handInfo.append("The round wind is ").append(roundWind).append(". ");
+    int numAkaDora = dataAccessObj.getPlayer(playerName).getNumAkaDora();
+    handInfo.append("You have ").append(numAkaDora).append(" red dora. ");
+
+    // 4. Create string that describes the player's attributes (checkboxes).
     // Get whether all attributes are false.
     Boolean[] attributes = dataAccessObj.getPlayer(playerName).getAttributes();
     boolean allFalse = false;
